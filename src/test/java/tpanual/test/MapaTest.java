@@ -20,7 +20,7 @@ import tpanual.main.poi.PuntoDeInteres;
 
 public class MapaTest {
 
-	//private static Mapa mapa;
+	//private static Mapa mapa;   
 	
 	@Test
 	public void buscarParadaDeColectivoTest(){
