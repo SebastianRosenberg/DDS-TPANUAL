@@ -5,17 +5,22 @@ import java.util.Date;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
+import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
 public class Busqueda {
 	private DateTime fechaDeBusqueda;
 	private String[] stringsBuscados;
 	private int[] idsEncontrados;
+	private Usuario usuario;
+	private Duration duracion;
 	
-	public Busqueda(String[] stringsBuscados, int[] idsEncontrados){
+	public Busqueda(String[] stringsBuscados, int[] idsEncontrados, Usuario usuario, Duration duracion, DateTime dateTime){
 		this.stringsBuscados=stringsBuscados;
 		this.idsEncontrados=idsEncontrados;
-		this.fechaDeBusqueda=new DateTime();
+		this.fechaDeBusqueda=dateTime;
+		this.usuario=usuario;
+		this.duracion=duracion;
 	}
 	
 	public DateTime getFechaDeBusqueda() {
@@ -41,5 +46,13 @@ public class Busqueda {
 		DateTime horaActual=new DateTime();
 		Duration duracion=new Duration(fecha, horaActual);
 		return duracion.getStandardHours()<Constantes.INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public Duration getDuracion() {
+		return duracion;
 	}	
 }

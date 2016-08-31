@@ -3,7 +3,10 @@ package administrador;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.Duration;
+
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Utilitarios;
 
 /**
@@ -36,6 +39,7 @@ public class AdministradorDePoi {
 		return busquedaDePuntosDeInteres(x, false);
 	}
 	
+	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test){
 		String listaStrings[] = {x};
 		Busqueda busqueda=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaStrings);
@@ -53,7 +57,6 @@ public class AdministradorDePoi {
 		lista=Mapa.getInstance().buscarPuntosDeInteresEnMemoria(x);
 		
 		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
-		AdministradorDeBusquedas.getInstance().agregarBusqueda(listaStrings, lista);
 		return lista;
 	}
 	
@@ -90,7 +93,6 @@ public class AdministradorDePoi {
 		lista=Mapa.getInstance().buscarPuntosDeInteresEnMemoria(banco);
 		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarPuntosDeInteresEnMemoria(servicio));
 		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarBancos(banco, servicio));
-		AdministradorDeBusquedas.getInstance().agregarBusqueda(listaStrings, lista);
 		return lista;
 	}
 

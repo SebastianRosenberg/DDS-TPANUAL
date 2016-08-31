@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import administrador.AdministradorDeBusquedas;
 import administrador.AdministradorDePoi;
+import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
@@ -39,7 +40,12 @@ public class AdministradorDeBusquedasTest {
 		String[] l={"Banco Frances", "Depositos"};
 		List<PuntoDeInteres> lista=new ArrayList<PuntoDeInteres>();
 		lista.add(punto);
-		AdministradorDeBusquedas.getInstance().agregarBusqueda(l, lista);	
+
+		SesionBusqueda sb=new SesionBusqueda();
+		sb.setStringsBuscados(l);
+		sb.setPois(lista);
+		sb.finalizarBusqueda();
+		
 		
 		List<PuntoDeInteres> listaResultado = administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 						
@@ -75,7 +81,12 @@ public class AdministradorDeBusquedasTest {
 		String[] l={"Registro Civil"};
 		List<PuntoDeInteres> lista=new ArrayList<PuntoDeInteres>();
 		lista.add(punto);
-		AdministradorDeBusquedas.getInstance().agregarBusqueda(l, lista);	
+		
+		SesionBusqueda sb=new SesionBusqueda();
+		sb.setStringsBuscados(l);
+		sb.setPois(lista);
+		sb.finalizarBusqueda();
+			
 		
 		List<PuntoDeInteres> listaResultado = admin.busquedaDePuntosDeInteres("Registro Civil");
 						

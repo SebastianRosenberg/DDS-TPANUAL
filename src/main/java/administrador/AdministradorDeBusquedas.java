@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
 public class AdministradorDeBusquedas {
@@ -37,28 +38,13 @@ public class AdministradorDeBusquedas {
 		return null;
 	}
 	
-	public void agregarBusqueda(String[] x, List<PuntoDeInteres> lista){
-		int[] ints=new int[0];
-		Iterator<PuntoDeInteres> i=lista.iterator();
-		
-		while (i.hasNext()){
-			PuntoDeInteres poi=i.next();
-			ints=agregarElemento(ints, poi.getId());
-		}
-		Busqueda b=new Busqueda(x, ints);
+	public void agregarBusqueda(Busqueda b){
 		busquedas.add(b);
 	}
 		
-	private int[] agregarElemento(int[] lista, int ele){
-		int c=0;
-		for (int y=0;y<lista.length;y++){
-			c++;
-		}
-		int[] nuevo=new int[c+1];
-		for (int a=0;a<lista.length;a++){
-			nuevo[a]=lista[a];
-		}		
-		nuevo[c]=ele;
-		return nuevo;
+	public List<Busqueda> getBusquedas(){
+		return busquedas;
 	}
+	
+	
 }
