@@ -4,6 +4,7 @@ public class Administrador extends TipoDeUsuario{
 
 	private String nombre;
 	private int id;
+	private String email;
 	
 	@Override
 	public String getNombre() {
@@ -15,6 +16,12 @@ public class Administrador extends TipoDeUsuario{
 	public int getId() {
 		// TODO Auto-generated method stub
 		return id;
+	}
+
+	@Override
+	public String getEmail() {
+		// TODO Auto-generated method stub
+		return email;
 	}
 
 	
