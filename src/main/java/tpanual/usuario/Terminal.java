@@ -4,6 +4,7 @@ public class Terminal extends TipoDeUsuario {
 
 	private String nombre;
 	private int id;
+	private Estado estado;
 	
 	@Override
 	public String getNombre() {
