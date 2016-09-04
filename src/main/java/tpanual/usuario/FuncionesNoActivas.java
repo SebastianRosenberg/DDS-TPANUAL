@@ -3,9 +3,9 @@ package tpanual.usuario;
 public class FuncionesNoActivas extends Estado{
 
 	@Override
-	public String getAcciones() {
+	public void getAcciones() {
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
 	}
 
 }

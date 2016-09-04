@@ -19,5 +19,27 @@ public class Terminal extends TipoDeUsuario {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void activar() {
+		// TODO Auto-generated method stub
+		//Estado estadoNuevo = new FuncionesActivas();
+		this.setEstado(estado);
+	}
 	
+	@Override
+	public void desactivar() {
+		// TODO Auto-generated method stub
+		//Estado estadoNuevo = new FuncionesNoActivas();
+		this.setEstado(estado);
+	}
+	
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
+	public void getAcciones(){
+		
+		this.estado.getAcciones();
+		
+	}
 }
