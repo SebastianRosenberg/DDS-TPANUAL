@@ -24,5 +24,17 @@ public class Administrador extends TipoDeUsuario{
 		return email;
 	}
 
+	@Override
+	public void activar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void desactivar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

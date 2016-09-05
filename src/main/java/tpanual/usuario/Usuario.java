@@ -4,6 +4,10 @@ public class Usuario {
 
 	private TipoDeUsuario tipoDeUsuario;
 	
+	public String getEmail(){
+		
+		return tipoDeUsuario.getEmail();
+	}
 	
 	public String getUsuario(){
 		
