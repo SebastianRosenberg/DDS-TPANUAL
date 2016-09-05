@@ -13,4 +13,7 @@ public class Constantes {
 	public static final boolean SUCURSAL_BANCO_COINCIDENCIA=false;
 	
 	public static final int INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE=72;
+	
+	//REVISAR LA CLASE DURATION Y CON QUE LO LLENO	A
+	public static duration TIEMPO_MAXIMO_CONSULTA = 0; 
 }

@@ -20,7 +20,6 @@ import tpanual.usuario.Usuario;
  * Al terminar todas las etapas de la busqueda, se invoca el metodo finalizarBusqueda(), este metodo agrega la busqueda al administrador
  * 
  * 
- * 
  * @author dipatata
  *
  */
