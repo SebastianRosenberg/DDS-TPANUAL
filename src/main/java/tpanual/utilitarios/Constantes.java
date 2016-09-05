@@ -1,5 +1,7 @@
 package tpanual.utilitarios;
 
+import org.joda.time.Duration;
+
 public class Constantes {
 	public static final int PARADA_DE_COLECTIVO_RADIO_DE_CERCANIA=100;
 	public static final int SUCURSAL_BANCO_RADIO_DE_CERCANIA=500;
@@ -15,5 +17,5 @@ public class Constantes {
 	public static final int INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE=72;
 	
 	//REVISAR LA CLASE DURATION Y CON QUE LO LLENO	A
-	public static duration TIEMPO_MAXIMO_CONSULTA = 0; 
+	public static Duration TIEMPO_MAXIMO_CONSULTA = 0; 
 }

@@ -1,6 +1,6 @@
 package tpanual.usuario;
 
-public class FuncionesActivas extends Estado{
+public class Activo extends Estado{
 
 
 	@Override

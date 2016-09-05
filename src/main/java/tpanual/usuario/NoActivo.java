@@ -1,6 +1,6 @@
 package tpanual.usuario;
 
-public class FuncionesNoActivas extends Estado{
+public class NoActivo extends Estado{
 
 	@Override
 	public void buscar() {
