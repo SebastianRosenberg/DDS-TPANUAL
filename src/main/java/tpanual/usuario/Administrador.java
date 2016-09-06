@@ -1,5 +1,10 @@
 package tpanual.usuario;
 
+import java.util.List;
+
+import administrador.AdministradorDePoi;
+import tpanual.main.poi.PuntoDeInteres;
+
 public class Administrador extends TipoDeUsuario{
 
 	private String nombre;
@@ -34,6 +39,18 @@ public class Administrador extends TipoDeUsuario{
 	public void desactivar() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x) {
+		// TODO Auto-generated method stub
+		return AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(x);
+	}
+
+	@Override
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test) {
+		// TODO Auto-generated method stub
+		return AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(x, test);
 	}
 
 	
