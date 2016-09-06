@@ -1,10 +1,9 @@
 package tpanual.utilitarios;
 
-<<<<<<< HEAD
+
 import java.time.Duration;
-=======
-import org.joda.time.Duration;
->>>>>>> 20b89b93f68dc1d5558a03e769e925b1b96d3a7e
+
+
 
 public class Constantes {
 	public static final int PARADA_DE_COLECTIVO_RADIO_DE_CERCANIA=100;
@@ -21,9 +20,7 @@ public class Constantes {
 	public static final int INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE=72;
 	
 	//REVISAR LA CLASE DURATION Y CON QUE LO LLENO	A
-<<<<<<< HEAD
-	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.ofSeconds(10);; 
-=======
-	public static Duration TIEMPO_MAXIMO_CONSULTA = 0; 
->>>>>>> 20b89b93f68dc1d5558a03e769e925b1b96d3a7e
+
+	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.ofSeconds(10); 
+
 }
