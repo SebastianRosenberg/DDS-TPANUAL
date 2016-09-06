@@ -3,6 +3,7 @@ package tpanual.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class UsuarioTest {
 
 	
 	@Test
-	public void administradorTest(){
+	public void administradorAgregarPoiTest(){
 		
 		/*Set up Poi*/
 		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
@@ -48,6 +49,25 @@ public class UsuarioTest {
 		
 		assertTrue(lista.size()> 0);
 		
+	}
+	
+	@Test
+	public void administradorEliminarPoiTest(){
+		/*Seteo usuario*/
+		Usuario usuarioAdmin = new Usuario();
+		Administrador administrador = new Administrador("mail@gmail.com", 1, "Seba");
+		usuarioAdmin.setTipoDeUsuario(administrador);
 		
+		
+		List<PuntoDeInteres> lista=usuarioAdmin.busquedaDePuntosDeInteres("GCP Comuna 1");
+		Iterator<PuntoDeInteres> i = lista.iterator();
+		
+		i = lista.iterator();
+		while(i.hasNext()){	
+			PuntoDeInteres n=i.next();
+			usuarioAdmin.eliminarPoi(n); 
+		}
+		
+		assertTrue(lista.size()==0);
 	}
 }
