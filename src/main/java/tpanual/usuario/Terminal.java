@@ -1,5 +1,9 @@
 package tpanual.usuario;
 
+import java.util.List;
+
+import tpanual.main.poi.PuntoDeInteres;
+
 public class Terminal extends TipoDeUsuario {
 
 	private String nombre;
@@ -37,9 +41,14 @@ public class Terminal extends TipoDeUsuario {
 		this.estado = estado;
 	}
 	
-	public void buscar(){
-		
-		this.estado.buscar();
-		
+	@Override
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x) {
+		// TODO Auto-generated method stub
+		return this.estado.busquedaDePuntosDeInteres(x);
+	}
+	@Override
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test) {
+		// TODO Auto-generated method stub
+		return this.estado.busquedaDePuntosDeInteres(x, test);
 	}
 }
