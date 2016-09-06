@@ -53,5 +53,23 @@ public class Administrador extends TipoDeUsuario{
 		return AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(x, test);
 	}
 
+	@Override
+	public boolean modificarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return AdministradorDePoi.getInstance().modificarPoi(poi);
+	}
+
+	@Override
+	public void agregarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		AdministradorDePoi.getInstance().agregarPoi(poi);
+	}
+
+	@Override
+	public boolean eliminarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return AdministradorDePoi.getInstance().eliminarPoi(poi);
+	}
+
 	
 }

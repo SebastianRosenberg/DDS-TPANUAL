@@ -51,4 +51,19 @@ public class Terminal extends TipoDeUsuario {
 		// TODO Auto-generated method stub
 		return this.estado.busquedaDePuntosDeInteres(x, test);
 	}
+	@Override
+	public boolean modificarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void agregarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean eliminarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
