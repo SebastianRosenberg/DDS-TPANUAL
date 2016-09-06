@@ -3,6 +3,7 @@ package tpanual.usuario;
 import java.util.List;
 
 import administrador.AdministradorDePoi;
+import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class Administrador extends TipoDeUsuario{
@@ -71,5 +72,10 @@ public class Administrador extends TipoDeUsuario{
 		return AdministradorDePoi.getInstance().eliminarPoi(poi);
 	}
 
+	public Administrador(String email, int id,String nombre ) {
+		this.email=email;
+		this.id = id;
+		this.nombre = nombre;
+	}
 	
 }

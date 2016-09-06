@@ -55,8 +55,9 @@ public class Usuario {
 		return tipoDeUsuario.eliminarPoi(poi);
 		
 	}
-	
-	
-	
+
+	public void setTipoDeUsuario(TipoDeUsuario tipoDeUsuario) {
+		this.tipoDeUsuario = tipoDeUsuario;
+	}
 	
 }
