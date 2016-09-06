@@ -37,9 +37,9 @@ public class Terminal extends TipoDeUsuario {
 		this.estado = estado;
 	}
 	
-	public void getAcciones(){
+	public void buscar(){
 		
-		this.estado.getAcciones();
+		this.estado.buscar();
 		
 	}
 }

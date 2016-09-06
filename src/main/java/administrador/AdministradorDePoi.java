@@ -20,6 +20,7 @@ public class AdministradorDePoi {
 
 	
 	private boolean usoBufferBusqueda;
+	private static AdministradorDePoi instance;
 	
 	public boolean modificarPoi(PuntoDeInteres poi){
 		PuntoDeInteres aModificar=Mapa.getInstance().obtenerPuntoDeInteres(poi.getId());
@@ -98,6 +99,19 @@ public class AdministradorDePoi {
 
 	public boolean usoBufferBusqueda() {
 		return usoBufferBusqueda;
+	}
+	
+
+	/*
+	 * 
+	 * Agrego el método para obtener la instancia del administrador de Pois
+	 * 
+	 */
+	
+	public static AdministradorDePoi getInstance(){
+		if (instance==null)
+			instance=new AdministradorDePoi();
+		return instance;
 	}
 	
 }
