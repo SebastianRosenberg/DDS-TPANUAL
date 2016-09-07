@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import tpanual.factory.PuntoDeInteresFactory;
+import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
@@ -37,15 +38,13 @@ public class UsuarioTest {
 		PuntoDeInteres poi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras2, servicios, 25);
 		
 		/*Seteo usuario*/
-		Usuario usuarioAdmin = new Usuario();
-		Administrador administrador = new Administrador("mail@gmail.com", 1, "Seba");
-		usuarioAdmin.setTipoDeUsuario(administrador);
-		
+
+		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com",1);
 		/*Tareas del usuario*/
-		usuarioAdmin.agregarPoi(poi);
+		nuevoUsuario.agregarPoi(poi);
 		
 		/*asigno a una lista el resultado de la búsqueda*/
-		List<PuntoDeInteres> lista= usuarioAdmin.busquedaDePuntosDeInteres("");
+		List<PuntoDeInteres> lista= nuevoUsuario.busquedaDePuntosDeInteres("");
 		
 		assertTrue(lista.size()> 0);
 		

@@ -66,4 +66,25 @@ public class Terminal extends TipoDeUsuario {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public Terminal(String nombre,Estado estado,int Id){
+		
+		this.setEstado(estado);
+		this.setId(Id);
+		this.setNombre(nombre);
+		
+	}
+
+	public void setNombre(String nombre) {
+	
+		this.nombre = nombre;
+	
+	}
+
+	public void setId(int id) {
+	
+		this.id = id;
+	
+	}
+
 }

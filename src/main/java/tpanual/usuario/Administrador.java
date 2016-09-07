@@ -73,9 +73,23 @@ public class Administrador extends TipoDeUsuario{
 	}
 
 	public Administrador(String email, int id,String nombre ) {
-		this.email=email;
-		this.id = id;
+		
+		this.setEmail(email);
+		this.setId(id);
+		this.setNombre(nombre);
+		
+	}
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

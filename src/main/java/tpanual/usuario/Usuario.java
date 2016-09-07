@@ -60,4 +60,9 @@ public class Usuario {
 		this.tipoDeUsuario = tipoDeUsuario;
 	}
 	
+	public Usuario(TipoDeUsuario tipo){
+		
+		this.setTipoDeUsuario(tipo);
+		
+	}
 }
