@@ -4,23 +4,33 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
+
 import administrador.AdministradorDeBusquedas;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
+import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
+import tpanual.main.Reporte.CantidadPorBusquedaPorUsuario;
+import tpanual.main.Reporte.CantidadPorUsuario;
 import tpanual.main.Servicio;
 import tpanual.main.Reporte;
 import tpanual.main.Reporte.CantidadPorFecha;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.usuario.Usuario;
 
 public class ReporteTest {
-
-	@Test
-	public void reporteCantidadDeBusquedasPorFechaTest() {
+	
+	static Usuario usr;
+	
+	@BeforeClass
+	public static void setUp(){
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
-		Reporte reporte = new Reporte();
+		usr = UsuariosFactory.getUsuarioTerminalActivo("pedritoTester", 3589);
+		
 		
 		//Creo la dirección
 		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
@@ -32,13 +42,39 @@ public class ReporteTest {
 						
 		administradorDePoi.agregarPoi(punto);
 		
-		administradorDePoi.buscarBancos("Banco Frances", "Depositos");
-		administradorDePoi.buscarBancos("Banco Frances", "Depositos");
-		
-		
-		List<CantidadPorFecha> reportePorFecha = reporte.GenerarReporteCantidadPorFecha();
-		
-		assertTrue (reportePorFecha.get(0).cantidad == 2);
+		usr.busquedaDePuntosDeInteres("Banco Frances");
+		usr.busquedaDePuntosDeInteres("Banco Frances");
+		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
+		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		
 	}
+	
+	@Test
+	public void reporteCantidadDeBusquedasPorFechaTest() {
+		
+		Reporte reporte = new Reporte();
+		List<CantidadPorFecha> result = reporte.GenerarReporteCantidadPorFecha();
+		assertTrue (result.get(0).cantidad == 2);
+		
+	}
+	
+	@Test
+	public void reporteCantidadDeResultadosPorUsuarioTest() {
+		
+		Reporte reporte = new Reporte();
+		List<CantidadPorUsuario> result = reporte.GenerarReporteCantidadPorUsuario();
+		assertTrue (result.get(0).cantidad == 2);
+		
+	}
+	
+	
+	@Test
+	public void reporteCantidadDeResultadosPorBusquedaPorUsuarioTest() {
+		
+		Reporte reporte = new Reporte();
+		List<CantidadPorBusquedaPorUsuario> result = reporte.GenerarReporteCantidadPorBusquedaPorUsuario(usr);
+		assertTrue (result.get(0).cantidad == 1);
+		
+	}
+	
 }
