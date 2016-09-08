@@ -12,8 +12,20 @@ import administrador.Busqueda;
 public class Reporte {
 	
 	AdministradorDeBusquedas adb = AdministradorDeBusquedas.getInstance();
-	List<Busqueda> todasLasBusquedas = adb.getBusquedas();
+	List<Busqueda> todasLasBusquedas;
 	
+	/**
+	 * Constructor de Reporte que obtiene todas las busquedas existentes al momento de ejecutarse.
+	 */
+	public Reporte(){
+		todasLasBusquedas = adb.getBusquedas();
+	}
+	
+	/**
+	 * Genera un informe con la cantidad de busquedas realizadas en cada fecha.
+	 * ATENCION: No se muestran las fechas con 0 busquedas.
+	 * @return Lista de objetos CantidadPorFecha (1 fila por fecha)
+	 */
 	public List<CantidadPorFecha> GenerarReporteCantidadPorFecha(){
 		
 		List<CantidadPorFecha> listReporte = new ArrayList<CantidadPorFecha>();
@@ -25,6 +37,7 @@ public class Reporte {
 		    	aux.cantidad++;
 		    }
 		    else{
+		    	aux = new CantidadPorFecha();
 		    	aux.cantidad = 1;
 		    	aux.fecha = fecha;
 		    	listReporte.add(aux);
@@ -33,6 +46,11 @@ public class Reporte {
 		
 		return listReporte;
 	}
+	
+	/**
+	 * Genera un informe con la sumatoria de la cantidad de resultados que cada usuario tuvo en sus busquedas.
+	 * @return Lista de objetos CantidadPorUsuario (1 fila por usuario)
+	 */
 	public List<CantidadPorUsuario> GenerarReporteCantidadPorUsuario(){
 		
 		List<CantidadPorUsuario> listReporte = new ArrayList<CantidadPorUsuario>();
@@ -41,10 +59,11 @@ public class Reporte {
 			
 			CantidadPorUsuario aux = listReporte.stream().filter(b -> b.usuario == usuario).findFirst().get();
 		    if(aux != null){
-		    	aux.cantidad++;
+		    	aux.cantidad += unaBusqueda.getIdsEncontrados().length;
 		    }
 		    else{
-		    	aux.cantidad = 1;
+		    	aux = new CantidadPorUsuario();
+		    	aux.cantidad = unaBusqueda.getIdsEncontrados().length;
 		    	aux.usuario = usuario;
 		    	listReporte.add(aux);
 		    }
@@ -53,25 +72,23 @@ public class Reporte {
 		return listReporte;
 	}
 	
-	//Devuelve la cantidad de resultados por busqueda de un usuario
+	/**
+	 * Genera un informe con la cantidad de resultados de cada busqueda realizada por el usuario dado.
+	 * @param
+	 * @return Lista de objetos CantidadPorBusquedaPorUsuario (1 fila por busqueda)
+	 */
 	public List<CantidadPorBusquedaPorUsuario> GenerarReporteCantidadPorBusquedaPorUsuario(Usuario usuario){
 		
-		List<Busqueda> busquedasDelUsuario = new ArrayList<Busqueda>();
 		List<CantidadPorBusquedaPorUsuario> listReporte = new ArrayList<CantidadPorBusquedaPorUsuario>();
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			if (usuario == unaBusqueda.getUsuario())
 			{
-				busquedasDelUsuario.add(unaBusqueda);
+				CantidadPorBusquedaPorUsuario aux = new CantidadPorBusquedaPorUsuario();
+				
+				aux.cantidad = unaBusqueda.getIdsEncontrados().length;
+				aux.busqueda = unaBusqueda;
+				listReporte.add(aux);
 			}
-		}
-	
-		for (Busqueda unaBusqueda : busquedasDelUsuario)
-		{
-			CantidadPorBusquedaPorUsuario aux = new CantidadPorBusquedaPorUsuario();
-			
-			aux.cantidad = unaBusqueda.getIdsEncontrados().length;
-			aux.busqueda = unaBusqueda;
-			listReporte.add(aux);
 		}
 		
 		return listReporte;
@@ -79,17 +96,17 @@ public class Reporte {
 	
 	
 	public class CantidadPorFecha{
-		int cantidad;
-		DateTime fecha;
+		public int cantidad;
+		public DateTime fecha;
 	}
 	public class CantidadPorUsuario
 	{	
-		int cantidad;
-		Usuario usuario;
+		public int cantidad;
+		public Usuario usuario;
 	}
 	public class CantidadPorBusquedaPorUsuario{
-		int cantidad;
-		Busqueda busqueda;
+		public int cantidad;
+		public Busqueda busqueda;
 	}
 }   
 
