@@ -96,17 +96,17 @@ public class Reporte {
 	
 	
 	public class CantidadPorFecha{
-		int cantidad;
-		DateTime fecha;
+		public int cantidad;
+		public DateTime fecha;
 	}
 	public class CantidadPorUsuario
 	{	
-		int cantidad;
-		Usuario usuario;
+		public int cantidad;
+		public Usuario usuario;
 	}
 	public class CantidadPorBusquedaPorUsuario{
-		int cantidad;
-		Busqueda busqueda;
+		public int cantidad;
+		public Busqueda busqueda;
 	}
 }   
 
