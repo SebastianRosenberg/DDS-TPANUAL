@@ -3,6 +3,7 @@ package tpanual.usuario;
 import java.util.List;
 
 import administrador.AdministradorDePoi;
+import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class Administrador extends TipoDeUsuario{
@@ -53,5 +54,42 @@ public class Administrador extends TipoDeUsuario{
 		return AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(x, test);
 	}
 
+	@Override
+	public boolean modificarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return AdministradorDePoi.getInstance().modificarPoi(poi);
+	}
+
+	@Override
+	public void agregarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		AdministradorDePoi.getInstance().agregarPoi(poi);
+	}
+
+	@Override
+	public boolean eliminarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return AdministradorDePoi.getInstance().eliminarPoi(poi);
+	}
+
+	public Administrador(String email, int id,String nombre ) {
+		
+		this.setEmail(email);
+		this.setId(id);
+		this.setNombre(nombre);
+		
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 }

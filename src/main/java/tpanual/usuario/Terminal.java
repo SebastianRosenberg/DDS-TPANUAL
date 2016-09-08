@@ -52,7 +52,44 @@ public class Terminal extends TipoDeUsuario {
 		// TODO Auto-generated method stub
 		return this.estado.busquedaDePuntosDeInteres(x, test);
 	}
+
+
+
+	@Override
+	public boolean modificarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void agregarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean eliminarPoi(PuntoDeInteres poi) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
+	public Terminal(String nombre,Estado estado,int Id){
+		
+		this.setEstado(estado);
+		this.setId(Id);
+		this.setNombre(nombre);
+		
+	}
+
+	public void setNombre(String nombre) {
+	
+		this.nombre = nombre;
+	
+	}
+
+	public void setId(int id) {
+	
+		this.id = id;
+	
+	}
 	
 	
 //	//prueba seguridad, se lo doy al mapa, pero puede ser que se mueva a la clase seguridad y que haga de pasamanos
@@ -63,4 +100,5 @@ public class Terminal extends TipoDeUsuario {
 //		return admin;
 //		
 //	}
+	
 }

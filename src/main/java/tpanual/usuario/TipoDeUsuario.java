@@ -13,5 +13,7 @@ public abstract class TipoDeUsuario {
 	public abstract void desactivar();
 	public abstract List<PuntoDeInteres> busquedaDePuntosDeInteres(String x);
 	public abstract List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test);
-	
+	public abstract boolean modificarPoi(PuntoDeInteres poi);
+	public abstract void agregarPoi(PuntoDeInteres poi);
+	public abstract boolean eliminarPoi(PuntoDeInteres poi);
 }
