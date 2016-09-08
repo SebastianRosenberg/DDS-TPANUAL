@@ -11,22 +11,14 @@ import tpanual.usuario.Usuario;
 public class GestorDeAdministradores {
 	
 	private static GestorDeAdministradores instance;
-	private static Hashtable<Usuario,String> admins;
-	
+	private static Hashtable<Usuario, String> admins;
+	private static Hashtable<Integer, Usuario> usuariosLogueados;
 	
 	public static GestorDeAdministradores getInstance(){
 		if (instance==null)
 			instance=new GestorDeAdministradores();
 		return instance;
 	}
-	
-	//esto creo que no esta bien
-	
-		public static Hashtable<Usuario,String> getHash(){
-			if (admins==null)
-				admins=new Hashtable<Usuario,String>();
-			return admins;
-		}
 	
 	
 	public static Usuario crearAdministrador(String nombre, String email, int id, String password )
@@ -36,17 +28,45 @@ public class GestorDeAdministradores {
 		return nuevoUsuario;	
 	}
 	
-	public static Usuario LogueoAdmin(Usuario user, String passwordIngresada)
+	public Usuario LogueoAdmin(Usuario user, String passwordIngresada, Usuario term)
 	{
-		String pass = admins.get(user);
-		if (passwordIngresada == pass)
-		{
-			return user;
+		if(ChequeoNoLogueado(user)){
+			String pass = admins.get(user);
+			if (passwordIngresada == pass)
+			{
+				usuariosLogueados.put((user.getId()) ,term);
+				return user;
+			}
+			else
+			{
+				System.out.println("contraseña equivocada, por favor intente nuevamente");
+				return null;
+			}
 		}
 		else
 		{
-			System.out.println("contraseña equivocada, por favor intente nuevamente");
+			System.out.println("Error: esa cuenta ya se encuentra logueada");
 			return null;
 		}
 	}
+	
+	public static boolean ChequeoNoLogueado(Usuario user)
+	{
+		if(usuariosLogueados.get(user)!=null){
+		return false;	
+		}
+		return true;
+	}
+	
+	public Usuario DeslogueoAdmin (Usuario admin)
+	{
+		Usuario terminal = usuariosLogueados.get(admin.getId());
+		if(terminal != null){
+			return terminal;
+		}
+		System.out.println("Se detecto un error, no se encuentra su terminal en el registro");
+		return null;
+		
+	}
+	
 }

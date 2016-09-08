@@ -53,7 +53,7 @@ public class GestorAdminTest {
 		
 		
 		//revisar el casteo
-		Usuario admin = ((Terminal) usuarioTerminal).Loguear(nuevoUsuario, "banana");
+		Usuario admin = usuarioTerminal.Loguear(nuevoUsuario, "banana");
 		
 		List<PuntoDeInteres> listaResultado = admin.busquedaDePuntosDeInteres("Registro Civil");
 		
@@ -66,7 +66,6 @@ public class GestorAdminTest {
 		
 		assertTrue( listaResultado2.size() > 0);
 		assertFalse( listaResultado2.size() == 0);	
-		
 		
 		
 		

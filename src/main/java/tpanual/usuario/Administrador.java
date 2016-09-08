@@ -5,6 +5,7 @@ import java.util.List;
 import administrador.AdministradorDePoi;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeAdministradores;
 
 public class Administrador extends TipoDeUsuario{
 
@@ -90,6 +91,21 @@ public class Administrador extends TipoDeUsuario{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+	
+	public Usuario Desloguear(Usuario usuario)
+	{
+			GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
+			Usuario terminal = gestor.DeslogueoAdmin(usuario);
+			return terminal;
+
+	}
+	
+	public void Loguear()
+	{
+		System.out.println("Ya se encuentra logueado");
 	}
 	
 }
