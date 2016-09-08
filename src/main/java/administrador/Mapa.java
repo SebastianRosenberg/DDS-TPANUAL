@@ -23,14 +23,14 @@ public class Mapa {
 	
 //	//recordar linea 124, ubicacion de esta estructura y metodos
 //	private Hashtable<String, String> hashAdmins;
-//
-//	private static Mapa instance;
-//	
-//	public static Mapa getInstance(){
-//		if (instance==null)
-//			instance=new Mapa();
-//		return instance;
-//	}
+
+    private static Mapa instance;
+	
+	public static Mapa getInstance(){
+		if (instance==null)
+			instance=new Mapa();
+		return instance;
+	}
 	
 	private Mapa() {
 		puntos=new HashMap<Integer, PuntoDeInteres>();

@@ -9,29 +9,32 @@ import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
-//completar la parte de notificar cliente via mail
+import tpanual.utilitarios.Email;
+
+
 
 public class Temporizador {
 	
-	public Instant TiempoInicioBusqueda ()
+	public static Instant TiempoInicioBusqueda ()
 	{
 		Instant inicio = Instant.now();
 		return inicio;
 		
 	}
 
-	public boolean LapsoBusquedaMayor (Instant inicio)
+	public static Duration LapsoBusqueda (Instant inicio)
 	{		
 	Instant fin = Instant.now();
 	Duration duration = Duration.between(inicio, fin);	
-	return (Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)==1);
+	return (duration);
 	}
 
-	public void ChequeoLapso (Instant inicio, Usuario usuario)
+	public static void ChequeoLapso (Duration total, Usuario usuario)
 	{
-		if(LapsoBusquedaMayor (inicio))
+		if(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(total)==1)
 		{
-			//notificar cliente via mail
+			Email EnviadorMail = new Email(usuario.getEmail(),
+	                "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tardó mas del tiempo máximo.");
 		}
 	}
 }
