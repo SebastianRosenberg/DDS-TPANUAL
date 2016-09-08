@@ -37,36 +37,55 @@ public class UsuarioTest {
 		
 		PuntoDeInteres poi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras2, servicios, 25);
 		
+		
+		PuntoDeInteres poi1=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
+		
 		/*Seteo usuario*/
-
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com",1);
+		
 		/*Tareas del usuario*/
 		nuevoUsuario.agregarPoi(poi);
+		nuevoUsuario.agregarPoi(poi1);
 		
 		/*asigno a una lista el resultado de la búsqueda*/
 		List<PuntoDeInteres> lista= nuevoUsuario.busquedaDePuntosDeInteres("");
 		
-		assertTrue(lista.size()> 0);
-		
+		assertTrue(lista.contains(poi));
 	}
 	
 	@Test
 	public void administradorEliminarPoiTest(){
-		/*Seteo usuario*/
-		Usuario usuarioAdmin = new Usuario();
-		Administrador administrador = new Administrador("mail@gmail.com", 1, "Seba");
-		usuarioAdmin.setTipoDeUsuario(administrador);
+				
+		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com",1);
 		
-		
-		List<PuntoDeInteres> lista=usuarioAdmin.busquedaDePuntosDeInteres("GCP Comuna 1");
+		List<PuntoDeInteres> lista=nuevoUsuario.busquedaDePuntosDeInteres("Parada de la linea ciento catorce");
 		Iterator<PuntoDeInteres> i = lista.iterator();
 		
+		PuntoDeInteres poi1 = null;
 		i = lista.iterator();
 		while(i.hasNext()){	
 			PuntoDeInteres n=i.next();
-			usuarioAdmin.eliminarPoi(n); 
+			nuevoUsuario.eliminarPoi(n);
+			poi1 = n;
 		}
 		
-		assertTrue(lista.size()==0);
+		assertFalse(lista.contains(poi1.getId()));
 	}
+	
+	@Test
+	public void usuarioTerminalActivoBusquedaTest(){
+		
+		Usuario usuarioTerminalActivo = UsuariosFactory.getUsuarioTerminalActivo("Seba", 1);
+		
+		assertTrue(usuarioTerminalActivo.busquedaDePuntosDeInteres("") != null);
+	}
+	
+	@Test
+	public void usuarioTerminalNoActivoBusquedaTest(){
+		
+		Usuario usuarioTerminalNoActivo = UsuariosFactory.getUsuarioTerminalNoActivo("Seba", 1);
+		
+		assertTrue(usuarioTerminalNoActivo.busquedaDePuntosDeInteres("")==null);
+	}
+	
 }
