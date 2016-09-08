@@ -2,6 +2,7 @@ package administrador;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -18,14 +19,18 @@ public class Mapa {
 	
 	private Map<Integer, PuntoDeInteres> puntos;
 	private List<AdaptadorServicioExterno> adaptadores;
-
-	private static Mapa instance;
 	
-	public static Mapa getInstance(){
-		if (instance==null)
-			instance=new Mapa();
-		return instance;
-	}
+	
+//	//recordar linea 124, ubicacion de esta estructura y metodos
+//	private Hashtable<String, String> hashAdmins;
+//
+//	private static Mapa instance;
+//	
+//	public static Mapa getInstance(){
+//		if (instance==null)
+//			instance=new Mapa();
+//		return instance;
+//	}
 	
 	private Mapa() {
 		puntos=new HashMap<Integer, PuntoDeInteres>();
@@ -116,5 +121,13 @@ public class Mapa {
 		return l;
 	}
 	
-	
+////pongo la tabla de usuarios aca, luego va a ser movida
+//	private void agregarAdministrador(String name, String pass)
+//	{
+//		hashAdmins.put(name, pass);
+//	}
+//	
+//	private
+//	
+//	
 }

@@ -2,6 +2,7 @@ package tpanual.usuario;
 
 import java.util.List;
 
+import administrador.Mapa;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class Terminal extends TipoDeUsuario {
@@ -51,4 +52,15 @@ public class Terminal extends TipoDeUsuario {
 		// TODO Auto-generated method stub
 		return this.estado.busquedaDePuntosDeInteres(x, test);
 	}
+	
+	
+	
+//	//prueba seguridad, se lo doy al mapa, pero puede ser que se mueva a la clase seguridad y que haga de pasamanos
+//	public Administrador Loguear(String usuario, String password)
+//	{
+//		Mapa mapa = Mapa.getInstance();
+//		Administrador admin = mapa.autentifica(usuario, password);
+//		return admin;
+//		
+//	}
 }

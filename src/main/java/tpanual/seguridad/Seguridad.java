@@ -2,6 +2,9 @@ package tpanual.seguridad;
 
 import tpanual.usuario.Usuario;
 
+//Aclaracion/Disclaimer: falta definir una clase que conozca a todos los usuarios, en un principio pensaba dejarle esa info a mapa, por eso
+// mapa tiene comentado una hashtable, pero preferí dejarlo hasta que se decia
+
 public class Seguridad {
 	
 	//revisa estado del usuario (logueado o desloguedo)
@@ -10,7 +13,7 @@ public class Seguridad {
 	
 	public boolean Autenticacion (Usuario usuario)
 	{
-		if (estaLogueado (usuario))
+		if (estaLogueado(usuario))
 		{
 			return true;
 		}
@@ -21,9 +24,10 @@ public class Seguridad {
 		}
 	}
 // //funcion estaLogueado, a hacer
-//	public boolean estaLogueado(Usuario usuario)
-//	{
-//		if()
-//		return true;
-//	}
+	public boolean estaLogueado(Usuario usuario)
+	{
+		if(true)
+		return true;
+		return false;
+	}
 }
