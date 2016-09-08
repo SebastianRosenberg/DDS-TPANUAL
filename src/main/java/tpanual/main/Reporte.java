@@ -12,8 +12,14 @@ import administrador.Busqueda;
 public class Reporte {
 	
 	AdministradorDeBusquedas adb = AdministradorDeBusquedas.getInstance();
-	List<Busqueda> todasLasBusquedas = adb.getBusquedas();
+	List<Busqueda> todasLasBusquedas;
 	
+	/**
+	 * Constructor de Reporte que obtiene todas las busquedas existentes al momento de ejecutarse.
+	 */
+	public Reporte(){
+		todasLasBusquedas = adb.getBusquedas();
+	}
 	
 	/**
 	 * Genera un informe con la cantidad de busquedas realizadas en cada fecha.
