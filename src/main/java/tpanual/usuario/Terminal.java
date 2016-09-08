@@ -4,6 +4,7 @@ import java.util.List;
 
 import administrador.Mapa;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeAdministradores;
 
 public class Terminal extends TipoDeUsuario {
 
@@ -27,8 +28,8 @@ public class Terminal extends TipoDeUsuario {
 	@Override
 	public void activar() {
 		// TODO Auto-generated method stub
-		//Estado estadoNuevo = new FuncionesActivas();
-		this.setEstado(estado);
+		Estado estadoNuevo = new Activo();
+		this.setEstado(estadoNuevo);
 	}
 	
 	@Override
@@ -93,12 +94,12 @@ public class Terminal extends TipoDeUsuario {
 	
 	
 //	//prueba seguridad, se lo doy al mapa, pero puede ser que se mueva a la clase seguridad y que haga de pasamanos
-//	public Administrador Loguear(String usuario, String password)
-//	{
-//		Mapa mapa = Mapa.getInstance();
-//		Administrador admin = mapa.autentifica(usuario, password);
-//		return admin;
-//		
-//	}
+	public Usuario Loguear(Usuario usuario, String password)
+	{
+		GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
+		Usuario admin = GestorDeAdministradores.LogueoAdmin(usuario, password);
+		return admin;
+		
+	}
 	
 }
