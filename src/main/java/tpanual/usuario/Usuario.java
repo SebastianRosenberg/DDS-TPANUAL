@@ -66,5 +66,11 @@ public class Usuario {
 		
 	}
 	
+	public Usuario logueo(Usuario admin,String pass,Usuario term){
+		
+		return this.tipoDeUsuario.loguear(admin, pass, term);
+	}
+	
+	
 	
 }

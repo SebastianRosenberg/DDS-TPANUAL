@@ -28,9 +28,9 @@ public class GestorDeAdministradores {
 		return nuevoUsuario;	
 	}
 	
-	public Usuario LogueoAdmin(Usuario user, String passwordIngresada, Usuario term)
+	public Usuario logueoAdmin(Usuario user, String passwordIngresada, Usuario term)
 	{
-		if(ChequeoNoLogueado(user)){
+		if(chequeoNoLogueado(user)){
 			String pass = admins.get(user);
 			if (passwordIngresada == pass)
 			{
@@ -50,7 +50,7 @@ public class GestorDeAdministradores {
 		}
 	}
 	
-	public static boolean ChequeoNoLogueado(Usuario user)
+	public static boolean chequeoNoLogueado(Usuario user)
 	{
 		if(usuariosLogueados.get(user)!=null){
 		return false;	
@@ -58,7 +58,7 @@ public class GestorDeAdministradores {
 		return true;
 	}
 	
-	public Usuario DeslogueoAdmin (Usuario admin)
+	public Usuario deslogueoAdmin (Usuario admin)
 	{
 		Usuario terminal = usuariosLogueados.get(admin.getId());
 		if(terminal != null){

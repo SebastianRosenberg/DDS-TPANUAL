@@ -53,7 +53,8 @@ public class GestorAdminTest {
 		
 		
 		//revisar el casteo
-		Usuario admin = usuarioTerminal.Loguear(nuevoUsuario, "banana");
+		//Usuario admin = usuarioTerminal.loguear(nuevoUsuario, "banana");
+		Usuario admin = usuarioTerminal.logueo(nuevoUsuario, "banana", usuarioTerminal);
 		
 		List<PuntoDeInteres> listaResultado = admin.busquedaDePuntosDeInteres("Registro Civil");
 		

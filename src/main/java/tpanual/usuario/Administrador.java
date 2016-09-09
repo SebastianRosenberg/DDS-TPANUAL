@@ -95,17 +95,24 @@ public class Administrador extends TipoDeUsuario{
 	
 	
 	
-	public Usuario Desloguear(Usuario usuario)
+	public Usuario desloguear(Usuario usuario)
 	{
 			GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
-			Usuario terminal = gestor.DeslogueoAdmin(usuario);
+			Usuario terminal = gestor.deslogueoAdmin(usuario);
 			return terminal;
 
 	}
 	
-	public void Loguear()
-	{
-		System.out.println("Ya se encuentra logueado");
+	//public void Loguear()
+	//{
+		//System.out.println("Ya se encuentra logueado");
+//	}
+
+	@Override
+	public Usuario loguear(Usuario usuario, String password, Usuario terminal) {
+		// TODO Auto-generated method stub
+		 System.out.println("Ya se encuentra logueado");
+		 return usuario;
 	}
 	
 }
