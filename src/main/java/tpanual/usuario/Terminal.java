@@ -93,7 +93,6 @@ public class Terminal extends TipoDeUsuario {
 	}
 	
 	
-//	//prueba seguridad, se lo doy al mapa, pero puede ser que se mueva a la clase seguridad y que haga de pasamanos
 	public Usuario loguear(Usuario usuario, String password,Usuario terminal)
 	{
 		GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
@@ -102,8 +101,11 @@ public class Terminal extends TipoDeUsuario {
 		
 	}
 	
-	public void desloguear ()
-	{
+
+	@Override
+	public Usuario desloguear(Usuario usuario) {
+		// TODO Auto-generated method stub
 		System.out.println("No se ha podido desloguear debido a que no se encontraba loguado en un principio");
+		return null;
 	}
 }

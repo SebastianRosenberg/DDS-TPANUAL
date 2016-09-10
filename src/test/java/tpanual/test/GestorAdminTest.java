@@ -27,11 +27,11 @@ public class GestorAdminTest {
 	public void envioCorrectoTest() {
 		
 		//seteo Gestor
-		GestorDeAdministradores gestor = new GestorDeAdministradores();
+		GestorDeAdministradores gestorAdmin = new GestorDeAdministradores();
 		
 		
 		//seteo Usuario admin
-		Usuario nuevoUsuario = gestor.crearAdministrador("federico", "mailPrueba@hotmail.com",1,  "banana");
+		Usuario nuevoUsuario = gestorAdmin.crearAdministrador("federico", "mailPrueba@hotmail.com",1,  "banana");
 		
 		//seteo Terminal
 		
@@ -58,21 +58,13 @@ public class GestorAdminTest {
 		
 		List<PuntoDeInteres> listaResultado = admin.busquedaDePuntosDeInteres("Registro Civil");
 		
-		assertFalse( listaResultado.size() > 0);
-		assertTrue( listaResultado.size() == 0);	
+		assertFalse( listaResultado.contains(poi));
 		
 		admin.agregarPoi(poi);
 		
 		List<PuntoDeInteres> listaResultado2 = admin.busquedaDePuntosDeInteres("Registro Civil");
 		
-		assertTrue( listaResultado2.size() > 0);
-		assertFalse( listaResultado2.size() == 0);	
-		
-		
-		
-		
+		assertTrue( listaResultado2.contains(poi));				
 		
 	}
-	
-
 }
