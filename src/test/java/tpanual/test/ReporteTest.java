@@ -12,7 +12,6 @@ import administrador.AdministradorDeBusquedas;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Reporte.CantidadPorBusquedaPorUsuario;
 import tpanual.main.Reporte.CantidadPorUsuario;
@@ -20,6 +19,7 @@ import tpanual.main.Servicio;
 import tpanual.main.Reporte;
 import tpanual.main.Reporte.CantidadPorFecha;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.UsuariosFactory;
 import tpanual.usuario.Usuario;
 
 public class ReporteTest {

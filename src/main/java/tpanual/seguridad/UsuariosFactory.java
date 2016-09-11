@@ -1,4 +1,4 @@
-package tpanual.factory;
+package tpanual.seguridad;
 
 import tpanual.usuario.Activo;
 import tpanual.usuario.Administrador;
@@ -12,7 +12,7 @@ public class UsuariosFactory {
 
 
 	
-	public static Usuario getUsuarioAdministrador(String nombre,String email){		
+	static Usuario getUsuarioAdministrador(String nombre,String email){		
 		
 		Administrador administrador = new Administrador(email, id, nombre);
 		Usuario usuarioAdministrador = new Usuario(administrador);
@@ -21,7 +21,7 @@ public class UsuariosFactory {
 		
 	}
 	
-	public static Usuario getUsuarioTerminalActivo(String nombre){
+	static Usuario getUsuarioTerminalActivo(String nombre){
 		
 		Activo estadoActivo = new Activo();
 		Terminal terminal = new Terminal(nombre, estadoActivo, id);
@@ -31,7 +31,7 @@ public class UsuariosFactory {
 		
 	}
 	
-	public static Usuario getUsuarioTerminalNoActivo(String nombre){
+	static Usuario getUsuarioTerminalNoActivo(String nombre){
 		NoActivo estadoNoActivo = new NoActivo();
 		Terminal terminal = new Terminal(nombre, estadoNoActivo, id);
 		Usuario usuarioTerminal = new Usuario(terminal);

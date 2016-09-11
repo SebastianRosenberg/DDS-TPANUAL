@@ -5,7 +5,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 import administrador.Mapa;
-import tpanual.factory.UsuariosFactory;
 import tpanual.usuario.Administrador;
 import tpanual.usuario.Usuario;
 
