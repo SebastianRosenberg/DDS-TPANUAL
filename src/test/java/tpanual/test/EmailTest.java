@@ -14,18 +14,21 @@ import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.seguridad.UsuariosFactory;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 import tpanual.temporizador.Temporizador;
 
 public class EmailTest {
+	static GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
 	
 	@Test
 	public void envioCorrectoTest() {
 		
 		//seteo Usuario
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("federico", "mailPrueba@hotmail.com");
+		Usuario nuevoUsuario = gestor.crearAdministrador("federico", "mailPrueba@hotmail.com","Fede123");
+		
 		
 		//seteo Poi A buscar
 		
@@ -62,8 +65,8 @@ public class EmailTest {
 	public void envioIncorrectoTest() {
 		
 		//seteo Usuario
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("federico", "mailPrueba@hotmail.com");
 		
+		Usuario nuevoUsuario = gestor.crearAdministrador("federico", "mailPrueba@hotmail.com","Fede123");
 		//seteo Poi A buscar
 		
 		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
