@@ -46,8 +46,7 @@ public class UsuarioTest {
 		PuntoDeInteres poi1=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
 		
 		/*Seteo usuario*/
-		Usuario nuevoUsuario = gestor.crearAdministrador("Seba", "zaraza@gmail.com","C.A.R.C");
-				//UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com");
+		Usuario nuevoUsuario = gestor.crearAdministrador("UserTest", "esuntest@gmail.com","1234cinco");
 		
 		/*Tareas del usuario*/
 		nuevoUsuario.agregarPoi(poi);
@@ -62,7 +61,7 @@ public class UsuarioTest {
 	@Test
 	public void administradorEliminarPoiTest(){
 				
-		Usuario nuevoUsuario = gestor.crearAdministrador("Seba", "zaraza@gmail.com","C.A.R.C");
+		Usuario nuevoUsuario = gestor.crearAdministrador("UserTest", "esuntest@gmail.com","1234cinco");
 		
 		List<PuntoDeInteres> lista=nuevoUsuario.busquedaDePuntosDeInteres("Parada de la linea ciento catorce");
 		Iterator<PuntoDeInteres> i = lista.iterator();
@@ -81,14 +80,14 @@ public class UsuarioTest {
 	@Test
 	public void usuarioTerminalActivoBusquedaTest(){
 		
-		Usuario usuarioTerminalActivo = gestor.crearTerminalActivo("Seba");
+		Usuario usuarioTerminalActivo = gestor.crearTerminalActivo("UserTest");
 		assertTrue(usuarioTerminalActivo.busquedaDePuntosDeInteres("") != null);
 	}
 	
 	@Test
 	public void usuarioTerminalNoActivoBusquedaTest(){
 		
-		Usuario usuarioTerminalNoActivo = gestor.crearTerminalNoActivo("Seba");
+		Usuario usuarioTerminalNoActivo = gestor.crearTerminalNoActivo("UserTest");
 				
 		assertTrue(usuarioTerminalNoActivo.busquedaDePuntosDeInteres("")==null);
 	}
