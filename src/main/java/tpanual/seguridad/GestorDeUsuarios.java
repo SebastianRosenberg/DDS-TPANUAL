@@ -1,5 +1,6 @@
 package tpanual.seguridad;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -81,12 +82,17 @@ public class GestorDeUsuarios {
 	{
 		if (chequeoNoLogueado(admin)){
 			String pass = getHashAdmins().get(admin);
-			if (passwordIngresada == pass)
+			if (passwordIngresada != null && passwordIngresada.equals(pass))
 			{
 	
-				//TODOS
+				if (adminsLogueados.get(admin.getId())==null){
+					List<Usuario> us=new ArrayList<Usuario>();
+					us.add(terminalActual);
+					adminsLogueados.put(admin.getId(), us);
+				}else{
+					adminsLogueados.get(admin.getId()).add(terminalActual);
+				}
 				
-				getAdminsLogueados().put((admin.getId()) ,terminalActual);
 				return admin;
 			}
 			else
