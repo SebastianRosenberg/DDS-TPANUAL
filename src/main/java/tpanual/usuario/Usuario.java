@@ -7,7 +7,15 @@ import tpanual.main.poi.PuntoDeInteres;
 public class Usuario {
 
 	private TipoDeUsuario tipoDeUsuario;
-	
+//	
+//															/* confirmar esto
+//															 */
+//	private TipoDeUsuario tipoDeUsuarioOriginal;
+//	
+//	public TipoDeUsuario getTipoDeUsuarioOriginal(){
+//		return tipoDeUsuarioOriginal;
+//	}
+//															////////////////////
 	public String getEmail(){
 		
 		return tipoDeUsuario.getEmail();
@@ -61,9 +69,12 @@ public class Usuario {
 	}
 	
 	public Usuario(TipoDeUsuario tipo){
-		
-		this.setTipoDeUsuario(tipo);
-		
+
+		this.setTipoDeUsuario(tipo);		
+//															/* confirmar esto
+//															 */
+//		this.tipoDeUsuarioOriginal= tipo;
+//		
 	}
 	
 	public Usuario logueo(Usuario admin,String pass,Usuario term){

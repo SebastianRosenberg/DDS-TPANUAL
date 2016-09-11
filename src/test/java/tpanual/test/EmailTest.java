@@ -25,7 +25,7 @@ public class EmailTest {
 	public void envioCorrectoTest() {
 		
 		//seteo Usuario
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("federico", "mailPrueba@hotmail.com",1);
+		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("federico", "mailPrueba@hotmail.com");
 		
 		//seteo Poi A buscar
 		
@@ -62,7 +62,7 @@ public class EmailTest {
 	public void envioIncorrectoTest() {
 		
 		//seteo Usuario
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("federico", "mailPrueba@hotmail.com",1);
+		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("federico", "mailPrueba@hotmail.com");
 		
 		//seteo Poi A buscar
 		

@@ -2,9 +2,8 @@ package tpanual.usuario;
 
 import java.util.List;
 
-import administrador.Mapa;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.seguridad.GestorDeAdministradores;
+import tpanual.seguridad.GestorDeUsuarios;
 
 public class Terminal extends TipoDeUsuario {
 
@@ -95,8 +94,8 @@ public class Terminal extends TipoDeUsuario {
 	
 	public Usuario loguear(Usuario usuario, String password,Usuario terminal)
 	{
-		GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
-		Usuario admin = gestor.logueoAdmin(usuario, password, terminal);
+		
+		Usuario admin = GestorDeUsuarios.getInstance().logueoComoAdmin(usuario, password, terminal);
 		return admin;
 		
 	}

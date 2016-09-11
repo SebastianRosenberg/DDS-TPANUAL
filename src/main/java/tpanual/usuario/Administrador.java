@@ -5,7 +5,7 @@ import java.util.List;
 import administrador.AdministradorDePoi;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.seguridad.GestorDeAdministradores;
+import tpanual.seguridad.GestorDeUsuarios;
 
 public class Administrador extends TipoDeUsuario{
 
@@ -96,9 +96,8 @@ public class Administrador extends TipoDeUsuario{
 	
 	
 	public Usuario desloguear(Usuario usuario)
-	{
-			GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
-			Usuario terminal = gestor.deslogueoAdmin(usuario);
+	{	
+			Usuario terminal = GestorDeUsuarios.getInstance().deslogueoAdmin(usuario);
 			return terminal;
 
 	}
