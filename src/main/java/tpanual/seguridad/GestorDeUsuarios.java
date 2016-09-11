@@ -118,7 +118,7 @@ public class GestorDeUsuarios {
 	
 	public Usuario deslogueoAdmin (Usuario admin)
 	{
-		Usuario terminal = getAdminsLogueados().get(admin.getId());
+		Usuario terminal = (Usuario) getAdminsLogueados().get(admin.getId());
 		if(terminal != null){
 			return terminal;
 		}
