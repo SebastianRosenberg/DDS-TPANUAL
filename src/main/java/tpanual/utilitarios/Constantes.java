@@ -1,7 +1,7 @@
 package tpanual.utilitarios;
 
 
-import java.time.Duration;
+import org.joda.time.Duration;
 
 
 
@@ -20,7 +20,7 @@ public class Constantes {
 	public static final int INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE=72;
 	
 
-	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.ofSeconds(10); 
+	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.millis(10000); 
 
 
 }

@@ -2,6 +2,8 @@ package tpanual.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.joda.time.Duration;
+import org.joda.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import tpanual.main.Servicio;
 import tpanual.main.Reporte;
 import tpanual.main.Reporte.CantidadPorFecha;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.temporizador.Temporizador;
 import tpanual.usuario.Usuario;
 
 public class ReporteTest {
@@ -30,6 +33,8 @@ public class ReporteTest {
 	public static void setUp(){
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
 		usr = UsuariosFactory.getUsuarioTerminalActivo("pedritoTester", 3589);
+		
+		usr.busquedaDePuntosDeInteres("Banco Frances");
 		
 		
 		//Creo la dirección
@@ -42,8 +47,7 @@ public class ReporteTest {
 						
 		administradorDePoi.agregarPoi(punto);
 		
-		usr.busquedaDePuntosDeInteres("Banco Frances");
-		usr.busquedaDePuntosDeInteres("Banco Frances");
+		
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		

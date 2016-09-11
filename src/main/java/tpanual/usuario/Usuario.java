@@ -2,7 +2,12 @@ package tpanual.usuario;
 
 import java.util.List;
 
+import org.joda.time.Duration;
+import org.joda.time.Instant;
+
+import administrador.SesionBusqueda;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.temporizador.Temporizador;
 
 public class Usuario {
 
@@ -32,13 +37,40 @@ public class Usuario {
 		tipoDeUsuario.desactivar();
 	}
 	
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x){
-		return tipoDeUsuario.busquedaDePuntosDeInteres(x);
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
+	
+		SesionBusqueda sBusqueda = new SesionBusqueda();
+		Temporizador temporizador = new Temporizador();
+		Instant inicio = temporizador.TiempoInicioBusqueda();
+
+		List<PuntoDeInteres> pois =tipoDeUsuario.busquedaDePuntosDeInteres(strABuscar); 
+		sBusqueda.setPois(pois);
+		
+		Duration duracion = temporizador.LapsoBusqueda(inicio);
+		
+		sBusqueda.setDuracion(duracion);
+		sBusqueda.setStringsBuscados(new String[] {strABuscar});
+		sBusqueda.setUsuario(this);
+		sBusqueda.finalizarBusqueda();
+		return pois; 
 		
 	}
 	
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test){
-		return tipoDeUsuario.busquedaDePuntosDeInteres(x, test);
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean test){
+		SesionBusqueda sBusqueda = new SesionBusqueda();
+		Temporizador temporizador = new Temporizador();
+		Instant inicio = temporizador.TiempoInicioBusqueda();
+
+		List<PuntoDeInteres> pois =tipoDeUsuario.busquedaDePuntosDeInteres(strABuscar, test); 
+		sBusqueda.setPois(pois);
+		
+		Duration duracion = temporizador.LapsoBusqueda(inicio);
+		
+		sBusqueda.setDuracion(duracion);
+		sBusqueda.setStringsBuscados(new String[] {strABuscar});
+		sBusqueda.setUsuario(this);
+		sBusqueda.finalizarBusqueda();
+		return pois; 
 		
 	}
 	

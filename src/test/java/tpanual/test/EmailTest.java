@@ -2,8 +2,8 @@ package tpanual.test;
 
 import static org.junit.Assert.*;
 
-import java.time.Duration;
-import java.time.Instant;
+import org.joda.time.Duration;
+import org.joda.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
