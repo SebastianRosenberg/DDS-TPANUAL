@@ -2,6 +2,7 @@ package tpanual.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.joda.time.DateTime;
 
@@ -32,7 +33,11 @@ public class Reporte {
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			DateTime fecha = unaBusqueda.getFechaDeBusqueda();
 			
-		    CantidadPorFecha aux = listReporte.stream().filter(b -> b.fecha == fecha).findFirst().get();
+			Stream stream = listReporte.stream().filter(b -> b.fecha == fecha);
+			CantidadPorFecha aux = null;
+			if(stream.count() > 0){
+				 aux = (CantidadPorFecha) stream.findFirst().get();
+			}
 		    if(aux != null){
 		    	aux.cantidad++;
 		    }
@@ -57,7 +62,12 @@ public class Reporte {
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			Usuario usuario = unaBusqueda.getUsuario();
 			
-			CantidadPorUsuario aux = listReporte.stream().filter(b -> b.usuario == usuario).findFirst().get();
+			Stream stream = listReporte.stream().filter(b -> b.usuario == usuario);
+			CantidadPorUsuario aux = null;
+			if(stream.count() > 0){
+				aux = (CantidadPorUsuario) stream.findFirst().get();
+			}
+			
 		    if(aux != null){
 		    	aux.cantidad += unaBusqueda.getIdsEncontrados().length;
 		    }

@@ -28,7 +28,6 @@ public class ReporteTest {
 	public static void setUp(){
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
 		usr = gestor.crearTerminalActivo("pedritoTester");
-		usr.busquedaDePuntosDeInteres("Banco Frances");
 		
 		
 		//Creo la dirección
@@ -36,12 +35,12 @@ public class ReporteTest {
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Nunca tiene plata");
 		List<Servicio> servicios=Servicio.getListaServicios("Depositos");
-			
 		PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances", direccionDeLaSucursal, palabrasClave, servicios);
 						
 		administradorDePoi.agregarPoi(punto);
 		
-		
+
+		usr.busquedaDePuntosDeInteres("Nunca tiene plata");
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		
@@ -52,7 +51,7 @@ public class ReporteTest {
 		
 		Reporte reporte = new Reporte();
 		List<CantidadPorFecha> result = reporte.GenerarReporteCantidadPorFecha();
-		assertTrue (result.get(0).cantidad == 2);
+		assertTrue (result.get(0).cantidad == 1);
 		
 	}
 	
@@ -61,7 +60,7 @@ public class ReporteTest {
 		
 		Reporte reporte = new Reporte();
 		List<CantidadPorUsuario> result = reporte.GenerarReporteCantidadPorUsuario();
-		assertTrue (result.get(0).cantidad == 2);
+		assertTrue (result.get(0).cantidad == 1);
 		
 	}
 	
