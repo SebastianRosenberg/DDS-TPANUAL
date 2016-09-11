@@ -10,8 +10,10 @@ public class UsuariosFactory {
 	
 	private static int id = 1;
 
+
 	
 	public static Usuario getUsuarioAdministrador(String nombre,String email){		
+		
 		Administrador administrador = new Administrador(email, id, nombre);
 		Usuario usuarioAdministrador = new Usuario(administrador);
 		id++;
