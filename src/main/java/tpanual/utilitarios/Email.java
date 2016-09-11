@@ -73,7 +73,7 @@ public class Email {
     
     /*Sebastian: Ejemplo para enviar un correo elecrónico
      * 
-     * EnviadorMail EnviadorMail = new EnviadorMail("mailDeDestino@gmail.com",
+     * Email mail = new Email("mailDeDestino@gmail.com",
                 "Aca va el Subject", "Acá va el mensaje");
      * 
      */
