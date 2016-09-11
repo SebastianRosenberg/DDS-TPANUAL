@@ -8,6 +8,10 @@ import tpanual.usuario.Usuario;
 
 public class UsuariosFactory {
 
+	private UsuariosFactory(){
+		
+	}
+	
 	public static Usuario getUsuarioAdministrador(String nombre,String email,int Id){
 		
 		Administrador administrador = new Administrador(email, Id, nombre);
