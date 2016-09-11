@@ -15,7 +15,7 @@ import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.seguridad.GestorDeAdministradores;
+import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.temporizador.Temporizador;
 import tpanual.usuario.Terminal;
 import tpanual.usuario.Usuario;
@@ -23,19 +23,26 @@ import tpanual.utilitarios.Constantes;
 
 public class GestorAdminTest {
 	
+	
+	
+	@Test
+	public void creacionAdmin() 
+	{
+		Usuario nuevoUsuario = GestorDeUsuarios.getInstance().crearAdministrador("sebas", "mailsebas@hotmail.com","peras");
+		assertTrue(GestorDeUsuarios.getInstance().getAdministradores().contains(nuevoUsuario));
+	}
+	
+
 	@Test
 	public void envioCorrectoTest() {
 		
-		//seteo Gestor
-		GestorDeAdministradores gestorAdmin = new GestorDeAdministradores();
-		
-		
+
 		//seteo Usuario admin
-		Usuario nuevoUsuario = gestorAdmin.crearAdministrador("federico", "mailPrueba@hotmail.com",1,  "banana");
+		Usuario nuevoUsuario = GestorDeUsuarios.getInstance().crearAdministrador("federico", "mailPrueba@hotmail.com", "banana");
 		
 		//seteo Terminal
 		
-		Usuario usuarioTerminal =  UsuariosFactory.getUsuarioTerminalActivo("terminal 8", 2);
+		Usuario usuarioTerminal =  GestorDeUsuarios.getInstance().crearTerminalActivo("terminal 8");
 		
 		//seteo datos del Poi A usar
 		
@@ -51,9 +58,6 @@ public class GestorAdminTest {
 		
 		PuntoDeInteres poi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras, servicios, 25);
 		
-		
-		//revisar el casteo
-		//Usuario admin = usuarioTerminal.loguear(nuevoUsuario, "banana");
 		Usuario admin = usuarioTerminal.logueo(nuevoUsuario, "banana", usuarioTerminal);
 		
 		List<PuntoDeInteres> listaResultado = admin.busquedaDePuntosDeInteres("Registro Civil");
@@ -67,4 +71,7 @@ public class GestorAdminTest {
 		assertTrue( listaResultado2.contains(poi));				
 		
 	}
+	
+	
+	
 }
