@@ -20,7 +20,7 @@ import tpanual.usuario.Usuario;
 
 public class UsuarioTest {
 
-	GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
+	static GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
 	
 	@Test
 	public void administradorAgregarPoiTest(){
