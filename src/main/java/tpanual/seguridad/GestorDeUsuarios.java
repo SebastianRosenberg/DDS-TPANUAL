@@ -26,6 +26,7 @@ public class GestorDeUsuarios {
 		hashAdmins=new Hashtable<Usuario, String>();
 		adminsLogueados=new Hashtable<Integer, List<Usuario>>();
 		terminales=new Hashtable<Integer, Usuario>();
+		administradores=new Hashtable<Integer, Usuario>();
 		 }
 	
 	public Hashtable<Usuario, String> getHashAdmins() {
