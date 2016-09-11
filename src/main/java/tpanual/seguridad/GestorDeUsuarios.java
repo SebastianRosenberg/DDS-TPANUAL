@@ -83,8 +83,12 @@ public class GestorDeUsuarios {
 			String pass = getHashAdmins().get(admin);
 			if (passwordIngresada != null && passwordIngresada.equals(pass))
 			{
-				deslogueoAdmin(admin);
-				adminsLogueados.put(admin.getId(), terminalActual);
+				if(getAdminsLogueados().get(admin.getId())!=null)
+				{
+					//revisar bien
+					deslogueoAdmin(admin);			
+				}
+				getAdminsLogueados().put(admin.getId(), terminalActual);
 				return admin;
 			}
 			else
@@ -97,25 +101,39 @@ public class GestorDeUsuarios {
 	
 		
 	public Usuario deslogueoAdmin (Usuario admin)
+	
 	{
+		
 		Usuario terminal = (Usuario) getAdminsLogueados().get(admin.getId());
+		
 		if(terminal != null){
+			
+			getAdminsLogueados().remove(admin.getId());
+			
 			return terminal;
 		}
+		
 		System.out.println("Se detecto un error, no se encuentra su terminal en el registro");
+		
 		return null;
 		
 	}
 	
+	
 	public Usuario getTerminalPorID(int id)	
+	
 	{
+		
 		return terminales.get(id);
 		
 	}
 	
-	public Usuario getAdministradoresID(int id)	
+	
+	public Usuario getAdministradoresPorID(int id)	
+	
 	{
-		return terminales.get(id);
+		
+		return administradores.get(id);
 		
 	}
 }
