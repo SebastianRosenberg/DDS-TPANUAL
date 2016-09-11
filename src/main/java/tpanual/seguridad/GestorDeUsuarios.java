@@ -5,7 +5,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 import administrador.Mapa;
-import tpanual.factory.UsuariosFactory;
 import tpanual.usuario.Administrador;
 import tpanual.usuario.Usuario;
 
@@ -99,7 +98,7 @@ public class GestorDeUsuarios {
 		
 	public Usuario deslogueoAdmin (Usuario admin)
 	{
-		Usuario terminal = getAdminsLogueados().get(admin.getId());
+		Usuario terminal = (Usuario) getAdminsLogueados().get(admin.getId());
 		if(terminal != null){
 			return terminal;
 		}

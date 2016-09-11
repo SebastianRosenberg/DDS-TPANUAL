@@ -8,19 +8,24 @@ import java.util.List;
 
 import org.junit.Test;
 
+import administrador.Mapa;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeUsuarios;
+import tpanual.seguridad.UsuariosFactory;
 import tpanual.usuario.Administrador;
 import tpanual.usuario.Usuario;
 
 public class UsuarioTest {
 
+	GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
 	
 	@Test
 	public void administradorAgregarPoiTest(){
+		
+		
 		
 		/*Set up Poi*/
 		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
@@ -41,7 +46,8 @@ public class UsuarioTest {
 		PuntoDeInteres poi1=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
 		
 		/*Seteo usuario*/
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com");
+		Usuario nuevoUsuario = gestor.crearAdministrador("Seba", "zaraza@gmail.com","C.A.R.C");
+				//UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com");
 		
 		/*Tareas del usuario*/
 		nuevoUsuario.agregarPoi(poi);
@@ -56,7 +62,7 @@ public class UsuarioTest {
 	@Test
 	public void administradorEliminarPoiTest(){
 				
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com");
+		Usuario nuevoUsuario = gestor.crearAdministrador("Seba", "zaraza@gmail.com","C.A.R.C");
 		
 		List<PuntoDeInteres> lista=nuevoUsuario.busquedaDePuntosDeInteres("Parada de la linea ciento catorce");
 		Iterator<PuntoDeInteres> i = lista.iterator();
@@ -75,16 +81,15 @@ public class UsuarioTest {
 	@Test
 	public void usuarioTerminalActivoBusquedaTest(){
 		
-		Usuario usuarioTerminalActivo = UsuariosFactory.getUsuarioTerminalActivo("Seba");
-		
+		Usuario usuarioTerminalActivo = gestor.crearTerminalActivo("Seba");
 		assertTrue(usuarioTerminalActivo.busquedaDePuntosDeInteres("") != null);
 	}
 	
 	@Test
 	public void usuarioTerminalNoActivoBusquedaTest(){
 		
-		Usuario usuarioTerminalNoActivo = UsuariosFactory.getUsuarioTerminalNoActivo("Seba");
-		
+		Usuario usuarioTerminalNoActivo = gestor.crearTerminalNoActivo("Seba");
+				
 		assertTrue(usuarioTerminalNoActivo.busquedaDePuntosDeInteres("")==null);
 	}
 	

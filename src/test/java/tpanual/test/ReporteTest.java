@@ -12,7 +12,6 @@ import administrador.AdministradorDeBusquedas;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Reporte.CantidadPorBusquedaPorUsuario;
 import tpanual.main.Reporte.CantidadPorUsuario;
@@ -20,17 +19,18 @@ import tpanual.main.Servicio;
 import tpanual.main.Reporte;
 import tpanual.main.Reporte.CantidadPorFecha;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeUsuarios;
+import tpanual.seguridad.UsuariosFactory;
 import tpanual.usuario.Usuario;
 
 public class ReporteTest {
 	
 	static Usuario usr;
-	
+	static GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
 	@BeforeClass
 	public static void setUp(){
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
-		usr = UsuariosFactory.getUsuarioTerminalActivo("pedritoTester");
-		
+		usr = gestor.crearTerminalActivo("pedritoTester");
 		
 		//Creo la dirección
 		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();

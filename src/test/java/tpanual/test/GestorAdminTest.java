@@ -11,11 +11,11 @@ import java.util.List;
 import org.junit.Test;
 
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
+import tpanual.seguridad.UsuariosFactory;
 import tpanual.temporizador.Temporizador;
 import tpanual.usuario.Terminal;
 import tpanual.usuario.Usuario;
