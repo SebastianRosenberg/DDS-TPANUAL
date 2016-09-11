@@ -12,7 +12,7 @@ public class GestorDeUsuarios {
 	
 	private static GestorDeUsuarios instance;
 	private  Hashtable<Usuario, String> hashAdmins;
-	private  Hashtable<Integer, List<Usuario>> adminsLogueados;
+	private  Hashtable<Integer, Usuario> adminsLogueados;
 	private  Hashtable<Integer, Usuario> terminales;
 	private  Hashtable<Integer, Usuario> administradores;
 	
@@ -24,15 +24,16 @@ public class GestorDeUsuarios {
 	
 	private GestorDeUsuarios(){
 		hashAdmins=new Hashtable<Usuario, String>();
-		adminsLogueados=new Hashtable<Integer, List<Usuario>>();
+		adminsLogueados=new Hashtable<Integer, Usuario>();
 		terminales=new Hashtable<Integer, Usuario>();
+		administradores=new Hashtable<Integer, Usuario>();
 		 }
 	
 	public Hashtable<Usuario, String> getHashAdmins() {
 		return hashAdmins;
 	}
 	
-	public Hashtable<Integer, List<Usuario>> getAdminsLogueados() {
+	public Hashtable<Integer, Usuario> getAdminsLogueados() {
 		return adminsLogueados;
 	}
 	
@@ -73,24 +74,21 @@ public class GestorDeUsuarios {
 		return nuevoUsuario;	
 	}
 	
-	
+	/**Si alguien intenta loguearse como admin y alguien más está logueado, echa a la persona que ya esta logueada
+	 */
 	
 	
 	public  Usuario logueoComoAdmin(Usuario admin, String passwordIngresada, Usuario terminalActual)
 	{
-		if (chequeoNoLogueado(admin)){
 			String pass = getHashAdmins().get(admin);
 			if (passwordIngresada != null && passwordIngresada.equals(pass))
 			{
-	
-				if (adminsLogueados.get(admin.getId())==null){
-					List<Usuario> us=new ArrayList<Usuario>();
-					us.add(terminalActual);
-					adminsLogueados.put(admin.getId(), us);
-				}else{
-					adminsLogueados.get(admin.getId()).add(terminalActual);
+				if(getAdminsLogueados().get(admin.getId())!=null)
+				{
+					//revisar bien
+					deslogueoAdmin(admin);			
 				}
-				
+				getAdminsLogueados().put(admin.getId(), terminalActual);
 				return admin;
 			}
 			else
@@ -99,42 +97,43 @@ public class GestorDeUsuarios {
 				return null;
 			}
 			
-		}else{
-			System.out.println("Ese usuario ya se encuentra logueado en otra terminal");
-			return null;
-			 }
+	}
+	
 		
-	}
-	
-	public boolean chequeoNoLogueado(Usuario user)
-	{
-		if(getAdminsLogueados().get(user)!=null){
-		return false;	
-		}
-		return true;
-	}
-	
-	
 	public Usuario deslogueoAdmin (Usuario admin)
+	
 	{
+		
 		Usuario terminal = (Usuario) getAdminsLogueados().get(admin.getId());
+		
 		if(terminal != null){
+			
+			getAdminsLogueados().remove(admin.getId());
+			
 			return terminal;
 		}
+		
 		System.out.println("Se detecto un error, no se encuentra su terminal en el registro");
+		
 		return null;
 		
 	}
 	
+	
 	public Usuario getTerminalPorID(int id)	
+	
 	{
+		
 		return terminales.get(id);
 		
 	}
 	
-	public Usuario getAdministradoresID(int id)	
+	
+	public Usuario getAdministradoresPorID(int id)	
+	
 	{
-		return terminales.get(id);
+		
+		return administradores.get(id);
 		
 	}
 }
