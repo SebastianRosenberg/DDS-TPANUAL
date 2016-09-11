@@ -21,7 +21,7 @@ public class GestorDeAdministradores {
 	}
 	
 	
-	public static Usuario crearAdministrador(String nombre, String email, int id, String password )
+	public Usuario crearAdministrador(String nombre, String email, int id, String password)
 	{
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador(nombre, email ,id);
 		admins.put(nuevoUsuario, password);

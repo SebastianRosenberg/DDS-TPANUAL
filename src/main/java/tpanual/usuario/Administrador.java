@@ -103,10 +103,6 @@ public class Administrador extends TipoDeUsuario{
 
 	}
 	
-	//public void Loguear()
-	//{
-		//System.out.println("Ya se encuentra logueado");
-//	}
 
 	@Override
 	public Usuario loguear(Usuario usuario, String password, Usuario terminal) {
