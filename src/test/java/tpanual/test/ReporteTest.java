@@ -29,7 +29,7 @@ public class ReporteTest {
 	@BeforeClass
 	public static void setUp(){
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
-		usr = UsuariosFactory.getUsuarioTerminalActivo("pedritoTester", 3589);
+		usr = UsuariosFactory.getUsuarioTerminalActivo("pedritoTester");
 		
 		
 		//Creo la dirección

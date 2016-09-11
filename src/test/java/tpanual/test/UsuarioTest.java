@@ -41,7 +41,7 @@ public class UsuarioTest {
 		PuntoDeInteres poi1=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
 		
 		/*Seteo usuario*/
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com",1);
+		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com");
 		
 		/*Tareas del usuario*/
 		nuevoUsuario.agregarPoi(poi);
@@ -56,7 +56,7 @@ public class UsuarioTest {
 	@Test
 	public void administradorEliminarPoiTest(){
 				
-		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com",1);
+		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador("Seba", "zaraza@gmail.com");
 		
 		List<PuntoDeInteres> lista=nuevoUsuario.busquedaDePuntosDeInteres("Parada de la linea ciento catorce");
 		Iterator<PuntoDeInteres> i = lista.iterator();
@@ -75,7 +75,7 @@ public class UsuarioTest {
 	@Test
 	public void usuarioTerminalActivoBusquedaTest(){
 		
-		Usuario usuarioTerminalActivo = UsuariosFactory.getUsuarioTerminalActivo("Seba", 1);
+		Usuario usuarioTerminalActivo = UsuariosFactory.getUsuarioTerminalActivo("Seba");
 		
 		assertTrue(usuarioTerminalActivo.busquedaDePuntosDeInteres("") != null);
 	}
@@ -83,7 +83,7 @@ public class UsuarioTest {
 	@Test
 	public void usuarioTerminalNoActivoBusquedaTest(){
 		
-		Usuario usuarioTerminalNoActivo = UsuariosFactory.getUsuarioTerminalNoActivo("Seba", 1);
+		Usuario usuarioTerminalNoActivo = UsuariosFactory.getUsuarioTerminalNoActivo("Seba");
 		
 		assertTrue(usuarioTerminalNoActivo.busquedaDePuntosDeInteres("")==null);
 	}
