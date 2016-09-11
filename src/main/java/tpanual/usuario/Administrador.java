@@ -5,7 +5,7 @@ import java.util.List;
 import administrador.AdministradorDePoi;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.seguridad.GestorDeAdministradores;
+import tpanual.seguridad.GestorDeUsuarios;
 
 public class Administrador extends TipoDeUsuario{
 
@@ -95,17 +95,19 @@ public class Administrador extends TipoDeUsuario{
 	
 	
 	
-	public Usuario Desloguear(Usuario usuario)
-	{
-			GestorDeAdministradores gestor = GestorDeAdministradores.getInstance();
-			Usuario terminal = gestor.DeslogueoAdmin(usuario);
+	public Usuario desloguear(Usuario usuario)
+	{	
+			Usuario terminal = GestorDeUsuarios.getInstance().deslogueoAdmin(usuario);
 			return terminal;
 
 	}
 	
-	public void Loguear()
-	{
-		System.out.println("Ya se encuentra logueado");
+
+	@Override
+	public Usuario loguear(Usuario usuario, String password, Usuario terminal) {
+		// TODO Auto-generated method stub
+		 System.out.println("Ya se encuentra logueado");
+		 return usuario;
 	}
 	
 }

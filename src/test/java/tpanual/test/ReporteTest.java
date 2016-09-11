@@ -1,20 +1,15 @@
 package tpanual.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import administrador.AdministradorDeBusquedas;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.factory.UsuariosFactory;
 import tpanual.main.Direccion;
 import tpanual.main.Reporte.CantidadPorBusquedaPorUsuario;
 import tpanual.main.Reporte.CantidadPorUsuario;
@@ -22,18 +17,17 @@ import tpanual.main.Servicio;
 import tpanual.main.Reporte;
 import tpanual.main.Reporte.CantidadPorFecha;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.temporizador.Temporizador;
+import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
 
 public class ReporteTest {
 	
 	static Usuario usr;
-	
+	static GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
 	@BeforeClass
 	public static void setUp(){
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
-		usr = UsuariosFactory.getUsuarioTerminalActivo("pedritoTester", 3589);
-		
+		usr = gestor.crearTerminalActivo("pedritoTester");
 		usr.busquedaDePuntosDeInteres("Banco Frances");
 		
 		
