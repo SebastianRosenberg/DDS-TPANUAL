@@ -9,8 +9,6 @@ import tpanual.usuario.Usuario;
 public class UsuariosFactory {
 	
 	private static int id = 1;
-
-
 	
 	public static Usuario getUsuarioAdministrador(String nombre,String email){		
 		
