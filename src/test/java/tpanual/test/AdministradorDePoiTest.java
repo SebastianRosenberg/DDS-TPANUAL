@@ -200,11 +200,8 @@ public class AdministradorDePoiTest {
 	aparicion2=false;
 	while(p.hasNext()){	
 		PuntoDeInteres n=p.next();
-		if (n.getNombre().equals("Muebleria los dos hermanos")&&n.buscarCoincidencia("Zona peligrosa")) aparicion1=true;
 		if (n.getNombre().equals("Muebleria los dos hermanos")&&n.buscarCoincidencia("Zona segura")) aparicion2=true;
 	}
-
-	assertFalse(aparicion1);
 	assertTrue(aparicion2);
 		
 	
