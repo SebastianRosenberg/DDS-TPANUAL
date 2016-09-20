@@ -8,14 +8,11 @@ import tpanual.main.HorarioDeAtencion;
 public class LocalComercial extends TipoPuntoInteres {
 
 	private RubroFW rubro;
-	private HorarioDeAtencion horario = new HorarioDeAtencion();
+	private HorarioDeAtencion horario;
 	
-	public LocalComercial(RubroFW rubro){
+	public LocalComercial(RubroFW rubro, HorarioDeAtencion hda){
 		this.rubro=rubro;
-		for (Dias dia:Dias.values()){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
-			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
-			horario.addRangoDia(900, 1400, dia);
-		}
+		horario=hda;
 	}
 	
 	@Override

@@ -30,6 +30,7 @@ public class Reporte {
 	public List<CantidadPorFecha> GenerarReporteCantidadPorFecha(){
 		
 		List<CantidadPorFecha> listReporte = new ArrayList<CantidadPorFecha>();
+		
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			DateTime fecha = unaBusqueda.getFechaDeBusqueda();
 			
