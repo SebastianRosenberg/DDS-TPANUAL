@@ -2,10 +2,12 @@ package tpanual.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.joda.time.DateTime;
 
+import tpanual.main.Reporte.CantidadPorUsuario;
 import tpanual.usuario.Usuario;
 import administrador.AdministradorDeBusquedas;
 import administrador.Busqueda;
@@ -34,10 +36,10 @@ public class Reporte {
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			DateTime fecha = unaBusqueda.getFechaDeBusqueda();
 			
-			Stream stream = listReporte.stream().filter(b -> b.fecha == fecha);
+			Supplier<Stream<CantidadPorFecha>> streamSupplier = () -> listReporte.stream().filter(b -> b.fecha == fecha);
 			CantidadPorFecha aux = null;
-			if(stream.count() > 0){
-				 aux = (CantidadPorFecha) stream.findFirst().get();
+			if(streamSupplier.get().count() > 0){
+				 aux = (CantidadPorFecha) streamSupplier.get().findFirst().get();
 			}
 		    if(aux != null){
 		    	aux.cantidad++;
@@ -63,10 +65,12 @@ public class Reporte {
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			Usuario usuario = unaBusqueda.getUsuario();
 			
-			Stream stream = listReporte.stream().filter(b -> b.usuario == usuario);
+			
+
+			Supplier<Stream<CantidadPorUsuario>> streamSupplier = () -> listReporte.stream().filter(b -> b.usuario == usuario);
 			CantidadPorUsuario aux = null;
-			if(stream.count() > 0){
-				aux = (CantidadPorUsuario) stream.findFirst().get();
+			if(streamSupplier.get().count() > 0){
+				aux = (CantidadPorUsuario) streamSupplier.get().findFirst().get();
 			}
 			
 		    if(aux != null){
