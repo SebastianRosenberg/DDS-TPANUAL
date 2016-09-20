@@ -17,6 +17,7 @@ import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.main.poi.TipoPuntoInteres;
 
 public class MapaTest {
 
@@ -95,25 +96,18 @@ public class MapaTest {
 	public void buscarPalabrasClaveTest(){
 		
 		AdministradorDePoi puntoAdmin = new AdministradorDePoi();
-		
 		String criterio="mala atencion";
-		
 		List<PuntoDeInteres> lista=puntoAdmin.busquedaDePuntosDeInteres(criterio);
-				
-		assertTrue(lista.size()==2);
-		
 		Iterator<PuntoDeInteres> i = lista.iterator();
 		
 		boolean aparicion1=false;
-		boolean aparicion2=false;
+
 		while(i.hasNext()){
-			
-			PuntoDeInteres n=i.next();
-			if (n.getNombre().equals("Muebleria somos la contra de los dos hermanos")) aparicion1=true;
-			if (n.getNombre().equals("Sucursal 49")) aparicion2=true;
-			
+			PuntoDeInteres n = i.next();	
+			if (n.buscarCoincidencia(criterio))aparicion1=true;
 		}
-		assertTrue(aparicion1 && aparicion2);
+		
+		assertTrue(aparicion1);
 		
 		criterio="una palabra clave que no esta";
 		List<PuntoDeInteres> lista2=puntoAdmin.busquedaDePuntosDeInteres(criterio);
@@ -121,30 +115,26 @@ public class MapaTest {
 		assertTrue(lista2.isEmpty());		
 	}	
 	@Test
-	public void buscarServicios(){
-		
+	public void buscarServiciosTest(){
+		///Busqueda de un servicio que existe en la lista de servicios de un punto
+		///de interés
 		AdministradorDePoi puntoAdmin = new AdministradorDePoi();
-		
 		String criterio="Denuncias";
-		
 		List<PuntoDeInteres> lista=puntoAdmin.busquedaDePuntosDeInteres(criterio);
-				
-		assertTrue(lista.size()==1);
 		
 		Iterator<PuntoDeInteres> i = lista.iterator();
-		
 		boolean aparicion1=false;
 		while(i.hasNext()){
-			
 			PuntoDeInteres n=i.next();
-			if (n.getNombre().equals("GCP Comuna 1")) aparicion1=true;
-			
+			TipoPuntoInteres tipo = n.getTipo();
+			if (tipo.coincidencia(criterio)) aparicion1 = true;
 		}
 		assertTrue(aparicion1);
 		
+		///Busqueda de un servicio que no existe en la lista de servicios de un punto
+		///de interés
 		criterio="Un servicio que no existe";
-		List<PuntoDeInteres> lista2=puntoAdmin.busquedaDePuntosDeInteres(criterio);
-				
+		List<PuntoDeInteres> lista2=puntoAdmin.busquedaDePuntosDeInteres(criterio);	
 		assertTrue(lista2.isEmpty());		
 	}	
 		
