@@ -17,6 +17,7 @@ public class PuntoDeInteres {
 	private Direccion direccion;
 	private TipoPuntoInteres tipo;
 	private List<String> palabrasClaves;
+	private boolean dadoDeBaja;
 	
 	//Para modificar POI
 	private static String[] fieldsModificables={"latitud", "longitud", "nombre", "direccion", "tipo", "palabrasClaves"};
@@ -31,6 +32,7 @@ public class PuntoDeInteres {
 		this.direccion=direccion;
 		this.tipo=tipo;
 		this.palabrasClaves=palabrasClaves;
+		this.dadoDeBaja=false;
 	}
 
 	public double getLatitud() {
@@ -162,6 +164,14 @@ public class PuntoDeInteres {
 				return false;
 		}
 
+	}
+
+	public boolean isDadoDeBaja() {
+		return dadoDeBaja;
+	}
+
+	public void setDadoDeBaja(boolean dadoDeBaja) {
+		this.dadoDeBaja = dadoDeBaja;
 	}
 
 }
