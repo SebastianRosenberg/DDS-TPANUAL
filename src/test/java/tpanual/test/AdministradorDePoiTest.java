@@ -22,12 +22,20 @@ import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class AdministradorDePoiTest {
+	
+	static HorarioDeAtencion horario;
 
 	@BeforeClass
 	public static void setUp(){
 		//mapa=Mapa.getInstance() ;
 		
 		AdministradorDePoi puntoAdminSetUp = new AdministradorDePoi();
+		
+		horario=new HorarioDeAtencion();
+		for (Dias dia:Dias.values()){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
+			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
+			horario.addRangoDia(900, 1400, dia);
+		}
 		
 		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
 		.provincia("Ciudad de Buenos Aires").crearDireccion();
@@ -55,9 +63,9 @@ public class AdministradorDePoiTest {
 		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras2, servicios, 25);
 		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 2", direccion, palabras2, servicios2, 25);
 		PuntoDeInteres pdi3=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
-		PuntoDeInteres pdi4=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Muebleria los dos hermanos", direccion, palabras2, rubro1);
-		PuntoDeInteres pdi5=PuntoDeInteresFactory.getLocalComercial(-5D, 3001D, "Muebleria somos la contra de los dos hermanos", direccion, palabras, rubro1);
-		PuntoDeInteres pdi6=PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Kiosko no se fia ni al cura parroco", direccion, palabras2, rubro2);
+		PuntoDeInteres pdi4=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Muebleria los dos hermanos", direccion, palabras2, rubro1, horario);
+		PuntoDeInteres pdi5=PuntoDeInteresFactory.getLocalComercial(-5D, 3001D, "Muebleria somos la contra de los dos hermanos", direccion, palabras, rubro1, horario);
+		PuntoDeInteres pdi6=PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Kiosko no se fia ni al cura parroco", direccion, palabras2, rubro2, horario);
 		PuntoDeInteres pdi7=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 49", direccion, palabras, servicios3);
 		
 		puntoAdminSetUp.agregarPoi(pdi);
@@ -188,7 +196,7 @@ public class AdministradorDePoiTest {
 			List<String> palabrasNuevas=new ArrayList<String>();
 			palabrasNuevas.add("Zona segura");
 			RubroFW rubro1=RubroFWFactory.getRubro("Muebleria", 700);
-	PuntoDeInteres pdiNuevo=PuntoDeInteresFactory.getLocalComercial(-600D, 1023589D, "Muebleria los dos hermanos", direccion, palabrasNuevas, rubro1);
+	PuntoDeInteres pdiNuevo=PuntoDeInteresFactory.getLocalComercial(-600D, 1023589D, "Muebleria los dos hermanos", direccion, palabrasNuevas, rubro1, horario);
 	pdiNuevo.setId(idAGuardar);
 	
 	administrador.modificarPoi(pdiNuevo);

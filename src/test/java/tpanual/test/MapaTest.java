@@ -21,7 +21,7 @@ import tpanual.main.poi.TipoPuntoInteres;
 
 public class MapaTest {
 
-	//private static Mapa mapa;
+	static HorarioDeAtencion horario;
 	
 	@Test
 	public void buscarParadaDeColectivoTest(){
@@ -177,7 +177,7 @@ public class MapaTest {
 		palabrasClave.add("Surtida");
 		palabrasClave.add("Excelente Atención");
 		RubroFW rubro = RubroFWFactory.getRubro("Libreria Escolar", 500);
-		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getLocalComercial(-34.569553D, -58.492019D, "Lo de Tony", direccionDeLaLibreria, palabrasClave, rubro);
+		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getLocalComercial(-34.569553D, -58.492019D, "Lo de Tony", direccionDeLaLibreria, palabrasClave, rubro, horario);
 		
 		assertTrue(puntoFactory.cercanoA(-34.572713D, -58.488448D, 12));
 		assertFalse(puntoFactory.cercanoA(-34.578546D, -58.469453D, 15));
@@ -192,7 +192,7 @@ public class MapaTest {
 		palabrasClave.add("Venden alcohol");
 		palabrasClave.add("Venden Panchos");
 		RubroFW rubro=RubroFWFactory.getRubro("Kiosko",  200);
-		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getLocalComercial(-34.573119D, -58.489301D, "Lo + Pancho", direccionDelKiosko, palabrasClave, rubro);
+		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getLocalComercial(-34.573119D, -58.489301D, "Lo + Pancho", direccionDelKiosko, palabrasClave, rubro, horario);
 		
 		assertTrue(puntoFactory.cercanoA(-34.573001D, -58.490937D, 12));
 		assertFalse(puntoFactory.cercanoA(-34.578546D, -58.469453D, 15));
@@ -251,7 +251,7 @@ public class MapaTest {
 		List<String> palabras=new ArrayList<String>();
 
 		RubroFW rubroCarrousel=RubroFWFactory.getRubro("Carrousel", 200);
-		PuntoDeInteres carrousel = PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Calesita", direccion, palabras, rubroCarrousel);
+		PuntoDeInteres carrousel = PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Calesita", direccion, palabras, rubroCarrousel, horario);
 		
 		assertTrue(carrousel.estaDisponible(Dias.JUEVES, 1730, ""));
 		
@@ -265,7 +265,7 @@ public class MapaTest {
 		List<String> palabras=new ArrayList<String>();
 
 		RubroFW rubroCarrousel=RubroFWFactory.getRubro("Carrousel", 200);
-		PuntoDeInteres carrousel = PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Calesita", direccion, palabras, rubroCarrousel);
+		PuntoDeInteres carrousel = PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Calesita", direccion, palabras, rubroCarrousel, horario);
 		
 		assertFalse(carrousel.estaDisponible(Dias.MARTES, 1500, ""));
 		
@@ -335,6 +335,12 @@ public class MapaTest {
 		
 		AdministradorDePoi puntoAdminSetUp = new AdministradorDePoi();
 		
+		horario=new HorarioDeAtencion();
+		for (Dias dia:Dias.values()){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
+			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
+			horario.addRangoDia(900, 1400, dia);
+		}
+		
 		
 		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
 		.provincia("Ciudad de Buenos Aires").crearDireccion();
@@ -362,9 +368,9 @@ public class MapaTest {
 		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras2, servicios, 25);
 		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 2", direccion, palabras2, servicios2, 25);
 		PuntoDeInteres pdi3=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
-		PuntoDeInteres pdi4=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Muebleria los dos hermanos", direccion, palabras2, rubro1);
-		PuntoDeInteres pdi5=PuntoDeInteresFactory.getLocalComercial(-5D, 3001D, "Muebleria somos la contra de los dos hermanos", direccion, palabras, rubro1);
-		PuntoDeInteres pdi6=PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Kiosko no se fia ni al cura parroco", direccion, palabras2, rubro2);
+		PuntoDeInteres pdi4=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Muebleria los dos hermanos", direccion, palabras2, rubro1, horario);
+		PuntoDeInteres pdi5=PuntoDeInteresFactory.getLocalComercial(-5D, 3001D, "Muebleria somos la contra de los dos hermanos", direccion, palabras, rubro1, horario);
+		PuntoDeInteres pdi6=PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Kiosko no se fia ni al cura parroco", direccion, palabras2, rubro2, horario);
 		PuntoDeInteres pdi7=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 49", direccion, palabras, servicios3);
 		
 		puntoAdminSetUp.agregarPoi(pdi);

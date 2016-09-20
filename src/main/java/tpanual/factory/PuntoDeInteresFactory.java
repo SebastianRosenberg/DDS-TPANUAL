@@ -3,6 +3,7 @@ package tpanual.factory;
 import java.util.List;
 import tpanual.Rubro.RubroFW;
 import tpanual.main.Direccion;
+import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.CGP;
 import tpanual.main.poi.LocalComercial;
@@ -16,8 +17,8 @@ public class PuntoDeInteresFactory {
 		PuntoDeInteres punto=new PuntoDeInteres(latitud, longitud, nombre, direccion, palabrasClave, cgp);
 		return punto;
 	}
-	public static PuntoDeInteres getLocalComercial(double latitud, double longitud, String nombre, Direccion direccion, List<String> palabrasClave, RubroFW rubro){
-		LocalComercial l=new LocalComercial(rubro);
+	public static PuntoDeInteres getLocalComercial(double latitud, double longitud, String nombre, Direccion direccion, List<String> palabrasClave, RubroFW rubro, HorarioDeAtencion hda){
+		LocalComercial l=new LocalComercial(rubro, hda);
 		PuntoDeInteres punto=new PuntoDeInteres(latitud, longitud, nombre, direccion, palabrasClave, l);
 		return punto;
 	}
