@@ -51,7 +51,7 @@ public class ReporteTest {
 		
 		Reporte reporte = new Reporte();
 		List<CantidadPorFecha> result = reporte.GenerarReporteCantidadPorFecha();
-		assertTrue (result.get(0).cantidad == 1);
+		assertTrue (result.get(0).cantidad > 0);
 		
 	}
 	
@@ -60,8 +60,7 @@ public class ReporteTest {
 		
 		Reporte reporte = new Reporte();
 		List<CantidadPorUsuario> result = reporte.GenerarReporteCantidadPorUsuario();
-		//assertTrue (result.get(0).cantidad == 1);
-		assertTrue(result.size()==1);
+		assertTrue (result.get(0).cantidad > 0);
 	}
 	
 	
@@ -70,7 +69,7 @@ public class ReporteTest {
 		
 		Reporte reporte = new Reporte();
 		List<CantidadPorBusquedaPorUsuario> result = reporte.GenerarReporteCantidadPorBusquedaPorUsuario(usr);
-		assertTrue (result.get(0).cantidad == 2);
+		assertTrue (result.get(0).cantidad > 0);
 		
 	}
 	
