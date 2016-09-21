@@ -40,6 +40,12 @@ public class AdministradorDePoi {
 		return busquedaDePuntosDeInteres(x, false);
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 * @param test: Si es true, busca en el mock en vez de servicios externos
+	 * @return
+	 */
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test){
 		String listaStrings[] = {x};
