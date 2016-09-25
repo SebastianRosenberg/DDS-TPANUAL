@@ -3,6 +3,9 @@
   <groupId>DDS-TPANUAL</groupId>
   <artifactId>DDS-TPANUAL</artifactId>
   <version>1</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
   	  <dependency>
 		<groupId>com.sun.jersey</groupId>
