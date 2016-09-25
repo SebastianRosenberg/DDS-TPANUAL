@@ -1,6 +1,7 @@
 package procesos.bajaDePois;
 
 import java.util.Iterator;
+import procesos.AdministradorDeProcesos.EstadoResultado;
 import java.util.List;
 
 import procesos.Proceso;
@@ -13,11 +14,17 @@ public class BajaDePois extends Proceso{
 
 	@Override
 	public RespuestaProceso procesar() {
-		Iterator<PuntoDeInteres> it=pois.iterator();
-		while(it.hasNext()){
-			it.next().setDadoDeBaja(true);
+		RespuestaProceso rp;
+		try{
+			Iterator<PuntoDeInteres> it=pois.iterator();
+			while(it.hasNext()){
+				it.next().setDadoDeBaja(true);
+			}
+			rp=new RespuestaProceso(EstadoResultado.OK);
+			rp.setPoisAfectados(pois);
+		}catch(RuntimeException r){
+			rp=new RespuestaProceso(EstadoResultado.ERROR, r.getMessage());
 		}
-		RespuestaProceso rp=new RespuestaProceso();
 		return rp;
 	}
 	

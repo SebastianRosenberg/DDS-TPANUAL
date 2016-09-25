@@ -9,7 +9,7 @@ import tpanual.usuario.Usuario;
 
 public class AdministradorDeProcesos {
 	
-	enum EstadoResultado{
+	public enum EstadoResultado{
 		OK,
 		ERROR
 	}

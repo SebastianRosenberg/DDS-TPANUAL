@@ -1,6 +1,7 @@
 package procesos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProcesoMultipleComposite extends Proceso{
@@ -13,7 +14,15 @@ public class ProcesoMultipleComposite extends Proceso{
 
 	@Override
 	public RespuestaProceso procesar() {
-		// TODO Auto-generated method stub
-		return null;
+		if (procesos!=null){
+			Iterator<Proceso> it=procesos.iterator();
+			RespuestaProceso r=it.next().procesar();
+			while (it.hasNext()){
+				r.agregar(it.next().procesar());
+			}
+			return r;
+		}else{
+			return null;
+		}
 	}
 }
