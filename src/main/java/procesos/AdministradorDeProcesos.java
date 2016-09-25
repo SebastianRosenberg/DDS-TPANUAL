@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
 
 public class AdministradorDeProcesos {
@@ -19,15 +20,13 @@ public class AdministradorDeProcesos {
 		DateTime inicio;
 		DateTime fin;
 		RespuestaProceso respuesta;
-		EstadoResultado resultado;
 		
 		public ProcesoEjecutado(
 					Proceso proceso,
 					Usuario usuario,
 					DateTime inicio,
 					DateTime fin,
-					RespuestaProceso respuesta,
-					EstadoResultado resultado
+					RespuestaProceso respuesta
 				)
 		{
 			this.proceso = proceso;
@@ -35,7 +34,6 @@ public class AdministradorDeProcesos {
 			this.inicio = inicio;
 			this.fin = fin;
 			this.respuesta = respuesta;
-			this.resultado = resultado;
 		}
 		
 	}
@@ -52,27 +50,33 @@ public class AdministradorDeProcesos {
 		procesosDisponibles.remove(proceso);
 	}
 	
+	public List<Proceso> GetProcesosDisponiblesParaElUsuario(Usuario usuario){
+		//GestorDeUsuarios gestorUsuarios = GestorDeUsuarios.getInstance();
+		
+		//TODO: preguntar si es admin
+		//if (ES ADMINISTRADOR)
+		return procesosDisponibles;
+		
+		//else
+		//return new List<Proceso>();
+	}
 	
-	public RespuestaProceso EjecutarProceso(Proceso proceso) throws Exception{
+	
+	public RespuestaProceso EjecutarProceso(Proceso proceso, Usuario usuario)throws Exception{
 		RespuestaProceso respuesta;
 		EstadoResultado resultado;
-		Usuario usuario = null;
-		if(procesosDisponibles.contains(proceso)){
+		if(procesosDisponibles.contains(proceso)){//Esto va a haber que cambiarlo para ver si es permitido para el usuario
 			
 			DateTime inicio = DateTime.now();
-			try
-			{
+			
 				respuesta = proceso.procesar();
-				resultado = EstadoResultado.OK;
-			}
-			catch(Exception ex)
-			{
-				respuesta = null;
-				resultado = EstadoResultado.ERROR;
-			}
+			
+			//Aca tiene que preguntar por el estadoDeError adentro del objeto respuesta y si 
+				//hubo error hay que enviar mail y ETC ETC ETC
+			
 			DateTime fin = DateTime.now();
 			
-			AgregarProcesoEjecutado(proceso, usuario, inicio, fin, respuesta, resultado);
+			AgregarProcesoEjecutado(proceso, usuario, inicio, fin, respuesta);
 			
 			return respuesta;
 		}
@@ -80,20 +84,15 @@ public class AdministradorDeProcesos {
 		{
 			throw new Exception("El proceso no esta permitido");
 		}
-		
-		
 	}
 
 	private void AgregarProcesoEjecutado(Proceso proceso, Usuario usuario,
-			DateTime inicio, DateTime fin, RespuestaProceso respuesta,
-			EstadoResultado resultado) {
+			DateTime inicio, DateTime fin, RespuestaProceso respuesta) {
 		
 		ProcesoEjecutado procesoEj =
-				new ProcesoEjecutado(proceso, usuario, inicio, fin, respuesta, resultado);
+				new ProcesoEjecutado(proceso, usuario, inicio, fin, respuesta);
 		
 		procesosEjecutados.add(procesoEj);
-		
-		
 		
 	}
 
