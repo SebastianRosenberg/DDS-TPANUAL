@@ -1,9 +1,9 @@
 # DDS-TPANUAL
 
 [![Build
-Status](https://travis-ci.org/<user>/<repo>.svg?branch=develop)]
-(https://travis-ci.org/<user>/<repo>/branches)
+Status](https://travis-ci.org/SebastianRosenbergDDS-TPANUAL.svg?branch=develop)]
+(https://travis-ci.org/SebastianRosenbergDDS-TPANUAL/branches)
 
-[![codecov.io](https://codecov.io/github/<user>/<repo>/coverage.
-svg?branch=develop)](https://codecov.io/gh/<user>/<repo>/branch/
+[![codecov.io](https://codecov.io/github/SebastianRosenbergDDS-TPANUAL/coverage.
+svg?branch=develop)](https://codecov.io/gh/SebastianRosenbergDDS-TPANUAL/branch/
 develop)
