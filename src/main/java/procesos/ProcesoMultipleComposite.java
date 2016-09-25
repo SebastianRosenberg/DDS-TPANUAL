@@ -16,5 +16,4 @@ public class ProcesoMultipleComposite extends Proceso{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }
