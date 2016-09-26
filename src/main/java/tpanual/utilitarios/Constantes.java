@@ -22,5 +22,6 @@ public class Constantes {
 
 	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.millis(10000); 
 
+	public static final String RUTA_ARCHIVO_ACTUALIZACION_LOCALES_COMERCIALES="src/test/actualizacionLocales.txt";
 
 }
