@@ -1,6 +1,8 @@
 package tpanual.utilitarios;
 
 
+import java.net.URL;
+
 import org.joda.time.Duration;
 
 
@@ -20,8 +22,6 @@ public class Constantes {
 	public static final int INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE=72;
 	
 
-	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.millis(10000); 
-
-	public static final String RUTA_ARCHIVO_ACTUALIZACION_LOCALES_COMERCIALES="src/test/actualizacionLocales.txt";
-
+	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.millis(10000);
+	
 }

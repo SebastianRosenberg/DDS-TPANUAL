@@ -21,6 +21,15 @@ public class ActualizacionLocalComercial {
 		return palabrasNuevas;
 	}
 	
-	
+	@Override
+	public boolean equals (Object obj){
+
+		if((((ActualizacionLocalComercial) (obj)).getPoi().equals(poi)) && (((ActualizacionLocalComercial) (obj)).getPalabrasNuevas().equals(palabrasNuevas))){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 }
