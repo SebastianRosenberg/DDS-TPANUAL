@@ -11,12 +11,13 @@ import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Direccion;
-import tpanual.main.Reporte.CantidadPorBusquedaPorUsuario;
-import tpanual.main.Reporte.CantidadPorUsuario;
 import tpanual.main.Servicio;
-import tpanual.main.Reporte;
-import tpanual.main.Reporte.CantidadPorFecha;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.reportes.AdministradorDeReportes;
+import tpanual.reportes.CantidadPorBusquedaPorUsuario;
+import tpanual.reportes.CantidadPorFecha;
+import tpanual.reportes.CantidadPorUsuario;
+import tpanual.reportes.Reporte;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
 
@@ -49,27 +50,26 @@ public class ReporteTest {
 	@Test
 	public void reporteCantidadDeBusquedasPorFechaTest() {
 		
-		Reporte reporte = new Reporte();
-		List<CantidadPorFecha> result = reporte.GenerarReporteCantidadPorFecha();
-		assertTrue (result.get(0).cantidad > 0);
-		
+		Reporte<CantidadPorFecha> result = AdministradorDeReportes.GenerarReporteCantidadPorFecha();
+		assertTrue (result.getLista().get(0).cantidad > 0);
+		result.mostrar();
 	}
 	
 	@Test
 	public void reporteCantidadDeResultadosPorUsuarioTest() {
 		
-		Reporte reporte = new Reporte();
-		List<CantidadPorUsuario> result = reporte.GenerarReporteCantidadPorUsuario();
-		assertTrue (result.get(0).cantidad > 0);
+		Reporte<CantidadPorUsuario> result = AdministradorDeReportes.GenerarReporteCantidadPorUsuario();
+		assertTrue (result.getLista().get(0).cantidad > 0);
+		result.mostrar();
 	}
 	
 	
 	@Test
 	public void reporteCantidadDeResultadosPorBusquedaPorUsuarioTest() {
 		
-		Reporte reporte = new Reporte();
-		List<CantidadPorBusquedaPorUsuario> result = reporte.GenerarReporteCantidadPorBusquedaPorUsuario(usr);
-		assertTrue (result.get(0).cantidad > 0);
+		Reporte<CantidadPorBusquedaPorUsuario> result=AdministradorDeReportes.GenerarReporteCantidadPorBusquedaPorUsuario(usr);
+		assertTrue (result.getLista().get(0).cantidad > 0);
+		result.mostrar();
 		
 	}
 	

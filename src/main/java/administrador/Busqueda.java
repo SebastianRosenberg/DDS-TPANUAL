@@ -55,4 +55,19 @@ public class Busqueda {
 	public Duration getDuracion() {
 		return duracion;
 	}	
+	
+	public String toString(){
+		if (idsEncontrados.length==0 || stringsBuscados.length==0) return "["+fechaDeBusqueda + "] No hubo ninguna coincidencia con la busqueda: " + stringsBuscados;
+		
+		String s="[" + fechaDeBusqueda + "] Se buscaron los strings: " + stringsBuscados[0] ;
+		for (int y=0;y<stringsBuscados.length;y++){
+			s+=", " + stringsBuscados[y];
+		}
+		
+		s+=" - Ids Encontrados: " + idsEncontrados[0];
+		for (int i=1;i<idsEncontrados.length;i++){
+			s+=", " + Integer.valueOf(idsEncontrados[i]);
+		}
+		return s;
+	}
 }

@@ -114,6 +114,9 @@ public class Usuario {
 		return this.tipoDeUsuario.loguear(admin, pass, term);
 	}
 	
+	public String toString(){
+		return Integer.valueOf(tipoDeUsuario.getId()) + "_" + tipoDeUsuario.getNombre();
+	}
 	
 	
 }
