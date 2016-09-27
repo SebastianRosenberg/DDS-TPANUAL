@@ -1,5 +1,7 @@
 package tpanual.usuario;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 import org.joda.time.Duration;
@@ -7,20 +9,31 @@ import org.joda.time.Instant;
 
 import administrador.SesionBusqueda;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.temporizador.Temporizador;
 
 public class Usuario {
 
 	private TipoDeUsuario tipoDeUsuario;
 //	
-//															/* confirmar esto
+//															
+/* confirmar esto
 //															 */
 //	private TipoDeUsuario tipoDeUsuarioOriginal;
 //	
 //	public TipoDeUsuario getTipoDeUsuarioOriginal(){
 //		return tipoDeUsuarioOriginal;
 //	}
-//															////////////////////
+	//
+	 //Busco una instancia del Gestor de usuarios para encontrar al administrador
+	//para enviarle el correo ante una búsqueda prolongada
+	GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
+	Hashtable admins = gestor.getAdministradores();
+	Enumeration valores = admins.keys();
+	Usuario administrador = (Usuario) valores.nextElement();
+	//End usuario administrador	
+
+
 	public String getEmail(){
 		
 		return tipoDeUsuario.getEmail();
@@ -46,7 +59,7 @@ public class Usuario {
 	}
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
-	
+	   
 		SesionBusqueda sBusqueda = new SesionBusqueda();
 		
 		Instant inicio = Temporizador.TiempoInicioBusqueda();
@@ -56,7 +69,7 @@ public class Usuario {
 		
 		Duration duracion = Temporizador.LapsoBusqueda(inicio);
 		
-		Temporizador.ChequeoLapso (duracion, this);
+		Temporizador.ChequeoLapso (duracion, administrador);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
@@ -75,7 +88,7 @@ public class Usuario {
 		sBusqueda.setPois(pois);
 		
 		Duration duracion = temporizador.LapsoBusqueda(inicio);
-		Temporizador.ChequeoLapso (duracion, this);
+		Temporizador.ChequeoLapso (duracion, administrador);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
