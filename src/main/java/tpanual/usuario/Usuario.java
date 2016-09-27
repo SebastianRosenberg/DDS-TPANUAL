@@ -27,10 +27,10 @@ public class Usuario {
 	//
 	 //Busco una instancia del Gestor de usuarios para encontrar al administrador
 	//para enviarle el correo ante una búsqueda prolongada
-	GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-	Hashtable admins = gestor.getAdministradores();
-	Enumeration valores = admins.keys();
-	Usuario administrador = (Usuario) valores.nextElement();
+	//GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
+	//Hashtable admins = gestor.getAdministradores();
+	//Enumeration valores = admins.keys();
+	//Usuario administrador = (Usuario) valores.nextElement();
 	//End usuario administrador	
 
 
@@ -69,7 +69,7 @@ public class Usuario {
 		
 		Duration duracion = Temporizador.LapsoBusqueda(inicio);
 		
-		Temporizador.ChequeoLapso (duracion, administrador);
+		//Temporizador.ChequeoLapso (duracion, administrador);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
@@ -88,7 +88,7 @@ public class Usuario {
 		sBusqueda.setPois(pois);
 		
 		Duration duracion = temporizador.LapsoBusqueda(inicio);
-		Temporizador.ChequeoLapso (duracion, administrador);
+		//Temporizador.ChequeoLapso (duracion, administrador);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
