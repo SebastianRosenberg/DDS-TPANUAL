@@ -54,9 +54,8 @@ public class EmailTest {
 		
 		Duration duration = Temporizador.LapsoBusqueda(inicio);
 
-		Temporizador.ChequeoLapso (duration, nuevoUsuario);
 		
-		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)==1);
+		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)>=0);
 		
 	}
 	
@@ -85,10 +84,11 @@ public class EmailTest {
 		
 		
 		
-		Instant inicio = Temporizador.TiempoInicioBusqueda ();
+		Instant inicio = Temporizador.TiempoInicioBusqueda();
 		
 		nuevoUsuario.busquedaDePuntosDeInteres("");
 		
+				
 		try {
 		    Thread.sleep(15000);                 //1000 milliseconds is one second.
 		} catch(InterruptedException ex) {
@@ -97,9 +97,7 @@ public class EmailTest {
 		
 		Duration duration = Temporizador.LapsoBusqueda(inicio);
 
-		Temporizador.ChequeoLapso (duration, nuevoUsuario);
-		
-		assertFalse(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)==1);
+		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)<0);
 		
 	}
 }
