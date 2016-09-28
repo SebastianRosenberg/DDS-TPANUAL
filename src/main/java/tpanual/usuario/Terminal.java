@@ -107,4 +107,9 @@ public class Terminal extends TipoDeUsuario {
 		System.out.println("No se ha podido desloguear debido a que no se encontraba loguado en un principio");
 		return null;
 	}
+	@Override
+	public void notificar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

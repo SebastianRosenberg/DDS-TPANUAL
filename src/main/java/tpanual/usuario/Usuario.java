@@ -1,15 +1,12 @@
 package tpanual.usuario;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.List;
-
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 
 import administrador.SesionBusqueda;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.seguridad.GestorDeUsuarios;
+
 import tpanual.temporizador.Temporizador;
 
 public class Usuario {
@@ -25,14 +22,6 @@ public class Usuario {
 //		return tipoDeUsuarioOriginal;
 //	}
 	//
-	 //Busco una instancia del Gestor de usuarios para encontrar al administrador
-	//para enviarle el correo ante una búsqueda prolongada
-	//GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-	//Hashtable admins = gestor.getAdministradores();
-	//Enumeration valores = admins.keys();
-	//Usuario administrador = (Usuario) valores.nextElement();
-	//End usuario administrador	
-
 
 	public String getEmail(){
 		
@@ -69,7 +58,7 @@ public class Usuario {
 		
 		Duration duracion = Temporizador.LapsoBusqueda(inicio);
 		
-		//Temporizador.ChequeoLapso (duracion, administrador);
+		Temporizador.ChequeoLapso (duracion, this);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
@@ -88,7 +77,7 @@ public class Usuario {
 		sBusqueda.setPois(pois);
 		
 		Duration duracion = temporizador.LapsoBusqueda(inicio);
-		//Temporizador.ChequeoLapso (duracion, administrador);
+		Temporizador.ChequeoLapso (duracion, this);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
@@ -134,5 +123,10 @@ public class Usuario {
 		return Integer.valueOf(tipoDeUsuario.getId()) + "_" + tipoDeUsuario.getNombre();
 	}
 	
+	public void notificar(){
+		
+		this.tipoDeUsuario.notificar();
+		
+	}
 	
 }
