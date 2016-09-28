@@ -21,15 +21,23 @@ public class ActualizacionLocalComercial {
 		return palabrasNuevas;
 	}
 	
+	private String getPoiNombre(){
+		
+		return poi.getNombre();
+		
+	}
 	@Override
-	public boolean equals (Object obj){
-
-		if((((ActualizacionLocalComercial) (obj)).getPoi().equals(poi)) && (((ActualizacionLocalComercial) (obj)).getPalabrasNuevas().equals(palabrasNuevas))){
-			return true;
-		}
-		else{
+	public boolean equals(Object o){
+		if (!(o instanceof ActualizacionLocalComercial))
 			return false;
+		else{
+			ActualizacionLocalComercial pdi=(ActualizacionLocalComercial) o;
+			if (pdi.getPoiNombre().equals(this.poi.getNombre()))
+				return true;
+			else
+				return false;
 		}
+
 	}
 	
 }
