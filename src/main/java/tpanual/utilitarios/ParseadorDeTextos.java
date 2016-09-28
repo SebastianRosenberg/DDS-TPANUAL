@@ -20,7 +20,9 @@ public class ParseadorDeTextos {
 private static BufferedReader abrirBuffer() throws FileNotFoundException{
 	
 	//Get file from resources folder
-	 BufferedReader bufferLectura = new BufferedReader (new FileReader ("C:/Users/rosa/Documents/GitHub/DDS-TPANUAL/src/main/resources/file/actualizacionLocales.txt"));//file.getPath()));//Constantes.RUTA_ARCHIVO_ACTUALIZACION_LOCALES_COMERCIALES));
+	FileReader fr = new FileReader("src/main/resources/file/actualizacionLocales.txt");
+    BufferedReader bufferLectura = new BufferedReader(fr);
+    //BufferedReader bufferLectura = new BufferedReader (new FileReader ("C:/Users/rosa/Documents/GitHub/DDS-TPANUAL/src/main/resources/file/actualizacionLocales.txt"));//file.getPath()));//Constantes.RUTA_ARCHIVO_ACTUALIZACION_LOCALES_COMERCIALES));
 	 return bufferLectura;
 }
 

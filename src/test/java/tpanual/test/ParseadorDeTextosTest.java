@@ -53,10 +53,10 @@ public class ParseadorDeTextosTest {
 		listaDeComercioTest.add(datos1);
 		
 		//Creo una instancia de la clase ParseadorDeTextos
-		ParseadorDeTextos parser = new ParseadorDeTextos();
+		//ParseadorDeTextos parser = new ParseadorDeTextos();
 		
 		//Llamo al metodo de la clase ParseadorDeTextos que se encarga de devolver los objetos con los datos para actualizar.
-		listaDeComerciosAActualizar = parser.parsearTexto();
+		listaDeComerciosAActualizar = ParseadorDeTextos.parsearTexto();
 		
 		//listaDeComerciosAActualizar.size();
 		
