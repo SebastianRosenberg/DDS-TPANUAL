@@ -40,6 +40,10 @@ public class AdministradorDePoi {
 		return busquedaDePuntosDeInteres(x, false);
 	}
 	
+	public PuntoDeInteres obtenerPoiPorId(int id){
+		return Mapa.getInstance().obtenerPuntoDeInteres(id);
+	}
+	
 	/**
 	 * 
 	 * @param x

@@ -174,5 +174,37 @@ public class PuntoDeInteres {
 		this.dadoDeBaja = dadoDeBaja;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
+
+	public void setTipo(TipoPuntoInteres tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setPalabrasClaves(List<String> palabrasClaves) {
+		this.palabrasClaves = palabrasClaves;
+	}
+
+	public static void setMaxId(int maxId) {
+		PuntoDeInteres.maxId = maxId;
+	}
+
 }
 

@@ -17,30 +17,28 @@ public class ParseadorDeTextos {
 	//public ParseadorDeTextos() {
 		// TODO Auto-generated constructor stub
 	//}
-private BufferedReader abrirBuffer() throws FileNotFoundException{
+private static BufferedReader abrirBuffer() throws FileNotFoundException{
 	
 	//Get file from resources folder
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource("C:/Users/rosa/Documents/GitHub/DDS-TPANUAL/src/main/resources/file/actualizacionLocales.txt").getFile());
 	 BufferedReader bufferLectura = new BufferedReader (new FileReader ("C:/Users/rosa/Documents/GitHub/DDS-TPANUAL/src/main/resources/file/actualizacionLocales.txt"));//file.getPath()));//Constantes.RUTA_ARCHIVO_ACTUALIZACION_LOCALES_COMERCIALES));
 	 return bufferLectura;
 }
 
 
-private void cerrarBuffer(BufferedReader buffer) throws IOException{
+private static void cerrarBuffer(BufferedReader buffer) throws IOException{
 	
 	buffer.close();
 	
 }
 
-public List<ActualizacionLocalComercial> parsearTexto() throws IOException{
+public static List<ActualizacionLocalComercial> parsearTexto() throws IOException{
 	String nombre = null;
 	String linea = null;
 	//List<String> palabrasClaves = new ArrayList<String>();
 	BufferedReader bufferDatos;
 	List<ActualizacionLocalComercial> comerciosConActualizacion = new ArrayList<ActualizacionLocalComercial>();
 	
-	bufferDatos = this.abrirBuffer();
+	bufferDatos = abrirBuffer();
 	
 	//linea = bufferDatos.readLine(); 
 	while (bufferDatos.ready()){
@@ -72,7 +70,7 @@ public List<ActualizacionLocalComercial> parsearTexto() throws IOException{
 		nombre = null;
 	}
 	
-	this.cerrarBuffer(bufferDatos);
+	cerrarBuffer(bufferDatos);
 	
 	return comerciosConActualizacion;
 	
