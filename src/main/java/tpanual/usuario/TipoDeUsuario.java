@@ -18,4 +18,5 @@ public abstract class TipoDeUsuario {
 	public abstract boolean eliminarPoi(PuntoDeInteres poi);
 	public abstract Usuario loguear(Usuario usuario, String password,Usuario terminal);
 	public abstract Usuario desloguear(Usuario usuario);
+	public abstract void notificar();
 }

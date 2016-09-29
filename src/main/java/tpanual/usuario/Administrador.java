@@ -6,6 +6,7 @@ import administrador.AdministradorDePoi;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
+import tpanual.utilitarios.Email;
 
 public class Administrador extends TipoDeUsuario{
 
@@ -108,6 +109,13 @@ public class Administrador extends TipoDeUsuario{
 		// TODO Auto-generated method stub
 		 System.out.println("Ya se encuentra logueado");
 		 return usuario;
+	}
+
+	@Override
+	public void notificar() {
+		// TODO Auto-generated method stub
+		Email EnviadorMail = new Email(this.getEmail(),
+                "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tardó mas del tiempo máximo.");
 	}
 	
 }

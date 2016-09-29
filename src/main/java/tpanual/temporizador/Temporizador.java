@@ -33,8 +33,7 @@ public class Temporizador {
 	{
 		if(Constantes.TIEMPO_MAXIMO_CONSULTA.getMillis() < total.getMillis())
 		{
-			Email EnviadorMail = new Email(usuario.getEmail(),
-	                "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tardó mas del tiempo máximo.");
+			usuario.notificar();
 		}
 	}
 }

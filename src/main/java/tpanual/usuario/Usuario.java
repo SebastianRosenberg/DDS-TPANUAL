@@ -1,26 +1,28 @@
 package tpanual.usuario;
 
 import java.util.List;
-
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 
 import administrador.SesionBusqueda;
 import tpanual.main.poi.PuntoDeInteres;
+
 import tpanual.temporizador.Temporizador;
 
 public class Usuario {
 
 	private TipoDeUsuario tipoDeUsuario;
 //	
-//															/* confirmar esto
+//															
+/* confirmar esto
 //															 */
 //	private TipoDeUsuario tipoDeUsuarioOriginal;
 //	
 //	public TipoDeUsuario getTipoDeUsuarioOriginal(){
 //		return tipoDeUsuarioOriginal;
 //	}
-//															////////////////////
+	//
+
 	public String getEmail(){
 		
 		return tipoDeUsuario.getEmail();
@@ -46,15 +48,17 @@ public class Usuario {
 	}
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
-	
+	   
 		SesionBusqueda sBusqueda = new SesionBusqueda();
-		Temporizador temporizador = new Temporizador();
-		Instant inicio = temporizador.TiempoInicioBusqueda();
+		
+		Instant inicio = Temporizador.TiempoInicioBusqueda();
 
 		List<PuntoDeInteres> pois =tipoDeUsuario.busquedaDePuntosDeInteres(strABuscar); 
 		sBusqueda.setPois(pois);
 		
-		Duration duracion = temporizador.LapsoBusqueda(inicio);
+		Duration duracion = Temporizador.LapsoBusqueda(inicio);
+		
+		Temporizador.ChequeoLapso (duracion, this);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
@@ -73,6 +77,7 @@ public class Usuario {
 		sBusqueda.setPois(pois);
 		
 		Duration duracion = temporizador.LapsoBusqueda(inicio);
+		Temporizador.ChequeoLapso (duracion, this);
 		
 		sBusqueda.setDuracion(duracion);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
@@ -118,5 +123,10 @@ public class Usuario {
 		return Integer.valueOf(tipoDeUsuario.getId()) + "_" + tipoDeUsuario.getNombre();
 	}
 	
+	public void notificar(){
+		
+		this.tipoDeUsuario.notificar();
+		
+	}
 	
 }
