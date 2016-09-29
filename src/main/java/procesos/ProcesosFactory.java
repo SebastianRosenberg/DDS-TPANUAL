@@ -15,4 +15,8 @@ public class ProcesosFactory {
 		Proceso proceso = new ActualizacionDeLocalesComerciales();
 		return proceso;
 	}
+	public static Proceso getProcesoMultipleComposite(List<Proceso> l){
+		Proceso proceso = new ProcesoMultipleComposite(l);
+		return proceso;
+	}
 }
