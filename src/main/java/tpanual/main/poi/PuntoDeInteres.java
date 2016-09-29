@@ -3,6 +3,8 @@ package tpanual.main.poi;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import administrador.Mapa;
 
 import tpanual.main.Dias;
@@ -18,6 +20,7 @@ public class PuntoDeInteres {
 	private TipoPuntoInteres tipo;
 	private List<String> palabrasClaves;
 	private boolean dadoDeBaja;
+	private DateTime fechaBaja;
 	
 	//Para modificar POI
 	private static String[] fieldsModificables={"latitud", "longitud", "nombre", "direccion", "tipo", "palabrasClaves"};
@@ -204,6 +207,14 @@ public class PuntoDeInteres {
 
 	public static void setMaxId(int maxId) {
 		PuntoDeInteres.maxId = maxId;
+	}
+
+	public DateTime getFechaBaja() {
+		return fechaBaja;
+	}
+
+	public void setFechaBaja(DateTime fechaBaja) {
+		this.fechaBaja = fechaBaja;
 	}
 
 }

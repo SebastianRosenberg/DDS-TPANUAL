@@ -40,9 +40,9 @@ public class ActualizacionLocalesComercialesTest {
 			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
 			horario.addRangoDia(900, 1400, dia);
 		}
-		poi = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Telecom BajaPoiTest", direccion, palabrasClave, servicios);
-		poi2=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea 97 BajaPoiTest", direccion, palabrasClave, "97");
-		poi3=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Correo Argentino BajaPoiTest", direccion, palabrasClave, rubro1, horario);
+		poi = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Telecom ActualizacionComercialTest", direccion, palabrasClave, servicios);
+		poi2=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea 97 ActualizacionComercialTest", direccion, palabrasClave, "97");
+		poi3=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Correo Argentino ActualizacionComercialTest", direccion, palabrasClave, rubro1, horario);
 		
 		//Los agrego
 		AdministradorDePoi.getInstance().agregarPoi(poi);
