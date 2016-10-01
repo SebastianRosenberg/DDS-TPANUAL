@@ -3,6 +3,7 @@ package tpanual.usuario;
 import java.util.List;
 
 import tpanual.main.Direccion;
+import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 
@@ -121,5 +122,19 @@ public class Terminal extends TipoDeUsuario {
 	public List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion,
 			String string2, String string3) {
 		return this.estado.busquedaAvanzada(usuarioAProbar, string, direccion, string2, string3);
+	}
+	@Override
+	public List<PoiInfoBasica> realizarBusqueda(String x) {
+		return this.estado.realizarBusqueda(x);
+	}
+	@Override
+	public List<PoiInfoBasica> realizarBusqueda(String x, boolean test) {
+		return this.estado.realizarBusqueda(x,test);
+	}
+	@Override
+	public List<PoiInfoBasica> realizarBusquedaAvanzada(Usuario user, String nombre, Direccion direccion,
+			String palabraClave, String coincDeTipo) {
+		// TODO Auto-generated method stub
+		return this.estado.realizarBusquedaAvanzada(user, nombre, direccion, palabraClave, coincDeTipo);
 	}
 }

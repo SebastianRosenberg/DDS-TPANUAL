@@ -5,6 +5,7 @@ import java.util.List;
 import administrador.AdministradorDePoi;
 import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.utilitarios.Email;
@@ -131,6 +132,30 @@ public class Administrador extends TipoDeUsuario{
 		return AdministradorDePoi.getInstance().busquedaAvanzada(string, direccion, string2, string3);
 	}
 
+	
+	//Como se nos pide que ahora las busquedas solo traigan informacion determinada y no solo el poi, por el momento dejo estos dos métodos
+	
+		@Override
+		public List<PoiInfoBasica> realizarBusqueda(String x)
+		{
+			List<PuntoDeInteres> list = busquedaDePuntosDeInteres(x);
+			
+			return AdministradorDePoi.getInstance().mapeoPois(list);
+		}
+		@Override
+		public  List<PoiInfoBasica> realizarBusqueda(String x, boolean test)
+		{
+			List<PuntoDeInteres> list = busquedaDePuntosDeInteres(x, test);
+			
+			return AdministradorDePoi.getInstance().mapeoPois(list);
+		}
+		@Override
+		public  List<PoiInfoBasica> realizarBusquedaAvanzada(Usuario user, String nombre, Direccion direccion, String palabraClave, String coincDeTipo)
+		{
+			List<PuntoDeInteres> list = busquedaAvanzada(user, nombre, direccion, palabraClave,coincDeTipo);
+			
+			return AdministradorDePoi.getInstance().mapeoPois(list);
+		}
 	
 	
 }

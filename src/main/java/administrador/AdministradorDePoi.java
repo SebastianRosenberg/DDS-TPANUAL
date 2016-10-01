@@ -1,11 +1,13 @@
 package administrador;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.Duration;
 
 import tpanual.main.Direccion;
+import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Utilitarios;
@@ -124,6 +126,14 @@ public class AdministradorDePoi {
 			instance=new AdministradorDePoi();
 		return instance;
 	}
+	
+	
+	
+	/*
+	 *  Metodos entrega 4
+	 * 
+	 * 
+	 */
 
 	public PuntoDeInteres masInfoDePoi(Integer id) {
 		PuntoDeInteres poi =Mapa.getInstance().obtenerPuntoDeInteres(id);
@@ -157,6 +167,22 @@ public class AdministradorDePoi {
 		
 		//revisar si me sirven 
 		//lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
+		return lista;
+	}
+	
+	
+	public List<PoiInfoBasica> mapeoPois(List<PuntoDeInteres> listaDePois)
+	{
+		PoiInfoBasica poi = new PoiInfoBasica();
+		List<PoiInfoBasica> lista = new ArrayList<PoiInfoBasica>();
+		Iterator<PuntoDeInteres> iterator = listaDePois.iterator();
+		while (iterator.hasNext()) {
+			PuntoDeInteres poiEnLista = iterator.next();
+			poi.setId(poiEnLista.getId());
+			poi.setDireccion(poiEnLista.getDireccion());
+			poi.setNombre(poiEnLista.getNombre());
+			lista.add(poi);
+		}
 		return lista;
 	}
 	

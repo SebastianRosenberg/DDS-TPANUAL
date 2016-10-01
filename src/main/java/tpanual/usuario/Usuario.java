@@ -4,8 +4,10 @@ import java.util.List;
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 
+import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.main.Direccion;
+import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 
 import tpanual.temporizador.Temporizador;
@@ -140,4 +142,22 @@ public class Usuario {
 		return tipoDeUsuario.busquedaAvanzada(usuarioAProbar, string, direccion, string2, string3);
 		
 	}
+	
+	
+	
+	public List<PoiInfoBasica> realizarBusqueda(String x)
+	{	
+		return  tipoDeUsuario.realizarBusqueda(x);
+	}
+
+	public  List<PoiInfoBasica> realizarBusqueda(String x, boolean test)
+	{
+		return  tipoDeUsuario.realizarBusqueda(x,test);
+	}
+
+	public  List<PoiInfoBasica> realizarBusquedaAvanzada(Usuario user, String nombre, Direccion direccion, String palabraClave, String coincDeTipo)
+	{
+		return  tipoDeUsuario.realizarBusquedaAvanzada(user, nombre,direccion,palabraClave,coincDeTipo);
+	}
+	
 }
