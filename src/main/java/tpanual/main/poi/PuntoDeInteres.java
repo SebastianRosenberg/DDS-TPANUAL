@@ -217,5 +217,35 @@ public class PuntoDeInteres {
 		this.fechaBaja = fechaBaja;
 	}
 
+	public boolean buscarCoincidenciaAvanzada(String name, Direccion direccion, String palabraClave, String coincDeTipo) {
+		boolean aparicion1 = true;
+		boolean aparicion2 = true;
+		boolean aparicion3 = true;
+		boolean aparicion4 = true;
+		
+		if(palabraClave!=null)
+		{
+			aparicion1 = Utilitarios.buscarPalabraEnUnaLista(palabraClave, palabrasClaves);
+		}
+		
+		if(direccion!=null)
+		{
+			aparicion2 = this.direccion.equals(direccion);
+		}
+		
+		if(name!= null)
+		{
+			aparicion3 = (nombre.indexOf(name) != -1);
+		}
+		
+		if(coincDeTipo!=null)
+		{
+			aparicion4 = tipo.coincidencia(coincDeTipo);
+		}
+		
+		
+		return  aparicion1&&aparicion2&&aparicion3&&aparicion4;
+	}
+
 }
 

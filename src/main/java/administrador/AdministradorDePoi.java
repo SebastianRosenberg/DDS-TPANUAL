@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.joda.time.Duration;
 
+import tpanual.main.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Utilitarios;
@@ -127,6 +128,36 @@ public class AdministradorDePoi {
 	public PuntoDeInteres masInfoDePoi(Integer id) {
 		PuntoDeInteres poi =Mapa.getInstance().obtenerPuntoDeInteres(id);
 		return poi;
+	}
+
+	public List<PuntoDeInteres> busquedaAvanzada(String nombre, Direccion direccion, String palabraClave, String coincDeTipo) {
+		if((nombre==null)&&(direccion==null)&&(palabraClave==null)&&(coincDeTipo==null)){
+			System.out.println("no ha ingresado ningun valor");
+			return null;
+		}
+		String listaNombre[] = {nombre};
+		String listaPalabraClave[] = {palabraClave};
+		String listaCoincDeTipo[] = {coincDeTipo};
+		
+//		revisar busqueda
+//		Busqueda busqueda=AdministradorDeBusquedas.getInstance().getBusquedaAvanzadaAnterior(listaNombre);
+		
+		List<PuntoDeInteres> lista;
+//		if (busqueda!=null){
+//			usoBufferBusqueda=true;
+//			try{
+//				this.devolverPoiPorIds(busqueda.getIdsEncontrados());
+//			}catch(PuntoDeInteresNoEncontradoException e){
+//				//Se invalida la busqueda anterior y se procede a buscar normalmente
+//			}
+//		}else{
+//			usoBufferBusqueda=false;
+//		}
+		lista=Mapa.getInstance().BusquedaAvanzadaEnMemoria(nombre,direccion,palabraClave,coincDeTipo);
+		
+		//revisar si me sirven 
+		//lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
+		return lista;
 	}
 	
 }

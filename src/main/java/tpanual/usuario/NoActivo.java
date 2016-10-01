@@ -2,6 +2,7 @@ package tpanual.usuario;
 
 import java.util.List;
 
+import tpanual.main.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class NoActivo extends Estado{
@@ -20,6 +21,13 @@ public class NoActivo extends Estado{
 
 	@Override
 	public PuntoDeInteres masInformacion(Usuario user, Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion,
+			String string2, String string3) {
 		// TODO Auto-generated method stub
 		return null;
 	}

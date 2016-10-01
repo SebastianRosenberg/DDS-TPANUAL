@@ -3,6 +3,7 @@ package tpanual.usuario;
 import java.util.List;
 
 import administrador.AdministradorDePoi;
+import tpanual.main.Direccion;
 import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
@@ -121,6 +122,13 @@ public class Administrador extends TipoDeUsuario{
 	@Override
 	public PuntoDeInteres masInformacion(Usuario user, Integer id) {
 		return AdministradorDePoi.getInstance().masInfoDePoi(id);
+	}
+
+	@Override
+	public List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion,
+			String string2, String string3) {
+		
+		return AdministradorDePoi.getInstance().busquedaAvanzada(string, direccion, string2, string3);
 	}
 
 	

@@ -12,6 +12,7 @@ import administrador.adaptadores.AdaptadorServicioExternoBancos;
 import administrador.adaptadores.AdaptadorServicioExternoCGP;
 import tpanual.factory.InterfacesExternasFactory;
 import tpanual.main.Dias;
+import tpanual.main.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.utilitarios.Utilitarios;
 
@@ -120,14 +121,16 @@ public class Mapa {
 		agregarAMemoria(l);
 		return l;
 	}
+
+	public List<PuntoDeInteres> BusquedaAvanzadaEnMemoria(String nombre, Direccion direccion, String palabraClave, String coincDeTipo) {
+		List<PuntoDeInteres> listaADevolver=new ArrayList<PuntoDeInteres>();
+		Iterator<PuntoDeInteres> it=puntos.values().iterator();
+		while (it.hasNext()){
+			PuntoDeInteres punto=it.next();
+			if (punto.buscarCoincidenciaAvanzada(nombre,direccion,palabraClave,coincDeTipo)) listaADevolver.add(punto);
+		}
+		return listaADevolver;
+	}
 	
-////pongo la tabla de usuarios aca, luego va a ser movida
-//	private void agregarAdministrador(String name, String pass)
-//	{
-//		hashAdmins.put(name, pass);
-//	}
-//	
-//	private
-//	
-//	
+
 }

@@ -5,6 +5,7 @@ import org.joda.time.Duration;
 import org.joda.time.Instant;
 
 import administrador.SesionBusqueda;
+import tpanual.main.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 
 import tpanual.temporizador.Temporizador;
@@ -131,6 +132,12 @@ public class Usuario {
 	
 	public PuntoDeInteres masInformacion(Usuario user, Integer id){
 		return tipoDeUsuario.masInformacion(user, id);
+		
+	}
+
+	public List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion, String string2,
+			String string3) {
+		return tipoDeUsuario.busquedaAvanzada(usuarioAProbar, string, direccion, string2, string3);
 		
 	}
 }

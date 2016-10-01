@@ -2,6 +2,7 @@ package tpanual.usuario;
 
 import java.util.List;
 
+import tpanual.main.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 
@@ -115,5 +116,10 @@ public class Terminal extends TipoDeUsuario {
 	@Override
 	public PuntoDeInteres masInformacion(Usuario user, Integer id) {
 		return this.estado.masInformacion(user, id);
+	}
+	@Override
+	public List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion,
+			String string2, String string3) {
+		return this.estado.busquedaAvanzada(usuarioAProbar, string, direccion, string2, string3);
 	}
 }

@@ -45,6 +45,11 @@ public class AdministradorDeBusquedas {
 	public List<Busqueda> getBusquedas(){
 		return busquedas;
 	}
+
+	public Busqueda getBusquedaAvanzadaAnterior(String[] listaNombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
