@@ -24,6 +24,6 @@ public class Constantes {
 
 	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.millis(10000);
 	
-	public static final String UBICACION_ARCHIVO_BAJAS = "C:\\Users\\dipatata\\Desktop\\jsonArchive.json";
-	
+	//public static final String UBICACION_ARCHIVO_BAJAS = "C:\\Users\\dipatata\\Desktop\\jsonArchive.json";
+	public static final String UBICACION_ARCHIVO_BAJAS = "src/main/resources/file/jsonArchive.json";
 }
