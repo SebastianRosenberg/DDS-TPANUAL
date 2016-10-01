@@ -18,4 +18,10 @@ public class NoActivo extends Estado{
 		return null;
 	}
 
+	@Override
+	public PuntoDeInteres masInformacion(Usuario user, Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

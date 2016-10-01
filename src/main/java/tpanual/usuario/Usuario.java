@@ -129,4 +129,8 @@ public class Usuario {
 		
 	}
 	
+	public PuntoDeInteres masInformacion(Usuario user, Integer id){
+		return tipoDeUsuario.masInformacion(user, id);
+		
+	}
 }

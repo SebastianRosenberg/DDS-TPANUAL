@@ -118,4 +118,11 @@ public class Administrador extends TipoDeUsuario{
                 "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tardó mas del tiempo máximo.");
 	}
 	
+	@Override
+	public PuntoDeInteres masInformacion(Usuario user, Integer id) {
+		return AdministradorDePoi.getInstance().masInfoDePoi(id);
+	}
+
+	
+	
 }

@@ -2,6 +2,7 @@ package tpanual.seguridad;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 
 import administrador.Mapa;
@@ -15,6 +16,11 @@ public class GestorDeUsuarios {
 	private  Hashtable<Integer, Usuario> adminsLogueados;
 	private  Hashtable<Integer, Usuario> terminales;
 	private  Hashtable<Integer, Usuario> administradores;
+	private  List<Usuario> usuariosPrivBusquedaAvanzada;
+	public  List<Usuario> usuariosPrivMasInfo;
+	//backup Provisorio
+	private  List<Usuario> estadoPrevioUsuariosPrivBusquedaAvanzada;
+	private  List<Usuario> estadoPrevioUsuariosPrivMasInfo;
 	
 	public static GestorDeUsuarios getInstance(){
 		if (instance==null)
@@ -27,6 +33,11 @@ public class GestorDeUsuarios {
 		adminsLogueados=new Hashtable<Integer, Usuario>();
 		terminales=new Hashtable<Integer, Usuario>();
 		administradores=new Hashtable<Integer, Usuario>();
+		usuariosPrivBusquedaAvanzada=new ArrayList<Usuario>();
+		usuariosPrivMasInfo=new ArrayList<Usuario>();
+		//backup Provisorio
+		estadoPrevioUsuariosPrivBusquedaAvanzada=new ArrayList<Usuario>();
+		estadoPrevioUsuariosPrivMasInfo=new ArrayList<Usuario>();
 		 }
 	
 	public Hashtable<Usuario, String> getHashAdmins() {
@@ -135,5 +146,78 @@ public class GestorDeUsuarios {
 		
 		return administradores.get(id);
 		
+	}
+	
+	
+	public void darPrivilegioAGrupo(List<ValorPrioridades> lista)
+	{
+		//backUp Provisorio
+		estadoPrevioUsuariosPrivBusquedaAvanzada = usuariosPrivBusquedaAvanzada;
+		estadoPrevioUsuariosPrivMasInfo = usuariosPrivMasInfo;
+		
+		Iterator<ValorPrioridades> iterator = lista.iterator();
+		while (iterator.hasNext()) {
+			ValorPrioridades siguiente = iterator.next();
+			if(siguiente.getPrioridad1()){;
+				darPrivilegioBusquedaAvanzada (siguiente.getUser());
+			}else{
+				quitarPrivilegioBusquedaAvanzada(siguiente.getUser());
+			}
+			if(siguiente.getPrioridad2()){
+				darPrivilegioMasInfo (siguiente.getUser());
+			}else{
+				quitarPrivilegioMasInfo(siguiente.getUser());
+			}
+		}
+	}
+	
+	
+	
+	public void darPrivilegioBusquedaAvanzada (Usuario user)
+	{
+		if(!(poseePrivilegioBusquedaAvanzada(user))){
+			usuariosPrivBusquedaAvanzada.add(user);
+		}
+	}
+	
+	public void quitarPrivilegioBusquedaAvanzada (Usuario user)
+	{
+		if(poseePrivilegioBusquedaAvanzada(user)){
+		usuariosPrivBusquedaAvanzada.remove(user);
+		}
+	}
+	
+	public void darPrivilegioMasInfo (Usuario user)
+	{
+		if(!(poseePrivilegioMasInfo(user))){
+			usuariosPrivMasInfo.add(user);
+		}
+	}
+	
+	public void quitarPrivilegioMasInfo (Usuario user)
+	{
+		if(poseePrivilegioMasInfo(user)){
+			usuariosPrivMasInfo.remove(user);
+			}
+	}
+	
+	
+	public boolean poseePrivilegioBusquedaAvanzada (Usuario user)
+	{	
+		return usuariosPrivBusquedaAvanzada.contains(user);		
+	}
+	
+	public boolean poseePrivilegioMasInfo (Usuario user)
+	{
+		return usuariosPrivMasInfo.contains(user);
+	}
+	
+	//backUp Provisorio
+	public void deshacerUltimoCambioDePermisos()
+	{
+		usuariosPrivBusquedaAvanzada.clear();
+		usuariosPrivBusquedaAvanzada.addAll( estadoPrevioUsuariosPrivBusquedaAvanzada);
+		usuariosPrivMasInfo.clear();
+		usuariosPrivMasInfo.addAll(estadoPrevioUsuariosPrivMasInfo);
 	}
 }

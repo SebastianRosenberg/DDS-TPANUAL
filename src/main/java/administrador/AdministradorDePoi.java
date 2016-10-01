@@ -123,5 +123,10 @@ public class AdministradorDePoi {
 			instance=new AdministradorDePoi();
 		return instance;
 	}
+
+	public PuntoDeInteres masInfoDePoi(Integer id) {
+		PuntoDeInteres poi =Mapa.getInstance().obtenerPuntoDeInteres(id);
+		return poi;
+	}
 	
 }

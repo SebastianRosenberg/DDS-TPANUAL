@@ -112,4 +112,8 @@ public class Terminal extends TipoDeUsuario {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public PuntoDeInteres masInformacion(Usuario user, Integer id) {
+		return this.estado.masInformacion(user, id);
+	}
 }
