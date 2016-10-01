@@ -1,0 +1,13 @@
+{
+"bajas":
+    [
+        {
+        "busqueda" : "Banco Telecom BajaPoiTest",
+        "fechaDeBaja": 1475125970756
+        },
+        {
+        "busqueda" : "Parada de la linea 97 BajaPoiTest",
+        "fechaDeBaja": 1475125950241
+        }
+    ]
+}
