@@ -7,7 +7,7 @@ import procesos.bajaDePois.BajaDePois;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class ProcesosFactory {
-	public static Proceso getBajaPoi(List<PuntoDeInteres> lista){
+	public static Proceso getBajaPoi(){
 		Proceso proceso = new BajaDePois();
 		return proceso;
 	}

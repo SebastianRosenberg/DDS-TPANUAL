@@ -41,30 +41,22 @@ public class BajaPoiTest {
 		}
 		poi = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Telecom BajaPoiTest", direccion, palabrasClave, servicios);
 		poi2=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea 97 BajaPoiTest", direccion, palabrasClave, "97");
-		poi3=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Correo Argentino BajaPoiTest", direccion, palabrasClave, rubro1, horario);
 		
 		//Los agrego
 		AdministradorDePoi.getInstance().agregarPoi(poi);
 		AdministradorDePoi.getInstance().agregarPoi(poi2);
-		AdministradorDePoi.getInstance().agregarPoi(poi3);
 	}
 	
 	@Test
 	public void darDeBaja(){
-		//Creo una lista con los POI que sé que antes agregué
-		List<PuntoDeInteres> lista=new ArrayList<PuntoDeInteres>();
-		lista.add(poi);
-		lista.add(poi2);
-		lista.add(poi3);
-		
+
 		//Genero y proceso
-		Proceso proceso = ProcesosFactory.getBajaPoi(lista);
+		Proceso proceso = ProcesosFactory.getBajaPoi();
 		proceso.procesar();
 		
 		//Obtengo los POI que di de baja buscandolos (uso la variable test en true para que no vaya a servicios externos)
 		List<PuntoDeInteres> listaDadosDeBaja=AdministradorDePoi.getInstance().busquedaDePuntosDeInteres("Banco Telecom BajaPoiTest", true);
 		listaDadosDeBaja.addAll(AdministradorDePoi.getInstance().busquedaDePuntosDeInteres("Parada de la linea 97 BajaPoiTest", true));
-		listaDadosDeBaja.addAll(AdministradorDePoi.getInstance().busquedaDePuntosDeInteres("Correo Argentino BajaPoiTest", true));
 		
 		//Itero la lista para ver que efectivamente esten dados de baja
 		Iterator<PuntoDeInteres> it=listaDadosDeBaja.iterator();
