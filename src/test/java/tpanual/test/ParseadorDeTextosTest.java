@@ -26,19 +26,15 @@ import tpanual.utilitarios.ParseadorDeTextos;
 
 public class ParseadorDeTextosTest {
 
-	//public ParseadorDeTextosTest() {
-		// TODO Auto-generated constructor stub
-//	}
-	
 	@Test
 	public void parseadorDeTextoTest() throws IOException{
 		
 		Collection<ActualizacionLocalComercial> listaDeComercioTest = new ArrayList<ActualizacionLocalComercial>();
-		//List<DatosActualizacion> listaDeComercioTest = new ArrayList<DatosActualizacion>();
 		List<ActualizacionLocalComercial> listaDeComerciosAActualizar = new ArrayList<ActualizacionLocalComercial>();
 		
 		//Set up
-		//List<String> palabrasClaves = new ArrayList<> ( Arrays.asList ( "escolar" , "uniforme" , "moda" ));
+		//Un caso que se va a encontrar tanto en la lista de Poi como en el archivo
+		//de texto.
 		List<String> palabrasClaves = new ArrayList<String>();
 		palabrasClaves.add("escolar");
 		palabrasClaves.add("uniforme");
@@ -52,33 +48,23 @@ public class ParseadorDeTextosTest {
 		ActualizacionLocalComercial datos1 = new ActualizacionLocalComercial(puntoFactory,palabrasClaves);
 		listaDeComercioTest.add(datos1);
 		
-		//Creo una instancia de la clase ParseadorDeTextos
-		//ParseadorDeTextos parser = new ParseadorDeTextos();
-		
 		//Llamo al metodo de la clase ParseadorDeTextos que se encarga de devolver los objetos con los datos para actualizar.
 		listaDeComerciosAActualizar = ParseadorDeTextos.parsearTexto();
 		
-		//listaDeComerciosAActualizar.size();
-		
 		assertTrue(listaDeComerciosAActualizar.contains(datos1));
 		
-		
-		//un caso que no existe en la lista
+		//un caso que no existe en la lista de comercios a Actualizar
 		List<String> palabrasClaves2 = new ArrayList<String>();
-		palabrasClaves.add("El tercer grande");
-		//ActualizacionLocalComercial datos2 = new ActualizacionLocalComercial("CARC",palabrasClaves2);
+		palabrasClaves2.add("Papeleria comercial");
+		Direccion direccion2= new Direccion.DireccionBuilder().crearDireccion();
+		ArrayList<String> palabrasC2 = new ArrayList<String>();
+		HorarioDeAtencion horario2=new HorarioDeAtencion();
+		RubroFW rubro2 =RubroFWFactory.getRubro("", 0);
+        PuntoDeInteres puntoFactory2 = PuntoDeInteresFactory.getLocalComercial(0, 0, "Papeleria Juan", direccion2, palabrasC2,rubro2,horario2);
+        
+		ActualizacionLocalComercial datos2 = new ActualizacionLocalComercial(puntoFactory2,palabrasClaves2);
 		
-		//assertFalse(listaDeComerciosAActualizar.contains(datos2));
-		
-		//assertTrue(listaDeComercioTest.== listaDeComerciosAActualizar.size());
-		//listaDeComercioTest.removeAll(listaDeComerciosAActualizar);
-		//assertTrue(listaDeComercioTest.isEmpty());
-		//assertTrue(listaDeComercioTest.containsAll(listaDeComerciosAActualizar));
-		//assertTrue(listaDeComercioTest = listaDeComerciosAActualizar );
-		//assertTrue(listaDeComercioTest.contains("Carrousel").);
-		//assertEquals(listaDeComercioTest,listaDeComerciosAActualizar);
-		//assertSame(listaDeComercioTest, listaDeComerciosAActualizar);
-		//assertArrayEquals(listaDeComercioTest.toArray(), listaDeComerciosAActualizar.toArray());
+		assertFalse(listaDeComerciosAActualizar.contains(datos2));		
 	}
 	
 	
