@@ -21,7 +21,7 @@ public class Email {
 	 * 
 	 */
     final String miCorreo = "grupocuatrodds@gmail.com";
-    final String miContraseña = "GrupoCuatro";
+    final String miContrasenia = "GrupoCuatro";
     final String servidorSMTP = "smtp.gmail.com";
     final String puertoEnvio = "465";
     String mailReceptor = null;
@@ -67,7 +67,7 @@ public class Email {
 
     private class autentificadorSMTP extends javax.mail.Authenticator {
         public PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(miCorreo, miContraseña);
+            return new PasswordAuthentication(miCorreo, miContrasenia);
         }
     }
     
