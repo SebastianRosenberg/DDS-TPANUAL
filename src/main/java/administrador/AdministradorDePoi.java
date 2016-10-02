@@ -1,6 +1,7 @@
 package administrador;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -150,19 +151,22 @@ public class AdministradorDePoi {
 		String listaCoincDeTipo[] = {coincDeTipo};
 		
 //		revisar busqueda
-//		Busqueda busqueda=AdministradorDeBusquedas.getInstance().getBusquedaAvanzadaAnterior(listaNombre);
+		Busqueda busqueda1=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaNombre);
+		Busqueda busqueda2=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaPalabraClave);
+		Busqueda busqueda3=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaCoincDeTipo);
 		
 		List<PuntoDeInteres> lista;
-//		if (busqueda!=null){
-//			usoBufferBusqueda=true;
-//			try{
-//				this.devolverPoiPorIds(busqueda.getIdsEncontrados());
-//			}catch(PuntoDeInteresNoEncontradoException e){
-//				//Se invalida la busqueda anterior y se procede a buscar normalmente
-//			}
-//		}else{
-//			usoBufferBusqueda=false;
-//		}
+		if (busqueda1!=null&&busqueda2!=null&&busqueda3!=null){
+			usoBufferBusqueda=true;
+			try{
+				int[] listaAAnalizar =intersection(intersection 
+						(busqueda1.getIdsEncontrados(),busqueda2.getIdsEncontrados()),busqueda3.getIdsEncontrados());
+				this.devolverPoiPorIds(listaAAnalizar);
+			}catch(PuntoDeInteresNoEncontradoException e){
+			}
+		}else{
+			usoBufferBusqueda=false;
+		}
 		lista=Mapa.getInstance().BusquedaAvanzadaEnMemoria(nombre,direccion,palabraClave,coincDeTipo);
 		
 		//revisar si me sirven 
@@ -185,5 +189,26 @@ public class AdministradorDePoi {
 		}
 		return lista;
 	}
+	
+	
+	
+	
+	 public int[] intersection(int x[],int y[])
+	    {	int c = 0;
+	    	int j = 0;
+	        int []z=new int[x.length+y.length];
+	        for(int i=0;i <(x.length);i++)
+	        {
+	            for(j=0;j < y.length;j++)
+	            {
+	                if(x[i]==y[j])
+	                {
+	                    z[c]=x[i];  
+	                    c++;
+	                }              
+	            }
+	        }
+	        return z;
+	    }
 	
 }
