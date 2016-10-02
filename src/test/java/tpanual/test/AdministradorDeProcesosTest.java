@@ -18,16 +18,22 @@ import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
 
 public class AdministradorDeProcesosTest {
+	
+	static Proceso bajaPoi;
+	static Proceso bajaPoiSinAgregarADisponible;
+	static Usuario usr;
+	
 	@BeforeClass
 	public static void setUp() throws Exception{
-	Proceso bajaPoi = ProcesosFactory.getBajaPoi();
-	Proceso actLocalComercial = ProcesosFactory.getActualizacionLocalComercial();
+    bajaPoi = ProcesosFactory.getBajaPoi();
+	 bajaPoiSinAgregarADisponible = ProcesosFactory.getBajaPoi();
+	 //actLocalComercial = ProcesosFactory.getActualizacionLocalComercial();
 	List<Proceso> listaProcesos = new ArrayList<Proceso>();
 	listaProcesos.add(bajaPoi);
 	Proceso multiple = ProcesosFactory.getProcesoMultipleComposite(listaProcesos);
 	
 	GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-	Usuario usr = gestor.crearTerminalActivo("pedritoTester");
+	usr = gestor.crearTerminalActivo("pedritoTester");
 	
 	AdministradorDeProcesos.AgregarProcesoDisponible(multiple);
 	AdministradorDeProcesos.AgregarProcesoDisponible(bajaPoi);
@@ -43,4 +49,12 @@ public class AdministradorDeProcesosTest {
 	public void EjecutaronDosProcesosTest() {
 		assertTrue(AdministradorDeProcesos.GetProcesosEjecutados().size() == 2);
 		}
+	
+	
+	@Test (expected=Exception.class)
+	public void NoSePuedeEjecutarUnProcesoQueNoEstaDisponibleTest() throws Exception{
+		
+		AdministradorDeProcesos.EjecutarProceso(bajaPoiSinAgregarADisponible, usr, new ReintentarNVeces(2));
+		
+	}
 }
