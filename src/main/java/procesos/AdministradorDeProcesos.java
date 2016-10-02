@@ -1,19 +1,22 @@
 package procesos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
 
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
+import tpanual.utilitarios.Email;
 
 public class AdministradorDeProcesos {
 	
 	public enum EstadoResultado{
 		OK,
 		ERROR
-	}
-	class ProcesoEjecutado{
+		}
+	
+     static class ProcesoEjecutado{
 		
 		Proceso proceso;
 		Usuario usuario;
@@ -38,19 +41,19 @@ public class AdministradorDeProcesos {
 		
 	}
 	
-	List<ProcesoEjecutado> procesosEjecutados;
-	List<Proceso> procesosDisponibles;
+	static List<ProcesoEjecutado> procesosEjecutados = new ArrayList<ProcesoEjecutado>();
+	static List<Proceso> procesosDisponibles = new ArrayList<Proceso>();
 	
 	
-	public void AgregarProcesoDisponible(Proceso proceso){
+	static public void AgregarProcesoDisponible(Proceso proceso){
 		procesosDisponibles.add(proceso);
 	}
 	
-	public void QuitarProcesoDisponible(Proceso proceso){
+	static public void QuitarProcesoDisponible(Proceso proceso){
 		procesosDisponibles.remove(proceso);
 	}
 	
-	public List<Proceso> GetProcesosDisponiblesParaElUsuario(Usuario usuario){
+	static public List<Proceso> GetProcesosDisponiblesParaElUsuario(Usuario usuario){
 		//GestorDeUsuarios gestorUsuarios = GestorDeUsuarios.getInstance();
 		
 		//TODO: preguntar si es admin
@@ -61,18 +64,21 @@ public class AdministradorDeProcesos {
 		//return new List<Proceso>();
 	}
 	
+	static public List<ProcesoEjecutado> GetProcesosEjecutados(){
+		return procesosEjecutados;
+	}
 	
-	public RespuestaProceso EjecutarProceso(Proceso proceso, Usuario usuario)throws Exception{
+	static public RespuestaProceso EjecutarProceso(Proceso proceso, Usuario usuario, AccionEnCasoDeError accionError )throws Exception{
 		RespuestaProceso respuesta;
-		EstadoResultado resultado;
 		if(procesosDisponibles.contains(proceso)){//Esto va a haber que cambiarlo para ver si es permitido para el usuario
 			
 			DateTime inicio = DateTime.now();
 			
 				respuesta = proceso.procesar();
 			
-			//Aca tiene que preguntar por el estadoDeError adentro del objeto respuesta y si 
-				//hubo error hay que enviar mail y ETC ETC ETC
+				if(respuesta.getEstado() == EstadoResultado.ERROR){
+					respuesta = accionError.RealizarAccion(usuario, proceso, respuesta);
+				}
 			
 			DateTime fin = DateTime.now();
 			
@@ -86,7 +92,7 @@ public class AdministradorDeProcesos {
 		}
 	}
 
-	private void AgregarProcesoEjecutado(Proceso proceso, Usuario usuario,
+	 public static void AgregarProcesoEjecutado(Proceso proceso, Usuario usuario,
 			DateTime inicio, DateTime fin, RespuestaProceso respuesta) {
 		
 		ProcesoEjecutado procesoEj =
@@ -97,3 +103,4 @@ public class AdministradorDeProcesos {
 	}
 
 }
+
