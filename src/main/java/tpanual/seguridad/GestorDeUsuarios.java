@@ -17,8 +17,7 @@ public class GestorDeUsuarios {
 	private  Hashtable<Integer, Usuario> terminales;
 	private  Hashtable<Integer, Usuario> administradores;
 	private  List<Usuario> usuariosPrivBusquedaAvanzada;
-	public  List<Usuario> usuariosPrivMasInfo;
-	//backup Provisorio
+	private  List<Usuario> usuariosPrivMasInfo;
 	private  List<Usuario> estadoPrevioUsuariosPrivBusquedaAvanzada;
 	private  List<Usuario> estadoPrevioUsuariosPrivMasInfo;
 	
@@ -151,23 +150,14 @@ public class GestorDeUsuarios {
 	
 	public void darPrivilegioAGrupo(List<ValorPrioridades> lista)
 	{
-		//backUp Provisorio
+
 		estadoPrevioUsuariosPrivBusquedaAvanzada = usuariosPrivBusquedaAvanzada;
 		estadoPrevioUsuariosPrivMasInfo = usuariosPrivMasInfo;
 		
 		Iterator<ValorPrioridades> iterator = lista.iterator();
 		while (iterator.hasNext()) {
 			ValorPrioridades siguiente = iterator.next();
-			if(siguiente.getPrioridad1()){;
-				darPrivilegioBusquedaAvanzada (siguiente.getUser());
-			}else{
-				quitarPrivilegioBusquedaAvanzada(siguiente.getUser());
-			}
-			if(siguiente.getPrioridad2()){
-				darPrivilegioMasInfo (siguiente.getUser());
-			}else{
-				quitarPrivilegioMasInfo(siguiente.getUser());
-			}
+			darPrivilegioUsuario(siguiente);
 		}
 	}
 	
@@ -212,12 +202,34 @@ public class GestorDeUsuarios {
 		return usuariosPrivMasInfo.contains(user);
 	}
 	
-	//backUp Provisorio
+
+	public void guardarUltimoCambio(){
+
+		estadoPrevioUsuariosPrivBusquedaAvanzada = usuariosPrivBusquedaAvanzada;
+		estadoPrevioUsuariosPrivMasInfo = usuariosPrivMasInfo;
+		
+	}
+	
 	public void deshacerUltimoCambioDePermisos()
 	{
 		usuariosPrivBusquedaAvanzada.clear();
 		usuariosPrivBusquedaAvanzada.addAll( estadoPrevioUsuariosPrivBusquedaAvanzada);
 		usuariosPrivMasInfo.clear();
 		usuariosPrivMasInfo.addAll(estadoPrevioUsuariosPrivMasInfo);
+	}
+	
+	
+	public void darPrivilegioUsuario(ValorPrioridades usr)
+	{
+			if(usr.getPrioridad1()){;
+				darPrivilegioBusquedaAvanzada (usr.getUser());
+			}else{
+				quitarPrivilegioBusquedaAvanzada(usr.getUser());
+			}
+			if(usr.getPrioridad2()){
+				darPrivilegioMasInfo (usr.getUser());
+			}else{
+				quitarPrivilegioMasInfo(usr.getUser());
+			}
 	}
 }
