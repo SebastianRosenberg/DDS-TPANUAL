@@ -8,6 +8,11 @@ public class CantidadPorUsuario implements CriterioReporte
 	public Usuario usuario;
 	
 	public String toString(){
-		return Integer.valueOf(cantidad) + ": " + usuario.toString();
+		String user;
+		if (usuario==null)
+			user="Usuario nulo";
+		else
+			user=usuario.toString();
+		return Integer.valueOf(cantidad) + ": " + user;
 	}
 }
