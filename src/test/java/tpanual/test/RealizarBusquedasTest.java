@@ -20,7 +20,6 @@ public class RealizarBusquedasTest {
 	@Test
 	public void realizarBusquedaComun(){
 		
-
 			//seteo Usuario
 			Usuario nuevoUsuario = GestorDeUsuarios.getInstance().crearAdministrador("federico", "mailPrueba@hotmail.com","Fede123");
 			
@@ -32,25 +31,27 @@ public class RealizarBusquedasTest {
 			palabras.add("Servicio de cafeteria");
 			palabras.add("Mala Atencion");
 			List<Servicio> servicios=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");	
-			PuntoDeInteres poi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras, servicios, 25);
-			nuevoUsuario.agregarPoi(poi);
+			PuntoDeInteres poiNuevo=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 666", direccion, palabras, servicios, 25);
+			nuevoUsuario.agregarPoi(poiNuevo);
+			
+
 			
 			Usuario usuarioAProbar = GestorDeUsuarios.getInstance().crearTerminalActivo("Pedro");
 			
 			PoiInfoBasica infoPoiBuscado = new PoiInfoBasica();
-			infoPoiBuscado.setDireccion(poi.getDireccion());
-			infoPoiBuscado.setId(poi.getId());
-			infoPoiBuscado.setNombre(poi.getNombre());
+			infoPoiBuscado.setDireccion(poiNuevo.getDireccion());
+			infoPoiBuscado.setId(poiNuevo.getId());
+			infoPoiBuscado.setNombre(poiNuevo.getNombre());
 			
+		
+			List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusqueda("GCP Comuna 666");
+
 			
-			List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusqueda("GCP Comuna 1");
+			assertEquals(listaInfoBasica.get(0).getNombre(),infoPoiBuscado.getNombre());
+			assertEquals(listaInfoBasica.get(0).getId(),infoPoiBuscado.getId());
+			assertTrue(listaInfoBasica.get(0).getDireccion().equals(infoPoiBuscado.getDireccion()));
 			
-			
-			assertEquals(listaInfoBasica.get(0).getNombre(),poi.getNombre());
-			assertEquals(listaInfoBasica.get(0).getId(),poi.getId());
-			assertEquals(listaInfoBasica.get(0).getDireccion(),poi.getDireccion());
-			
-			
+
 
 	}
 	
@@ -83,7 +84,7 @@ public class RealizarBusquedasTest {
 		
 		
 		List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusquedaAvanzada(usuarioAProbar, "GCP 42", null, null, "Depositos");
-		System.out.println(listaInfoBasica.size());
+
 		
 		assertEquals(listaInfoBasica.get(0).getNombre(),poi.getNombre());
 		assertEquals(listaInfoBasica.get(0).getId(),poi.getId());
