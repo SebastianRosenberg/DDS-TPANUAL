@@ -2,9 +2,12 @@ package administrador;
 
 import java.util.Date;
 
+import javax.imageio.metadata.IIOInvalidTreeException;
+
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
+import tpanual.jsfcontrollers.pojos.busqueda.BusquedaPojo;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
@@ -70,4 +73,15 @@ public class Busqueda {
 		}
 		return s;
 	}
+	
+	public BusquedaPojo getPojo(){
+		BusquedaPojo bp = new BusquedaPojo();
+		bp.setFecha(fechaDeBusqueda);
+		bp.setIds(idsEncontrados);
+		bp.setParametros(stringsBuscados);
+		bp.setTotal(idsEncontrados.length);
+		bp.setUsuario(usuario);
+		return bp;
+	}
+	
 }
