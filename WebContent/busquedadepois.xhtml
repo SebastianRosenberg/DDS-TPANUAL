@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<p:panel id="panelBusqueda" header="Criterio de búsqueda">
+		<h:panelGrid columns="3" cellpadding="5">
+		<h:dataTable value="#{busquedaDePoiBean.items}" var="item">
+			<h:column>
+				<p:inputText value="#{item.value}" />
+			</h:column>
+			<h:column>
+				<p:commandButton value="Eliminar" update="panelBusqueda"
+					actionListener="#{busquedaDePoiBean.remove(item)}"
+					icon="ui-icon-close">
+					<f:ajax execute="@form" render="panelBusqueda"></f:ajax>
+				</p:commandButton>
+			</h:column>
+		</h:dataTable>
+		
+		<p:commandButton value="Agregar" update="panelBusqueda"
+			actionListener="#{busquedaDePoiBean.add}" icon="ui-icon-check">
+			<f:ajax execute="@form" render="panelBusqueda"></f:ajax>
+		</p:commandButton>
+		<p:commandButton value="Buscar" update="panelBusqueda"
+			actionListener="#{busquedaDePoiBean.save}" icon="ui-icon-search" />
+	</h:panelGrid>
+	</p:panel>
+
+
+	<h:form>
+		<p:dataTable id="basicDT" var="car" value="#{dtSelectionView.cars1}">
+			<f:facet name="header">
+            Resultado
+        </f:facet>
+			<p:column headerText="Nombre">
+				<h:outputText value="#{car.id}" />
+			</p:column>
+			<p:column headerText="Dirección">
+				<h:outputText value="#{car.year}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+<!--ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">  -->
+
+<!-- /ui:composition> -->
+</html>

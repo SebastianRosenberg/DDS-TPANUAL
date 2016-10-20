@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+</h:head>
+<h:body>
+
+	<style type="text/css">
+.selectMenu {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 20px;
+}
+</style>
+	<div class="ui-g" style="text-align: center">
+		<div class="ui-g-12" style="text-align: center">
+			<p:selectOneMenu styleClass="selectMenu" height="1">
+				<f:selectItem itemLabel="testtetstetetetets" itemValue="test" />
+			</p:selectOneMenu>
+			<p:spacer width="10" height="10" />
+			<p:commandButton value="Agregar" height="0" />
+		</div>
+	</div>
+
+	<div class="ui-g" style="text-align: center">
+		<div class="ui-g-4" style="text-align: center"></div>
+		<div class="ui-g-4" style="text-align: center">
+			<p:dataTable var="car" value="#{dtBasicView.cars}">
+				<p:column headerText="Acciones" style="text-align: left">
+					<h:outputText value="#{car.id}" />
+					<h:outputLabel for="name" value="Standard Label:" />
+				</p:column>
+			</p:dataTable>
+		</div>
+		<!-- <div class="ui-g-4" style="text-align: center"></div>  -->
+	</div>
+
+        <h:form id="form1">
+            <p:growl id="messages" showDetail="true"/>
+            <!-- <p:panel header="Sale Item" style="width: 400px;"> --> 
+                <p:panelGrid columns="2">
+                    <p:inputText  value="#{item.item}"/>
+                    <h:commandButton value="Add Item" action="#{item.addAction}"/>
+                </p:panelGrid>
+                <p:spacer height="30px;"/>
+                <p:dataTable value="#{item.orderList}" var="o"  editable="true">
+                    <f:facet name="header">  
+                        Acciones  
+                    </f:facet>
+                    <p:ajax event="rowEdit" listener="#{item.onEdit}" update=":form1:messages" />  
+                    <p:ajax event="rowEditCancel" listener="#{item.onCancel}" update=":form1:messages" /> 
+
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{o.item}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{o.item}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor> 
+                             
+ 
+                        <p:rowEditor />  
+
+                </p:dataTable>
+            <!--  </p:panel>-->
+        </h:form>
+
+
+</h:body>
+</html>
