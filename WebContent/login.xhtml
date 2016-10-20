@@ -7,22 +7,22 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+
 </h:head>
 <h:body>
-	<!-- <ui:define name="content"> -->
+
 	<h:form>
-		<!-- 	 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml"> 
- -->
+
 		<p:panel id="panel" header="Login">
 			<p:messages id="msgs" />
 			<h:panelGrid columns="3" cellpadding="5">
 				<p:outputLabel for="usuario" value="Usuario:" />
-				<p:inputText id="usuario" value="#{loginBean1.usuario}"
+				<p:inputText id="usuario" value="#{loginBean2.usuario}"
 					required="true" label="Usuario">
 				</p:inputText>
 				<p:message for="usuario" display="icon" />
 				<p:outputLabel for="contrasenia" value="Contraseña:" />
-				<p:password id="contrasenia" value="#{loginBean1.contrasenia}"
+				<p:password id="contrasenia" value="#{loginBean2.contrasenia}"
 					label="contrasenia" required="true">
 					<p:ajax update="msgContrasenia" event="keyup" />
 				</p:password>
@@ -30,16 +30,16 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Aceptar" update="panel"
-					actionListener="#{loginBean1.login}" icon="ui-icon-check" />
-					<!-- action="welcome.xhtml" -->
+					actionListener="#{loginBean2.login}" icon="ui-icon-check" />
+				<p:commandButton value="Cancelar" update="panel"
+					actionListener="#{loginBean2.cancelar}" icon="ui-icon-close" />
+				<!--action="welcome.xhtml"-->
 			</h:panelGrid>
 
 		</p:panel>
-		<!-- 	 	</ui:composition>
- -->
+
 	</h:form>
-	<!-- 		</ui:define>
- -->
+
 
 </h:body>
 </html>
