@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import administrador.Mapa;
-
+import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Dias;
 import tpanual.main.Direccion;
 import tpanual.utilitarios.Utilitarios;
@@ -86,7 +86,7 @@ public class PuntoDeInteres {
 	
 
 	/*
-	 * Seba: Agrego los métodos de cálculo de distancia en la clase de punto de interés
+	 * Seba: Agrego los mï¿½todos de cï¿½lculo de distancia en la clase de punto de interï¿½s
 	 * para que se use todo desde el administradr sin acceder directamente a mapa
 	 * 
 	 * 
@@ -247,5 +247,9 @@ public class PuntoDeInteres {
 		return  aparicion1&&aparicion2&&aparicion3&&aparicion4;
 	}
 
+	public PoiPojo getPojo(){
+		return tipo.convertir(this);
+	}
+	
 }
 

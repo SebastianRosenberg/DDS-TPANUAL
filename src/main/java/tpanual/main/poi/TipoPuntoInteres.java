@@ -1,8 +1,9 @@
 package tpanual.main.poi;
 
+import tpanual.jsfcontrollers.pojos.poi.ConvertibleAPoiPojo;
 import tpanual.main.Dias;
 
-public abstract class TipoPuntoInteres {
+public abstract class TipoPuntoInteres implements ConvertibleAPoiPojo{
 	String horario;
 
 	public String getHorario() {
