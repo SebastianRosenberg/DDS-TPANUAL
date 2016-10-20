@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<!-- <ui:define name="content"> -->
+	<h:form>
+		<!-- 	 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml"> 
+ -->
+		<p:panel id="panel" header="Login">
+			<p:messages id="msgs" />
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:outputLabel for="usuario" value="Usuario:" />
+				<p:inputText id="usuario" value="#{loginBean1.usuario}"
+					required="true" label="Usuario">
+				</p:inputText>
+				<p:message for="usuario" display="icon" />
+				<p:outputLabel for="contrasenia" value="Contraseña:" />
+				<p:password id="contrasenia" value="#{loginBean1.contrasenia}"
+					label="contrasenia" required="true">
+					<p:ajax update="msgContrasenia" event="keyup" />
+				</p:password>
+				<p:message for="contrasenia" id="msgContrasenia" display="icon" />
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Aceptar" update="panel"
+					actionListener="#{loginBean1.login}" icon="ui-icon-check" />
+					<!-- action="welcome.xhtml" -->
+			</h:panelGrid>
+
+		</p:panel>
+		<!-- 	 	</ui:composition>
+ -->
+	</h:form>
+	<!-- 		</ui:define>
+ -->
+
+</h:body>
+</html>
