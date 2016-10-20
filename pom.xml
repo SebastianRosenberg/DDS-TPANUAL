@@ -3,6 +3,15 @@
   <groupId>DDS-TPANUAL</groupId>
   <artifactId>DDS-TPANUAL</artifactId>
   <version>1</version>
+  
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.7</java.version>
+        <servlet.version>3.1.0</servlet.version>
+        <jsf.version>2.2.12</jsf.version>
+        <primefaces.version>6.0</primefaces.version>
+  </properties>
+	
   <dependencies>
   	  <dependency>
 		<groupId>com.sun.jersey</groupId>
@@ -30,6 +39,32 @@
 	  	<artifactId>mail</artifactId>
 	  	<version>1.4.7</version>
 	  </dependency>
+	  <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSF -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>${jsf.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>${jsf.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- PrimeFaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces.version}</version>
+        </dependency>
   </dependencies>
    <build>
     <plugins>
