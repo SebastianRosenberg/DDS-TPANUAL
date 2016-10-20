@@ -1,6 +1,7 @@
 package tpanual.reportes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -15,6 +16,39 @@ import administrador.AdministradorDeBusquedas;
 import administrador.Busqueda;
 
 public class AdministradorDeReportes  {
+	
+	
+	
+	public static List<Busqueda> getBusquedasPorUsuario(Usuario user){
+		List<Busqueda> todasLasBusquedas=AdministradorDeBusquedas.getInstance().getBusquedas();
+		List<Busqueda> listaFinal = new ArrayList<Busqueda>();
+		
+		Iterator<Busqueda> it = todasLasBusquedas.iterator();
+		while (it.hasNext()){
+			Busqueda b = it.next();
+			if (b.getUsuario() != null && b.getUsuario().equals(user))
+				listaFinal.add(b);
+		}
+		return listaFinal;
+	}
+	
+	public static List<Busqueda> getBusquedasPorFecha(DateTime fechaDesde, DateTime fechaHasta){
+		List<Busqueda> todasLasBusquedas=AdministradorDeBusquedas.getInstance().getBusquedas();
+		List<Busqueda> listaFinal = new ArrayList<Busqueda>();
+		
+		Iterator<Busqueda> it = todasLasBusquedas.iterator();
+		while (it.hasNext()){
+			Busqueda b = it.next();
+			if (fechaDesde!=null && fechaDesde.isAfter(b.getFechaDeBusqueda()) || fechaDesde == null){
+				if (fechaHasta!=null && fechaHasta.isBefore(b.getFechaDeBusqueda()) || fechaHasta == null){
+					listaFinal.add(b);
+				}
+				
+			}
+				
+		}
+		return listaFinal;
+	}	
 	
 	
 	/**

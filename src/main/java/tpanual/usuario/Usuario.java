@@ -160,4 +160,14 @@ public class Usuario {
 		return  tipoDeUsuario.realizarBusquedaAvanzada(user, nombre,direccion,palabraClave,coincDeTipo);
 	}
 	
+	public boolean equals(Object o){
+		if (o instanceof Usuario){
+			Usuario u = (Usuario) o;
+			return u.getId() == this.getId();
+		}else{
+			return false;
+		}
+	}
+	
+	
 }
