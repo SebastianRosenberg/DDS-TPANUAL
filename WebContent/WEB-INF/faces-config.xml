@@ -20,5 +20,10 @@
 		<managed-bean-class>tpanual.jsfBeans.AccionesBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+		<managed-bean>
+		<managed-bean-name>historicoDeBusquedasBean</managed-bean-name>
+		<managed-bean-class>tpanual.jsfBeans.HistoricoDeBusquedasBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

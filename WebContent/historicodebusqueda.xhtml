@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<p:panel id="panelBusqueda" header="Historial de búsquedas realizadas">
+		<h:panelGrid columns="3" cellpadding="5">
+		<p:outputLabel value="Usuario:" /> 
+				<p:inputText id="usuario" value="#{loginBean1.usuario}"
+					required="true" label="Usuario">
+				</p:inputText> <br/>
+		<p:outputLabel value="Fecha:" /> 
+				<p:inputText id="fechaDesde" 
+					 label="Fecha">
+				</p:inputText>
+				<p:inputText id="fechaHasta"
+					 label="Fecha">
+				</p:inputText>
+		
+		<p:commandButton value="Buscar" update="resultadosDT"
+			actionListener="#{busquedaDePoiBean.save}" icon="ui-icon-search" />
+	</h:panelGrid>
+	</p:panel>
+
+
+	<h:form>
+		<p:dataTable id="resultadosDT" var="resultado" value="#{dtSelectionView.cars1}">
+			<f:facet name="header">
+            Resultado
+        </f:facet>
+        	<p:column headerText="Fecha">
+				<h:outputText value="#{resultado.fecha}" />
+			</p:column>
+			<p:column headerText="Usuario">
+				<h:outputText value="#{resultado.usuario}" />
+			</p:column>
+			<p:column headerText="Parámetros">
+				<h:outputText value="#{resulado.parametro}" />
+			</p:column>
+			<p:column headerText="POI">
+				<h:outputText value="#{resultado.poi}" />
+			</p:column>
+		</p:dataTable>
+	
+	    <p:dataList value="#{dataListView.cars1}" var="poi" type="ordered">
+	        <f:facet name="header">
+	            Detalle de POI
+	        </f:facet>
+	        #{poi.nombre}
+	    </p:dataList>
+	</h:form>
+	
+</h:body>
+<!--ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">  -->
+
+<!-- /ui:composition> -->
+</html>
