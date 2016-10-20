@@ -9,7 +9,6 @@ public class SucursalBancoPojo extends PoiPojo{
 	private Direccion direccion;
 	private List<Servicio> servicios;
 	
-	
 	public Direccion getDireccion() {
 		return direccion;
 	}

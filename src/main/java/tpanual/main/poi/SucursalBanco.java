@@ -3,7 +3,8 @@ package tpanual.main.poi;
 import java.util.List;
 
 import administrador.Mapa;
-
+import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
+import tpanual.jsfcontrollers.pojos.poi.SucursalBancoPojo;
 import tpanual.main.Dias;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
@@ -62,5 +63,14 @@ public class SucursalBanco extends TipoPuntoInteres {
 		return ((servicios!=null && servicios.equals(sb.servicios) || servicios==null && sb.servicios==null) &&
 				(horario!=null && horario.equals(sb.horario) || horario==null && sb.horario==null)
 				&& super.equals(o));
+	}
+
+
+	@Override
+	public PoiPojo convertir(PuntoDeInteres p) {
+		SucursalBancoPojo suc = new SucursalBancoPojo();
+		suc.setDireccion(p.getDireccion());
+		suc.setServicios(servicios);
+		return suc;
 	}	
 }

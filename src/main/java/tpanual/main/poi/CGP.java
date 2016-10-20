@@ -3,6 +3,7 @@ package tpanual.main.poi;
 import java.util.Iterator;
 import java.util.List;
 
+import tpanual.jsfcontrollers.pojos.poi.CgpPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Dias;
 import tpanual.main.Servicio;
@@ -89,6 +90,10 @@ public class CGP extends TipoPuntoInteres{
 
 	@Override
 	public PoiPojo convertir(PuntoDeInteres p) {
-		
+		CgpPojo cgp = new CgpPojo();
+		cgp.setDireccion(p.getDireccion());
+		cgp.setIdComuna(comunaId);
+		cgp.setServicios(servicios);
+		return cgp;
 	}
 }

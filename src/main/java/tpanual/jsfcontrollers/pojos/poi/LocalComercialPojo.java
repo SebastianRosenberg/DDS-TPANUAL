@@ -4,6 +4,9 @@ import tpanual.main.Direccion;
 
 public class LocalComercialPojo extends PoiPojo {
 	private Direccion direccion;
+	private String nombre;
+	private String rubro;
+	
 	public Direccion getDireccion() {
 		return direccion;
 	}
@@ -22,6 +25,4 @@ public class LocalComercialPojo extends PoiPojo {
 	public void setRubro(String rubro) {
 		this.rubro = rubro;
 	}
-	private String nombre;
-	private String rubro;
 }

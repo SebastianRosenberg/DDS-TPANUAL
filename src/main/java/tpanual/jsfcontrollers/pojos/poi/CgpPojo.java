@@ -9,6 +9,8 @@ public class CgpPojo extends PoiPojo{
 	private Direccion direccion;
 	private List<Servicio> servicios;
 	private int idComuna;
+	
+	
 	public Direccion getDireccion() {
 		return direccion;
 	}

@@ -1,6 +1,8 @@
 package tpanual.main.poi;
 
 import administrador.Mapa;
+import tpanual.jsfcontrollers.pojos.poi.ParadaDeColectivosPojo;
+import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Dias;
 import tpanual.utilitarios.Constantes;
 
@@ -43,5 +45,12 @@ public class ParadaColectivo extends TipoPuntoInteres {
 			return false;
 		ParadaColectivo pc=(ParadaColectivo) o;
 		return ((linea!=null && linea.equals(pc.linea) || linea==null && pc.linea==null) && super.equals(o));
+	}
+
+	@Override
+	public PoiPojo convertir(PuntoDeInteres p) {
+		ParadaDeColectivosPojo col = new ParadaDeColectivosPojo();
+		col.setNumeroLinea(linea);
+		return col;
 	}	
 }
