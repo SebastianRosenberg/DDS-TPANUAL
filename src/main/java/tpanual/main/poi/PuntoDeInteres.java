@@ -21,6 +21,8 @@ public class PuntoDeInteres {
 	private List<String> palabrasClaves;
 	private boolean dadoDeBaja;
 	private DateTime fechaBaja;
+	String horario;
+
 	
 	//Para modificar POI
 	private static String[] fieldsModificables={"latitud", "longitud", "nombre", "direccion", "tipo", "palabrasClaves"};
@@ -215,6 +217,14 @@ public class PuntoDeInteres {
 
 	public void setFechaBaja(DateTime fechaBaja) {
 		this.fechaBaja = fechaBaja;
+	}
+	
+	public String getHorario() {
+		return horario;
+	}
+	
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 
 	public boolean buscarCoincidenciaAvanzada(String name, Direccion direccion, String palabraClave, String coincDeTipo) {
