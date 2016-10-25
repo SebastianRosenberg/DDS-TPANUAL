@@ -16,22 +16,25 @@
 		<h:dataTable value="#{busquedaDePoiBean.items}" var="item">
 			<h:column>
 				<p:inputText value="#{item.value}" />
+				
 			</h:column>
 			<h:column>
 				<p:commandButton value="Eliminar" update="panelBusqueda"
 					actionListener="#{busquedaDePoiBean.remove(item)}"
 					icon="ui-icon-close">
-					<f:ajax execute="@form" render="panelBusqueda"></f:ajax>
+					<!-- <f:ajax execute="@form" render="panelBusqueda"></f:ajax> -->
 				</p:commandButton>
 			</h:column>
 		</h:dataTable>
 		
 		<p:commandButton value="Agregar" update="panelBusqueda"
 			actionListener="#{busquedaDePoiBean.add}" icon="ui-icon-check">
-			<f:ajax execute="@form" render="panelBusqueda"></f:ajax>
+			
 		</p:commandButton>
 		<p:commandButton value="Buscar" update="panelBusqueda"
-			actionListener="#{busquedaDePoiBean.save}" icon="ui-icon-search" />
+			actionListener="#{busquedaDePoiBean.save}" icon="ui-icon-search">
+			
+			</p:commandButton> 
 	</h:panelGrid>
 	</p:panel>
 

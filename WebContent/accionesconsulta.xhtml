@@ -20,8 +20,11 @@
 </style>
 	<div class="ui-g" style="text-align: center">
 		<div class="ui-g-12" style="text-align: center">
-			<p:selectOneMenu styleClass="selectMenu" height="1">
-				<f:selectItem itemLabel="testtetstetetetets" itemValue="test" />
+			<p:selectOneMenu id="lista" value="#{accionesBean.accion}" styleClass="selectMenu">
+			<!--  styleClass="selectMenu" height="1" -->
+				<f:selectItem itemLabel="Seleccione una acción" itemValue="" />
+				<f:selectItem itemLabel="Totalizar por Fecha" itemValue="Totalizar por Fecha" />
+				<f:selectItem itemLabel="Totalizar por Usuario" itemValue="Totalizar por Usuario" />
 			</p:selectOneMenu>
 			<p:spacer width="10" height="10" />
 			<p:commandButton value="Agregar" height="0" />
@@ -31,19 +34,22 @@
 	<div class="ui-g" style="text-align: center">
 		<div class="ui-g-4" style="text-align: center"></div>
 		<div class="ui-g-4" style="text-align: center">
-			<p:dataTable var="car" value="#{dtBasicView.cars}">
+			<p:dataTable var="accion" value="" >
 				<p:column headerText="Acciones" style="text-align: left">
-					<h:outputText value="#{car.id}" />
-					<h:outputLabel for="name" value="Standard Label:" />
+					<h:outputText value="" />
+					<!-- <h:outputLabel for="name" value="Standard Label:" /> -->
 				</p:column>
 			</p:dataTable>
 		</div>
-		<!-- <div class="ui-g-4" style="text-align: center"></div>  -->
+		<!-- <div class="ui-g-4" style="text-align: center"></div>  
+		#{accionesBean1.acciones}
+		#{accion.descripcion}
+		-->
 	</div>
 
-        <h:form id="form1">
+        <!-- <h:form id="form1">
             <p:growl id="messages" showDetail="true"/>
-            <!-- <p:panel header="Sale Item" style="width: 400px;"> --> 
+            <p:panel header="Sale Item" style="width: 400px;"> 
                 <p:panelGrid columns="2">
                     <p:inputText  value="#{item.item}"/>
                     <h:commandButton value="Add Item" action="#{item.addAction}"/>
@@ -69,8 +75,8 @@
                         <p:rowEditor />  
 
                 </p:dataTable>
-            <!--  </p:panel>-->
-        </h:form>
+             </p:panel>
+        </h:form> -->
 
 
 </h:body>

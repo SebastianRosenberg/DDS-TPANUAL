@@ -4,6 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+
 	<managed-bean>
 		<managed-bean-name>busquedaDePoiBean</managed-bean-name>
 		<managed-bean-class>tpanual.jsfBeans.BusquedaDePoiBean</managed-bean-class>
@@ -14,9 +15,15 @@
 		<managed-bean-class>tpanual.jsfBeans.AccionesBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+
 	<managed-bean>
 		<managed-bean-name>loginBean2</managed-bean-name>
 		<managed-bean-class>tpanual.jsfBeans.LoginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>historicoDeBusquedasBean</managed-bean-name>
+		<managed-bean-class>tpanual.jsfBeans.HistoricoDeBusquedasBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
