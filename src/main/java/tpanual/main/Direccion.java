@@ -19,6 +19,8 @@ public class Direccion {
 		+barrio+" " +localidad+" " +provincia+" " +pais;
 	}
 	
+	private int id;
+
 	private String callePrincipal;
 	private String entreCalle1;
 	private String entreCalle2;
@@ -210,6 +212,13 @@ public class Direccion {
 		
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	
 }
