@@ -9,6 +9,6 @@
   <property name="hibernate.connection.username">admin</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">create</property>
-  <mapping resource="Direccion.hbm.xml"/>
+  <!--  <mapping resource="Direccion.hbm.xml"/> -->
  </session-factory>
 </hibernate-configuration>

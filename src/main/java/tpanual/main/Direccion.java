@@ -1,5 +1,7 @@
 package tpanual.main;
 
+import javax.persistence.*;
+
 /**
  * Esta clase tiene implementado el patron builder. Se crea asi:
  * 
@@ -11,17 +13,20 @@ package tpanual.main;
  * @author dipatata
  *
  */
-
+@Entity
+@Table(name = "DIRECCION")
 public class Direccion {
 	
 	public String toString(){
 		return callePrincipal+" " +entreCalle1+" " +entreCalle2+" " +numero+" " +piso+" " +departamento+" " +unidad+" " +codigoPostal+" " 
 		+barrio+" " +localidad+" " +provincia+" " +pais;
 	}
-	
+	@Id @GeneratedValue
+	@Column(name = "id")	
 	private int id;
-
+	@Column(name = "CALLE_PRINCIPAL")
 	private String callePrincipal;
+	@Column(name = "ENTRE_CALLE_1")
 	private String entreCalle1;
 	private String entreCalle2;
 	private String numero;

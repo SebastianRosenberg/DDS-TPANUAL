@@ -14,24 +14,24 @@ public class MainHibernate {
 
 	public static void main(String[] args) {
 		Configuration configuration = new Configuration();
-		configuration.configure();
+		configuration.configure().addAnnotatedClass(Direccion.class);
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		
 		factory = configuration.buildSessionFactory(serviceRegistry);
 		MainHibernate testWorker = new MainHibernate();
-		testWorker.addDireccion(5, "CallePrincipal");
+		testWorker.addDireccion("CallePrincipal");
+		testWorker.addDireccion("CallePrincipal2");
 		factory.close();
 	}
 
-	private int addDireccion(int id, String callePrincipal) {
+	private int addDireccion(String callePrincipal) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer empIdSaved = null;
 		try {
 			tx = session.beginTransaction();
 			Direccion d=new Direccion.DireccionBuilder().callePrincipal(callePrincipal).crearDireccion();
-			d.setId(id);
 			empIdSaved = (Integer) session.save(d);
 			tx.commit();
 		} catch (HibernateException e) {
