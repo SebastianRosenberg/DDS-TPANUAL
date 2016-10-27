@@ -2,7 +2,7 @@ package tpanual.usuario;
 
 import java.util.List;
 
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 

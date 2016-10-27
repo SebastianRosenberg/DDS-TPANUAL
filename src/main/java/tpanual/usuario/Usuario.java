@@ -6,7 +6,7 @@ import org.joda.time.Instant;
 
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 

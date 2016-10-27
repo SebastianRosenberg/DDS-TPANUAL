@@ -3,7 +3,7 @@ package tpanual.usuario;
 import java.util.List;
 
 import administrador.AdministradorDePoi;
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
@@ -32,12 +32,12 @@ public class Activo extends Estado{
 			if(GestorDeUsuarios.getInstance().poseePrivilegioBusquedaAvanzada(user)){
 			return AdministradorDePoi.getInstance().busquedaAvanzada(nombre,direccion,palabraClave,coincDeTipo);
 			}
-			System.out.println("No posee el privilegio para realizar esa acción");
+			System.out.println("No posee el privilegio para realizar esa acciï¿½n");
 			return null;
 			
 		}
 		
-		/* Mas Informacion: segun el profesor, al buscar un poi solo deberia traer info básica (asumo id, nombre y direccion). 
+		/* Mas Informacion: segun el profesor, al buscar un poi solo deberia traer info bï¿½sica (asumo id, nombre y direccion). 
 		 * Para obtener al poi completo se llama a este metodo, pasandole el id del poi en el que estamos interesados
 		 */
 		@Override
@@ -46,12 +46,12 @@ public class Activo extends Estado{
 			if(GestorDeUsuarios.getInstance().poseePrivilegioMasInfo(user)){
 				return AdministradorDePoi.getInstance().masInfoDePoi(id);
 			}
-			System.out.println("No posee el privilegio para realizar esa acción");
+			System.out.println("No posee el privilegio para realizar esa acciï¿½n");
 			return null;
 		}
 
 	
-	//Como se nos pide que ahora las busquedas solo traigan informacion determinada y no solo el poi, por el momento dejo estos dos métodos
+	//Como se nos pide que ahora las busquedas solo traigan informacion determinada y no solo el poi, por el momento dejo estos dos mï¿½todos
 	@Override
 	public List<PoiInfoBasica> realizarBusqueda(String x)
 	{

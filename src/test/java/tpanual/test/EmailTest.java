@@ -11,8 +11,8 @@ import java.util.List;
 import org.junit.Test;
 
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.seguridad.UsuariosFactory;
@@ -32,8 +32,7 @@ public class EmailTest {
 		
 		//seteo Poi A buscar
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");
@@ -68,8 +67,7 @@ public class EmailTest {
 		Usuario nuevoUsuario = gestor.crearAdministrador("federico", "mailPrueba@hotmail.com","Fede123");
 		//seteo Poi A buscar
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");

@@ -1,6 +1,6 @@
 package tpanual.main.poi;
 
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 
 public class PoiInfoBasica {
 	

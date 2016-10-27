@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.Test;
 
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
@@ -25,8 +25,7 @@ public class RealizarBusquedasTest {
 			
 			
 			//seteo y agrego Poi 
-			Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-					.provincia("Ciudad de Buenos Aires").crearDireccion();
+			Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 			List<String> palabras=new ArrayList<String>();
 			palabras.add("Servicio de cafeteria");
 			palabras.add("Mala Atencion");
@@ -64,8 +63,7 @@ public class RealizarBusquedasTest {
 		
 		
 		//seteo y agrego Poi 
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras2=new ArrayList<String>();
 		palabras2.add("CGP");
 		palabras2.add("Zona peligrosa");

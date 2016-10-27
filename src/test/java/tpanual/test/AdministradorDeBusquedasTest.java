@@ -12,8 +12,8 @@ import administrador.AdministradorDeBusquedas;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class AdministradorDeBusquedasTest {
@@ -24,7 +24,7 @@ public class AdministradorDeBusquedasTest {
 		
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
 				
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Nunca tiene plata");
@@ -65,7 +65,7 @@ public class AdministradorDeBusquedasTest {
 
 		AdministradorDePoi admin = new AdministradorDePoi();
 				
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionCGP = new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Miller").numero("2751").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("CGP");

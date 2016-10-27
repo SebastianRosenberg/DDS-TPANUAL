@@ -21,10 +21,7 @@ public class BajaDePois extends Proceso{
 		try{
 			this.pois=ParserDeBajas.obtenerBajas();
 			
-		}catch(ArchivoBajasException a){
-			a.printStackTrace();
-			return new RespuestaProceso(EstadoResultado.ERROR, a.getMessage());
-		}catch(FileNotFoundException f){
+		}catch(ArchivoBajasException | FileNotFoundException f){
 			f.printStackTrace();
 			return new RespuestaProceso(EstadoResultado.ERROR, f.getMessage());
 		}

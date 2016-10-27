@@ -14,9 +14,9 @@ import tpanual.Rubro.RubroFW;
 import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Dias;
-import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class BajaPoiTest {

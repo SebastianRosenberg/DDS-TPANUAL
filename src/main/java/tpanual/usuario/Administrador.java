@@ -3,8 +3,8 @@ package tpanual.usuario;
 import java.util.List;
 
 import administrador.AdministradorDePoi;
-import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
@@ -117,7 +117,7 @@ public class Administrador extends TipoDeUsuario{
 	public void notificar() {
 		// TODO Auto-generated method stub
 		Email EnviadorMail = new Email(this.getEmail(),
-                "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tardó mas del tiempo máximo.");
+                "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tardï¿½ mas del tiempo mï¿½ximo.");
 	}
 	
 	@Override
@@ -133,7 +133,7 @@ public class Administrador extends TipoDeUsuario{
 	}
 
 	
-	//Como se nos pide que ahora las busquedas solo traigan informacion determinada y no solo el poi, por el momento dejo estos dos métodos
+	//Como se nos pide que ahora las busquedas solo traigan informacion determinada y no solo el poi, por el momento dejo estos dos mï¿½todos
 	
 		@Override
 		public List<PoiInfoBasica> realizarBusqueda(String x)

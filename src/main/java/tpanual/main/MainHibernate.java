@@ -8,6 +8,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import tpanual.main.direccion.Direccion;
+
 public class MainHibernate {
 	private static SessionFactory factory;
 	private static ServiceRegistry serviceRegistry;

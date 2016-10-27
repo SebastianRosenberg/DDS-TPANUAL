@@ -1,6 +1,6 @@
 package tpanual.jsfcontrollers.pojos.poi;
 
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 
 public class LocalComercialPojo extends PoiPojo {
 	private Direccion direccion;

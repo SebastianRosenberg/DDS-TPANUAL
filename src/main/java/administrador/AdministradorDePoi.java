@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.joda.time.Duration;
 
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
@@ -118,7 +118,7 @@ public class AdministradorDePoi {
 
 	/*
 	 * 
-	 * Agrego el método para obtener la instancia del administrador de Pois
+	 * Agrego el mï¿½todo para obtener la instancia del administrador de Pois
 	 * 
 	 */
 	

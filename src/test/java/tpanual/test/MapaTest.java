@@ -13,9 +13,9 @@ import tpanual.Rubro.RubroFW;
 import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Dias;
-import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.TipoPuntoInteres;
 
@@ -62,7 +62,7 @@ public class MapaTest {
 		AdministradorDePoi puntoAdmin = new AdministradorDePoi();
 		
 		/**
-		 * Busco en minuscula, deberia encontrar aunque este en mayúscula en el punto de interes
+		 * Busco en minuscula, deberia encontrar aunque este en mayï¿½scula en el punto de interes
 		 */
 		String criterio="muebleria";
 		
@@ -117,7 +117,7 @@ public class MapaTest {
 	@Test
 	public void buscarServiciosTest(){
 		///Busqueda de un servicio que existe en la lista de servicios de un punto
-		///de interés
+		///de interï¿½s
 		AdministradorDePoi puntoAdmin = new AdministradorDePoi();
 		String criterio="Denuncias";
 		List<PuntoDeInteres> lista=puntoAdmin.busquedaDePuntosDeInteres(criterio);
@@ -132,7 +132,7 @@ public class MapaTest {
 		assertTrue(aparicion1);
 		
 		///Busqueda de un servicio que no existe en la lista de servicios de un punto
-		///de interés
+		///de interï¿½s
 		criterio="Un servicio que no existe";
 		List<PuntoDeInteres> lista2=puntoAdmin.busquedaDePuntosDeInteres(criterio);	
 		assertTrue(lista2.isEmpty());		
@@ -142,7 +142,7 @@ public class MapaTest {
 	@Test
 	public void cercaniaCgpTest(){
 		
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionCGP = new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Miller").numero("2751").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("CGP");
@@ -157,12 +157,12 @@ public class MapaTest {
 	@Test
 	public void cercaniaAUnaParadaTest(){
 		
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionDeLaParada = new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("DR. Ignacio Rivera").numero("1889").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Cerca a una Plaza");
 		
-		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getParadaDeColectivo(-34.572426D, -58.489022D,"Parada Lú‹ea 176", direccionDeLaParada, palabrasClave, "176");
+		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getParadaDeColectivo(-34.572426D, -58.489022D,"Parada Lï¿½ï¿½ea 176", direccionDeLaParada, palabrasClave, "176");
 				
 		assertTrue(puntoFactory.cercanoA(-34.572713D, -58.488448D, 12));
 		assertFalse(puntoFactory.cercanoA(34.578546D, -58.469453D, 15));
@@ -171,11 +171,11 @@ public class MapaTest {
 	@Test
 	public void cercaniaALibreriaEscolarTest(){
 		
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionDeLaLibreria = new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5389").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Surtida");
-		palabrasClave.add("Excelente Atención");
+		palabrasClave.add("Excelente Atenciï¿½n");
 		RubroFW rubro = RubroFWFactory.getRubro("Libreria Escolar", 500);
 		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getLocalComercial(-34.569553D, -58.492019D, "Lo de Tony", direccionDeLaLibreria, palabrasClave, rubro, horario);
 		
@@ -186,7 +186,7 @@ public class MapaTest {
 	@Test
 	public void cercaniaKioskoTest(){
 		
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionDelKiosko = new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5389").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Venden alcohol");
@@ -204,8 +204,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadParadaColectivoTodoElDiaDomingoTest(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 		
 		PuntoDeInteres paradaDeColectivo = PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras, "114");
@@ -218,8 +217,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadSucursalDeBancoDiaLunesALas1300Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 		List<Servicio> servicios3=Servicio.getListaServicios("Depositos", "Extracciones");
 		
@@ -232,8 +230,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadSucursalDeBancoDiaViernesALas2200Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 		List<Servicio> servicios3=Servicio.getListaServicios("Depositos", "Extracciones");
 		
@@ -246,8 +243,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadCarrouselDiaJuevesALas1730Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 
 		RubroFW rubroCarrousel=RubroFWFactory.getRubro("Carrousel", 200);
@@ -260,8 +256,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadCarrouselDiaMartesALas1500Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 
 		RubroFW rubroCarrousel=RubroFWFactory.getRubro("Carrousel", 200);
@@ -274,8 +269,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadServicioDenunciasDiaMiercolesALas1100Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 
 		List<Servicio> servicios=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
@@ -292,8 +286,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadDeAlgunServicioDiaLunesALas0900Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 
 		List<Servicio> servicios=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
@@ -310,8 +303,7 @@ public class MapaTest {
 	@Test
 	public void disponibilidadDeNingunServicioDiaDomingoALas0900Test(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 
 		List<Servicio> servicios=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
@@ -342,8 +334,7 @@ public class MapaTest {
 		}
 		
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-		.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");
 		palabras.add("Mala Atencion");

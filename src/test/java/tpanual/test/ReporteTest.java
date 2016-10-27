@@ -10,8 +10,8 @@ import org.junit.Test;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.reportes.AdministradorDeReportes;
 import tpanual.reportes.CantidadPorBusquedaPorUsuario;
@@ -31,7 +31,7 @@ public class ReporteTest {
 		usr = gestor.crearTerminalActivo("pedritoTester");
 		
 		
-		//Creo la dirección
+		//Creo la direcciï¿½n
 		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Nunca tiene plata");

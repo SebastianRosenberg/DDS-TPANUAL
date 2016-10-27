@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import administrador.AdministradorDePoi;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.main.Direccion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.seguridad.UsuariosFactory;
@@ -83,8 +83,7 @@ public class GestorUsuarioTest
 		
 		//seteo datos del Poi A usar
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-				.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");
@@ -245,7 +244,7 @@ public class GestorUsuarioTest
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance ();
 		
 		//creo administrador
-		Usuario administrador = gestor.crearAdministrador("nombreDePersona", "mailDePErsona@yahoo.com", "constrseñaDePersona");
+		Usuario administrador = gestor.crearAdministrador("nombreDePersona", "mailDePErsona@yahoo.com", "constrseï¿½aDePersona");
 		
 		assertTrue(administrador!=null);
 		

@@ -1,4 +1,4 @@
-package tpanual.main;
+package tpanual.main.direccion;
 
 import javax.persistence.*;
 
@@ -18,29 +18,31 @@ import javax.persistence.*;
 public class Direccion {
 	
 	public String toString(){
-		return callePrincipal+" " +entreCalle1+" " +entreCalle2+" " +numero+" " +piso+" " +departamento+" " +unidad+" " +codigoPostal+" " 
-		+barrio+" " +localidad+" " +provincia+" " +pais;
+		return callePrincipal+" " +entreCalle1+" " +entreCalle2+" " +numero+" " +piso+" " +departamento+" " +unidad+" " +barrio+" " +localidad;
 	}
 	@Id @GeneratedValue
-	@Column(name = "id")	
+	@Column(name = "ID")	
 	private int id;
 	@Column(name = "CALLE_PRINCIPAL")
 	private String callePrincipal;
 	@Column(name = "ENTRE_CALLE_1")
 	private String entreCalle1;
+	@Column(name = "ENTRE_CALLE_2")
 	private String entreCalle2;
+	@Column(name = "NUMERO")
 	private String numero;
+	@Column(name = "PISO")
 	private String piso;
+	@Column(name = "DEPARTAMENTO")
 	private String departamento;
+	@Column(name = "UNIDAD")
 	private String unidad;
-	private String codigoPostal;
+	@Column(name = "BARRIO")
 	private String barrio;
-	private String localidad;
-	private String provincia;
-	private String pais;
+	private Localidad localidad;
 	
 	public Direccion(String callePrincipal, String entreCalle1, String entreCalle2, String numero, String piso, String departamento, String unidad, 
-			String codigoPostal, String barrio, String localidad, String provincia, String pais){	
+			String codigoPostal, String barrio, Localidad localidad){	
 		
 		this.callePrincipal=callePrincipal;
 		this.entreCalle1=entreCalle1;
@@ -49,11 +51,8 @@ public class Direccion {
 		this.piso=piso;
 		this.departamento=departamento;
 		this.unidad=unidad;
-		this.codigoPostal=codigoPostal;
 		this.barrio=barrio;
 		this.localidad=localidad;
-		this.provincia=provincia;
-		this.pais=pais;		
 			
 	}
 	
@@ -107,36 +106,30 @@ public class Direccion {
 	public void setUnidad(String unidad) {
 		this.unidad = unidad;
 	}
-	public String getCodigoPostal() {
-		return codigoPostal;
+	public int getCodigoPostal() {
+		return localidad.getCodigoPostal();
 	}
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
-	}
+
 	public String getBarrio() {
 		return barrio;
 	}
 	public void setBarrio(String barrio) {
 		this.barrio = barrio;
 	}
-	public String getLocalidad() {
+	public Localidad getLocalidad() {
 		return localidad;
 	}
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
 	}
-	public String getProvincia() {
-		return provincia;
+	public Provincia getProvincia() {
+		return localidad.getProvincia();
 	}
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+
+	public Pais getPais() {
+		return localidad.getProvincia().getPais();
 	}
-	public String getPais() {
-		return pais;
-	}
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
+
 	
 	public static class DireccionBuilder{
 		private String callePrincipal;
@@ -148,9 +141,7 @@ public class Direccion {
 		private String unidad;
 		private String codigoPostal;
 		private String barrio;
-		private String localidad;
-		private String provincia;
-		private String pais;
+		private Localidad localidad;
 		
 		public DireccionBuilder callePrincipal(String callePrincipal){
 			this.callePrincipal=callePrincipal;
@@ -196,33 +187,20 @@ public class Direccion {
 			return this;
 		}		
 		
-		public DireccionBuilder localidad(String localidad){
+		public DireccionBuilder localidad(Localidad localidad){
 			this.localidad=localidad;
 			return this;
 		}		
-		
-		public DireccionBuilder provincia(String provincia){
-			this.provincia=provincia;
-			return this;
-		}	
-		
-		public DireccionBuilder pais(String pais){
-			this.pais=pais;
-			return this;
-		}			
+			
 		
 		public Direccion crearDireccion(){
-			return new Direccion(callePrincipal, entreCalle1, entreCalle2, numero, piso, departamento, unidad, codigoPostal, barrio, localidad, provincia, pais);
+			return new Direccion(callePrincipal, entreCalle1, entreCalle2, numero, piso, departamento, unidad, codigoPostal, barrio, localidad);
 		}
 		
 	}
 	
 	public int getId() {
 		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	

@@ -11,10 +11,10 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.IComunicacionServiciosExternos;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.CGP;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
@@ -73,8 +73,8 @@ public class ComunicacionServiciosExternos implements
 	}
 
 	private Direccion parsearDireccion(String direccionSerealizada) {
-		// TODO Auto-generated method stub
-		return new Direccion("","","","","","","","","","","","");
+		// TODO ESTO NO FUNCIONA CON EL ULTIMO PARAMETRO QUE DEBE SER DE TIPO LOCALIDAD
+		return new Direccion("","","","","","","","","",null);
 	}
 
 	private List<Servicio> getServiciosCGP(JsonArray serviciosJsonArray) {

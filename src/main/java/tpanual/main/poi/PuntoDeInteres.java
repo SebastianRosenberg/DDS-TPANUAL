@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 import administrador.Mapa;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Dias;
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 import tpanual.utilitarios.Utilitarios;
 
 public class PuntoDeInteres {

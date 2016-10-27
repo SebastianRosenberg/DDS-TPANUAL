@@ -7,8 +7,8 @@ import procesos.actualizacionLC.ActualizacionLocalComercial;
 import tpanual.Rubro.RubroFW;
 import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
-import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class ParseadorDeTextos {
@@ -48,7 +48,7 @@ public static List<ActualizacionLocalComercial> parsearTexto() throws IOExceptio
 		StringTokenizer token = new StringTokenizer (linea);
 		List<String> palabrasClaves = new ArrayList<String>();
 		
-		//Tengo que quitar el ; del final de cada nombre de fantasía.
+		//Tengo que quitar el ; del final de cada nombre de fantasï¿½a.
 		nombre = token.nextToken();
 
 		// bucle por todas las palabras
@@ -68,7 +68,7 @@ public static List<ActualizacionLocalComercial> parsearTexto() throws IOExceptio
         
         comerciosConActualizacion.add(datos);
 		
-		//limpio las variables para los datos de la próxima línea
+		//limpio las variables para los datos de la prï¿½xima lï¿½nea
 		nombre = null;
 	}
 	

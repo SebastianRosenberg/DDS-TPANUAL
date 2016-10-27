@@ -12,7 +12,7 @@ import administrador.adaptadores.AdaptadorServicioExternoBancos;
 import administrador.adaptadores.AdaptadorServicioExternoCGP;
 import tpanual.factory.InterfacesExternasFactory;
 import tpanual.main.Dias;
-import tpanual.main.Direccion;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.utilitarios.Utilitarios;
 

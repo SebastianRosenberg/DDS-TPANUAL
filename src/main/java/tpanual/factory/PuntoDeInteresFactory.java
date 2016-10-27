@@ -2,9 +2,9 @@ package tpanual.factory;
 
 import java.util.List;
 import tpanual.Rubro.RubroFW;
-import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.CGP;
 import tpanual.main.poi.LocalComercial;
 import tpanual.main.poi.ParadaColectivo;

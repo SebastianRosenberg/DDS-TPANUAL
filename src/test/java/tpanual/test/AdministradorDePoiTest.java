@@ -16,9 +16,9 @@ import tpanual.Rubro.RubroFW;
 import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Dias;
-import tpanual.main.Direccion;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
+import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class AdministradorDePoiTest {
@@ -37,8 +37,7 @@ public class AdministradorDePoiTest {
 			horario.addRangoDia(900, 1400, dia);
 		}
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-		.provincia("Ciudad de Buenos Aires").crearDireccion();
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");
 		palabras.add("Mala Atencion");
@@ -133,8 +132,7 @@ public class AdministradorDePoiTest {
 	
 	lista.clear();
 	
-	Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-			.provincia("Ciudad de Buenos Aires").crearDireccion();
+	Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 			List<String> palabras=new ArrayList<String>();
 			palabras.add("Servicio de cafeteria");
 			List<Servicio> servicios2=Servicio.getListaServicios("Venta de chicles", "Asesoramiento legal");
@@ -191,8 +189,7 @@ public class AdministradorDePoiTest {
 	 * creo un nuevo poi con los cambios a realizar y le cambio el id para que sea igual al anterior 
 	 */
 	
-	Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").codigoPostal("1701").pais("Argentina")
-			.provincia("Ciudad de Buenos Aires").crearDireccion();
+	Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
 			List<String> palabrasNuevas=new ArrayList<String>();
 			palabrasNuevas.add("Zona segura");
 			RubroFW rubro1=RubroFWFactory.getRubro("Muebleria", 700);
