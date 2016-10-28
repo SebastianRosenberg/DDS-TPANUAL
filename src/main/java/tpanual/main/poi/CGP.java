@@ -3,14 +3,19 @@ package tpanual.main.poi;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.*;
+
 import tpanual.jsfcontrollers.pojos.poi.CgpPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Dias;
 import tpanual.main.Servicio;
 import tpanual.utilitarios.Constantes;
 
+@Entity
+@Table (name = "POI_CGP")
 public class CGP extends TipoPuntoInteres{
 	
+	@Transient
 	List<Servicio> servicios;
 	
 	private int comunaId;

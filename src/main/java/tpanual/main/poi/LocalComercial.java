@@ -1,5 +1,9 @@
 package tpanual.main.poi;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import administrador.Mapa;
 import tpanual.Rubro.RubroFW;
 import tpanual.jsfcontrollers.pojos.poi.LocalComercialPojo;
@@ -7,9 +11,13 @@ import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Dias;
 import tpanual.main.HorarioDeAtencion;
 
+@Entity
+@Table (name = "POI_LOCAL_COMERCIAL")
 public class LocalComercial extends TipoPuntoInteres {
 
+	@Transient
 	private RubroFW rubro;
+	@Transient
 	private HorarioDeAtencion horario;
 	
 	public LocalComercial(RubroFW rubro, HorarioDeAtencion hda){

@@ -2,6 +2,10 @@ package tpanual.main.poi;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import administrador.Mapa;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.jsfcontrollers.pojos.poi.SucursalBancoPojo;
@@ -10,9 +14,12 @@ import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.utilitarios.Constantes;
 
+@Entity
+@Table (name = "POI_SUCURSAL_BANCO")
 public class SucursalBanco extends TipoPuntoInteres {
-
+	@Transient
 	List<Servicio> servicios;
+	@Transient
 	HorarioDeAtencion horario = new HorarioDeAtencion();
 
 	public SucursalBanco(List<Servicio> lista) {

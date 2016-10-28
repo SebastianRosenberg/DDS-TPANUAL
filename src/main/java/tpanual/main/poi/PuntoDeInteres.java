@@ -3,6 +3,8 @@ package tpanual.main.poi;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import javax.persistence.*;
+
 import org.joda.time.DateTime;
 
 import administrador.Mapa;
@@ -11,26 +13,39 @@ import tpanual.main.Dias;
 import tpanual.main.direccion.Direccion;
 import tpanual.utilitarios.Utilitarios;
 
-
+@Entity
+@Table (name = "PUNTO_DE_INTERES")
 public class PuntoDeInteres {
+	@Id @Column (name = "ID")
 	private int id;
+	@Column (name = "LATITUD")
 	private double latitud;
+	@Column (name = "LONGITUD")
 	private double longitud;
+	@Column (name = "NOMBRE")
 	private String nombre;
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "DIRECCION_ID" )
 	private Direccion direccion;
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn ( name = "TIPO_PUNTO_INTERES_ID")
 	private TipoPuntoInteres tipo;
-	private List<String> palabrasClaves;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "POI_PALABRAS", joinColumns = { @JoinColumn(name = "POI_ID") }, inverseJoinColumns = { @JoinColumn(name = "PALABRA_CLAVE_ID") })
+	private List<PalabraClave> palabrasClaves;
+	@Column (name = "DADO_DE_BAJA")
 	private boolean dadoDeBaja;
+	@Column (name = "FECHA_DE_BAJA")
 	private DateTime fechaBaja;
-	String horario;
 
 	
 	//Para modificar POI
+	@Transient
 	private static String[] fieldsModificables={"latitud", "longitud", "nombre", "direccion", "tipo", "palabrasClaves"};
-	
+	@Transient
 	private static int maxId=0;
 	
-	public PuntoDeInteres(double latitud, double longitud, String nombre, Direccion direccion, List<String> palabrasClaves, TipoPuntoInteres tipo) {
+	public PuntoDeInteres(double latitud, double longitud, String nombre, Direccion direccion, List<PalabraClave> palabrasClaves, TipoPuntoInteres tipo) {
 		this.id=++maxId;
 		this.latitud=latitud;
 		this.longitud=longitud;
@@ -75,7 +90,7 @@ public class PuntoDeInteres {
 
 	public boolean buscarCoincidencia(String x){
 		
-		return Utilitarios.buscarPalabraEnUnaLista(x, palabrasClaves) || tipo.coincidencia(x)|| (nombre.indexOf(x) != -1);
+		return Utilitarios.buscarPalabraEnPalabrasClave(x, palabrasClaves) || tipo.coincidencia(x)|| (nombre.indexOf(x) != -1);
 
 	}
 
@@ -204,7 +219,7 @@ public class PuntoDeInteres {
 		this.tipo = tipo;
 	}
 
-	public void setPalabrasClaves(List<String> palabrasClaves) {
+	public void setPalabrasClaves(List<PalabraClave> palabrasClaves) {
 		this.palabrasClaves = palabrasClaves;
 	}
 
@@ -220,13 +235,6 @@ public class PuntoDeInteres {
 		this.fechaBaja = fechaBaja;
 	}
 	
-	public String getHorario() {
-		return horario;
-	}
-	
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
 
 	public boolean buscarCoincidenciaAvanzada(String name, Direccion direccion, String palabraClave, String coincDeTipo) {
 		boolean aparicion1 = true;
@@ -236,7 +244,7 @@ public class PuntoDeInteres {
 		
 		if(palabraClave!=null)
 		{
-			aparicion1 = Utilitarios.buscarPalabraEnUnaLista(palabraClave, palabrasClaves);
+			aparicion1 = Utilitarios.buscarPalabraEnPalabrasClave(palabraClave, palabrasClaves);
 		}
 		
 		if(direccion!=null)

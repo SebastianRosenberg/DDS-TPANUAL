@@ -13,6 +13,13 @@ import tpanual.main.direccion.Direccion;
 import tpanual.main.direccion.Localidad;
 import tpanual.main.direccion.Pais;
 import tpanual.main.direccion.Provincia;
+import tpanual.main.poi.CGP;
+import tpanual.main.poi.LocalComercial;
+import tpanual.main.poi.PalabraClave;
+import tpanual.main.poi.ParadaColectivo;
+import tpanual.main.poi.PuntoDeInteres;
+import tpanual.main.poi.SucursalBanco;
+import tpanual.main.poi.TipoPuntoInteres;
 
 public class HibernateSession {
 	
@@ -27,6 +34,13 @@ public class HibernateSession {
 		configuration.configure().addAnnotatedClass(Localidad.class);
 		configuration.configure().addAnnotatedClass(Provincia.class);
 		configuration.configure().addAnnotatedClass(Pais.class);
+		configuration.configure().addAnnotatedClass(PuntoDeInteres.class);
+		configuration.configure().addAnnotatedClass(TipoPuntoInteres.class);
+		configuration.configure().addAnnotatedClass(ParadaColectivo.class);
+		configuration.configure().addAnnotatedClass(CGP.class);
+		configuration.configure().addAnnotatedClass(LocalComercial.class);
+		configuration.configure().addAnnotatedClass(SucursalBanco.class);
+		configuration.configure().addAnnotatedClass(PalabraClave.class);
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		
@@ -55,4 +69,23 @@ public class HibernateSession {
 		}
 		return empIdSaved;
 	}
+	
+	public int add(PuntoDeInteres poi){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		Integer empIdSaved = null;
+		try {
+			tx = session.beginTransaction();
+			empIdSaved = (Integer) session.save(poi);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return empIdSaved;
+	}	
+	
 }

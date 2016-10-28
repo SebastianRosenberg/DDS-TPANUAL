@@ -3,6 +3,7 @@ package tpanual.utilitarios;
 import java.util.Iterator;
 import java.util.List;
 
+import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class Utilitarios {
@@ -11,6 +12,17 @@ public class Utilitarios {
 		boolean aparicion=false;
 		while (it.hasNext() && !aparicion){
 			if (it.next().toUpperCase().indexOf(x.toUpperCase()) != -1) 
+				aparicion=true;
+		}
+		return aparicion;
+	}
+	
+	public static boolean buscarPalabraEnPalabrasClave(String x, List<PalabraClave> lista){
+		Iterator<PalabraClave> it=lista.iterator();
+		boolean aparicion=false;
+		while (it.hasNext() && !aparicion){
+			PalabraClave pc = it.next();
+			if (pc.getNombre().toUpperCase().indexOf(x.toUpperCase()) != -1) 
 				aparicion=true;
 		}
 		return aparicion;

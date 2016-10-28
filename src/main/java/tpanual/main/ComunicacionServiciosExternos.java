@@ -16,6 +16,7 @@ import tpanual.main.IComunicacionServiciosExternos;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.CGP;
+import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
 
@@ -66,7 +67,7 @@ public class ComunicacionServiciosExternos implements
 						0,
 						"",
 						direccion,
-						new ArrayList<String>(),
+						new ArrayList<PalabraClave>(),
 						tipoPoi);
 		
 		return poi;
@@ -176,7 +177,7 @@ public class ComunicacionServiciosExternos implements
 						0,
 						"",
 						parsearDireccion(""),
-						new ArrayList<String>(),
+						new ArrayList<PalabraClave>(),
 						tipoPoi);
 		
 		return poi;

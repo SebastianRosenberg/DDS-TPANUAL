@@ -9,6 +9,7 @@ import procesos.Proceso;
 import procesos.RespuestaProceso;
 import procesos.AdministradorDeProcesos.EstadoResultado;
 import tpanual.main.poi.LocalComercial;
+import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.utilitarios.ParseadorDeTextos;
 
@@ -26,7 +27,7 @@ public class ActualizacionDeLocalesComerciales extends Proceso {
 				if (!(poi.getTipo() instanceof LocalComercial)){
 					return new RespuestaProceso(EstadoResultado.ERROR, "El Punto de interes ingresado: " + poi.getId() + " no es un Local comercial");
 				}
-				poi.setPalabrasClaves(local.getPalabrasNuevas());
+				poi.setPalabrasClaves(PalabraClave.getListaPalabrasClave(local.getPalabrasNuevas()));
 				AdministradorDePoi.getInstance().modificarPoi(poi);
 			}
 			return new RespuestaProceso(EstadoResultado.OK, "Modificaciones realizadas");
