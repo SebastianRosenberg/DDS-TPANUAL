@@ -2,6 +2,8 @@ package tpanual.main.poi;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import administrador.Mapa;
@@ -13,7 +15,7 @@ import tpanual.utilitarios.Constantes;
 @Entity
 @Table (name = "POI_PARADA_DE_COLECTIVO")
 public class ParadaColectivo extends TipoPuntoInteres {
-
+	
 	@Column (name = "LINEA")
 	private String linea;
 

@@ -1,17 +1,18 @@
 package tpanual.main.poi;
 
 import javax.persistence.*;
-import javax.persistence.MappedSuperclass;
 
 import tpanual.jsfcontrollers.pojos.poi.ConvertibleAPoiPojo;
 import tpanual.main.Dias;
 
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+
 public abstract class TipoPuntoInteres implements ConvertibleAPoiPojo{
 
 	@Id @Column (name = "ID")
-	@GeneratedValue
-	private int id;
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	public int id;
 	
 	public abstract boolean estaDisponible(Dias dia, int hora, String x);
 	abstract public int getRadioCercania();
@@ -26,7 +27,5 @@ public abstract class TipoPuntoInteres implements ConvertibleAPoiPojo{
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 }
