@@ -1,7 +1,14 @@
 package tpanual.main.direccion;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="PAIS")
 public class Pais {
+	@Id @GeneratedValue
+	@Column(name = "ID")		
 	private int id;
+	@Column(name = "NOMBRE")
 	private String nombre;
 	
 	public Pais(String nombre){

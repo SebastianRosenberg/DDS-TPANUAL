@@ -9,6 +9,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import tpanual.main.direccion.Direccion;
+import tpanual.main.direccion.Localidad;
+import tpanual.main.direccion.Pais;
+import tpanual.main.direccion.Provincia;
 
 public class MainHibernate {
 	private static SessionFactory factory;
@@ -17,23 +20,26 @@ public class MainHibernate {
 	public static void main(String[] args) {
 		Configuration configuration = new Configuration();
 		configuration.configure().addAnnotatedClass(Direccion.class);
+		configuration.configure().addAnnotatedClass(Localidad.class);
+		configuration.configure().addAnnotatedClass(Provincia.class);
+		configuration.configure().addAnnotatedClass(Pais.class);
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		
 		factory = configuration.buildSessionFactory(serviceRegistry);
 		MainHibernate testWorker = new MainHibernate();
-		testWorker.addDireccion("CallePrincipal");
-		testWorker.addDireccion("CallePrincipal2");
+		Direccion d=new Direccion.DireccionBuilder().callePrincipal("Hidalgo").numero("0643").entreCalle1("Rojas").crearDireccion();
+		d.setLocalidad(Localidad.getLocalidadAuxiliar());
+		testWorker.addDireccion(d);
 		factory.close();
 	}
 
-	private int addDireccion(String callePrincipal) {
+	private int addDireccion(Direccion d) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer empIdSaved = null;
 		try {
 			tx = session.beginTransaction();
-			Direccion d=new Direccion.DireccionBuilder().callePrincipal(callePrincipal).crearDireccion();
 			empIdSaved = (Integer) session.save(d);
 			tx.commit();
 		} catch (HibernateException e) {

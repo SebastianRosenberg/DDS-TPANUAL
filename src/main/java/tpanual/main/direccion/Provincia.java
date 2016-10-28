@@ -1,8 +1,17 @@
 package tpanual.main.direccion;
 
+import javax.persistence.*;
+
+@Entity
+@Table ( name = "PROVINCIA")
 public class Provincia {
+	@Id @GeneratedValue
+	@Column(name = "ID")	
 	private int id;
+	@Column(name = "NOMBRE")
 	private String nombre;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "PAIS_ID")
 	private Pais pais;
 	
 	public Provincia(String nombre, Pais pais){

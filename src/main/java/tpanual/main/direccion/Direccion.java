@@ -39,6 +39,8 @@ public class Direccion {
 	private String unidad;
 	@Column(name = "BARRIO")
 	private String barrio;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "LOCALIDAD_ID")
 	private Localidad localidad;
 	
 	public Direccion(String callePrincipal, String entreCalle1, String entreCalle2, String numero, String piso, String departamento, String unidad, 
@@ -176,11 +178,7 @@ public class Direccion {
 			this.unidad=unidad;
 			return this;
 		}				
-		
-		public DireccionBuilder codigoPostal(String codigoPostal){
-			this.codigoPostal=codigoPostal;
-			return this;
-		}		
+			
 		
 		public DireccionBuilder barrio(String barrio){
 			this.barrio=barrio;

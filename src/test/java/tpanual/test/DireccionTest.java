@@ -10,7 +10,7 @@ import tpanual.main.direccion.Localidad;
 public class DireccionTest {
 	@Test
 	public void creacionTest(){
-		Direccion d=new Direccion.DireccionBuilder().barrio("barrio").callePrincipal("callePrincipal").codigoPostal("codigoPostal").departamento("departamento")
+		Direccion d=new Direccion.DireccionBuilder().barrio("barrio").callePrincipal("callePrincipal").departamento("departamento")
 			.entreCalle1("entreCalle1").entreCalle2("entreCalle2").numero("numero").localidad(Localidad.getLocalidadAuxiliar())
 				.piso("piso").unidad("unidad").crearDireccion();
 		

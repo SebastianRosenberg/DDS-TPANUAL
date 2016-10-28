@@ -1,9 +1,19 @@
 package tpanual.main.direccion;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="LOCALIDAD")
 public class Localidad {
+	@Id @GeneratedValue
+	@Column(name = "ID")
 	private int id;
+	@Column(name = "NOMBRE")
 	private String nombre;
+	@Column(name = "CODIGO_POSTAL")
 	private int codigoPostal;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "PROVINCIA_ID")
 	private Provincia provincia;
 	
 	public Localidad(String nombre, int codigoPostal, Provincia provincia){
