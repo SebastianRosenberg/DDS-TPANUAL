@@ -11,8 +11,9 @@ import tpanual.main.Dias;
 import tpanual.main.direccion.Direccion;
 import tpanual.utilitarios.Utilitarios;
 
+
 public class PuntoDeInteres {
-	private Integer id;
+	private int id;
 	private double latitud;
 	private double longitud;
 	private String nombre;
