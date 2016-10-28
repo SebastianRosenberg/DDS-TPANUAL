@@ -2,7 +2,11 @@ package tpanual.main.poi;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,7 +21,9 @@ import tpanual.utilitarios.Constantes;
 @Entity
 @Table (name = "POI_SUCURSAL_BANCO")
 public class SucursalBanco extends TipoPuntoInteres {
-	@Transient
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "SUCURSAL_SERVICIOS", joinColumns = { @JoinColumn(name = "SUCURSAL_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
 	List<Servicio> servicios;
 	@Transient
 	HorarioDeAtencion horario = new HorarioDeAtencion();

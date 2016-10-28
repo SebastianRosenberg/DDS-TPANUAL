@@ -1,9 +1,15 @@
 package tpanual.Rubro;
 
-public class RubroConcreteFW implements RubroFW{
-	private String nombre;
-	private int cercania;
+import javax.persistence.*;
 
+@Entity
+@Table (name = "Rubro")
+public class RubroConcreteFW extends RubroFW{
+
+	@Column (name = "NOMBRE")
+	private String nombre;
+	@Column (name = "CERCANIA")
+	private int cercania;
 	
 	public RubroConcreteFW(String nombre, int cercania){
 		this.nombre=nombre;
@@ -28,5 +34,6 @@ public class RubroConcreteFW implements RubroFW{
 		RubroConcreteFW rc=(RubroConcreteFW) o;
 		return rc.esIgual(nombre, cercania);
 	}
+
 	
 }

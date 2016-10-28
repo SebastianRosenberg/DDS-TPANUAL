@@ -8,7 +8,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import tpanual.Rubro.RubroConcreteFW;
+import tpanual.Rubro.RubroFW;
 import tpanual.main.MainHibernate;
+import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.direccion.Localidad;
 import tpanual.main.direccion.Pais;
@@ -41,6 +44,9 @@ public class HibernateSession {
 		configuration.configure().addAnnotatedClass(LocalComercial.class);
 		configuration.configure().addAnnotatedClass(SucursalBanco.class);
 		configuration.configure().addAnnotatedClass(PalabraClave.class);
+		configuration.configure().addAnnotatedClass(Servicio.class);
+		configuration.configure().addAnnotatedClass(RubroConcreteFW.class);
+		configuration.configure().addAnnotatedClass(RubroFW.class);
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		

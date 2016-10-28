@@ -11,6 +11,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import tpanual.Rubro.RubroFW;
+import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.direccion.Localidad;
@@ -33,8 +35,19 @@ public class MainHibernate {
 		List<String> l = new ArrayList<String>();
 		l.add("Una palabra");
 		l.add("Dos palabra");
+		List<Servicio> ssss = new ArrayList<Servicio>();
+		ssss.add(new Servicio("Servicio1"));
+		ssss.add(new Servicio("Servicio2"));
+		RubroFW fw = RubroFWFactory.getRubro("Chinelas", 20);
+		
 		PuntoDeInteres poi = PuntoDeInteresFactory.getParadaDeColectivo(220, 220, "Linea 643", d, l, "643");
+		PuntoDeInteres poi2 = PuntoDeInteresFactory.getCGP(220, 150, "CGP", d, l, ssss, 2);
+		PuntoDeInteres poi3 = PuntoDeInteresFactory.getLocalComercial(205, 130, "LocalComercial", d, l, fw, null);
+		PuntoDeInteres poi4 = PuntoDeInteresFactory.getSucursal(130, 54241, "Sucursal", d, l, ssss);
 		h.add(poi);
+		h.add(poi2);
+		h.add(poi3);
+		h.add(poi4);
 		
 		
 		h.close();

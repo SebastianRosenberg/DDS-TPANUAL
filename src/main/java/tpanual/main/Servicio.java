@@ -3,8 +3,18 @@ package tpanual.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table (name = "SERVICIO")
 public class Servicio {
+	
+	@Id @GeneratedValue
+	@Column (name = "ID")
+	private int id;
+	@Column (name = "NOMBRE")
 	private String nombre;
+	@Transient
 	private HorarioDeAtencion horario;
 	
 	public Servicio(String nombre){
@@ -37,6 +47,10 @@ public class Servicio {
 			l.add(new Servicio(s[a]));
 		}
 		return l;
+	}
+
+	public int getId() {
+		return id;
 	}
 }
 

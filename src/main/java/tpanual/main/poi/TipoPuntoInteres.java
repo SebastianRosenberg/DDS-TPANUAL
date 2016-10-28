@@ -12,7 +12,7 @@ public abstract class TipoPuntoInteres implements ConvertibleAPoiPojo{
 
 	@Id @Column (name = "ID")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	public int id;
+	protected int id;
 	
 	public abstract boolean estaDisponible(Dias dia, int hora, String x);
 	abstract public int getRadioCercania();
