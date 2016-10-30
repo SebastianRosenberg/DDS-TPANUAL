@@ -1,5 +1,6 @@
 package tpanual.main.poi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,6 @@ import javax.persistence.Transient;
 import administrador.Mapa;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.jsfcontrollers.pojos.poi.SucursalBancoPojo;
-import tpanual.main.Dias;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.utilitarios.Constantes;
@@ -30,12 +30,13 @@ public class SucursalBanco extends TipoPuntoInteres {
 
 	public SucursalBanco(List<Servicio> lista) {
 		servicios=lista;
-		for (Dias dia : Dias.values()) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
-			if (dia != Dias.DOMINGO && dia != Dias.SABADO)
-				horario.addRangoDia(1000, 1500, dia);
+		for (int i=Constantes.LUNES;i<Constantes.SABADO;i++) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
+			horario.addRangoDia(1000, 1500, i);
 		}
+//		for (int i=1;i<6;i++) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
+//			agregarHorarioDeAtencion(10, 00, 15, 00, i);
+//		}
 	}
-	
 
 	@Override
 	public int getRadioCercania() {
@@ -43,7 +44,7 @@ public class SucursalBanco extends TipoPuntoInteres {
 	}
 
 	@Override
-	public boolean estaDisponible(Dias dia, int hora, String x) {
+	public boolean estaDisponible(int dia, int hora, String x) {
 		if (x == ""){//si no se ingresa el nombre de ningun servicio
 			return horario.estaEnHorarioDeAtencion(dia, hora);
 		}

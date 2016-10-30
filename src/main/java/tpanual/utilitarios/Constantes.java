@@ -21,6 +21,13 @@ public class Constantes {
 	
 	public static final int INTERVALO_DEHORAS_CONSIDERA_BUSQUEDA_RECIENTE=72;
 	
+	public static final int LUNES = 1;
+	public static final int MARTES = 2;
+	public static final int MIERCOLES = 3;
+	public static final int JUEVES = 4;
+	public static final int VIERNES = 5;
+	public static final int SABADO = 6;
+	public static final int DOMINGO = 7;
 
 	public static Duration TIEMPO_MAXIMO_CONSULTA = Duration.millis(5000);
 	

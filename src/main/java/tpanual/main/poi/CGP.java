@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 import tpanual.jsfcontrollers.pojos.poi.CgpPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
-import tpanual.main.Dias;
 import tpanual.main.Servicio;
 import tpanual.utilitarios.Constantes;
 
@@ -40,7 +39,7 @@ public class CGP extends TipoPuntoInteres{
 	}
 
 	@Override
-	public boolean estaDisponible(Dias dia, int hora, String x) {
+	public boolean estaDisponible(int dia, int hora, String x) {
 		boolean disponible = false;
 		if (x == ""){//si no se ingresa el nombre de ningun servicio
 			for(Servicio serv:servicios){

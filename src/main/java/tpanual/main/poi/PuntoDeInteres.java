@@ -94,7 +94,7 @@ public class PuntoDeInteres {
 
 	}
 
-	public boolean estaDisponible(Dias dia, int hora, String x) {
+	public boolean estaDisponible(int dia, int hora, String x) {
 		return tipo.estaDisponible(dia, hora, x);
 	}
 

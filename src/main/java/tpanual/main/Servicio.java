@@ -5,6 +5,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.joda.time.Chronology;
+import org.joda.time.DateTimeField;
+import org.joda.time.DateTimeFieldType;
+import org.joda.time.DurationFieldType;
+import org.joda.time.Interval;
+import org.joda.time.LocalTime;
+
 @Entity
 @Table (name = "SERVICIO")
 public class Servicio {
@@ -36,6 +43,7 @@ public class Servicio {
 	public void setHorario(HorarioDeAtencion horario){
 		this.horario = horario;
 	}
+	
 	/**
 	 * Recibe una cantidad indeterminada de String y crea una clase Servicio con cada uno, luego devuelve la lista que las contiene a todas	
 	 * @param s
@@ -52,5 +60,6 @@ public class Servicio {
 	public int getId() {
 		return id;
 	}
+
 }
 

@@ -19,6 +19,7 @@ import tpanual.main.poi.CGP;
 import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
+import tpanual.utilitarios.Constantes;
 
 public class ComunicacionServiciosExternos implements
 		IComunicacionServiciosExternos {
@@ -108,25 +109,25 @@ public class ComunicacionServiciosExternos implements
 			
 			switch (dia) {
 			case 0:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.DOMINGO);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.DOMINGO);
 				break;
 			case 1:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.LUNES);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.LUNES);
 				break;
 			case 2:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.MARTES);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.MARTES);
 				break;
 			case 3:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.MIERCOLES);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.MIERCOLES);
 				break;
 			case 4:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.JUEVES);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.JUEVES);
 				break;
 			case 5:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.VIERNES);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.VIERNES);
 				break;
 			case 6:
-				nuevoHorario.addRangoDia(horaDesde, horaHasta, Dias.SABADO);
+				nuevoHorario.addRangoDia(horaDesde, horaHasta, Constantes.SABADO);
 				break;
 			}
 		}

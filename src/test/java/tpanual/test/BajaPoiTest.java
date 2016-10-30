@@ -18,6 +18,7 @@ import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.utilitarios.Constantes;
 
 public class BajaPoiTest {
 	
@@ -35,7 +36,7 @@ public class BajaPoiTest {
 		List<Servicio> servicios=Servicio.getListaServicios("Depositos", "Pago de facturas");
 		RubroFW rubro1=RubroFWFactory.getRubro("Muebleria", 700);
 		HorarioDeAtencion horario=new HorarioDeAtencion();
-		for (Dias dia:Dias.values()){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
+		for (int dia=Constantes.LUNES;dia<Constantes.DOMINGO;dia++){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
 			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
 			horario.addRangoDia(900, 1400, dia);
 		}

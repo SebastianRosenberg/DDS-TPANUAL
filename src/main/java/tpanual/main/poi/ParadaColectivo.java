@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import administrador.Mapa;
 import tpanual.jsfcontrollers.pojos.poi.ParadaDeColectivosPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
-import tpanual.main.Dias;
 import tpanual.utilitarios.Constantes;
 
 @Entity
@@ -27,7 +26,7 @@ public class ParadaColectivo extends TipoPuntoInteres {
 		this.linea = linea;
 	}
 
-	public boolean estaDisponible (Dias dia, int hora, String x) {
+	public boolean estaDisponible (int dia, int hora, String x) {
 		//super.setHorario("09:00 a 18:00");
 		return Constantes.PARADA_DE_COLECTIVO_DISPONIBILIDAD; //Una parada de colectivos siempre está dispnible
 	}

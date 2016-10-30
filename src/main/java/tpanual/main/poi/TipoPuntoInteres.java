@@ -3,7 +3,6 @@ package tpanual.main.poi;
 import javax.persistence.*;
 
 import tpanual.jsfcontrollers.pojos.poi.ConvertibleAPoiPojo;
-import tpanual.main.Dias;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -14,7 +13,7 @@ public abstract class TipoPuntoInteres implements ConvertibleAPoiPojo{
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected int id;
 	
-	public abstract boolean estaDisponible(Dias dia, int hora, String x);
+	public abstract boolean estaDisponible(int dia, int hora, String x);
 	abstract public int getRadioCercania();
 	public abstract boolean coincidencia(String x);
 	public abstract boolean cercanoEntre(double latitudPunto,double longitudPunto,double latitudCoordenada,double longitudCoordenada, int comunaId);

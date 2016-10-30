@@ -32,7 +32,7 @@ public class AdministradorDePoiTest {
 		AdministradorDePoi puntoAdminSetUp = new AdministradorDePoi();
 		
 		horario=new HorarioDeAtencion();
-		for (Dias dia:Dias.values()){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
+		for (int dia=1;dia<8;dia++){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
 			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
 			horario.addRangoDia(900, 1400, dia);
 		}
@@ -78,27 +78,24 @@ public class AdministradorDePoiTest {
 	}
 	private static HorarioDeAtencion getHorario1(){
 		HorarioDeAtencion horario = new HorarioDeAtencion();
-		for (Dias dia : Dias.values()) {
-			if (dia != Dias.DOMINGO && dia != Dias.SABADO)
-				horario.addRangoDia(800, 1700, dia);
+		for (int dia=1;dia<6;dia++) {
+			horario.addRangoDia(800, 1700, dia);
 		}
 		return horario;
 	}
 
 	private static HorarioDeAtencion getHorario2(){
 		HorarioDeAtencion horario = new HorarioDeAtencion();
-		for (Dias dia : Dias.values()) {
-			if (dia != Dias.DOMINGO)
-				horario.addRangoDia(1000, 1600, dia);
+		for (int dia=1;dia<7;dia++) {
+			horario.addRangoDia(1000, 1600, dia);
 		}
 		return horario;
 	}
 	
 	private static HorarioDeAtencion getHorario3(){
 		HorarioDeAtencion horario = new HorarioDeAtencion();
-		for (Dias dia : Dias.values()) {
-			if (dia != Dias.DOMINGO && dia != Dias.SABADO && dia != Dias.LUNES)
-				horario.addRangoDia(1200, 2000, dia);
+		for (int dia=2;dia<6;dia++) {
+			horario.addRangoDia(1200, 2000, dia);
 		}
 		return horario;
 	}

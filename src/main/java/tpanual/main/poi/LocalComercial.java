@@ -1,12 +1,16 @@
 package tpanual.main.poi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
+
+import org.joda.time.Interval;
 
 import administrador.Mapa;
 import tpanual.Rubro.RubroFW;
 import tpanual.jsfcontrollers.pojos.poi.LocalComercialPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
-import tpanual.main.Dias;
 import tpanual.main.HorarioDeAtencion;
 
 @Entity
@@ -19,13 +23,15 @@ public class LocalComercial extends TipoPuntoInteres {
 	@Transient
 	private HorarioDeAtencion horario;
 	
+	private List<Interval> horarioDeAtencion = new ArrayList<Interval>();
+	
 	public LocalComercial(RubroFW rubro, HorarioDeAtencion hda){
 		this.rubro=rubro;
 		horario=hda;
 	}
 	
 	@Override
-	public boolean estaDisponible(Dias dia, int hora, String x) {
+	public boolean estaDisponible(int dia, int hora, String x) {
 		return horario.estaEnHorarioDeAtencion(dia, hora);
 	}
 
