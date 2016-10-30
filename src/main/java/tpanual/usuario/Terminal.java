@@ -7,14 +7,14 @@ import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 
-public class Terminal extends TipoDeUsuario {
+public class Terminal extends Usuario {
 
 	private String nombre;
 	private int id;
 	private Estado estado;
 	
 	@Override
-	public String getNombre() {
+	public String getUsuario() {
 		// TODO Auto-generated method stub
 		return nombre;
 	}
@@ -45,12 +45,12 @@ public class Terminal extends TipoDeUsuario {
 	}
 	
 	@Override
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x) {
+	public List<PuntoDeInteres> buscarPuntos(String x) {
 		// TODO Auto-generated method stub
 		return this.estado.busquedaDePuntosDeInteres(x);
 	}
 	@Override
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test) {
+	public List<PuntoDeInteres> buscarPuntos(String x, boolean test) {
 		// TODO Auto-generated method stub
 		return this.estado.busquedaDePuntosDeInteres(x, test);
 	}
@@ -93,8 +93,8 @@ public class Terminal extends TipoDeUsuario {
 	
 	}
 	
-	
-	public Usuario loguear(Usuario usuario, String password,Usuario terminal)
+	@Override
+	public Usuario logueo(Usuario usuario, String password,Usuario terminal)
 	{
 		
 		Usuario admin = GestorDeUsuarios.getInstance().logueoComoAdmin(usuario, password, terminal);

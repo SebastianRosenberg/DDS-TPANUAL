@@ -12,43 +12,18 @@ import tpanual.main.poi.PuntoDeInteres;
 
 import tpanual.temporizador.Temporizador;
 
-public class Usuario {
+public abstract class Usuario {
 
-	private TipoDeUsuario tipoDeUsuario;
-//	
-//															
-/* confirmar esto
-//															 */
-//	private TipoDeUsuario tipoDeUsuarioOriginal;
-//	
-//	public TipoDeUsuario getTipoDeUsuarioOriginal(){
-//		return tipoDeUsuarioOriginal;
-//	}
-	//
-
-	public String getEmail(){
-		
-		return tipoDeUsuario.getEmail();
-	}
+	public abstract String getEmail();
 	
-	public String getUsuario(){
-		
-		return tipoDeUsuario.getNombre();
-	}
+	public abstract String getUsuario();
 	
-	public int getId(){
-		return tipoDeUsuario.getId();
-	}
+	public abstract int getId();
 	
 	
-	public void activar(){
-		
-		tipoDeUsuario.activar();
-	} 
+	public abstract void activar();
 	
-	public void desactivar(){
-		tipoDeUsuario.desactivar();
-	}
+	public abstract void desactivar();
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
 	   
@@ -56,7 +31,7 @@ public class Usuario {
 		
 		Instant inicio = Temporizador.TiempoInicioBusqueda();
 
-		List<PuntoDeInteres> pois =tipoDeUsuario.busquedaDePuntosDeInteres(strABuscar); 
+		List<PuntoDeInteres> pois = this.buscarPuntos(strABuscar); 
 		sBusqueda.setPois(pois);
 		
 		Duration duracion = Temporizador.LapsoBusqueda(inicio);
@@ -76,7 +51,7 @@ public class Usuario {
 		Temporizador temporizador = new Temporizador();
 		Instant inicio = temporizador.TiempoInicioBusqueda();
 
-		List<PuntoDeInteres> pois =tipoDeUsuario.busquedaDePuntosDeInteres(strABuscar, test); 
+		List<PuntoDeInteres> pois =this.buscarPuntos(strABuscar, test); 
 		sBusqueda.setPois(pois);
 		
 		Duration duracion = temporizador.LapsoBusqueda(inicio);
@@ -90,75 +65,35 @@ public class Usuario {
 		
 	}
 	
-	public boolean modificarPoi(PuntoDeInteres poi){
-		return tipoDeUsuario.modificarPoi(poi);
-		
-	}
+	protected abstract List<PuntoDeInteres> buscarPuntos(String x);
+	protected abstract List<PuntoDeInteres> buscarPuntos(String x, boolean test);
 	
-	public void agregarPoi(PuntoDeInteres poi){
-		tipoDeUsuario.agregarPoi(poi);
-	}
+	public abstract boolean modificarPoi(PuntoDeInteres poi);
 	
-	public boolean eliminarPoi(PuntoDeInteres poi){
-		return tipoDeUsuario.eliminarPoi(poi);
-		
-	}
-
-	public void setTipoDeUsuario(TipoDeUsuario tipoDeUsuario) {
-		this.tipoDeUsuario = tipoDeUsuario;
-	}
+	public abstract void agregarPoi(PuntoDeInteres poi);
 	
-	public Usuario(TipoDeUsuario tipo){
-
-		this.setTipoDeUsuario(tipo);		
-//															/* confirmar esto
-//															 */
-//		this.tipoDeUsuarioOriginal= tipo;
-//		
-	}
+	public abstract boolean eliminarPoi(PuntoDeInteres poi);
 	
-	public Usuario logueo(Usuario admin,String pass,Usuario term){
-		
-		return this.tipoDeUsuario.loguear(admin, pass, term);
-	}
+	public abstract Usuario logueo(Usuario admin,String pass,Usuario term);
 	
 	public String toString(){
-		return Integer.valueOf(tipoDeUsuario.getId()) + "_" + tipoDeUsuario.getNombre();
+		return Integer.valueOf(this.getId()) + "_" + this.getUsuario();
 	}
 	
-	public void notificar(){
-		
-		this.tipoDeUsuario.notificar();
-		
-	}
+	public abstract void notificar();
 	
-	public PuntoDeInteres masInformacion(Usuario user, Integer id){
-		return tipoDeUsuario.masInformacion(user, id);
-		
-	}
+	
+	public abstract PuntoDeInteres masInformacion(Usuario user, Integer id);
 
-	public List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion, String string2,
-			String string3) {
-		return tipoDeUsuario.busquedaAvanzada(usuarioAProbar, string, direccion, string2, string3);
-		
-	}
+	public abstract List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion, String string2,
+			String string3);
 	
 	
-	
-	public List<PoiInfoBasica> realizarBusqueda(String x)
-	{	
-		return  tipoDeUsuario.realizarBusqueda(x);
-	}
+	public abstract List<PoiInfoBasica> realizarBusqueda(String x);
 
-	public  List<PoiInfoBasica> realizarBusqueda(String x, boolean test)
-	{
-		return  tipoDeUsuario.realizarBusqueda(x,test);
-	}
+	public abstract List<PoiInfoBasica> realizarBusqueda(String x, boolean test);
 
-	public  List<PoiInfoBasica> realizarBusquedaAvanzada(Usuario user, String nombre, Direccion direccion, String palabraClave, String coincDeTipo)
-	{
-		return  tipoDeUsuario.realizarBusquedaAvanzada(user, nombre,direccion,palabraClave,coincDeTipo);
-	}
+	public abstract List<PoiInfoBasica> realizarBusquedaAvanzada(Usuario user, String nombre, Direccion direccion, String palabraClave, String coincDeTipo);
 	
 	public boolean equals(Object o){
 		if (o instanceof Usuario){
@@ -168,6 +103,8 @@ public class Usuario {
 			return false;
 		}
 	}
+
+	public abstract Usuario desloguear(Usuario usuario);
 	
 	
 }

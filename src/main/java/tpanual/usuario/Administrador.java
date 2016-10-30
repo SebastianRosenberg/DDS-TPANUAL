@@ -10,14 +10,14 @@ import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.utilitarios.Email;
 
-public class Administrador extends TipoDeUsuario{
+public class Administrador extends Usuario{
 
 	private String nombre;
 	private int id;
 	private String email;
 	
 	@Override
-	public String getNombre() {
+	public String getUsuario() {
 		// TODO Auto-generated method stub
 		return nombre;
 	}
@@ -47,13 +47,13 @@ public class Administrador extends TipoDeUsuario{
 	}
 
 	@Override
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x) {
+	protected List<PuntoDeInteres> buscarPuntos(String x) {
 		// TODO Auto-generated method stub
 		return AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(x);
 	}
 
 	@Override
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test) {
+	protected List<PuntoDeInteres> buscarPuntos(String x, boolean test) {
 		// TODO Auto-generated method stub
 		return AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(x, test);
 	}
@@ -97,7 +97,7 @@ public class Administrador extends TipoDeUsuario{
 	}
 	
 	
-	
+	@Override
 	public Usuario desloguear(Usuario usuario)
 	{	
 			Usuario terminal = GestorDeUsuarios.getInstance().deslogueoAdmin(usuario);
@@ -107,7 +107,7 @@ public class Administrador extends TipoDeUsuario{
 	
 
 	@Override
-	public Usuario loguear(Usuario usuario, String password, Usuario terminal) {
+	public Usuario logueo(Usuario usuario, String password, Usuario terminal) {
 		// TODO Auto-generated method stub
 		 System.out.println("Ya se encuentra logueado");
 		 return usuario;

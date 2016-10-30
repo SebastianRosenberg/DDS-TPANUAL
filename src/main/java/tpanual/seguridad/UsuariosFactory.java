@@ -13,9 +13,8 @@ public class UsuariosFactory {
 	static Usuario getUsuarioAdministrador(String nombre,String email){		
 		
 		Administrador administrador = new Administrador(email, id, nombre);
-		Usuario usuarioAdministrador = new Usuario(administrador);
 		id++;
-		return usuarioAdministrador;
+		return administrador;
 		
 	}
 	
@@ -23,18 +22,16 @@ public class UsuariosFactory {
 		
 		Activo estadoActivo = new Activo();
 		Terminal terminal = new Terminal(nombre, estadoActivo, id);
-		Usuario usuarioTerminal = new Usuario(terminal);
 		id++;
-		return usuarioTerminal;
+		return terminal;
 		
 	}
 	
 	static Usuario getUsuarioTerminalNoActivo(String nombre){
 		NoActivo estadoNoActivo = new NoActivo();
 		Terminal terminal = new Terminal(nombre, estadoNoActivo, id);
-		Usuario usuarioTerminal = new Usuario(terminal);
 		id++;
-		return usuarioTerminal;
+		return terminal;
 		
 	}
 	
