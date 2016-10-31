@@ -2,21 +2,37 @@ package tpanual.usuario;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 
+@Entity
+@Table (name = "Terminal")
+@PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Terminal extends Usuario {
 
-	private String nombre;
+	//private String nombre;
+	
+	@Id @GeneratedValue
+ 	@Column (name = "ID")
 	private int id;
+	
+	//@OneToOne
 	private Estado estado;
 	
 	@Override
 	public String getUsuario() {
 		// TODO Auto-generated method stub
-		return nombre;
+		return this.nombre;
 	}
 	public int getId() {
 		return id;

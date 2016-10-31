@@ -2,6 +2,13 @@ package tpanual.usuario;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import administrador.AdministradorDePoi;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
@@ -10,10 +17,17 @@ import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.utilitarios.Email;
 
+@Entity
+@Table (name = "Administrador")
+@PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Administrador extends Usuario{
 
-	private String nombre;
+	@Id @GeneratedValue
+ 	@Column (name = "ID")
 	private int id;
+	
+	//private String nombre;
+	@Column (name = "EMAIL", length = 50)
 	private String email;
 	
 	@Override

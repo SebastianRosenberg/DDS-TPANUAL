@@ -1,6 +1,15 @@
 package tpanual.usuario;
 
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import org.joda.time.Duration;
 import org.joda.time.Instant;
 
@@ -12,8 +21,18 @@ import tpanual.main.poi.PuntoDeInteres;
 
 import tpanual.temporizador.Temporizador;
 
+@Entity
+@Table (name = "USUARIOS")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Usuario {
-
+	
+	@Id @GeneratedValue
+ 	@Column (name = "ID")
+ 	private int id;
+	
+	@Column (name = "USUARIO")
+	protected String nombre;
+	
 	public abstract String getEmail();
 	
 	public abstract String getUsuario();

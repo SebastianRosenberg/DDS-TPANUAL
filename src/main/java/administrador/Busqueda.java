@@ -3,6 +3,7 @@ package administrador;
 import java.util.Date;
 
 import javax.imageio.metadata.IIOInvalidTreeException;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -11,11 +12,27 @@ import tpanual.jsfcontrollers.pojos.busqueda.BusquedaPojo;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
+@Entity
+@Table (name = "Busqueda")
 public class Busqueda {
+	
+	@Id @GeneratedValue
+ 	@Column (name = "ID")
+ 	private int id;
+	
+	@Column (name = "FECHABUSQUEDA")
 	private DateTime fechaDeBusqueda;
+	
+	@Column (name = "STRINGSBUSCADOS")
 	private String[] stringsBuscados;
+	
+	@Column (name = "IDSENCONTRADOS")
 	private int[] idsEncontrados;
+	
+	@ManyToOne
 	private Usuario usuario;
+	
+	@Column (name = "DURACIONBUSQUEDA")
 	private Duration duracion;
 	
 	public Busqueda(String[] stringsBuscados, int[] idsEncontrados, Usuario usuario, Duration duracion, DateTime dateTime){
