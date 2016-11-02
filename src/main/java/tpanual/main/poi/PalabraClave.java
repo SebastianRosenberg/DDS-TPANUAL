@@ -15,6 +15,10 @@ public class PalabraClave {
 		this.nombre = s;
 	}
 	
+	public PalabraClave(){
+		
+	}
+	
 	@Id @Column(name = "ID")
 	@GeneratedValue
 	private int id;

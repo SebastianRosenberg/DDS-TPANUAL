@@ -21,28 +21,38 @@ public class Hibernate_PuntoDeInteresTest {
 	
 	static AdministradorDePoi adp = new AdministradorDePoi();
 	static Integer idPoiModificado;
+	static Integer idPoiEliminado;
 	static HibernateFactorySessions hs;
 	
 	@BeforeClass
 	public static void setUp(){
 		
-		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
+		Direccion direccion1=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
+		Direccion direccion2=new Direccion.DireccionBuilder().callePrincipal("Mitre").numero("1354").barrio("Congreso").crearDireccion();
 		
-		List<String> palabras=new ArrayList<String>();
-		palabras.add("CGP");
-		palabras.add("Zona peligrosa");
+		List<String> palabras1=new ArrayList<String>();
+		palabras1.add("CGP");
+		palabras1.add("Zona peligrosa");
 		
-		List<Servicio> servicios=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
+		List<String> palabras2=new ArrayList<String>();
+		palabras2.add("Zona Segura");
+		
+		List<Servicio> servicios1=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
+		List<Servicio> servicios2=Servicio.getListaServicios("Jubilaciones");
 
-		servicios.get(0).setHorario(getHorario1());
-		servicios.get(1).setHorario(getHorario2());
-		servicios.get(2).setHorario(getHorario3());
+		servicios1.get(0).setHorario(getHorario1());
+		servicios1.get(1).setHorario(getHorario2());
+		servicios1.get(2).setHorario(getHorario3());
+		servicios2.get(0).setHorario(getHorario3());
 		
 		//Persisto el punto de interes
-		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1 Hibernate POI TEST", direccion, palabras, servicios, 25);
+		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1 Hibernate POI TEST", direccion1, palabras1, servicios1, 25);
+		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 2 Hibernate POI TEST", direccion2, palabras2, servicios2, 25);
 		idPoiModificado = pdi.getId();
+		idPoiEliminado = pdi2.getId();
 		hs = new HibernateFactorySessions();
 		hs.add(pdi);
+		hs.add(pdi2);
 			
 	}
 	
@@ -74,16 +84,34 @@ public class Hibernate_PuntoDeInteresTest {
 	public void modificarPoiTest(){
 		
 		PuntoDeInteres p = hs.obtenerPoi(idPoiModificado);
+		
 		//Compruebo la latitud y longitud con la cual fue ingresado
 		assertTrue(p.getLatitud() == 2500D && p.getLongitud() == 3200D);
+		
 		//Modifico los valores de latitud y longitud
 		p.setLatitud(666D); p.setLongitud(444D);
+		
 		//Actualizo
 		hs.modificarPuntoDeInteres(p);
+		
 		//Obtengo el modificado
 		PuntoDeInteres pModificado = hs.obtenerPoi(idPoiModificado);
+		
 		//Compruebo que el valor haya cambiado
-		assertTrue(p.getLatitud() == 666D && p.getLongitud() == 444D);
+		assertTrue(pModificado.getLatitud() == 666D && pModificado.getLongitud() == 444D);
 	}
 	
+	@Test
+	public void eliminarPoiTest(){
+		
+		//Compruebo que exista
+		PuntoDeInteres p = hs.obtenerPoi(idPoiEliminado);
+
+		//Elimino
+		hs.eliminarPuntoDeInteres(p);
+
+		//Compruebo que al buscarlo no exista
+		PuntoDeInteres ppp = hs.obtenerPoi(idPoiEliminado);
+		assertNull(ppp);
+	}	
 }

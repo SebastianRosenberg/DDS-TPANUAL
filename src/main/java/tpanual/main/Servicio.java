@@ -27,6 +27,10 @@ public class Servicio {
 	public Servicio(String nombre){
 		this.nombre=nombre;
 	}
+	
+	public Servicio(){
+		
+	}
 
 	public String getNombre() {
 		return nombre;

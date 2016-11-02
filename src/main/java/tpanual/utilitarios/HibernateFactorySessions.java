@@ -98,19 +98,23 @@ public class HibernateFactorySessions {
 	
 	public PuntoDeInteres obtenerPoi(Integer id) {
 	    Session session = null;
-	    PuntoDeInteres user = null;
+	    PuntoDeInteres poi = null;
+	    Transaction tx = null;
+	    
 	    try {
 	        session = factory.openSession();
-	        user = (PuntoDeInteres)session.load(PuntoDeInteres.class, id);
-	        Hibernate.initialize(user);
+	        tx = session.beginTransaction();
+	        poi = (PuntoDeInteres)session.get(PuntoDeInteres.class, id);
+	        tx.commit();
 	    } catch (Exception e) {
+	    	tx.rollback();
 	       e.printStackTrace();
 	    } finally {
 	        if (session != null && session.isOpen()) {
 	            session.close();
 	        }
 	    }
-	    return user;
+	    return poi;
 	}
 	
 	public void modificarPuntoDeInteres(PuntoDeInteres pdi){
@@ -119,6 +123,7 @@ public class HibernateFactorySessions {
 		try {
 			tx = session.beginTransaction();
 			session.update(pdi);
+			session.flush();
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -127,6 +132,23 @@ public class HibernateFactorySessions {
 		} finally {
 			session.close();
 		}
+	}
+	
+	public void eliminarPuntoDeInteres(PuntoDeInteres pdi){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.delete(pdi);
+			session.flush();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}		
 	}
 	
 }
