@@ -34,6 +34,10 @@ public class CGP extends TipoPuntoInteres{
 		this.comunaId = comundaIid;
 	}
 	
+	public CGP(){
+		
+	}
+	
 	public int getRadioCercania(){
 		return Constantes.CGP_CERCANIA;
 	}

@@ -22,12 +22,16 @@ public class LocalComercial extends TipoPuntoInteres {
 	private RubroFW rubro;
 	@Transient
 	private HorarioDeAtencion horario;
-	
+	@Transient
 	private List<Interval> horarioDeAtencion = new ArrayList<Interval>();
 	
 	public LocalComercial(RubroFW rubro, HorarioDeAtencion hda){
 		this.rubro=rubro;
 		horario=hda;
+	}
+	
+	public LocalComercial() {
+	
 	}
 	
 	@Override

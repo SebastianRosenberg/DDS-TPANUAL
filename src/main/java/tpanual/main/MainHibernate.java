@@ -20,13 +20,13 @@ import tpanual.main.direccion.Pais;
 import tpanual.main.direccion.Provincia;
 import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.PuntoDeInteres;
-import tpanual.utilitarios.HibernateSession;
+import tpanual.utilitarios.HibernateFactorySessions;
 
 public class MainHibernate {
 
 	public static void main(String[] args) {
 		
-		HibernateSession h = new HibernateSession();
+		HibernateFactorySessions h = new HibernateFactorySessions();
 		Direccion d=new Direccion.DireccionBuilder().callePrincipal("Hidalgo").numero("0643").entreCalle1("Rojas").crearDireccion();
 		d.setLocalidad(Localidad.getLocalidadAuxiliar());
 		h.add(d);
@@ -49,6 +49,7 @@ public class MainHibernate {
 		h.add(poi3);
 		h.add(poi4);
 		
+		System.out.println("hola");
 		
 		h.close();
 	}

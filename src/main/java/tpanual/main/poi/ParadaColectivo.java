@@ -25,6 +25,10 @@ public class ParadaColectivo extends TipoPuntoInteres {
 	public ParadaColectivo(String linea) {
 		this.linea = linea;
 	}
+	
+	public ParadaColectivo() {
+	
+	}
 
 	public boolean estaDisponible (int dia, int hora, String x) {
 		//super.setHorario("09:00 a 18:00");

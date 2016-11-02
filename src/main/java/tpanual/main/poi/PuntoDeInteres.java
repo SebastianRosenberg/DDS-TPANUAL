@@ -55,6 +55,11 @@ public class PuntoDeInteres {
 		this.palabrasClaves=palabrasClaves;
 		this.dadoDeBaja=false;
 	}
+	
+	//DEFAULT CONSTRUCTOR PARA HIBERNATE, NO USAR
+	public PuntoDeInteres(){
+		
+	}
 
 	public double getLatitud() {
 		return latitud;

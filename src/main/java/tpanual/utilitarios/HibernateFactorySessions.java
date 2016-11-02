@@ -1,5 +1,6 @@
 package tpanual.utilitarios;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import tpanual.Rubro.RubroConcreteFW;
 import tpanual.Rubro.RubroFW;
+import tpanual.main.HorarioDeAtencion;
 import tpanual.main.MainHibernate;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
@@ -24,13 +26,13 @@ import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
 import tpanual.main.poi.TipoPuntoInteres;
 
-public class HibernateSession {
+public class HibernateFactorySessions {
 	
 	private Configuration configuration;
 	private SessionFactory factory;
 	private ServiceRegistry serviceRegistry;	
 	
-	public HibernateSession(){
+	public HibernateFactorySessions(){
 	
 		configuration = new Configuration();
 		configuration.configure().addAnnotatedClass(Direccion.class);
@@ -93,5 +95,38 @@ public class HibernateSession {
 		}
 		return empIdSaved;
 	}	
+	
+	public PuntoDeInteres obtenerPoi(Integer id) {
+	    Session session = null;
+	    PuntoDeInteres user = null;
+	    try {
+	        session = factory.openSession();
+	        user = (PuntoDeInteres)session.load(PuntoDeInteres.class, id);
+	        Hibernate.initialize(user);
+	    } catch (Exception e) {
+	       e.printStackTrace();
+	    } finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+	    return user;
+	}
+	
+	public void modificarPuntoDeInteres(PuntoDeInteres pdi){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.update(pdi);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 	
 }

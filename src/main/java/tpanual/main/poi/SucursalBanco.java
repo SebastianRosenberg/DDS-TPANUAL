@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,7 +28,8 @@ public class SucursalBanco extends TipoPuntoInteres {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "SUCURSAL_SERVICIOS", joinColumns = { @JoinColumn(name = "SUCURSAL_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
 	List<Servicio> servicios;
-	@Transient
+
+	@Column(columnDefinition="longblob")
 	HorarioDeAtencion horario = new HorarioDeAtencion();
 
 	public SucursalBanco(List<Servicio> lista) {
@@ -36,6 +40,10 @@ public class SucursalBanco extends TipoPuntoInteres {
 //		for (int i=1;i<6;i++) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
 //			agregarHorarioDeAtencion(10, 00, 15, 00, i);
 //		}
+	}
+	
+	public SucursalBanco() {
+		// 
 	}
 
 	@Override

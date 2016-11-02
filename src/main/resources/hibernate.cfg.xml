@@ -4,11 +4,11 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">admin</property>
+  <property name="hibernate.connection.password">tpanual</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost/tpanual_schm</property>
-  <property name="hibernate.connection.username">admin</property>
+  <property name="hibernate.connection.username">tpanual</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="hibernate.hbm2ddl.auto">create</property>
+  <property name="hbm2ddl.auto" >create</property>
   <!--  <mapping resource="Direccion.hbm.xml"/> -->
  </session-factory>
 </hibernate-configuration>

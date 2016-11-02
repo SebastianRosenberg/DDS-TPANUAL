@@ -58,6 +58,11 @@ public class Direccion {
 			
 	}
 	
+	//DEFAULT CONSTRUCTOR PARA HIBERNATE
+	public Direccion(){
+		
+	}
+	
 	public boolean equals(Object o){
 		if (!(o instanceof Direccion)) 
 			return false;

@@ -3,13 +3,24 @@ package tpanual.main;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.persistence.*;
+
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
-public class HorarioDeAtencion {
+public class HorarioDeAtencion implements java.io.Serializable {
 	
-	private List<Interval> horarios = new ArrayList<Interval>();
 
+	private static final long serialVersionUID = 1L;
+		
+	private List<Interval> horarios;
+	
+	public HorarioDeAtencion(){
+		horarios = new ArrayList<Interval>();
+	}
 	
 	public void addRangoDia (int desde, int hasta, int dia) {
 		int horaDesde = desde/100;
