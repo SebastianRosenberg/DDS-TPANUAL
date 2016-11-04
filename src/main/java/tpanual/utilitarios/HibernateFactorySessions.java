@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import administrador.Busqueda;
 import tpanual.Rubro.RubroConcreteFW;
 import tpanual.Rubro.RubroFW;
 import tpanual.main.HorarioDeAtencion;
@@ -25,6 +26,9 @@ import tpanual.main.poi.ParadaColectivo;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
 import tpanual.main.poi.TipoPuntoInteres;
+import tpanual.usuario.Administrador;
+import tpanual.usuario.Terminal;
+import tpanual.usuario.Usuario;
 
 public class HibernateFactorySessions {
 	
@@ -49,6 +53,10 @@ public class HibernateFactorySessions {
 		configuration.configure().addAnnotatedClass(Servicio.class);
 		configuration.configure().addAnnotatedClass(RubroConcreteFW.class);
 		configuration.configure().addAnnotatedClass(RubroFW.class);
+		configuration.configure().addAnnotatedClass(Busqueda.class);
+		configuration.configure().addAnnotatedClass(Usuario.class);
+		configuration.configure().addAnnotatedClass(Terminal.class);
+		configuration.configure().addAnnotatedClass(Administrador.class);
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		
@@ -151,4 +159,120 @@ public class HibernateFactorySessions {
 		}		
 	}
 	
+	//Agrego un método que recibe un objeto por parametro y lo persiste
+	
+	
+	public int add(Usuario d){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		Integer usrIdSaved = null;
+		try {
+			tx = session.beginTransaction();
+			usrIdSaved = (Integer) session.save(d);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return usrIdSaved;
+	}
+		
+	public void eliminarObjetoBd(Object obj){
+		
+		Session session = factory.openSession();
+
+		try {
+			session.beginTransaction();
+			session.delete(obj);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+		
+	}
+	
+	
+	public Usuario obtenerUsuario(Integer id) {
+	    Session session = null;
+	    //PuntoDeInteres poi = null;
+	    Usuario usr = null;
+	    Transaction tx = null;
+	    
+	    try {
+	        session = factory.openSession();
+	        tx = session.beginTransaction();
+	        usr = (Usuario)session.get(Usuario.class, id);
+	        tx.commit();
+	    } catch (Exception e) {
+	    	tx.rollback();
+	       e.printStackTrace();
+	    } finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+	    return usr;
+	}
+		
+	public int add(Busqueda bus){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		Integer busIdSaved = null;
+		try {
+			tx = session.beginTransaction();
+			busIdSaved = (Integer) session.save(bus);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return busIdSaved;
+	}
+	
+	public Busqueda obtenerBusqueda(Integer id) {
+	    Session session = null;
+	    Busqueda bus = null;
+	    Transaction tx = null;
+	    
+	    try {
+	        session = factory.openSession();
+	        tx = session.beginTransaction();
+	        bus = (Busqueda)session.get(Busqueda.class, id);
+	        tx.commit();
+	    } catch (Exception e) {
+	    	tx.rollback();
+	       e.printStackTrace();
+	    } finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+	    return bus;
+	}
+	
+	public void modificarUsuario(Usuario usr){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.update(usr);
+			session.flush();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 }

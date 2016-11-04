@@ -28,8 +28,12 @@ public abstract class Usuario {
 	
 	@Id @GeneratedValue
  	@Column (name = "ID")
- 	private int id;
+	protected int id;
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Column (name = "USUARIO")
 	protected String nombre;
 	
@@ -125,5 +129,8 @@ public abstract class Usuario {
 
 	public abstract Usuario desloguear(Usuario usuario);
 	
-	
+	//Constructor solo para Hibernate, no utilizar
+			public Usuario(){
+				
+			}
 }

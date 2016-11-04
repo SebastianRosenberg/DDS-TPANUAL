@@ -83,4 +83,22 @@ public class SesionBusqueda {
 		return nuevo;
 	}	
 	
+	//se agrega metodo para devolver una busqueda y persistirla en un test
+	
+	public Busqueda obtenerBusqueda(){
+		Busqueda b = null;
+		if (pois!=null && !pois.isEmpty()){
+			int[] ints=new int[0];
+			
+			Iterator<PuntoDeInteres> i=pois.iterator();
+			
+			while (i.hasNext()){
+				PuntoDeInteres poi=i.next();
+				ints=agregarElemento(ints, poi.getId());
+			}			
+			b=new Busqueda(stringsBuscados, ints, usuario, duracion, inicioDeBusqueda);
+			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
+		}
+		return b;
+	}
 }

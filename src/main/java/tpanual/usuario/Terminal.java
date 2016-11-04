@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PoiInfoBasica;
@@ -22,11 +23,12 @@ public class Terminal extends Usuario {
 
 	//private String nombre;
 	
-	@Id @GeneratedValue
- 	@Column (name = "ID")
-	private int id;
+	//@Id @GeneratedValue
+ 	//@Column (name = "ID")
+	//private int id;
 	
 	//@OneToOne
+	@Transient
 	private Estado estado;
 	
 	@Override
@@ -34,9 +36,9 @@ public class Terminal extends Usuario {
 		// TODO Auto-generated method stub
 		return this.nombre;
 	}
-	public int getId() {
+	/*public int getId() {
 		return id;
-	}
+	}*/
 	@Override
 	public String getEmail() {
 		// TODO Auto-generated method stub
@@ -103,11 +105,11 @@ public class Terminal extends Usuario {
 	
 	}
 
-	public void setId(int id) {
+	/*public void setId(int id) {
 	
 		this.id = id;
 	
-	}
+	}*/
 	
 	@Override
 	public Usuario logueo(Usuario usuario, String password,Usuario terminal)
@@ -153,4 +155,14 @@ public class Terminal extends Usuario {
 		// TODO Auto-generated method stub
 		return this.estado.realizarBusquedaAvanzada(user, nombre, direccion, palabraClave, coincDeTipo);
 	}
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return super.id;
+	}
+	
+	//Constructor solo para Hibernate, no utilizar
+			public Terminal(){
+				
+			}
 }

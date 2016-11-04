@@ -22,9 +22,9 @@ import tpanual.utilitarios.Email;
 @PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Administrador extends Usuario{
 
-	@Id @GeneratedValue
- 	@Column (name = "ID")
-	private int id;
+	//@Id @GeneratedValue
+ 	//@Column (name = "ID")
+	//private int id;
 	
 	//private String nombre;
 	@Column (name = "EMAIL", length = 50)
@@ -36,11 +36,11 @@ public class Administrador extends Usuario{
 		return nombre;
 	}
 
-	@Override
-	public int getId() {
+	//@Override
+	/*public int getId() {
 		// TODO Auto-generated method stub
 		return id;
-	}
+	}*/
 
 	@Override
 	public String getEmail() {
@@ -98,13 +98,15 @@ public class Administrador extends Usuario{
 		
 	}
 
+	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public void setId(int id) {
+	/*public void setId(int id) {
 		this.id = id;
-	}
+	}*/
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -170,6 +172,16 @@ public class Administrador extends Usuario{
 			
 			return AdministradorDePoi.getInstance().mapeoPois(list);
 		}
+
+		@Override
+		public int getId() {
+			// TODO Auto-generated method stub
+			return super.id;
+		}
 	
+		//Constructor solo para Hibernate, no utilizar
+		public Administrador(){
+			
+		}
 	
 }

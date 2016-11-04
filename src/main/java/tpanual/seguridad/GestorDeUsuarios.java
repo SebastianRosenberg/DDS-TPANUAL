@@ -87,7 +87,7 @@ public class GestorDeUsuarios {
 	/**Si alguien intenta loguearse como admin y alguien más está logueado, echa a la persona que ya esta logueada
 	 */
 	
-	
+
 	public  Usuario logueoComoAdmin(Usuario admin, String passwordIngresada, Usuario terminalActual)
 	{
 			String pass = getHashAdmins().get(admin);

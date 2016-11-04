@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.imageio.metadata.IIOInvalidTreeException;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -20,18 +21,46 @@ public class Busqueda {
  	@Column (name = "ID")
  	private int id;
 	
+	public int getId() {
+		return id;
+	}
+
+	@Transient
 	@Column (name = "FECHABUSQUEDA")
+	@Type (type = "joda.time.Date")
 	private DateTime fechaDeBusqueda;
 	
-	@Column (name = "STRINGSBUSCADOS")
+	@Transient
+	//@OneToMany(cascade = CascadeType.ALL)
+	//@JoinTable(name = "PALABRAS_BUS", joinColumns = { @JoinColumn(name = "PAL_ID") })
+	
+	@ElementCollection
+	//@OneToMany(cascade = CascadeType.ALL)
+	@CollectionTable (
+			name="StringsBuscados",
+					joinColumns = @JoinColumn(name = "BUS_ID") 
+			)
+	@OrderColumn (name = "indice_id")
+	@Column (name = "STRINGSENCONTRADOS")
 	private String[] stringsBuscados;
 	
+	@ElementCollection
+	//@OneToMany(cascade = CascadeType.ALL)
+	@CollectionTable (
+			name="PoisEncontrados",
+					joinColumns = @JoinColumn(name = "BUS_ID") 
+			)
+	@OrderColumn (name = "indice_id")
 	@Column (name = "IDSENCONTRADOS")
 	private int[] idsEncontrados;
 	
-	@ManyToOne
+	
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "USUARIO_ID")
 	private Usuario usuario;
 	
+	@Transient
 	@Column (name = "DURACIONBUSQUEDA")
 	private Duration duracion;
 	
@@ -99,6 +128,12 @@ public class Busqueda {
 		bp.setTotal(idsEncontrados.length);
 		bp.setUsuario(usuario);
 		return bp;
+	}
+	
+	//Se agrega constructor vacio, no usar, solo para hibernate
+	
+	public Busqueda(){
+		
 	}
 	
 }
