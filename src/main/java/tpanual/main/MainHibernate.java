@@ -49,8 +49,6 @@ public class MainHibernate {
 		h.add(poi3);
 		h.add(poi4);
 		
-		System.out.println("hola");
-		
 		h.close();
 	}
 }
