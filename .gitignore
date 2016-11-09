@@ -4,4 +4,4 @@
 target/
 /bin/
 persistence.xml
-hibernate.cfg.xml
+hibernate.cfg
