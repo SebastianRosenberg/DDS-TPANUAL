@@ -27,7 +27,12 @@ public class Busqueda {
 
 	@Transient
 	@Column (name = "FECHABUSQUEDA")
-	@Type (type = "joda.time.Date")
+	//@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDate")
+	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTimeWithZone")
+	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	//@Type (type = "joda.time.Date")
+	//@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	private DateTime fechaDeBusqueda;
 	
 	@Transient
