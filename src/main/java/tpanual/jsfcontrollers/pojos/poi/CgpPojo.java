@@ -9,13 +9,27 @@ public class CgpPojo extends PoiPojo{
 	private Direccion direccion;
 	private List<Servicio> servicios;
 	private int idComuna;
-	
+	private String valorAMostrarPorNombre;
+	private String valorAMostrarPorDireccion;
+	public String getValorAMostrarPorDireccion() {
+		return valorAMostrarPorDireccion;
+	}
+	public void setValorAMostrarPorDireccion(String valorAMostrarPorDireccion) {
+		this.valorAMostrarPorDireccion = valorAMostrarPorDireccion;
+	}
+	public String getValorAMostrarPorNombre() {
+		return valorAMostrarPorNombre;
+	}
+	public void setValorAMostrarPorNombre(String valorAMostrarPorNombre) {
+		this.valorAMostrarPorNombre = valorAMostrarPorNombre;
+	}
 	
 	public Direccion getDireccion() {
 		return direccion;
 	}
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
+		this.valorAMostrarPorDireccion = this.direccion.toString();
 	}
 	public List<Servicio> getServicios() {
 		return servicios;
@@ -28,5 +42,6 @@ public class CgpPojo extends PoiPojo{
 	}
 	public void setIdComuna(int idComuna) {
 		this.idComuna = idComuna;
+		this.valorAMostrarPorNombre = "CGP " + this.idComuna;
 	}
 }

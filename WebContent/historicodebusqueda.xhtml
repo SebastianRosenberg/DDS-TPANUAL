@@ -11,29 +11,25 @@
 
 <h:body>
 
+	<h:form>
 	<p:panel id="panelBusqueda" header="Historial de búsquedas realizadas">
 		<h:panelGrid columns="3" cellpadding="5">
-		<p:outputLabel value="Usuario:" /> 
-				<p:inputText id="usuario" value="#{loginBean1.usuario}"
-					required="true" label="Usuario">
-				</p:inputText> <br/>
-		<p:outputLabel value="Fecha:" /> 
-				<p:inputText id="fechaDesde" 
-					 label="Fecha">
-				</p:inputText>
-				<p:inputText id="fechaHasta"
-					 label="Fecha">
-				</p:inputText>
-		
-		<p:commandButton value="Buscar" 
-			actionListener="#{busquedaDePoiBean.save}" icon="ui-icon-search" />
-			<!-- update="resultadosDT" -->
-	</h:panelGrid>
+			<p:outputLabel value="Usuario:" /> 
+			<p:inputText id="usuario" value="#{historicoDeBusquedasBean.nombreUsuario}"/>
+			<br/>
+			
+			<p:outputLabel value="Fecha:" />
+	        <p:calendar id="fechaDesde" value="#{historicoDeBusquedasBean.fechaDesde}" />
+	        <p:calendar id="fechaHasta" value="#{historicoDeBusquedasBean.fechaHasta}" />
+	 
+			
+			<p:commandButton value="Buscar" update="resultadosDT"
+				actionListener="#{historicoDeBusquedasBean.buscar}" icon="ui-icon-search" />
+		</h:panelGrid>
 	</p:panel>
 
 
-	<h:form>
-		<p:dataTable id="resultadosDT" var="resultado" value="#{dtSelectionView.cars1}">
+		<p:dataTable id="resultadosDT" var="resultado" value="#{historicoDeBusquedasBean.busquedas}">
 			<f:facet name="header">
             Resultado
         </f:facet>
@@ -44,10 +40,10 @@
 				<h:outputText value="#{resultado.usuario}" />
 			</p:column>
 			<p:column headerText="Parámetros">
-				<h:outputText value="#{resulado.parametro}" />
+				<h:outputText value="#{resulado.parametros}" />
 			</p:column>
 			<p:column headerText="POI">
-				<h:outputText value="#{resultado.poi}" />
+				<h:outputText value="#{resultado.total}" />
 			</p:column>
 		</p:dataTable>
 	
