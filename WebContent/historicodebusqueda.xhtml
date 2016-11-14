@@ -11,54 +11,66 @@
 
 <h:body>
 
-	<p:panel id="panelBusqueda" header="Historial de búsquedas realizadas">
-		<h:panelGrid columns="3" cellpadding="5">
-		<p:outputLabel value="Usuario:" /> 
-				<p:inputText id="usuario" value="#{loginBean1.usuario}"
-					required="true" label="Usuario">
-				</p:inputText> <br/>
-		<p:outputLabel value="Fecha:" /> 
-				<p:inputText id="fechaDesde" 
-					 label="Fecha">
-				</p:inputText>
-				<p:inputText id="fechaHasta"
-					 label="Fecha">
-				</p:inputText>
-		
-		<p:commandButton value="Buscar" 
-			actionListener="#{busquedaDePoiBean.save}" icon="ui-icon-search" />
-			<!-- update="resultadosDT" -->
-	</h:panelGrid>
-	</p:panel>
+	<h:form id="form">
+		<p:panel id="panelBusqueda" header="Historial de búsquedas realizadas">
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:outputLabel value="Usuario:" />
+				<p:inputText id="usuario"
+					value="#{historicoDeBusquedasBean.nombreUsuario}" />
+				<br />
+
+				<p:outputLabel value="Fecha:" />
+				<p:calendar id="fechaDesde"
+					value="#{historicoDeBusquedasBean.fechaDesde}" />
+				<p:calendar id="fechaHasta"
+					value="#{historicoDeBusquedasBean.fechaHasta}" />
 
 
-	<h:form>
-		<p:dataTable id="resultadosDT" var="resultado" value="#{dtSelectionView.cars1}">
-			<f:facet name="header">
-            Resultado
-        </f:facet>
-        	<p:column headerText="Fecha">
-				<h:outputText value="#{resultado.fecha}" />
-			</p:column>
-			<p:column headerText="Usuario">
-				<h:outputText value="#{resultado.usuario}" />
-			</p:column>
-			<p:column headerText="Parámetros">
-				<h:outputText value="#{resulado.parametro}" />
-			</p:column>
-			<p:column headerText="POI">
-				<h:outputText value="#{resultado.poi}" />
-			</p:column>
-		</p:dataTable>
-	
-	    <p:dataList value="#{dataListView.cars1}" var="poi" type="ordered">
-	        <f:facet name="header">
+				<p:commandButton value="Buscar" update="resultadosDT"
+					actionListener="#{historicoDeBusquedasBean.buscar}"
+					icon="ui-icon-search" />
+			</h:panelGrid>
+		</p:panel>
+		<p:panel>
+			<p:dataTable id="resultadosDT" var="resultado"
+				actionListener="#{historicoDeBusquedasBean.masInfo}"
+				value="#{historicoDeBusquedasBean.busquedas}">
+				<f:facet name="header">
+            		Resultado
+       			</f:facet>
+				<p:column headerText="Fecha">
+					<h:outputText value="#{resultado.fecha}" />
+				</p:column>
+				<p:column headerText="Usuario">
+					<h:outputText value="#{resultado.usuario}" />
+				</p:column>
+				<p:column headerText="Parámetros">
+					<ui:repeat value="#{resultado.parametros}" varStatus="loop">
+						<p:outputLabel value="#{resultado.parametros[loop.index]}" /> &nbsp;
+					</ui:repeat>
+				</p:column>
+				<p:column headerText="POI">
+					<h:outputText value="#{resultado.total}" />
+				</p:column>
+				<p:column style="width:32px;text-align: center">
+					<p:commandButton update=":form:poiDetail" action="#{historicoDeBusquedasBean.masInfo(resultado.ids)}"
+						icon="ui-icon-search" title="View">
+						<f:setPropertyActionListener value="#{resultado}"
+							target="#{historicoDeBusquedasBean.busquedaSeleccionada}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:dataList id="poiDetail" value="#{historicoDeBusquedasBean.infoPOI}" width="300" var="poi"
+				type="ordered">
+				<f:facet name="header">
 	            Detalle de POI
 	        </f:facet>
-	        #{poi.nombre}
+	        	#{poi}
 	    </p:dataList>
+		</p:panel>
 	</h:form>
-	
+
 </h:body>
 <!--ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">  -->
 

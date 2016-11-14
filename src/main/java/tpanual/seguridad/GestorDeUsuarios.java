@@ -5,6 +5,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
+
 import administrador.Mapa;
 import tpanual.usuario.Administrador;
 import tpanual.usuario.Usuario;
@@ -84,7 +87,7 @@ public class GestorDeUsuarios {
 		return nuevoUsuario;	
 	}
 	
-	/**Si alguien intenta loguearse como admin y alguien más está logueado, echa a la persona que ya esta logueada
+	/**Si alguien intenta loguearse como admin y alguien mï¿½s estï¿½ logueado, echa a la persona que ya esta logueada
 	 */
 	
 
@@ -103,7 +106,7 @@ public class GestorDeUsuarios {
 			}
 			else
 			{
-				System.out.println("contraseña equivocada, por favor intente nuevamente");
+				System.out.println("contraseï¿½a equivocada, por favor intente nuevamente");
 				return null;
 			}
 			
@@ -231,5 +234,21 @@ public class GestorDeUsuarios {
 			}else{
 				quitarPrivilegioMasInfo(usr.getUser());
 			}
+	}
+	
+	public Usuario buscarUsuarioPorNombre(String nombreUsuario){
+		Iterator<Usuario> terms = terminales.values().iterator();
+		while (terms.hasNext()){
+			Usuario user = terms.next();
+			if (user.getNombre() == nombreUsuario)
+				return user;
+		}
+		Iterator<Usuario> adms = administradores.values().iterator();
+		while (adms.hasNext()){
+			Usuario user = adms.next();
+			if (user.getNombre() == nombreUsuario)
+				return user;
+		}
+		return null;//No se encontrÃ³ un usuario con ese nombre
 	}
 }
