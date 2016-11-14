@@ -31,13 +31,13 @@ import tpanual.usuario.Terminal;
 import tpanual.usuario.Usuario;
 
 public class HibernateFactorySessions {
-	
+
 	private Configuration configuration;
 	private SessionFactory factory;
-	private ServiceRegistry serviceRegistry;	
-	
-	public HibernateFactorySessions(){
-	
+	private ServiceRegistry serviceRegistry;
+
+	public HibernateFactorySessions() {
+
 		configuration = new Configuration();
 		configuration.configure().addAnnotatedClass(Direccion.class);
 		configuration.configure().addAnnotatedClass(Localidad.class);
@@ -57,18 +57,17 @@ public class HibernateFactorySessions {
 		configuration.configure().addAnnotatedClass(Usuario.class);
 		configuration.configure().addAnnotatedClass(Terminal.class);
 		configuration.configure().addAnnotatedClass(Administrador.class);
-		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-				configuration.getProperties()).build();
-		
+		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+
 		factory = configuration.buildSessionFactory(serviceRegistry);
 
 	}
-	
-	public void close(){
+
+	public void close() {
 		factory.close();
 	}
-	
-	public int add(Direccion d){
+
+	public int add(Direccion d) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer empIdSaved = null;
@@ -85,8 +84,8 @@ public class HibernateFactorySessions {
 		}
 		return empIdSaved;
 	}
-	
-	public int add(PuntoDeInteres poi){
+
+	public int add(PuntoDeInteres poi) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer empIdSaved = null;
@@ -102,30 +101,30 @@ public class HibernateFactorySessions {
 			session.close();
 		}
 		return empIdSaved;
-	}	
-	
-	public PuntoDeInteres obtenerPoi(Integer id) {
-	    Session session = null;
-	    PuntoDeInteres poi = null;
-	    Transaction tx = null;
-	    
-	    try {
-	        session = factory.openSession();
-	        tx = session.beginTransaction();
-	        poi = (PuntoDeInteres)session.get(PuntoDeInteres.class, id);
-	        tx.commit();
-	    } catch (Exception e) {
-	    	tx.rollback();
-	       e.printStackTrace();
-	    } finally {
-	        if (session != null && session.isOpen()) {
-	            session.close();
-	        }
-	    }
-	    return poi;
 	}
-	
-	public void modificarPuntoDeInteres(PuntoDeInteres pdi){
+
+	public PuntoDeInteres obtenerPoi(Integer id) {
+		Session session = null;
+		PuntoDeInteres poi = null;
+		Transaction tx = null;
+
+		try {
+			session = factory.openSession();
+			tx = session.beginTransaction();
+			poi = (PuntoDeInteres) session.get(PuntoDeInteres.class, id);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return poi;
+	}
+
+	public void modificarPuntoDeInteres(PuntoDeInteres pdi) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		try {
@@ -141,8 +140,8 @@ public class HibernateFactorySessions {
 			session.close();
 		}
 	}
-	
-	public void eliminarPuntoDeInteres(PuntoDeInteres pdi){
+
+	public void eliminarPuntoDeInteres(PuntoDeInteres pdi) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		try {
@@ -156,13 +155,12 @@ public class HibernateFactorySessions {
 			e.printStackTrace();
 		} finally {
 			session.close();
-		}		
+		}
 	}
-	
-	//Agrego un método que recibe un objeto por parametro y lo persiste
-	
-	
-	public int add(Usuario d){
+
+	// Agrego un método que recibe un objeto por parametro y lo persiste
+
+	public int add(Usuario d) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer usrIdSaved = null;
@@ -179,9 +177,9 @@ public class HibernateFactorySessions {
 		}
 		return usrIdSaved;
 	}
-		
-	public void eliminarObjetoBd(Object obj){
-		
+
+	public void eliminarObjetoBd(Object obj) {
+
 		Session session = factory.openSession();
 
 		try {
@@ -194,33 +192,32 @@ public class HibernateFactorySessions {
 		} finally {
 			session.close();
 		}
-		
+
 	}
-	
-	
+
 	public Usuario obtenerUsuario(Integer id) {
-	    Session session = null;
-	    //PuntoDeInteres poi = null;
-	    Usuario usr = null;
-	    Transaction tx = null;
-	    
-	    try {
-	        session = factory.openSession();
-	        tx = session.beginTransaction();
-	        usr = (Usuario)session.get(Usuario.class, id);
-	        tx.commit();
-	    } catch (Exception e) {
-	    	tx.rollback();
-	       e.printStackTrace();
-	    } finally {
-	        if (session != null && session.isOpen()) {
-	            session.close();
-	        }
-	    }
-	    return usr;
+		Session session = null;
+		// PuntoDeInteres poi = null;
+		Usuario usr = null;
+		Transaction tx = null;
+
+		try {
+			session = factory.openSession();
+			tx = session.beginTransaction();
+			usr = (Usuario) session.get(Usuario.class, id);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return usr;
 	}
-		
-	public int add(Busqueda bus){
+
+	public int add(Busqueda bus) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer busIdSaved = null;
@@ -237,29 +234,29 @@ public class HibernateFactorySessions {
 		}
 		return busIdSaved;
 	}
-	
+
 	public Busqueda obtenerBusqueda(Integer id) {
-	    Session session = null;
-	    Busqueda bus = null;
-	    Transaction tx = null;
-	    
-	    try {
-	        session = factory.openSession();
-	        tx = session.beginTransaction();
-	        bus = (Busqueda)session.get(Busqueda.class, id);
-	        tx.commit();
-	    } catch (Exception e) {
-	    	tx.rollback();
-	       e.printStackTrace();
-	    } finally {
-	        if (session != null && session.isOpen()) {
-	            session.close();
-	        }
-	    }
-	    return bus;
+		Session session = null;
+		Busqueda bus = null;
+		Transaction tx = null;
+
+		try {
+			session = factory.openSession();
+			tx = session.beginTransaction();
+			bus = (Busqueda) session.get(Busqueda.class, id);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return bus;
 	}
-	
-	public void modificarUsuario(Usuario usr){
+
+	public void modificarUsuario(Usuario usr) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		try {
