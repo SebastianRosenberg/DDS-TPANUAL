@@ -25,22 +25,11 @@ public class Busqueda {
 		return id;
 	}
 
-	@Transient
 	@Column (name = "FECHABUSQUEDA")
-	//@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDate")
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTimeWithZone")
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	//@Type (type = "joda.time.Date")
-	//@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime fechaDeBusqueda;
 	
-	@Transient
-	//@OneToMany(cascade = CascadeType.ALL)
-	//@JoinTable(name = "PALABRAS_BUS", joinColumns = { @JoinColumn(name = "PAL_ID") })
-	
 	@ElementCollection
-	//@OneToMany(cascade = CascadeType.ALL)
 	@CollectionTable (
 			name="StringsBuscados",
 					joinColumns = @JoinColumn(name = "BUS_ID") 
@@ -50,7 +39,6 @@ public class Busqueda {
 	private String[] stringsBuscados;
 	
 	@ElementCollection
-	//@OneToMany(cascade = CascadeType.ALL)
 	@CollectionTable (
 			name="PoisEncontrados",
 					joinColumns = @JoinColumn(name = "BUS_ID") 
@@ -58,8 +46,6 @@ public class Busqueda {
 	@OrderColumn (name = "indice_id")
 	@Column (name = "IDSENCONTRADOS")
 	private int[] idsEncontrados;
-	
-	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "USUARIO_ID")

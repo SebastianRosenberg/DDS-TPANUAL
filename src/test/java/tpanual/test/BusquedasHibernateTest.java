@@ -26,12 +26,8 @@ import tpanual.utilitarios.HibernateFactorySessions;
 
 public class BusquedasHibernateTest {
 	static HibernateFactorySessions hs;
-	//static Integer idPoiModificado;
 	static Integer idUsuarioEliminado;
-	//static AdministradorDeBusquedas adb = new AdministradorDeBusquedas();
 
-	
-	
 	@Test
 	public void persistirBusquedaTest(){
 		hs = new HibernateFactorySessions();
@@ -42,7 +38,7 @@ public class BusquedasHibernateTest {
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
 		Integer busquedaId = null;
 		
-		//Creo la direcciï¿½n
+		//Creo la dirección
 		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Nunca tiene plata");
@@ -64,15 +60,10 @@ public class BusquedasHibernateTest {
 		sb.setPois(lista);
 		busqueda = sb.obtenerBusqueda();
 		busquedaId = hs.add(busqueda);
-		//sb.finalizarBusqueda();
-		//punto.getId()
-		//Busqueda b=new Busqueda(1, lista, usuario, duracion, new DateTime());
-		
+	
 		busquedaBd = hs.obtenerBusqueda(busquedaId);
 		
-		//assertTrue(busqueda.equals(busquedaBd));
-		assertTrue(busquedaBd.getId() == busquedaId);
-		
+		assertTrue(busquedaBd.getId() == busquedaId);	
 	}
 	
 }

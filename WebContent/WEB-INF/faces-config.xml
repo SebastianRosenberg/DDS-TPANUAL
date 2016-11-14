@@ -8,7 +8,7 @@
 	<managed-bean>
 		<managed-bean-name>busquedaDePoiBean</managed-bean-name>
 		<managed-bean-class>tpanual.jsfBeans.BusquedaDePoiBean</managed-bean-class>
-		<managed-bean-scope>view</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>accionesBean</managed-bean-name>
@@ -26,5 +26,15 @@
 		<managed-bean-class>tpanual.jsfBeans.HistoricoDeBusquedasBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginBean2.loginNew}</from-action>
+			<from-outcome>"Logueado"</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

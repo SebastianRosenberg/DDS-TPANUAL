@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-
 import org.joda.time.DateTime;
-
-import administrador.AdministradorDePoi;
 import tpanual.jsfcontrollers.pojos.busqueda.BusquedaPojo;
 import tpanual.seguridad.GestorDeUsuarios;
-import tpanual.seguridad.UsuariosFactory;
-import tpanual.usuario.Usuario;
 import tpanual.jsfcontrollers.HistorialDeBusquedasController;
 
 @ManagedBean
