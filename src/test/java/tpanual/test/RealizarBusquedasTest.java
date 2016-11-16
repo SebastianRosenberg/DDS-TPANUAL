@@ -43,7 +43,7 @@ public class RealizarBusquedasTest {
 			infoPoiBuscado.setNombre(poiNuevo.getNombre());
 			
 		
-			List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusqueda("GCP Comuna 666");
+			List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.busquedaBasica("GCP Comuna 666");
 
 			
 			assertEquals(listaInfoBasica.get(0).getNombre(),infoPoiBuscado.getNombre());
@@ -73,7 +73,7 @@ public class RealizarBusquedasTest {
 		administrador.agregarPoi(poi);
 		
 		Usuario usuarioAProbar = GestorDeUsuarios.getInstance().crearTerminalActivo("Carlos");
-		GestorDeUsuarios.getInstance().darPrivilegioBusquedaAvanzada(usuarioAProbar);
+		GestorDeUsuarios.getInstance().setearPrivilegios(usuarioAProbar);
 		
 		PoiInfoBasica infoPoiBuscado = new PoiInfoBasica();
 		infoPoiBuscado.setDireccion(poi.getDireccion());
@@ -81,12 +81,12 @@ public class RealizarBusquedasTest {
 		infoPoiBuscado.setNombre(poi.getNombre());
 		
 		
-		List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusquedaAvanzada(usuarioAProbar, "GCP 42", null, null, "Depositos");
+		List<PuntoDeInteres> listaCompleta = usuarioAProbar.busquedaAvanzada("Depositos");
 
 		
-		assertEquals(listaInfoBasica.get(0).getNombre(),poi.getNombre());
-		assertEquals(listaInfoBasica.get(0).getId(),poi.getId());
-		assertEquals(listaInfoBasica.get(0).getDireccion(),poi.getDireccion());
+		assertEquals(listaCompleta.get(0).getNombre(),poi.getNombre());
+		assertEquals(listaCompleta.get(0).getId(),poi.getId());
+		assertEquals(listaCompleta.get(0).getDireccion(),poi.getDireccion());
 		
 
 }

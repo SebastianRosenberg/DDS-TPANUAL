@@ -30,57 +30,37 @@ public abstract class Usuario {
  	@Column (name = "ID")
 	protected int id;
 	
+
+	@Column (name = "USUARIO")
+	protected String nombre;	
+	
+	@Column (name = "privilegio")
+	protected boolean privilegio;
+	
+	public String getUsuario(){
+		return nombre;
+	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	@Column (name = "USUARIO")
-	protected String nombre;
-	
-	public abstract String getEmail();
-	
-	public abstract String getUsuario();
-	
-	public abstract int getId();
-	
-	
-	public abstract void activar();
-	
-	public abstract void desactivar();
-	
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
-	   
-		SesionBusqueda sBusqueda = new SesionBusqueda();
-		
-		Instant inicio = Temporizador.TiempoInicioBusqueda();
-
-		List<PuntoDeInteres> pois = this.buscarPuntos(strABuscar); 
-		sBusqueda.setPois(pois);
-		
-		Duration duracion = Temporizador.LapsoBusqueda(inicio);
-		
-		Temporizador.ChequeoLapso (duracion, this);
-		
-		sBusqueda.setDuracion(duracion);
-		sBusqueda.setStringsBuscados(new String[] {strABuscar});
-		sBusqueda.setUsuario(this);
-		sBusqueda.finalizarBusqueda();
-		return pois; 
-		
+	public  int getId(){
+		return id;
 	}
+
+	public abstract boolean login(String password);
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean test){
 		SesionBusqueda sBusqueda = new SesionBusqueda();
 		Temporizador temporizador = new Temporizador();
-		Instant inicio = temporizador.TiempoInicioBusqueda();
+		temporizador.tiempoInicioBusqueda();
 
-		List<PuntoDeInteres> pois =this.buscarPuntos(strABuscar, test); 
+		List<PuntoDeInteres> pois =AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(strABuscar, test);
 		sBusqueda.setPois(pois);
 		
-		Duration duracion = temporizador.LapsoBusqueda(inicio);
-		Temporizador.ChequeoLapso (duracion, this);
+		Duration d = temporizador.ChequeoLapso (this);
 		
-		sBusqueda.setDuracion(duracion);
+		sBusqueda.setDuracion(d);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
 		sBusqueda.setUsuario(this);
 		sBusqueda.finalizarBusqueda();
@@ -88,8 +68,11 @@ public abstract class Usuario {
 		
 	}
 	
-	protected abstract List<PuntoDeInteres> buscarPuntos(String x);
-	protected abstract List<PuntoDeInteres> buscarPuntos(String x, boolean test);
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
+		return this.busquedaDePuntosDeInteres(strABuscar, true);
+	}
+	
+	public abstract boolean isAdministrador();
 	
 	public abstract boolean modificarPoi(PuntoDeInteres poi);
 	
@@ -97,26 +80,22 @@ public abstract class Usuario {
 	
 	public abstract boolean eliminarPoi(PuntoDeInteres poi);
 	
-	public abstract Usuario logueo(Usuario admin,String pass,Usuario term);
-	
-	public String toString(){
-		return Integer.valueOf(this.getId()) + "_" + this.getUsuario();
-	}
-	
 	public abstract void notificar();
 	
 	
-	public abstract PuntoDeInteres masInformacion(Usuario user, Integer id);
+	public abstract PuntoDeInteres masInformacion(Integer id);
 
-	public abstract List<PuntoDeInteres> busquedaAvanzada(Usuario usuarioAProbar, String string, Direccion direccion, String string2,
-			String string3);
+	public abstract List<PuntoDeInteres> busquedaAvanzada(String x, boolean c);
 	
+	public List<PuntoDeInteres> busquedaAvanzada(String x){
+		return busquedaAvanzada(x, true);
+	}
 	
-	public abstract List<PoiInfoBasica> realizarBusqueda(String x);
-
-	public abstract List<PoiInfoBasica> realizarBusqueda(String x, boolean test);
-
-	public abstract List<PoiInfoBasica> realizarBusquedaAvanzada(Usuario user, String nombre, Direccion direccion, String palabraClave, String coincDeTipo);
+	public abstract List<PoiInfoBasica> busquedaBasica(String x, boolean c);
+	
+	public List<PoiInfoBasica> busquedaBasica(String x){
+		return busquedaBasica(x, true);
+	}
 	
 	public boolean equals(Object o){
 		if (o instanceof Usuario){
@@ -126,19 +105,32 @@ public abstract class Usuario {
 			return false;
 		}
 	}
-
-	public abstract Usuario desloguear(Usuario usuario);
 	
 	//Constructor solo para Hibernate, no utilizar
-			public Usuario(){
-				
-			}
 
-			public String getNombre() {
-				return nombre;
-			}
+	public Usuario(){
+		privilegio = true;
+	}
+	
+	public String toString(){
+		return Integer.valueOf(this.getId()) + "_" + this.getUsuario();
+	}
 
-			public void setNombre(String nombre) {
-				this.nombre = nombre;
-			}
+
+	public boolean isPrivilegio() {
+		return privilegio;
+	}
+
+	public void setPrivilegio(boolean privilegio) {
+		this.privilegio = privilegio;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
 }
