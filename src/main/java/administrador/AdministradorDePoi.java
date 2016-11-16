@@ -34,8 +34,10 @@ public class AdministradorDePoi {
 	
 	public void agregarPoi(PuntoDeInteres poi){
 		Mapa.getInstance().agregarPunto(poi);
+		Utilitarios.getHibernateFactorySessions().add(poi);
 	}
 	public boolean eliminarPoi(PuntoDeInteres poi){
+		Utilitarios.getHibernateFactorySessions().eliminarPuntoDeInteres(poi);
 		return (Mapa.getInstance().eliminarPunto(poi.getId()) != null);
 	}
 	

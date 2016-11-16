@@ -33,10 +33,20 @@ public class Mapa {
 		return instance;
 	}
 	
+	/**
+	 * Carga inicial del mapa desde la base de datos
+	 */
+	
 	private Mapa() {
 		puntos=new HashMap<Integer, PuntoDeInteres>();
 		adaptadores=new ArrayList<AdaptadorServicioExterno>();
 		adaptadores.add(new AdaptadorServicioExternoCGP());
+		List<PuntoDeInteres> pois = Utilitarios.getHibernateFactorySessions().obtenerTodosLosPuntos();
+		Iterator<PuntoDeInteres> it = pois.iterator();
+		while (it.hasNext()){
+			PuntoDeInteres poi = it.next();
+			puntos.put(poi.getId(), poi);
+		}
 	}
 	
 	void agregarPunto(PuntoDeInteres punto){
@@ -122,15 +132,6 @@ public class Mapa {
 		return l;
 	}
 
-	public List<PuntoDeInteres> BusquedaAvanzadaEnMemoria(String nombre, Direccion direccion, String palabraClave, String coincDeTipo) {
-		List<PuntoDeInteres> listaADevolver=new ArrayList<PuntoDeInteres>();
-		Iterator<PuntoDeInteres> it=puntos.values().iterator();
-		while (it.hasNext()){
-			PuntoDeInteres punto=it.next();
-			if (punto.buscarCoincidenciaAvanzada(nombre,direccion,palabraClave,coincDeTipo)) listaADevolver.add(punto);
-		}
-		return listaADevolver;
-	}
 	
 
 }
