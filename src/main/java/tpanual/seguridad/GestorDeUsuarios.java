@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
+
 import administrador.Mapa;
 import procesos.actualizarAccionesPorUsuario.MementoUsuarios;
 import tpanual.usuario.Administrador;
@@ -38,6 +41,9 @@ public class GestorDeUsuarios {
 		}
 	}
 	
+	public Usuario buscarUsuarioPorNombre(String nombre){
+		return usuarios.get(nombre);
+	}
 	
 	public Usuario crearTerminalActivo(String nombre)
 	{
@@ -59,6 +65,7 @@ public class GestorDeUsuarios {
 		return nuevoUsuario;	
 	}
 	
+
 	public Usuario logueraseAdministrador(String nombre, String password){
 		Usuario u = usuarios.get(nombre);
 		if (u!= null && u.login(password)){
@@ -68,6 +75,9 @@ public class GestorDeUsuarios {
 			return null;
 		}
 	}
+	
+		
+	
 	
 	public void setearPrivilegios(Usuario u){
 		u.setPrivilegio(true);
@@ -97,7 +107,5 @@ public class GestorDeUsuarios {
 	public String getStringValidezMD5() {
 		return stringValidezMD5;
 	}
-
-	
 
 }

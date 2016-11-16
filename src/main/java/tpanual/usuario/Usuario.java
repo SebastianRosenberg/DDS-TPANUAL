@@ -107,6 +107,7 @@ public abstract class Usuario {
 	}
 	
 	//Constructor solo para Hibernate, no utilizar
+
 	public Usuario(){
 		privilegio = true;
 	}
@@ -115,13 +116,6 @@ public abstract class Usuario {
 		return Integer.valueOf(this.getId()) + "_" + this.getUsuario();
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public boolean isPrivilegio() {
 		return privilegio;
@@ -129,5 +123,14 @@ public abstract class Usuario {
 
 	public void setPrivilegio(boolean privilegio) {
 		this.privilegio = privilegio;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 }
