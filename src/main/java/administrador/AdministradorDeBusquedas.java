@@ -20,6 +20,7 @@ public class AdministradorDeBusquedas {
 	
 	private AdministradorDeBusquedas(){
 		busquedas=new ArrayList<Busqueda>();
+		//MONGO: Rellenar aca esta lista con todos los documentos en la coleccion de mongo
 	}
 	
 	public static AdministradorDeBusquedas getInstance(){
@@ -40,16 +41,13 @@ public class AdministradorDeBusquedas {
 	
 	public void agregarBusqueda(Busqueda b){
 		busquedas.add(b);
+		//MONGO: Agregar aca un nuevo documento a la coleccion de mongo
 	}
 		
 	public List<Busqueda> getBusquedas(){
 		return busquedas;
 	}
 
-	public Busqueda getBusquedaAvanzadaAnterior(String[] listaNombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 }
