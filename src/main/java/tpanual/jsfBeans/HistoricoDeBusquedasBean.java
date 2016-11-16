@@ -51,15 +51,14 @@ public class HistoricoDeBusquedasBean {
 	public void buscar() {
 		DateTime fechaDesdeJoda = new DateTime(fechaDesde);
 		DateTime fechaHastaJoda = new DateTime(fechaHasta);
-		BusquedaPojo unaBusqueda = new BusquedaPojo();
+		/*BusquedaPojo unaBusqueda = new BusquedaPojo();
 		unaBusqueda.setFecha(new DateTime());
 		unaBusqueda.setTotal(3);
 		unaBusqueda.setParametros(new String[] { "uno", "dos" });
 		unaBusqueda.setUsuario(GestorDeUsuarios.getInstance().crearTerminalActivo("pedro"));
 		unaBusqueda.setIds(new int[] { 1, 2, 3 });
-		busquedas.add(unaBusqueda);
-		// busquedas = busquedasController.getHistorialBusquedas(fechaDesdeJoda,
-		// fechaHastaJoda, nombreUsuario);
+		busquedas.add(unaBusqueda);*/
+		busquedas = busquedasController.getHistorialBusquedas(fechaDesdeJoda,fechaHastaJoda, nombreUsuario);
 	}
 
 	public void masInfo(int[] ids) {
