@@ -10,7 +10,7 @@ public class ReintentarNVeces extends AccionEnCasoDeError{
 	   }
 	   
 		@Override
-		public RespuestaProceso RealizarAccion(Usuario usuario, Proceso proceso, RespuestaProceso respuesta) {
+		public RespuestaProceso RealizarAccion(Usuario usuario, Proceso proceso, RespuestaProceso respuesta) throws AccionNoPermitida{
 			for(int i = 0; i < n; i++)
 			{
 				RespuestaProceso resp = proceso.procesar();
