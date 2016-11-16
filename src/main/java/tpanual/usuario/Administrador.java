@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import administrador.AdministradorDePoi;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.utilitarios.Email;
@@ -99,7 +98,7 @@ public class Administrador extends Usuario{
 	}
 
 	@Override
-	public List<PoiInfoBasica> busquedaBasica(String x, boolean test){
+	public List<PuntoDeInteres> busquedaBasica(String x, boolean test){
 		return AdministradorDePoi.getInstance().busquedaBasica(x, test);
 	}
 

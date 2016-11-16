@@ -4,7 +4,6 @@ import java.util.List;
 
 import administrador.AdministradorDePoi;
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
@@ -35,7 +34,7 @@ public class Activo extends Estado{
 	
 	//Como se nos pide que ahora las busquedas solo traigan informacion determinada y no solo el poi, por el momento dejo estos dos m�todos
 	@Override
-	public  List<PoiInfoBasica> busquedaBasica(String x, boolean test){
+	public  List<PuntoDeInteres> busquedaBasica(String x, boolean test){
 
 		return AdministradorDePoi.getInstance().busquedaBasica(x,  test);
 	}

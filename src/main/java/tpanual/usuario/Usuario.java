@@ -16,7 +16,6 @@ import org.joda.time.Instant;
 import administrador.AdministradorDePoi;
 import administrador.SesionBusqueda;
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 
 import tpanual.temporizador.Temporizador;
@@ -50,12 +49,20 @@ public abstract class Usuario {
 
 	public abstract boolean login(String password);
 	
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean test){
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean test, boolean avanzada){
 		SesionBusqueda sBusqueda = new SesionBusqueda();
 		Temporizador temporizador = new Temporizador();
 		temporizador.tiempoInicioBusqueda();
-
-		List<PuntoDeInteres> pois =AdministradorDePoi.getInstance().busquedaDePuntosDeInteres(strABuscar, test);
+		
+		List<PuntoDeInteres> pois;
+		
+		if (avanzada){
+			pois = busquedaAvanzada(strABuscar, test);
+		}
+		else{
+			pois = busquedaBasica(strABuscar, test);
+		}
+		
 		sBusqueda.setPois(pois);
 		
 		Duration d = temporizador.ChequeoLapso (this);
@@ -68,8 +75,8 @@ public abstract class Usuario {
 		
 	}
 	
-	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar){
-		return this.busquedaDePuntosDeInteres(strABuscar, true);
+	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean avanzada){
+		return  busquedaDePuntosDeInteres(strABuscar, true, avanzada);
 	}
 	
 	public abstract boolean isAdministrador();
@@ -85,17 +92,9 @@ public abstract class Usuario {
 	
 	public abstract PuntoDeInteres masInformacion(Integer id);
 
-	public abstract List<PuntoDeInteres> busquedaAvanzada(String x, boolean c);
+	protected abstract List<PuntoDeInteres> busquedaAvanzada(String x, boolean c);
 	
-	public List<PuntoDeInteres> busquedaAvanzada(String x){
-		return busquedaAvanzada(x, true);
-	}
-	
-	public abstract List<PoiInfoBasica> busquedaBasica(String x, boolean c);
-	
-	public List<PoiInfoBasica> busquedaBasica(String x){
-		return busquedaBasica(x, true);
-	}
+	protected abstract List<PuntoDeInteres> busquedaBasica(String x, boolean c);
 	
 	public boolean equals(Object o){
 		if (o instanceof Usuario){

@@ -3,7 +3,6 @@ package tpanual.usuario.estado;
 import java.util.List;
 
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 
@@ -25,7 +24,7 @@ public class NoActivo extends Estado{
 	}
 
 	@Override
-	public List<PoiInfoBasica> busquedaBasica(String x, boolean test) {
+	public List<PuntoDeInteres> busquedaBasica(String x, boolean test) {
 		return null;
 	}
 

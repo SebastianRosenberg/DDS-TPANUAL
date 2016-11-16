@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.estado.Activo;
@@ -91,7 +90,7 @@ public class Terminal extends Usuario {
 	}
 
 	@Override
-	public List<PoiInfoBasica> busquedaBasica(String x, boolean c){
+	public List<PuntoDeInteres> busquedaBasica(String x, boolean c){
 		return this.estado.busquedaBasica(x, c);
 	}
 

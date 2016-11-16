@@ -8,7 +8,6 @@ import java.util.List;
 import org.joda.time.Duration;
 
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Utilitarios;
@@ -142,12 +141,12 @@ public class AdministradorDePoi {
 	}
 
 	
-	public List<PoiInfoBasica> busquedaBasica(String x, boolean c){
+	public List<PuntoDeInteres> busquedaBasica(String x, boolean c){
 		List<PuntoDeInteres> pois = this.busquedaDePuntosDeInteres(x, c);
-		List<PoiInfoBasica> lista = new ArrayList<PoiInfoBasica>();
+		List<PuntoDeInteres> lista = new ArrayList<PuntoDeInteres>();
 		Iterator<PuntoDeInteres> iterator = pois.iterator();
 		while (iterator.hasNext()) {
-			PoiInfoBasica poi = new PoiInfoBasica();
+			PuntoDeInteres poi = new PuntoDeInteres();
 			PuntoDeInteres poiEnLista = iterator.next();
 			poi.setId(poiEnLista.getId());
 			poi.setDireccion(poiEnLista.getDireccion());
@@ -157,7 +156,7 @@ public class AdministradorDePoi {
 		return lista;
 	}
 	
-	public List<PoiInfoBasica> busquedaBasica(String x){
+	public List<PuntoDeInteres> busquedaBasica(String x){
 		return busquedaBasica(x, true);
 	}
 	

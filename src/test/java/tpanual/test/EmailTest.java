@@ -50,7 +50,7 @@ public class EmailTest {
 		Temporizador temp = new Temporizador();
 		temp.tiempoInicioBusqueda();
 		
-		nuevoUsuario.busquedaDePuntosDeInteres("");
+		nuevoUsuario.busquedaDePuntosDeInteres("", true);
 
 		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(temp.ChequeoLapso(nuevoUsuario))>=0);
 		
@@ -83,7 +83,7 @@ public class EmailTest {
 		Temporizador temp = new Temporizador();
 		temp.tiempoInicioBusqueda();
 		
-		nuevoUsuario.busquedaDePuntosDeInteres("");
+		nuevoUsuario.busquedaDePuntosDeInteres("", true);
 		
 				
 		try {

@@ -41,7 +41,7 @@ public class ReporteTest {
 		administradorDePoi.agregarPoi(punto);
 		
 
-		usr.busquedaDePuntosDeInteres("Nunca tiene plata");
+		usr.busquedaDePuntosDeInteres("Nunca tiene plata", true);
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		
