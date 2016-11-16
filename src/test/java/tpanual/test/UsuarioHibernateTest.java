@@ -18,27 +18,9 @@ public class UsuarioHibernateTest {
 		
 		hs = new HibernateFactorySessions();
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance ();
-		int idUsuarioBd;
-		int idUsuarioTBd;
-		Usuario usuarioBD = null;
-		//Usuario usuarioTBd = null;
 		Usuario nuevoUsuarioAdmin =gestor.crearAdministrador("sebas", "mailsebas@hotmail.com","peras");
-		Usuario nuevoUsuarioTerminal = gestor.crearTerminalNoActivo("terminalUrquiza");
-		Usuario nuevoUsuarioTerminal2 = gestor.crearTerminalNoActivo("terminalBelgrano");
-		//hs.persistirObjeto(nuevoUsuarioAdmin);
-		//hs.persistirObjeto(nuevoUsuarioTerminal);
-		//hs.persistirObjeto(nuevoUsuarioTerminal2);
-		//hs.add(nuevoUsuarioAdmin);
-		
-		//hs.add(nuevoUsuarioTerminal2);
-		idUsuarioBd = hs.add(nuevoUsuarioAdmin);//Integer id = nuevoUsuarioAdmin.getId();
-		//Integer idT1 = nuevoUsuarioTerminal.getId();
-		idUsuarioTBd = nuevoUsuarioTerminal2.getId();
-		//idUsuarioEliminado = nuevoUsuarioTerminal.getId();
-		usuarioBD = hs.obtenerUsuario(idUsuarioBd);
-		assertTrue(usuarioBD.getId() == idUsuarioBd);
-		//assertTrue(nuevoUsuarioTerminal == hs.obtenerUsuarioBd(idT1));
-		//assertTrue(nuevoUsuarioTerminal2 == hs.obtenerUsuarioBd(idT2));
+		int idUsuarioBd = hs.add(nuevoUsuarioAdmin);
+		assertTrue(hs.obtenerUsuario(idUsuarioBd).getId() == idUsuarioBd);
 		
 	}
 

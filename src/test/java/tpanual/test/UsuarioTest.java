@@ -52,7 +52,7 @@ public class UsuarioTest {
 		nuevoUsuario.agregarPoi(poi1);
 		
 		/*asigno a una lista el resultado de la b�squeda*/
-		List<PuntoDeInteres> lista= nuevoUsuario.busquedaDePuntosDeInteres("");
+		List<PuntoDeInteres> lista= nuevoUsuario.busquedaDePuntosDeInteres("", true);
 		
 		assertTrue(lista.contains(poi));
 	}
@@ -62,7 +62,7 @@ public class UsuarioTest {
 				
 		Usuario nuevoUsuario = gestor.crearAdministrador("UserTest", "esuntest@gmail.com","1234cinco");
 		
-		List<PuntoDeInteres> lista=nuevoUsuario.busquedaDePuntosDeInteres("Parada de la linea ciento catorce");
+		List<PuntoDeInteres> lista=nuevoUsuario.busquedaDePuntosDeInteres("Parada de la linea ciento catorce", true);
 		Iterator<PuntoDeInteres> i = lista.iterator();
 		
 		PuntoDeInteres poi1 = null;
@@ -80,7 +80,7 @@ public class UsuarioTest {
 	public void usuarioTerminalActivoBusquedaTest(){
 		
 		Usuario usuarioTerminalActivo = gestor.crearTerminalActivo("UserTest");
-		assertTrue(usuarioTerminalActivo.busquedaDePuntosDeInteres("") != null);
+		assertTrue(usuarioTerminalActivo.busquedaDePuntosDeInteres("", true)!=null);
 	}
 	
 	@Test
@@ -88,7 +88,7 @@ public class UsuarioTest {
 		
 		Usuario usuarioTerminalNoActivo = gestor.crearTerminalNoActivo("UserTest");
 				
-		assertTrue(usuarioTerminalNoActivo.busquedaDePuntosDeInteres("")==null);
+		assertTrue(usuarioTerminalNoActivo.busquedaDePuntosDeInteres ("", true)==null);
 	}
 	
 }

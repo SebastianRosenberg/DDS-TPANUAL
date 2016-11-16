@@ -10,7 +10,6 @@ import org.junit.Test;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
@@ -37,13 +36,13 @@ public class RealizarBusquedasTest {
 			
 			Usuario usuarioAProbar = GestorDeUsuarios.getInstance().crearTerminalActivo("Pedro");
 			
-			PoiInfoBasica infoPoiBuscado = new PoiInfoBasica();
+			PuntoDeInteres infoPoiBuscado = new PuntoDeInteres();
 			infoPoiBuscado.setDireccion(poiNuevo.getDireccion());
 			infoPoiBuscado.setId(poiNuevo.getId());
 			infoPoiBuscado.setNombre(poiNuevo.getNombre());
 			
 		
-			List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusqueda("GCP Comuna 666");
+			List<PuntoDeInteres> listaInfoBasica = usuarioAProbar.busquedaDePuntosDeInteres("GCP Comuna 666", false);
 
 			
 			assertEquals(listaInfoBasica.get(0).getNombre(),infoPoiBuscado.getNombre());
@@ -73,20 +72,20 @@ public class RealizarBusquedasTest {
 		administrador.agregarPoi(poi);
 		
 		Usuario usuarioAProbar = GestorDeUsuarios.getInstance().crearTerminalActivo("Carlos");
-		GestorDeUsuarios.getInstance().darPrivilegioBusquedaAvanzada(usuarioAProbar);
+		GestorDeUsuarios.getInstance().setearPrivilegios(usuarioAProbar);
 		
-		PoiInfoBasica infoPoiBuscado = new PoiInfoBasica();
+		PuntoDeInteres infoPoiBuscado = new PuntoDeInteres();
 		infoPoiBuscado.setDireccion(poi.getDireccion());
 		infoPoiBuscado.setId(poi.getId());
 		infoPoiBuscado.setNombre(poi.getNombre());
 		
 		
-		List<PoiInfoBasica> listaInfoBasica = usuarioAProbar.realizarBusquedaAvanzada(usuarioAProbar, "GCP 42", null, null, "Depositos");
+		List<PuntoDeInteres> listaCompleta = usuarioAProbar.busquedaDePuntosDeInteres("Depositos", true);
 
 		
-		assertEquals(listaInfoBasica.get(0).getNombre(),poi.getNombre());
-		assertEquals(listaInfoBasica.get(0).getId(),poi.getId());
-		assertEquals(listaInfoBasica.get(0).getDireccion(),poi.getDireccion());
+		assertEquals(listaCompleta.get(0).getNombre(),poi.getNombre());
+		assertEquals(listaCompleta.get(0).getId(),poi.getId());
+		assertEquals(listaCompleta.get(0).getDireccion(),poi.getDireccion());
 		
 
 }

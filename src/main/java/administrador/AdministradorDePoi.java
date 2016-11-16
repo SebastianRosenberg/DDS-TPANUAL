@@ -8,7 +8,6 @@ import java.util.List;
 import org.joda.time.Duration;
 
 import tpanual.main.direccion.Direccion;
-import tpanual.main.poi.PoiInfoBasica;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Utilitarios;
@@ -35,8 +34,10 @@ public class AdministradorDePoi {
 	
 	public void agregarPoi(PuntoDeInteres poi){
 		Mapa.getInstance().agregarPunto(poi);
+		Utilitarios.getHibernateFactorySessions().add(poi);
 	}
 	public boolean eliminarPoi(PuntoDeInteres poi){
+		Utilitarios.getHibernateFactorySessions().eliminarPuntoDeInteres(poi);
 		return (Mapa.getInstance().eliminarPunto(poi.getId()) != null);
 	}
 	
@@ -141,46 +142,13 @@ public class AdministradorDePoi {
 		return poi;
 	}
 
-	public List<PuntoDeInteres> busquedaAvanzada(String nombre, Direccion direccion, String palabraClave, String coincDeTipo) {
-		if((nombre==null)&&(direccion==null)&&(palabraClave==null)&&(coincDeTipo==null)){
-			System.out.println("no ha ingresado ningun valor");
-			return null;
-		}
-		String listaNombre[] = {nombre};
-		String listaPalabraClave[] = {palabraClave};
-		String listaCoincDeTipo[] = {coincDeTipo};
-		
-//		revisar busqueda
-		Busqueda busqueda1=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaNombre);
-		Busqueda busqueda2=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaPalabraClave);
-		Busqueda busqueda3=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaCoincDeTipo);
-		
-		List<PuntoDeInteres> lista;
-		if (busqueda1!=null&&busqueda2!=null&&busqueda3!=null){
-			usoBufferBusqueda=true;
-			try{
-				int[] listaAAnalizar =intersection(intersection 
-						(busqueda1.getIdsEncontrados(),busqueda2.getIdsEncontrados()),busqueda3.getIdsEncontrados());
-				this.devolverPoiPorIds(listaAAnalizar);
-			}catch(PuntoDeInteresNoEncontradoException e){
-			}
-		}else{
-			usoBufferBusqueda=false;
-		}
-		lista=Mapa.getInstance().BusquedaAvanzadaEnMemoria(nombre,direccion,palabraClave,coincDeTipo);
-		
-		//revisar si me sirven 
-		//lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
-		return lista;
-	}
 	
-	
-	public List<PoiInfoBasica> mapeoPois(List<PuntoDeInteres> listaDePois)
-	{
-		PoiInfoBasica poi = new PoiInfoBasica();
-		List<PoiInfoBasica> lista = new ArrayList<PoiInfoBasica>();
-		Iterator<PuntoDeInteres> iterator = listaDePois.iterator();
+	public List<PuntoDeInteres> busquedaBasica(String x, boolean c){
+		List<PuntoDeInteres> pois = this.busquedaDePuntosDeInteres(x, c);
+		List<PuntoDeInteres> lista = new ArrayList<PuntoDeInteres>();
+		Iterator<PuntoDeInteres> iterator = pois.iterator();
 		while (iterator.hasNext()) {
+			PuntoDeInteres poi = new PuntoDeInteres();
 			PuntoDeInteres poiEnLista = iterator.next();
 			poi.setId(poiEnLista.getId());
 			poi.setDireccion(poiEnLista.getDireccion());
@@ -190,7 +158,9 @@ public class AdministradorDePoi {
 		return lista;
 	}
 	
-	
+	public List<PuntoDeInteres> busquedaBasica(String x){
+		return busquedaBasica(x, true);
+	}
 	
 	
 	 public int[] intersection(int x[],int y[])

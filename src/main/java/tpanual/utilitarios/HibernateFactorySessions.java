@@ -1,5 +1,7 @@
 package tpanual.utilitarios;
 
+import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -158,7 +160,7 @@ public class HibernateFactorySessions {
 		}
 	}
 
-	// Agrego un método que recibe un objeto por parametro y lo persiste
+	// Agrego un mï¿½todo que recibe un objeto por parametro y lo persiste
 
 	public int add(Usuario d) {
 		Session session = factory.openSession();
@@ -225,7 +227,7 @@ public class HibernateFactorySessions {
 			tx = session.beginTransaction();
 			busIdSaved = (Integer) session.save(bus);
 			tx.commit();
-		} catch (HibernateException e) {
+		} catch (Throwable e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
@@ -272,4 +274,40 @@ public class HibernateFactorySessions {
 			session.close();
 		}
 	}
+	
+	public List<PuntoDeInteres> obtenerTodosLosPuntos(){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			List<PuntoDeInteres> pois = session.createCriteria(PuntoDeInteres.class).list();
+			tx.commit();
+			return pois;
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}		
+	}
+	
+	public List<Usuario> obtenerTodosLosUsuarios(){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			List<Usuario> usuarios = session.createCriteria(Usuario.class).list();
+			tx.commit();
+			return usuarios;
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}		
+	}	
 }

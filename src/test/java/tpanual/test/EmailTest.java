@@ -47,14 +47,12 @@ public class EmailTest {
 		
 		
 		
-		Instant inicio = Temporizador.TiempoInicioBusqueda ();
+		Temporizador temp = new Temporizador();
+		temp.tiempoInicioBusqueda();
 		
-		nuevoUsuario.busquedaDePuntosDeInteres("");
-		
-		Duration duration = Temporizador.LapsoBusqueda(inicio);
+		nuevoUsuario.busquedaDePuntosDeInteres("", true);
 
-		
-		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)>=0);
+		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(temp.ChequeoLapso(nuevoUsuario))>=0);
 		
 	}
 	
@@ -82,9 +80,10 @@ public class EmailTest {
 		
 		
 		
-		Instant inicio = Temporizador.TiempoInicioBusqueda();
+		Temporizador temp = new Temporizador();
+		temp.tiempoInicioBusqueda();
 		
-		nuevoUsuario.busquedaDePuntosDeInteres("");
+		nuevoUsuario.busquedaDePuntosDeInteres("", true);
 		
 				
 		try {
@@ -92,10 +91,8 @@ public class EmailTest {
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-		
-		Duration duration = Temporizador.LapsoBusqueda(inicio);
 
-		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(duration)<0);
+		assertTrue(Constantes.TIEMPO_MAXIMO_CONSULTA.compareTo(temp.ChequeoLapso(nuevoUsuario))<0);
 		
 	}
 }

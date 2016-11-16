@@ -15,28 +15,20 @@ import tpanual.utilitarios.Email;
 
 public class Temporizador {
 	
-	public static Instant TiempoInicioBusqueda ()
-	{
-		Instant inicio = Instant.now();
-		return inicio;
+	private Instant inicio;
+	
+	public void tiempoInicioBusqueda (){
+		inicio = Instant.now();
 		
 	}
 
-	public static Duration LapsoBusqueda (Instant inicio)
-	{		
-	Instant fin = Instant.now();
-	return Duration.millis(fin.getMillis() - inicio.getMillis());
-	
-	}
-
-	public static void ChequeoLapso (Duration total, Usuario usuario)
-	{
-		if(Constantes.TIEMPO_MAXIMO_CONSULTA.getMillis() < total.getMillis())
-		{
+	public Duration ChequeoLapso (Usuario usuario){
+		
+		Duration total = Duration.millis(Instant.now().getMillis() - inicio.getMillis());
+		
+		if(Constantes.TIEMPO_MAXIMO_CONSULTA.getMillis() < total.getMillis()){
 			usuario.notificar();
 		}
+		return total;
 	}
 }
-
-//Utilizar el primer metodo antes de empezar la busqueda, en cuanto finaliza, llamar al segundo dentro de un if, 
-//si entra notificar al admin/loquesea

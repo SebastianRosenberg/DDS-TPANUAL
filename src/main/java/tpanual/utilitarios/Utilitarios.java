@@ -7,6 +7,9 @@ import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.PuntoDeInteres;
 
 public class Utilitarios {
+	
+	private static HibernateFactorySessions hfs;
+	
 	public static boolean buscarPalabraEnUnaLista(String x, List<String> lista){
 		Iterator<String> it=lista.iterator();
 		boolean aparicion=false;
@@ -42,6 +45,12 @@ public class Utilitarios {
 				lista2.add(p);
 		}
 		return lista2;
+	}
+	
+	public static HibernateFactorySessions getHibernateFactorySessions(){
+		if (hfs==null)
+			hfs = new HibernateFactorySessions();
+		return hfs;
 	}
 	
 }
