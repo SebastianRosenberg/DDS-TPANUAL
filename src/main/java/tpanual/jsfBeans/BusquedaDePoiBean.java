@@ -22,13 +22,15 @@ public class BusquedaDePoiBean {
 	}
 
 	public void buscar() {
-		// setResultadoBusqueda(busquedaDePoisController.buscarPois(palabrasFiltros));
-		SucursalBancoPojo aux = new SucursalBancoPojo();
+		
+		setResultadoBusqueda(busquedaDePoisController.buscarPois(palabrasFiltros));
+		
+		/*SucursalBancoPojo aux = new SucursalBancoPojo();
 		Direccion dir = new Direccion();
 		dir.setCallePrincipal("Carolina Muzilli");
 		dir.setNumero("5491");
 		aux.setDireccion(dir);
-		resultadoBusqueda.add(aux);
+		resultadoBusqueda.add(aux);*/
 	 
 	}
 
