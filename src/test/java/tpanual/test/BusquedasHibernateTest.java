@@ -29,41 +29,45 @@ public class BusquedasHibernateTest {
 	static Integer idUsuarioEliminado;
 
 	@Test
-	public void persistirBusquedaTest(){
+	public void persistirBusquedaTest() {
 		hs = new HibernateFactorySessions();
-		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance ();
-		Usuario nuevoUsuarioAdmin =gestor.crearAdministrador("CARC", "CARC@hotmail.com","1889");
+		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
+		Usuario nuevoUsuarioAdmin = gestor.crearAdministrador("CARC", "CARC@hotmail.com", "1889");
 		Busqueda busqueda;
 		Busqueda busquedaBd;
 		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
 		Integer busquedaId = null;
-		
-		//Creo la dirección
-		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
+
+		// Creo la dirección
+		Direccion direccionDeLaSucursal = new Direccion.DireccionBuilder().barrio("Villa Urquiza")
+				.callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
 		palabrasClave.add("Nunca tiene plata");
-		List<Servicio> servicios=Servicio.getListaServicios("Depositos");
-			
-		PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances", direccionDeLaSucursal, palabrasClave, servicios);
-						
+		List<Servicio> servicios = Servicio.getListaServicios("Depositos");
+
+		PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances",
+				direccionDeLaSucursal, palabrasClave, servicios);
+
 		administradorDePoi.agregarPoi(punto);
 		/**
-		 * Agrego manualmente al buffer de busquedas. Asi el sistema cree que esta busqueda se realizo y no requiere ir a servicios externos
+		 * Agrego manualmente al buffer de busquedas. Asi el sistema cree que
+		 * esta busqueda se realizo y no requiere ir a servicios externos
 		 */
-		String[] l={"Banco Frances", "Depositos"};
-		List<PuntoDeInteres> lista=new ArrayList<PuntoDeInteres>();
+		String[] l = { "Banco Frances", "Depositos" };
+		List<PuntoDeInteres> lista = new ArrayList<PuntoDeInteres>();
 		lista.add(punto);
-
-		SesionBusqueda sb=new SesionBusqueda();
+		// para que funcione sin error vargar usuario acá y hacer otro método
+		// que guarde la búsqueda con un usuario que exista en la base
+		SesionBusqueda sb = new SesionBusqueda();
 		sb.setUsuario(nuevoUsuarioAdmin);
 		sb.setStringsBuscados(l);
 		sb.setPois(lista);
 		busqueda = sb.obtenerBusqueda();
 		busquedaId = hs.add(busqueda);
-	
+
 		busquedaBd = hs.obtenerBusqueda(busquedaId);
-		
-		assertTrue(busquedaBd.getId() == busquedaId);	
+
+		assertTrue(busquedaBd.getId() == busquedaId);
 	}
-	
+
 }

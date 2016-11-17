@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html" id="fview">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Pantalla de inicio</title>
+	<ui:debug />
+	<f:metadata>
+		<ui:insert name="metadata" />
+	</f:metadata>
+
+	<h:head>
+		<p:ajaxStatus onstart="statusDialog.show();"
+			onsuccess="statusDialog.hide();" />
+
+		<p:layout fullPage="true" resizeTitle="resize"
+			style="background-color:#FFFFFF;">
+
+			<p:layoutUnit position="north" resizable="true" id="north">
+				<h:panelGrid columns="3" cellpadding="5" style="width: 100%;">
+					<p:row>
+						<p:column>
+							<center>
+								<p:graphicImage library="resources" name="userImg.png"
+									height="60" width="60" />
+								<!-- 								<h:outputLabel value="#{loginBean2.usuario}"></h:outputLabel> -->
+							</center>
+						</p:column>
+						<p:column>
+							<center>
+								<!-- 								<p:graphicImage library="resources" name="usr_img.png" -->
+								<!-- 									height="100" width="100" /> -->
+								<h:outputLabel value="#{loginBean2.usuario}"></h:outputLabel>
+							</center>
+						</p:column>
+
+					</p:row>
+					<p:row>
+						<p:column>
+							<center>
+																<h:outputText value="Trabajo Práctico Anual diseño de Sistemas"
+																	style="font-weight: bold;font-size:30px;" />
+							</center>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column style="text-align: right">
+							<p:graphicImage library="resources" name="logoUtn.png"
+								height="80" width="200" />
+						</p:column>
+					</p:row>
+
+
+					<!-- 					<p:graphicImage name="WebContent/resources/utnLogo.png" style="text-align: right;"/> -->
+				</h:panelGrid>
+				<!-- style="float: left"<ui:include src="header.xhtml" />style="float:right" -->
+			</p:layoutUnit>
+
+			<p:layoutUnit position="west" id="west">
+				<h:form rendered="#{loginBean2.esAdministrador}">
+					<p:outputPanel id="menuPanelAdmin" layout="block">
+						<p:menu autoSubmenuDisplay="true"
+							style="width:213px;height:483px;border:none;font-size:small;padding:0px;"
+							ajax="false" type="sliding" backLabel="#{msg['menu.back']}">
+							<p:submenu label="Menú" icon="ui-icon ui-icon-refresh">
+								<p:menuitem value="Búsqueda de Pois" url="/busquedadepois.xhtml" />
+								<p:menuitem value="Histórico de Búsquedas"
+									url="/historicodebusqueda.xhtml" />
+								<p:menuitem value="Acciones de usuario"
+									url="/accionesconsulta.xhtml" />
+							</p:submenu>
+						</p:menu>
+					</p:outputPanel>
+				</h:form>
+				<h:form rendered="#{!loginBean2.esAdministrador}">
+					<p:outputPanel id="menuPanelTerminal" layout="block">
+						<p:menu autoSubmenuDisplay="true"
+							style="width:213px;height:483px;border:none;font-size:small;padding:0px;"
+							ajax="false" type="sliding" backLabel="#{msg['menu.back']}">
+							<p:submenu label="Menú" icon="ui-icon ui-icon-refresh">
+								<p:menuitem value="Búsqueda de Pois" url="/busquedadepois.xhtml" />
+							</p:submenu>
+						</p:menu>
+					</p:outputPanel>
+				</h:form>
+				<!-- 					<ui:include src="menu.xhtml" /> -->
+			</p:layoutUnit>
+
+			<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+				<h:form id="mainForm">
+
+					<!-- 					<p:messages autoUpdate="true" id="msgs" showDetail="true" -->
+					<!-- 						showSummary="true" /> -->
+					<!-- 					<ui:insert name="content" /> -->
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="east" size="0"
+				style="width:0px; display:none;" id="east">
+			</p:layoutUnit>
+
+			<p:layoutUnit position="south" resizable="true" id="south">
+
+				<center>
+					<h:outputText
+						value="Ingeniería en Sistemas de Información - Grupo 4"
+						style="font-weight: bold;" />
+				</center>
+				<!-- 					<ui:include src="footer.xhtml" /> -->
+			</p:layoutUnit>
+
+		</p:layout>
+
+		<p:dialog modal="true" widgetVar="statusDialog" showHeader="false"
+			draggable="false" closable="false" resizable="false" visible="false"
+			position="center" maximizable="false" minimizable="false">
+			<!-- 			<p:graphicImage value="#{resource['images/ajax-loader.gif']}" /> -->
+		</p:dialog>
+
+
+	</h:head>
+
+	<h:body onload="statusDialog.hide();">
+	</h:body>
+
+</f:view>
+</html>

@@ -1,6 +1,7 @@
 package administrador;
 
 import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -36,6 +37,11 @@ public class SesionBusqueda {
 		inicioDeBusqueda = new DateTime();
 	}
 	
+	
+	/*
+	 * Se modifica método para hacerlo coincidir con el nuevo constructor
+	 * de la clase Busqueda
+	 */
 	public void finalizarBusqueda(){
 		
 		if (pois!=null && !pois.isEmpty()){
@@ -51,8 +57,15 @@ public class SesionBusqueda {
 			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
 		}
 	}
+	
 
-
+/*public void finalizarBusqueda(){
+		
+		if (pois!=null && !pois.isEmpty()){			
+			Busqueda b=new Busqueda(stringsBuscados, pois, usuario, duracion, inicioDeBusqueda);
+			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
+		}
+	}*/
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
@@ -84,7 +97,10 @@ public class SesionBusqueda {
 	}	
 	
 	//se agrega metodo para devolver una busqueda y persistirla en un test
-	
+	/*
+	 * Identico caso al método anterior, se modifica método para pasar
+	 * por parámetro la lista de pois encontrados y no la lista de ids
+	 */
 	public Busqueda obtenerBusqueda(){
 		Busqueda b = null;
 		if (pois!=null && !pois.isEmpty()){
@@ -101,4 +117,19 @@ public class SesionBusqueda {
 		}
 		return b;
 	}
+	
+
+	/*
+	public Busqueda obtenerBusqueda(){
+		Busqueda b = null;
+		if (pois!=null && !pois.isEmpty()){			
+			b=new Busqueda(stringsBuscados, pois, usuario, duracion, inicioDeBusqueda);
+			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
+		}
+		return b;
+	}*/
+	
+	
+	
+	
 }

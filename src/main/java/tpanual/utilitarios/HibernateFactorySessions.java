@@ -1,6 +1,11 @@
 package tpanual.utilitarios;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -9,6 +14,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+//import org.hibernate.criterion.CriteriaQuery;
+import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
 import administrador.Busqueda;
@@ -219,6 +226,7 @@ public class HibernateFactorySessions {
 		return usr;
 	}
 
+		
 	public int add(Busqueda bus) {
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -280,7 +288,9 @@ public class HibernateFactorySessions {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			List<PuntoDeInteres> pois = session.createCriteria(PuntoDeInteres.class).list();
+			
+			List<PuntoDeInteres> pois = (List<PuntoDeInteres>) session.createQuery("from PuntoDeInteres").list();
+			//List<PuntoDeInteres> pois = session.createCriteria(PuntoDeInteres.class).list();
 			tx.commit();
 			return pois;
 		} catch (HibernateException e) {
@@ -298,7 +308,7 @@ public class HibernateFactorySessions {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			List<Usuario> usuarios = session.createCriteria(Usuario.class).list();
+			 List<Usuario> usuarios = (List<Usuario>) session.createQuery("from Usuario").list();
 			tx.commit();
 			return usuarios;
 		} catch (HibernateException e) {

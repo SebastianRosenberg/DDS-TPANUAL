@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14769368850555" configfile="/DDS-TPANUAL/WebContent/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14769368850555" configfile="/DDS-TPANUAL/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="37" y="48" id="pf14789809357830" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14789827854081" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" x="204" y="48" id="pf14789827854092" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14789827854081" path="/home.xhtml"/>
+  <links id="pf14789827854081" target="pf14789827854092" source="pf14789809357830" outcome="&quot;Logueado&quot;" redirect="true" fromaction="#{loginBean2.loginNew}"/>
+</pageflow:Pageflow>

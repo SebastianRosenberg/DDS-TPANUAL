@@ -30,7 +30,7 @@
 			</h:panelGrid>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Aceptar" update="panel"
-					actionListener="#{loginBean2.login}" icon="ui-icon-check" />
+					actionListener="#{loginBean2.loginNew}" action="/home.xhtml?faces-redirect=true" icon="ui-icon-check" />
 				<p:commandButton value="Cancelar" update="panel"
 					actionListener="#{loginBean2.cancelar}" icon="ui-icon-close" />
 				<!--action="welcome.xhtml"-->
