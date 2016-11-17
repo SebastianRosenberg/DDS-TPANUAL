@@ -30,7 +30,7 @@ public class PuntoDeInteres {
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn ( name = "TIPO_PUNTO_INTERES_ID")
 	private TipoPuntoInteres tipo;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "POI_PALABRAS", joinColumns = { @JoinColumn(name = "POI_ID") }, inverseJoinColumns = { @JoinColumn(name = "PALABRA_CLAVE_ID") })
 	private List<PalabraClave> palabrasClaves;
 	@Column (name = "DADO_DE_BAJA")
