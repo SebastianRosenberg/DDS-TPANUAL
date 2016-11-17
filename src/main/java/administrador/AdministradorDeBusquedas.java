@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.mongo.MongoDBConnection;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
@@ -19,8 +20,7 @@ public class AdministradorDeBusquedas {
 	private static AdministradorDeBusquedas instance;
 	
 	private AdministradorDeBusquedas(){
-		busquedas=new ArrayList<Busqueda>();
-		//MONGO: Rellenar aca esta lista con todos los documentos en la coleccion de mongo
+		busquedas=MongoDBConnection.getInstance().obtenerTodasLasBusquedas();
 	}
 	
 	public static AdministradorDeBusquedas getInstance(){
@@ -41,7 +41,7 @@ public class AdministradorDeBusquedas {
 	
 	public void agregarBusqueda(Busqueda b){
 		busquedas.add(b);
-		//MONGO: Agregar aca un nuevo documento a la coleccion de mongo
+		MongoDBConnection.getInstance().agregarBusqueda(b);
 	}
 		
 	public List<Busqueda> getBusquedas(){
