@@ -72,7 +72,7 @@ public class LoginBean {
 		//4.5.3
 		usuarioBd = gestor.buscarUsuarioPorNombre(usuario);
 		this.setEsAdministrador(usuarioBd.isAdministrador());
-		if (usuario.equals(usuarioBd.getNombre()) && contrasenia.equals("grupo4")) {
+		if (usuario.equals(usuarioBd.getNombre()) && usuarioBd.login(contrasenia)) {
 			msg = "Usuario " + usuario + " autorizado";
 			resultado = "Logueado";
 		} else {
