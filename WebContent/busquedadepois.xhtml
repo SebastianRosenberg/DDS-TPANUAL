@@ -10,62 +10,74 @@
 </h:head>
 
 <h:body>
-	<h:form>
-	
-				
-		<p:dialog header="Agregar palabra de búsqueda" widgetVar="dlg2"
-			modal="true" height="150" width="400">
-			<h:outputText value="Ingrese una palabra a buscar" />
-			<br></br>
-			<p:inputText id="input_palabrasFiltro"
-				value="#{busquedaDePoiBean.valorInputFiltros}" />
-			<br></br>
-			<br></br>
-			<p:commandButton value="Aceptar"
-				actionListener="#{busquedaDePoiBean.agregarFiltro}"
-				styleClaSss="ui-confirmdialog-yes" icon="ui-icon-check"
-				update="lbox_filtros"
-				onclick="PF('dlg2').hide();" />
-		</p:dialog>
-		
-		<p:panel id="panelBusqueda" header="Criterio de búsqueda">
-			<h:panelGrid columns="3" cellpadding="5">
+	<p:layout fullPage="true" resizeTitle="resize"
+		style="background-color:#FFFFFF;">
 
-		<p:dataList id="lbox_filtros" value="#{busquedaDePoiBean.palabrasFiltros}" width="200" var="unFiltro" type="ordered">
-        <f:facet name="header">
+		<p:layoutUnit position="north" size="105" id="north">
+			<ui:include src="header.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+			<h:form>
+
+
+				<p:dialog header="Agregar palabra de búsqueda" widgetVar="dlg2"
+					modal="true" height="150" width="400">
+					<h:outputText value="Ingrese una palabra a buscar" />
+					<br></br>
+					<p:inputText id="input_palabrasFiltro"
+						value="#{busquedaDePoiBean.valorInputFiltros}" />
+					<br></br>
+					<br></br>
+					<p:commandButton value="Aceptar"
+						actionListener="#{busquedaDePoiBean.agregarFiltro}"
+						styleClaSss="ui-confirmdialog-yes" icon="ui-icon-check"
+						update="lbox_filtros" onclick="PF('dlg2').hide();" />
+				</p:dialog>
+
+				<p:panel id="panelBusqueda" header="Criterio de búsqueda">
+					<h:panelGrid columns="3" cellpadding="5">
+
+						<p:dataList id="lbox_filtros"
+							value="#{busquedaDePoiBean.palabrasFiltros}" width="200"
+							var="unFiltro" type="ordered">
+							<f:facet name="header">
             Filtros aplicados
         </f:facet>
         #{unFiltro}
     </p:dataList>
-				
-				<p:commandButton value="Agregar"
-					onclick="PF('dlg2').show();" icon="ui-icon-check">
-				</p:commandButton>
+
+						<p:commandButton value="Agregar" onclick="PF('dlg2').show();"
+							icon="ui-icon-check">
+						</p:commandButton>
 
 
-				<p:commandButton value="Buscar"
-					actionListener="#{busquedaDePoiBean.buscar}" 
-					update = "resultadoDT"
-					icon="ui-icon-search">
+						<p:commandButton value="Buscar"
+							actionListener="#{busquedaDePoiBean.buscar}" update="resultadoDT"
+							icon="ui-icon-search">
 
-				</p:commandButton>
-			</h:panelGrid>
-		</p:panel>
+						</p:commandButton>
+					</h:panelGrid>
+				</p:panel>
 
-		<p:dataTable id="resultadoDT" var="unPoi" value="#{busquedaDePoiBean.resultadoBusqueda}">
-			<f:facet name="header">
+				<p:dataTable id="resultadoDT" var="unPoi"
+					value="#{busquedaDePoiBean.resultadoBusqueda}">
+					<f:facet name="header">
             Resultado
         </f:facet>
-			<p:column headerText="Nombre">
-				<h:outputText value="#{unPoi.valorAMostrarPorNombre}" />
-			</p:column>
-			<p:column headerText="Dirección">
-				<h:outputText value="#{unPoi.valorAMostrarPorDireccion}" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-</h:body>
-<!--ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">  -->
+					<p:column headerText="Nombre">
+						<h:outputText value="#{unPoi.valorAMostrarPorNombre}" />
+					</p:column>
+					<p:column headerText="Dirección">
+						<h:outputText value="#{unPoi.valorAMostrarPorDireccion}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:layoutUnit>
 
-<!-- /ui:composition> -->
+		<p:layoutUnit position="south" resizable="true" id="south">
+			<ui:include src="footer.xhtml" />
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
 </html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<h:panelGrid columns="3" cellpadding="5" style="width: 100%;">
+		<p:row>
+			<p:column>
+				<center>
+					<p:graphicImage library="resources" name="userImg.png" height="60"
+						width="60" />
+					<!-- 								<h:outputLabel value="#{loginBean2.usuario}"></h:outputLabel> -->
+				</center>
+			</p:column>
+			<p:column>
+				<center>
+					<!-- 								<p:graphicImage library="resources" name="usr_img.png" -->
+					<!-- 									height="100" width="100" /> -->
+					<h:outputLabel value="#{loginBean2.usuario}"></h:outputLabel>
+				</center>
+			</p:column>
+
+		</p:row>
+		<p:row>
+			<p:column>
+				<center>
+					<h:outputText value="Trabajo Práctico Anual diseño de Sistemas"
+						style="font-weight: bold;font-size:30px;" />
+				</center>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column style="text-align: right">
+				<p:graphicImage library="resources" name="logoUtn.png" height="80"
+					width="200" />
+			</p:column>
+		</p:row>
+
+
+		<!-- 					<p:graphicImage name="WebContent/resources/utnLogo.png" style="text-align: right;"/> -->
+	</h:panelGrid>
+</body>
+</html>

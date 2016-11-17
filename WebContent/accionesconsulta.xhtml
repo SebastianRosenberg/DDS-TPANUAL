@@ -8,51 +8,60 @@
 
 
 <h:head>
-</h:head>
-<h:body>
+	<p:layout fullPage="true" resizeTitle="resize"
+		style="background-color:#FFFFFF;">
 
-	<style type="text/css">
+		<p:layoutUnit position="north" size="105" id="north">
+			<ui:include src="header.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+			<h:form id="mainForm">
+				<style type="text/css">
 .selectMenu {
 	display: inline-block;
 	vertical-align: top;
 	font-size: 20px;
 }
 </style>
-<h:form>
-	<div class="ui-g" style="text-align: center">
-		<div class="ui-g-12" style="text-align: center">
-			<p:selectOneMenu id="lista" value="#{accionesBean.accion}" styleClass="selectMenu">
-			<!--  styleClass="selectMenu" height="1" -->
-				<f:selectItem itemLabel="Seleccione una acción" itemValue="" />
-				<f:selectItems value="#{accionesBean.acciones}"/>
-			</p:selectOneMenu>
-			<p:spacer width="10" height="10" />
-			<p:commandButton id="agregarbtn" value="Agregar" update="accionesDT"
-			actionListener="#{accionesBean.agregarAccion}"/>
-		</div>
-	</div>
+				<h:form>
+					<div class="ui-g" style="text-align: center">
+						<div class="ui-g-12" style="text-align: center">
+							<p:selectOneMenu id="lista" value="#{accionesBean.accion}"
+								styleClass="selectMenu">
+								<!--  styleClass="selectMenu" height="1" -->
+								<f:selectItem itemLabel="Seleccione una acción" itemValue="" />
+								<f:selectItems value="#{accionesBean.acciones}" />
+							</p:selectOneMenu>
+							<p:spacer width="10" height="10" />
+							<p:commandButton id="agregarbtn" value="Agregar"
+								update="accionesDT"
+								actionListener="#{accionesBean.agregarAccion}" />
+						</div>
+					</div>
 
-	<div class="ui-g" style="text-align: center">
-		<div class="ui-g-4" style="text-align: center"></div>
-		<div class="ui-g-4" style="text-align: center">
-			<p:dataTable id="accionesDT" var="accion" value="#{accionesBean.accionesSeleccionadas}" >
-				<p:column headerText="Acciones" style="text-align: left">
-					<h:outputText value="#{accion}" />
-					<!-- <h:outputLabel for="name" value="Standard Label:" /> -->
-				</p:column>
-				<p:column>
-					<p:commandButton value="Eliminar" update="accionesDT"
-					action="#{accionesBean.eliminarAccion(accion)}"/>
-				</p:column>
-			</p:dataTable>
-		</div>
-		<!-- <div class="ui-g-4" style="text-align: center"></div>  
+					<div class="ui-g" style="text-align: center">
+						<div class="ui-g-4" style="text-align: center"></div>
+						<div class="ui-g-4" style="text-align: center">
+							<p:dataTable id="accionesDT" var="accion"
+								value="#{accionesBean.accionesSeleccionadas}">
+								<p:column headerText="Acciones" style="text-align: left">
+									<h:outputText value="#{accion}" />
+									<!-- <h:outputLabel for="name" value="Standard Label:" /> -->
+								</p:column>
+								<p:column>
+									<p:commandButton value="Eliminar" update="accionesDT"
+										action="#{accionesBean.eliminarAccion(accion)}" />
+								</p:column>
+							</p:dataTable>
+						</div>
+						<!-- <div class="ui-g-4" style="text-align: center"></div>  
 		#{accionesBean1.acciones}
 		#{accion.descripcion}
 		-->
-	</div>
+					</div>
 
-        <!-- <h:form id="form1">
+					<!-- <h:form id="form1">
             <p:growl id="messages" showDetail="true"/>
             <p:panel header="Sale Item" style="width: 400px;"> 
                 <p:panelGrid columns="2">
@@ -82,7 +91,15 @@
                 </p:dataTable>
              </p:panel>
         </h:form> -->
-</h:form>
+				</h:form>
 
-</h:body>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" resizable="true" id="south">
+			<ui:include src="footer.xhtml" />
+		</p:layoutUnit>
+	</p:layout>
+</h:head>
+
 </html>
