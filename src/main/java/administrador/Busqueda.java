@@ -127,7 +127,7 @@ public class Busqueda {
 		this.duracion = duracion;
 	}*/
 	
-	public DateTime getFechaDeBusqueda() {
+	public DateTime getFechaDeBusquedaJoda() {
 		return new DateTime(Long.valueOf(this.fechaDeBusqueda), DateTimeZone.UTC);
 	}
 
@@ -160,7 +160,7 @@ public class Busqueda {
 		return usuario;
 	}
 
-	public Duration getDuracion() {
+	public Duration getDuracionJoda() {
 		return new Duration(duracion);
 	}
 

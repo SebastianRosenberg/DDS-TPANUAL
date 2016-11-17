@@ -7,39 +7,51 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
 </h:head>
 <h:body>
+	<p:layout fullPage="true" resizeTitle="resize"
+		style="background-color:#FFFFFF;">
 
-	<h:form>
+		<p:layoutUnit position="north" size="105" id="north">
+			<ui:include src="header.xhtml" />
+		</p:layoutUnit>
 
-		<p:panel id="panel" header="Login">
-			<p:messages id="msgs" />
-			<h:panelGrid columns="3" cellpadding="5">
-				<p:outputLabel for="usuario" value="Usuario:" />
-				<p:inputText id="usuario" value="#{loginBean2.usuario}"
-					required="true" label="Usuario">
-				</p:inputText>
-				<p:message for="usuario" display="icon" />
-				<p:outputLabel for="contrasenia" value="Contraseña:" />
-				<p:password id="contrasenia" value="#{loginBean2.contrasenia}"
-					label="contrasenia" required="true">
-					<p:ajax update="msgContrasenia" event="keyup" />
-				</p:password>
-				<p:message for="contrasenia" id="msgContrasenia" display="icon" />
-			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<p:commandButton value="Aceptar" update="panel"
-					actionListener="#{loginBean2.loginNew}" action="/home.xhtml?faces-redirect=true" icon="ui-icon-check" />
-				<p:commandButton value="Cancelar" update="panel"
-					actionListener="#{loginBean2.cancelar}" icon="ui-icon-close" />
-				<!--action="welcome.xhtml"-->
-			</h:panelGrid>
+		<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+			<h:form>
 
-		</p:panel>
+				<p:panel id="panel" header="Login">
+					<p:messages id="msgs" />
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel for="usuario" value="Usuario:" />
+						<p:inputText id="usuario" value="#{loginBean2.usuario}"
+							required="true" label="Usuario">
+						</p:inputText>
+						<p:message for="usuario" display="icon" />
+						<p:outputLabel for="contrasenia" value="Contraseña:" />
+						<p:password id="contrasenia" value="#{loginBean2.contrasenia}"
+							label="contrasenia" required="true">
+							<p:ajax update="msgContrasenia" event="keyup" />
+						</p:password>
+						<p:message for="contrasenia" id="msgContrasenia" display="icon" />
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Aceptar" update="panel"
+							actionListener="#{loginBean2.loginNew}"
+							action="/home.xhtml?faces-redirect=true" icon="ui-icon-check" />
+						<p:commandButton value="Cancelar" update="panel"
+							actionListener="#{loginBean2.cancelar}" icon="ui-icon-close" />
+						<!--action="welcome.xhtml"-->
+					</h:panelGrid>
 
-	</h:form>
+				</p:panel>
 
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" resizable="true" id="south">
+			<ui:include src="footer.xhtml" />
+		</p:layoutUnit>
+	</p:layout>
 
 </h:body>
 </html>

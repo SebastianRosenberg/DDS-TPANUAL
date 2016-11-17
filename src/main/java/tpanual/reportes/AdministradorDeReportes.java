@@ -39,8 +39,8 @@ public class AdministradorDeReportes  {
 		Iterator<Busqueda> it = todasLasBusquedas.iterator();
 		while (it.hasNext()){
 			Busqueda b = it.next();
-			if (fechaDesde!=null && fechaDesde.isAfter(b.getFechaDeBusqueda()) || fechaDesde == null){
-				if (fechaHasta!=null && fechaHasta.isBefore(b.getFechaDeBusqueda()) || fechaHasta == null){
+			if (fechaDesde!=null && fechaDesde.isAfter(b.getFechaDeBusquedaJoda()) || fechaDesde == null){
+				if (fechaHasta!=null && fechaHasta.isBefore(b.getFechaDeBusquedaJoda()) || fechaHasta == null){
 					listaFinal.add(b);
 				}
 				
@@ -62,7 +62,7 @@ public class AdministradorDeReportes  {
 		List<CantidadPorFecha> listReporte = new ArrayList<CantidadPorFecha>();
 		
 		for(Busqueda unaBusqueda : todasLasBusquedas){
-			DateTime fecha = unaBusqueda.getFechaDeBusqueda();
+			DateTime fecha = unaBusqueda.getFechaDeBusquedaJoda();
 			
 			Supplier<Stream<CantidadPorFecha>> streamSupplier = () -> listReporte.stream().filter(b -> b.fecha == fecha);
 			CantidadPorFecha aux = null;

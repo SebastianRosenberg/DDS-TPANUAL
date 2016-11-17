@@ -24,6 +24,12 @@ import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.HibernateFactorySessions;
 
+/*
+ * Aclaración: esté test queda deprecado porque las bíusquedas pasan a 
+ * persistirse en Mongo en vez de Hibernate
+ * 
+ */
+
 public class BusquedasHibernateTest {
 	static HibernateFactorySessions hs;
 	static Integer idUsuarioEliminado;
@@ -67,7 +73,7 @@ public class BusquedasHibernateTest {
 
 		busquedaBd = hs.obtenerBusqueda(busquedaId);
 
-		assertTrue(busquedaBd.getId() == busquedaId);
+		//assertTrue(busquedaBd.getId() == busquedaId);
 	}
 
 }
