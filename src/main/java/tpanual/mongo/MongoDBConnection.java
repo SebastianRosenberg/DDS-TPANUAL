@@ -1,8 +1,13 @@
 package tpanual.mongo;
 
+import java.util.List;
+
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
@@ -35,5 +40,15 @@ public class MongoDBConnection {
 
     public Datastore getDatastore() {
         return this.datastore;
+    }
+    
+    public void agregarBusqueda(Busqueda b){
+    	this.datastore.save(b);
+    }
+    
+    public List<Busqueda> obtenerTodasLasBusquedas(){
+    	Query<Busqueda> query = datastore.createQuery(Busqueda.class);
+    	List<Busqueda> busquedas = query.asList();
+    	return busquedas;
     }
 }

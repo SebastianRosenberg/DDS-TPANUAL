@@ -9,6 +9,7 @@ import java.util.List;
 
 //import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
@@ -58,7 +59,7 @@ public class Busqueda {
 	 * @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	 * */
 	
-	private DateTime fechaDeBusqueda;
+	private long fechaDeBusqueda;
 
 	/*
 	 * 
@@ -69,7 +70,7 @@ public class Busqueda {
 	 * @OrderColumn(name = "indice_id")
 	 * @Column(name = "STRINGSENCONTRADOS")
 	 * */
-	
+	@Embedded
 	private String[] stringsBuscados;
 
 	/*
@@ -80,6 +81,7 @@ public class Busqueda {
 	 * 	@OrderColumn(name = "indice_id")
 	 * 	@Column(name = "IDSENCONTRADOS")
 	 * */
+	@Embedded
 	private int[] idsEncontrados;
 
 	/*
@@ -95,7 +97,7 @@ public class Busqueda {
 	 * @Transient
 	 * @Column(name = "DURACIONBUSQUEDA")*/
 	
-	private Duration duracion;
+	private long duracion;
 	
 	//@Embedded
     //private List<PuntoDeInteres> pois;
@@ -110,9 +112,9 @@ public class Busqueda {
 			DateTime dateTime) {
 		this.stringsBuscados = stringsBuscados;
 		this.idsEncontrados = idsEncontrados;
-		this.fechaDeBusqueda = dateTime;
+		this.fechaDeBusqueda = dateTime.getMillis();
 		this.usuario = usuario;
-		this.duracion = duracion;
+		this.duracion = duracion.getMillis();
 	}
 
 	
@@ -126,7 +128,7 @@ public class Busqueda {
 	}*/
 	
 	public DateTime getFechaDeBusqueda() {
-		return fechaDeBusqueda;
+		return new DateTime(Long.valueOf(this.fechaDeBusqueda), DateTimeZone.UTC);
 	}
 
 	public String[] getStringsBuscados() {
@@ -145,7 +147,7 @@ public class Busqueda {
 			coincidencia = coincidencia && (x[i] == null && stringsBuscados[i] == null
 					|| (x[i] != null && (x[i].indexOf(stringsBuscados[i])) != 1));
 		}
-		return coincidencia && Busqueda.fechaValida(fechaDeBusqueda);
+		return coincidencia && Busqueda.fechaValida(new DateTime(Long.valueOf(this.fechaDeBusqueda), DateTimeZone.UTC));
 	}
 
 	public static boolean fechaValida(DateTime fecha) {
@@ -159,7 +161,7 @@ public class Busqueda {
 	}
 
 	public Duration getDuracion() {
-		return duracion;
+		return new Duration(duracion);
 	}
 
 	public String toString() {
@@ -180,7 +182,7 @@ public class Busqueda {
 
 	public BusquedaPojo getPojo() {
 		BusquedaPojo bp = new BusquedaPojo();
-		bp.setFecha(fechaDeBusqueda);
+		bp.setFecha(new DateTime(Long.valueOf(this.fechaDeBusqueda), DateTimeZone.UTC));
 		bp.setIds(idsEncontrados);
 		bp.setParametros(stringsBuscados);
 		bp.setTotal(idsEncontrados.length);
