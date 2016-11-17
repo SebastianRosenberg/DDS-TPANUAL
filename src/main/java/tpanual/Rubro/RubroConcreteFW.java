@@ -23,6 +23,13 @@ public class RubroConcreteFW extends RubroFW{
 		return cercania;
 	}
 	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setCercania(int cercania) {
+		this.cercania = cercania;
+	}
+	
 	public boolean esIgual(String nombre, int cercania){
 		return (cercania==this.cercania && 
 				(nombre!=null && nombre.equals(this.nombre) || nombre==null));  		
