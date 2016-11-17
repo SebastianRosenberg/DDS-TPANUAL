@@ -35,5 +35,8 @@ public class RubroConcreteFW extends RubroFW{
 		return rc.esIgual(nombre, cercania);
 	}
 
-	
+	//constructor vacio - Hibernate Only
+	public RubroConcreteFW(){
+		
+	}
 }
