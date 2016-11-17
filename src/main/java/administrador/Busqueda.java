@@ -21,11 +21,11 @@ import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Constantes;
 
 /*
- * Para la entrega 7 se pasa a persistir las búsquedas en Mongo
- * por esta razón se modifican las annotations de Hibernate por
+ * Para la entrega 7 se pasa a persistir las bÃºsquedas en Mongo
+ * por esta razÃ³n se modifican las annotations de Hibernate por
  * annotations de Mongo.
  * Voy a dejar comentadas las annotations de Hibernate por si se
- * precisa volver atrás los cambios. 
+ * precisa volver atrÃ¡s los cambios. 
  * */
 
 /*
@@ -103,7 +103,7 @@ public class Busqueda {
     //private List<PuntoDeInteres> pois;
 
 	/*
-	 * Se modifica el constructor porque se desnormaliza la búsqueda
+	 * Se modifica el constructor porque se desnormaliza la bÃºsqueda
 	 * en vez de utilizar una lista de ids encontrados se pasa la lista
 	 * de pois encontrados directamente
 	 */
@@ -129,6 +129,22 @@ public class Busqueda {
 	
 	public DateTime getFechaDeBusquedaJoda() {
 		return new DateTime(Long.valueOf(this.fechaDeBusqueda), DateTimeZone.UTC);
+	}
+	
+	public long getFechaDeBusqueda(){
+		return fechaDeBusqueda;
+	}
+	
+	public void setFechaDeBusqueda(long fecha){
+		this.fechaDeBusqueda = fecha;
+	}
+	
+	public long getDuracion(){
+		return duracion;
+	}
+	
+	public void setDuracion(long duracion){
+		this.duracion = duracion;
 	}
 
 	public String[] getStringsBuscados() {
