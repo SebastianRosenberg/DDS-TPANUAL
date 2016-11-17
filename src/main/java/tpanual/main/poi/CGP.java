@@ -14,7 +14,7 @@ import tpanual.utilitarios.Constantes;
 @Table (name = "POI_CGP")
 public class CGP extends TipoPuntoInteres{
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "CGP_SERVICIOS", joinColumns = { @JoinColumn(name = "CGP_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
 	List<Servicio> servicios;
 	
