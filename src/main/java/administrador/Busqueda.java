@@ -112,9 +112,15 @@ public class Busqueda {
 			DateTime dateTime) {
 		this.stringsBuscados = stringsBuscados;
 		this.idsEncontrados = idsEncontrados;
-		this.fechaDeBusqueda = dateTime.getMillis();
+		if (dateTime != null)
+			this.fechaDeBusqueda = dateTime.getMillis();
+		else
+			this.fechaDeBusqueda=0;
 		this.usuario = usuario;
-		this.duracion = duracion.getMillis();
+		if (duracion != null)
+			this.duracion = duracion.getMillis();
+		else
+			this.duracion = 0;
 	}
 
 	

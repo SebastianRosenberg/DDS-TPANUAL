@@ -71,17 +71,23 @@ public class LoginBean {
 		
 		//4.5.3
 		usuarioBd = gestor.buscarUsuarioPorNombre(usuario);
-		this.setEsAdministrador(usuarioBd.isAdministrador());
-		if (usuario.equals(usuarioBd.getNombre()) && usuarioBd.login(contrasenia)) {
-			msg = "Usuario " + usuario + " autorizado";
-			resultado = "Logueado";
-		} else {
-			msg = "Usuario no autorizado";
+		if (usuarioBd != null){
+			this.setEsAdministrador(usuarioBd.isAdministrador());
+			if (usuario.equals(usuarioBd.getNombre()) && usuarioBd.login(contrasenia)) {
+				msg = "Usuario " + usuario + " autorizado";
+				resultado = "Logueado";
+			} else {
+				msg = "Usuario no autorizado";
+				resultado = "No Logueado";
+				severity = FacesMessage.SEVERITY_ERROR;
+		
+			}
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));
+		}else{
+			msg = "Usuario inexistente";
 			resultado = "No Logueado";
 			severity = FacesMessage.SEVERITY_ERROR;
-
 		}
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));
 		return resultado;
 	}
 

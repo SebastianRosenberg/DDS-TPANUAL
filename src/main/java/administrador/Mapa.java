@@ -41,6 +41,7 @@ public class Mapa {
 		puntos=new HashMap<Integer, PuntoDeInteres>();
 		adaptadores=new ArrayList<AdaptadorServicioExterno>();
 		adaptadores.add(new AdaptadorServicioExternoCGP());
+		adaptadores.add(new AdaptadorServicioExternoBancos());
 		List<PuntoDeInteres> pois = Utilitarios.getHibernateFactorySessions().obtenerTodosLosPuntos();
 		Iterator<PuntoDeInteres> it = pois.iterator();
 		while (it.hasNext()){
@@ -100,7 +101,7 @@ public class Mapa {
 		while (i.hasNext()){
 			AdaptadorServicioExterno adaptador=i.next();
 			if (!test){
-				List<PuntoDeInteres> ll=adaptador.buscar(x);
+				List<PuntoDeInteres> ll=adaptador.buscar(x, null);
 				if (ll!=null)
 					lista=Utilitarios.fusionarListasSinRepetidos(lista, ll);
 			}else{

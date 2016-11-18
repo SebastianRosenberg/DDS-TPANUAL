@@ -25,7 +25,7 @@ public class PuntoDeInteresTest {
 		palabrasClave.add("Nunca tiene plata");
 		List<Servicio> servicios=Servicio.getListaServicios("Depositos", "Extracciones");
 		
-		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Franc�s", direccionDeLaSucursal, palabrasClave, servicios);
+		PuntoDeInteres puntoFactory = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances", direccionDeLaSucursal, palabrasClave, servicios);
 								
 		assertFalse(puntoFactory.cercanoA(-34.568459D, -58.486106D, 12));
 		assertTrue(puntoFactory.cercanoA(-34.570581D, -58.489611D, 12));

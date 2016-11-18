@@ -67,6 +67,13 @@ public class AdministradorDePoiTest {
 		PuntoDeInteres pdi6=PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Kiosko no se fia ni al cura parroco", direccion, palabras2, rubro2, horario);
 		PuntoDeInteres pdi7=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 49", direccion, palabras, servicios3);
 		
+		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
+		ArrayList<String> palabrasClave = new ArrayList<String>();
+		palabrasClave.add("Nunca tiene plata");
+		List<Servicio> servicios1=Servicio.getListaServicios("Depositos", "Extracciones");
+		
+		PuntoDeInteres pdi8 = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances", direccionDeLaSucursal, palabrasClave, servicios1);
+		
 		puntoAdminSetUp.agregarPoi(pdi);
 		puntoAdminSetUp.agregarPoi(pdi2);
 		puntoAdminSetUp.agregarPoi(pdi3);
@@ -74,7 +81,7 @@ public class AdministradorDePoiTest {
 		puntoAdminSetUp.agregarPoi(pdi5);
 		puntoAdminSetUp.agregarPoi(pdi6);
 		puntoAdminSetUp.agregarPoi(pdi7);
-			
+		puntoAdminSetUp.agregarPoi(pdi8);
 	}
 	private static HorarioDeAtencion getHorario1(){
 		HorarioDeAtencion horario = new HorarioDeAtencion();
