@@ -21,5 +21,7 @@ public class MainHibernate {
 		}
 		
 		h.close();
+		
+		System.out.println("listo");
 	}
 }
