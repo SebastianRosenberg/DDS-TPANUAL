@@ -30,7 +30,7 @@ public abstract class Usuario {
 	protected int id;
 	
 
-	@Column (name = "USUARIO")
+	@Column (name = "USUARIO",unique = true)
 	protected String nombre;	
 	
 	@Column (name = "privilegio")
