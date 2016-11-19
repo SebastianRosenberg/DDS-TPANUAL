@@ -20,7 +20,7 @@ public class AdministradorDeBusquedas {
 	private static AdministradorDeBusquedas instance;
 	
 	private AdministradorDeBusquedas(){
-		busquedas=MongoDBConnection.getInstance().obtenerTodasLasBusquedas();
+		busquedas=new ArrayList<Busqueda>();
 	}
 	
 	public static AdministradorDeBusquedas getInstance(){
@@ -30,7 +30,7 @@ public class AdministradorDeBusquedas {
 	}
 	
 	public Busqueda getBusquedaAnterior(String[] x){
-		Iterator<Busqueda> it = busquedas.iterator();
+		List<Busqueda> lista = MongoDBConnection.getInstance().
 		while (it.hasNext()){
 			Busqueda b=it.next();
 			if (b.coincideBusqueda(x)) 
@@ -47,7 +47,5 @@ public class AdministradorDeBusquedas {
 	public List<Busqueda> getBusquedas(){
 		return busquedas;
 	}
-
-	
 	
 }

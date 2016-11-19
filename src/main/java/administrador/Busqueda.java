@@ -2,6 +2,8 @@ package administrador;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 //import java.util.Date;
 
 //import javax.imageio.metadata.IIOInvalidTreeException;
@@ -34,7 +36,7 @@ import tpanual.utilitarios.Constantes;
  * @Table (name = "Busqueda")
 */
 
-@Entity("busqueda")
+@Entity(value = "busquedaCol")
 public class Busqueda {
 
 	/*
@@ -46,9 +48,9 @@ public class Busqueda {
 	*/
 	
 	@Id
-	private int id;
+	private ObjectId  id;
 
-	public int getId() {
+	public ObjectId  getId() {
 		return id;
 	}
 
