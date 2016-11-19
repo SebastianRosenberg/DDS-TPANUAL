@@ -40,7 +40,12 @@ public class AdministradorDeBusquedas {
 		}
 		return null;
 		*/
-		return MongoDBConnection.getInstance().obtenerBusquedas(x).get(0);
+		List<Busqueda> lista = MongoDBConnection.getInstance().obtenerBusquedas(x);
+		if (lista!=null && !lista.isEmpty())
+			return lista.get(0);
+		else{
+			return null;
+		}
 		
 	}
 	
