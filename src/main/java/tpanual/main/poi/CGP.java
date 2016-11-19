@@ -19,19 +19,19 @@ public class CGP extends TipoPuntoInteres{
 	List<Servicio> servicios;
 	
 	@Column (name = "COMUNA_ID")
-	private int comunaId;
+	private String comunaId;
 	
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
 
-	public int getComunaId() {
+	public String getComunaId() {
 		return comunaId;
 	}
 
 	public CGP(List<Servicio> servicios, int comundaIid) {
 		this.servicios=servicios;
-		this.comunaId = comundaIid;
+		this.comunaId = String.valueOf(comundaIid);
 	}
 	
 	public CGP(){
@@ -74,9 +74,11 @@ public class CGP extends TipoPuntoInteres{
 	@Override
 	public boolean cercanoEntre(double latitudPunto, double longitudPunto, double latitudCoordenada,
 			double longitudCoordenada, int comunaId) {
-		
-		return this.comunaId == comunaId;
-
+		if (this.comunaId!=null){
+			return this.comunaId.equals(String.valueOf(comunaId));
+		}else{
+			return false;
+		}
 	}
 	/**
 	 * Recibe un servicio y te dice si esta en la lista de servicios del CGP
@@ -102,7 +104,7 @@ public class CGP extends TipoPuntoInteres{
 	public PoiPojo convertir(PuntoDeInteres p) {
 		CgpPojo cgp = new CgpPojo();
 		cgp.setDireccion(p.getDireccion());
-		cgp.setIdComuna(comunaId);
+		cgp.setIdComuna(Integer.valueOf(comunaId));
 		cgp.setServicios(servicios);
 		return cgp;
 	}

@@ -133,7 +133,7 @@ public class HibernateFactorySessions {
 		return poi;
 	}
 
-	public void modificarPuntoDeInteres(PuntoDeInteres pdi) {
+	public boolean modificarPuntoDeInteres(PuntoDeInteres pdi) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		try {
@@ -141,16 +141,18 @@ public class HibernateFactorySessions {
 			session.update(pdi);
 			session.flush();
 			tx.commit();
+			return true;
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
+			return false;
 		} finally {
 			session.close();
 		}
 	}
 
-	public void eliminarPuntoDeInteres(PuntoDeInteres pdi) {
+	public int eliminarPuntoDeInteres(PuntoDeInteres pdi) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		try {
@@ -158,10 +160,12 @@ public class HibernateFactorySessions {
 			session.delete(pdi);
 			session.flush();
 			tx.commit();
+			return 1;
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
+			return 0;
 		} finally {
 			session.close();
 		}
@@ -283,6 +287,7 @@ public class HibernateFactorySessions {
 		}
 	}
 	
+	@Deprecated
 	public List<PuntoDeInteres> obtenerTodosLosPuntos(){
 		Session session = factory.openSession();
 		Transaction tx = null;

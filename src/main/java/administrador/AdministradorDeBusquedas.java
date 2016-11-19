@@ -30,13 +30,18 @@ public class AdministradorDeBusquedas {
 	}
 	
 	public Busqueda getBusquedaAnterior(String[] x){
-		List<Busqueda> lista = MongoDBConnection.getInstance().
+		
+		/*: BUSCA EN MEMORIA, YA NO LO HACE
+		Iterator<Busqueda> it = busquedas.iterator();
 		while (it.hasNext()){
 			Busqueda b=it.next();
 			if (b.coincideBusqueda(x)) 
 				return b;
 		}
 		return null;
+		*/
+		return MongoDBConnection.getInstance().obtenerBusquedas(x).get(0);
+		
 	}
 	
 	public void agregarBusqueda(Busqueda b){
