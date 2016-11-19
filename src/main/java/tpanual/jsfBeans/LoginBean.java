@@ -41,18 +41,6 @@ public class LoginBean {
 		this.contrasenia = contrasenia;
 	}
 
-	public void login() {
-		String msg = "";
-		Severity severity = FacesMessage.SEVERITY_INFO;
-		if (usuario.equals("grupo4") && contrasenia.equals("grupo4")) {
-			msg = "Usuario " + usuario + " autorizado";
-		} else {
-			msg = "Usuario no autorizado";
-			severity = FacesMessage.SEVERITY_ERROR;
-		}
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));
-	}
-
 	public void cancelar() {
 		setUsuario(null);
 		setContrasenia(null);
@@ -72,28 +60,32 @@ public class LoginBean {
 		//4.5.3
 		usuarioBd = gestor.buscarUsuarioPorNombre(usuario);
 		if (usuarioBd != null){
-			this.setEsAdministrador(usuarioBd.isAdministrador());
+			//this.setEsAdministrador(usuarioBd.isAdministrador());
 			if (usuario.equals(usuarioBd.getNombre()) && usuarioBd.login(contrasenia)) {
 				msg = "Usuario " + usuario + " autorizado";
 				resultado = "Logueado";
+				this.mensajeAPantalla(msg, severity);
+				this.setEsAdministrador(usuarioBd.isAdministrador());
 			} else {
 				msg = "Usuario no autorizado";
 				resultado = "No Logueado";
 				severity = FacesMessage.SEVERITY_ERROR;
-		
+				this.mensajeAPantalla(msg, severity);
 			}
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));
+			//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));
 		}else{
 			msg = "Usuario inexistente";
 			resultado = "No Logueado";
 			severity = FacesMessage.SEVERITY_ERROR;
+			this.mensajeAPantalla(msg, severity);
 		}
 		return resultado;
 	}
-
-	//public Boolean esAdminastrador() {
-		//return true;
-
-	//}
+	
+	private void mensajeAPantalla(String mensaje,Severity severidad){
+		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severidad, mensaje, null));
+		
+	}
 
 }
