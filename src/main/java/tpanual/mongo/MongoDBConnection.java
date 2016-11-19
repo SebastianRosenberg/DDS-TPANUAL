@@ -28,27 +28,22 @@ public class MongoDBConnection {
     	String dbName = new String("tpanual_bd");
         MongoClient mongo = new MongoClient();
         final Morphia morphia = new Morphia();
-
-        // tell Morphia where to find your classes
-        // can be called multiple times with different packages or classes
-        //morphia.mapPackage("src.main.java.tpanual.administrador.busqueda");
         morphia.map(Busqueda.class);
-        // create the Datastore connecting to the default port on the local host
         this.datastore = morphia.createDatastore(mongo, dbName);
         datastore.ensureIndexes();
+        System.out.println("new mongo");
     }
 
-    public Datastore getDatastore() {
-        return this.datastore;
-    }
     
     public void agregarBusqueda(Busqueda b){
-    	this.datastore.save(b);
+    	datastore.save(b);
     }
     
-    public List<Busqueda> obtenerTodasLasBusquedas(){
-    	Query<Busqueda> query = datastore.createQuery(Busqueda.class);
-    	List<Busqueda> busquedas = query.asList();
+    public List<Busqueda> obtenerBusquedas(String[] strings){
+    	    	
+    	Query<Busqueda> q = datastore.createQuery(Busqueda.class);
+    	q.field("stringsBuscados").equal(strings);
+    	List<Busqueda> busquedas = q.asList();
     	return busquedas;
     }
 }
