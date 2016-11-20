@@ -63,6 +63,8 @@ public class ParadaColectivo extends TipoPuntoInteres {
 	public PoiPojo convertir(PuntoDeInteres p) {
 		ParadaDeColectivosPojo col = new ParadaDeColectivosPojo();
 		col.setNumeroLinea(linea);
+		col.setDireccion(p.getDireccion().toString());
+		col.setNombre("Linea "+ linea);
 		return col;
 	}	
 }

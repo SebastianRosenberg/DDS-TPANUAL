@@ -103,6 +103,7 @@ public class CGP extends TipoPuntoInteres{
 	@Override
 	public PoiPojo convertir(PuntoDeInteres p) {
 		CgpPojo cgp = new CgpPojo();
+		cgp.setNombre(p.getNombre());
 		cgp.setDireccion(p.getDireccion());
 		cgp.setIdComuna(Integer.valueOf(comunaId));
 		cgp.setServicios(servicios);
