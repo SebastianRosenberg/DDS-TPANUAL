@@ -10,7 +10,7 @@ import org.joda.time.Duration;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 /**
- * Se crea una nueva instancia antes de comenzar la busqueda. A través de las etapas que atraviece la busqueda, esta instancia debe ser pasada por parametro.
+ * Se crea una nueva instancia antes de comenzar la busqueda. A travï¿½s de las etapas que atraviece la busqueda, esta instancia debe ser pasada por parametro.
  * Se van agregando los distintos atributos que la busqueda puede tener:
  * 
  * usuario que realizo la busqueda
@@ -39,7 +39,7 @@ public class SesionBusqueda {
 	
 	
 	/*
-	 * Se modifica método para hacerlo coincidir con el nuevo constructor
+	 * Se modifica mï¿½todo para hacerlo coincidir con el nuevo constructor
 	 * de la clase Busqueda
 	 */
 	public void finalizarBusqueda(){
@@ -53,7 +53,7 @@ public class SesionBusqueda {
 				PuntoDeInteres poi=i.next();
 				ints=agregarElemento(ints, poi.getId());
 			}			
-			Busqueda b=new Busqueda(stringsBuscados, ints, usuario, duracion, inicioDeBusqueda);
+			Busqueda b=new Busqueda(stringsBuscados, pois, usuario, duracion, inicioDeBusqueda);
 			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
 		}
 	}
@@ -98,8 +98,8 @@ public class SesionBusqueda {
 	
 	//se agrega metodo para devolver una busqueda y persistirla en un test
 	/*
-	 * Identico caso al método anterior, se modifica método para pasar
-	 * por parámetro la lista de pois encontrados y no la lista de ids
+	 * Identico caso al mï¿½todo anterior, se modifica mï¿½todo para pasar
+	 * por parï¿½metro la lista de pois encontrados y no la lista de ids
 	 */
 	public Busqueda obtenerBusqueda(){
 		Busqueda b = null;
@@ -112,7 +112,7 @@ public class SesionBusqueda {
 				PuntoDeInteres poi=i.next();
 				ints=agregarElemento(ints, poi.getId());
 			}			
-			b=new Busqueda(stringsBuscados, ints, usuario, duracion, inicioDeBusqueda);
+			b=new Busqueda(stringsBuscados, pois, usuario, duracion, inicioDeBusqueda);
 			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
 		}
 		return b;
