@@ -70,7 +70,7 @@ public class HistoricoDeBusquedasBean {
 	public void masInfo(int[] ids) {
 		infoPOI.clear();
 		for (int i = 0; i < ids.length; i++) {
-			infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(i).getNombre());
+			infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(ids[i]).getNombre());
 			//infoPOI.add(String.valueOf(i));
 		}
 	}

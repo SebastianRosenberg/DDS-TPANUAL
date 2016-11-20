@@ -17,12 +17,12 @@ import tpanual.seguridad.GestorDeUsuarios;
 
 public class HistorialDeBusquedasController {
 	public List<BusquedaPojo> getHistorialBusquedas(DateTime fechaDesde, DateTime fechaHasta, String nombreUsuario){
-		List<Busqueda> l;
+		List<Busqueda> l = null;
 		List<BusquedaPojo> pojos = new ArrayList<BusquedaPojo>();
 		Usuario user = GestorDeUsuarios.getInstance().buscarUsuarioPorNombre(nombreUsuario);
-		if (user!=null){
+		if (nombreUsuario == null){
 			l = AdministradorDeReportes.getBusquedasPorFecha(fechaDesde, fechaHasta);
-		}else{
+		}else if (user != null){
 			l = AdministradorDeReportes.getBusquedasPorUsuario(user);
 		}
 		
