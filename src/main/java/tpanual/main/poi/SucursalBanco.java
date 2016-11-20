@@ -29,7 +29,8 @@ public class SucursalBanco extends TipoPuntoInteres {
 	@JoinTable(name = "SUCURSAL_SERVICIOS", joinColumns = { @JoinColumn(name = "SUCURSAL_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
 	List<Servicio> servicios;
 
-	@Column(columnDefinition="longblob")
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "HORARIO_DE_ATENCION_ID" )
 	HorarioDeAtencion horario = new HorarioDeAtencion();
 
 	public SucursalBanco(List<Servicio> lista) {

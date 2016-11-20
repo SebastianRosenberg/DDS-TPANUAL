@@ -22,6 +22,7 @@ import administrador.Busqueda;
 import tpanual.Rubro.RubroConcreteFW;
 import tpanual.Rubro.RubroFW;
 import tpanual.main.HorarioDeAtencion;
+import tpanual.main.Intervalo;
 import tpanual.main.MainHibernate;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
@@ -66,6 +67,9 @@ public class HibernateFactorySessions {
 		configuration.configure().addAnnotatedClass(Usuario.class);
 		configuration.configure().addAnnotatedClass(Terminal.class);
 		configuration.configure().addAnnotatedClass(Administrador.class);
+		configuration.configure().addAnnotatedClass(HorarioDeAtencion.class);
+		configuration.configure().addAnnotatedClass(Intervalo.class);
+
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
 		factory = configuration.buildSessionFactory(serviceRegistry);
