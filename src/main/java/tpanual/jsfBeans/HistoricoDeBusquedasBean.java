@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import org.joda.time.DateTime;
+
+import administrador.AdministradorDePoi;
 import tpanual.jsfcontrollers.pojos.busqueda.BusquedaPojo;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.jsfcontrollers.HistorialDeBusquedasController;
@@ -49,8 +51,12 @@ public class HistoricoDeBusquedasBean {
 	}
 
 	public void buscar() {
-		DateTime fechaDesdeJoda = new DateTime(fechaDesde);
-		DateTime fechaHastaJoda = new DateTime(fechaHasta);
+		DateTime fechaDesdeJoda = null;
+		DateTime fechaHastaJoda = null;
+		if(fechaDesde != null)
+			fechaDesdeJoda = new DateTime(fechaDesde);
+		if (fechaHasta != null)
+			fechaHastaJoda= new DateTime(fechaHasta);
 		/*BusquedaPojo unaBusqueda = new BusquedaPojo();
 		unaBusqueda.setFecha(new DateTime());
 		unaBusqueda.setTotal(3);
@@ -64,8 +70,8 @@ public class HistoricoDeBusquedasBean {
 	public void masInfo(int[] ids) {
 		infoPOI.clear();
 		for (int i = 0; i < ids.length; i++) {
-			//infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(i).getNombre());
-			infoPOI.add(String.valueOf(i));
+			infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(i).getNombre());
+			//infoPOI.add(String.valueOf(i));
 		}
 	}
 
