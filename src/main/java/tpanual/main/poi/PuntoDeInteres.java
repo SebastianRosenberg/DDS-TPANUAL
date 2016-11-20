@@ -40,7 +40,7 @@ public class PuntoDeInteres {
 	@Column (name = "DADO_DE_BAJA")
 	private boolean dadoDeBaja;
 	@Column (name = "FECHA_DE_BAJA")
-	private DateTime fechaBaja;
+	private long fechaBaja;
 
 	
 	//Para modificar POI
@@ -233,11 +233,15 @@ public class PuntoDeInteres {
 
 
 	public DateTime getFechaBaja() {
-		return fechaBaja;
+		return new DateTime(fechaBaja);
 	}
 
-	public void setFechaBaja(DateTime fechaBaja) {
-		this.fechaBaja = fechaBaja;
+	public void setFechaBajaInterno(DateTime fechaBaja) {
+		this.fechaBaja = fechaBaja.getMillis();
+	}
+	
+	public void setFechaBaja(long fecha){
+		this.fechaBaja = fecha;
 	}
 	
 	

@@ -44,8 +44,7 @@ public class Mapa {
 	 * @test: false para buscar en servicios externos, true para buscar en mock
 	 */
 	List<PuntoDeInteres> buscarPuntosDeInteresEnHibernate(String x){
-		//BUSCAR EN HIBERNATE CON LOS 
-		return null;
+		return Utilitarios.getHibernateFactorySessions().obtenerPoiPorQuery(x);
 	}
 	
 	/**
