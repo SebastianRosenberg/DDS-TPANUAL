@@ -1,7 +1,10 @@
 package tpanual.main.poi;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -16,13 +19,13 @@ public class CGP extends TipoPuntoInteres{
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "CGP_SERVICIOS", joinColumns = { @JoinColumn(name = "CGP_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
-	List<Servicio> servicios;
+	Set<Servicio> serviciosCgp;
 	
 	@Column (name = "COMUNA_ID")
 	private String comunaId;
 	
-	public List<Servicio> getServicios() {
-		return servicios;
+	public Set<Servicio> getServicios() {
+		return serviciosCgp;
 	}
 
 	public String getComunaId() {
@@ -30,7 +33,7 @@ public class CGP extends TipoPuntoInteres{
 	}
 
 	public CGP(List<Servicio> servicios, int comundaIid) {
-		this.servicios=servicios;
+		this.serviciosCgp=new HashSet<Servicio>(servicios);
 		this.comunaId = String.valueOf(comundaIid);
 	}
 	
@@ -46,13 +49,13 @@ public class CGP extends TipoPuntoInteres{
 	public boolean estaDisponible(int dia, int hora, String x) {
 		boolean disponible = false;
 		if (x == ""){//si no se ingresa el nombre de ningun servicio
-			for(Servicio serv:servicios){
+			for(Servicio serv:serviciosCgp){
 				if (serv.getHorario().estaEnHorarioDeAtencion(dia, hora)) 
 					disponible=true;
 			}
 		}
 		else{
-			for(Servicio serv:servicios){
+			for(Servicio serv:serviciosCgp){
 				if (serv.getNombre().toUpperCase().indexOf(x.toUpperCase()) != -1){
 					disponible = serv.getHorario().estaEnHorarioDeAtencion(dia, hora);
 				}
@@ -62,7 +65,7 @@ public class CGP extends TipoPuntoInteres{
 	}
 	
 	public boolean coincidencia(String x){
-		Iterator<Servicio> it=servicios.iterator();
+		Iterator<Servicio> it=serviciosCgp.iterator();
 		boolean aparicion=false;
 		while (it.hasNext() && !aparicion){
 			if (it.next().getNombre().toUpperCase().indexOf(x.toUpperCase()) != -1) 
@@ -86,7 +89,7 @@ public class CGP extends TipoPuntoInteres{
 	 * @return
 	 */
 	public boolean estaEnLaListaDeServicios(String x){
-		Iterator<Servicio> i=servicios.iterator();
+		Iterator<Servicio> i=serviciosCgp.iterator();
 		while (i.hasNext()){
 			if (i.next().getNombre().toUpperCase().indexOf(x.toUpperCase())!= -1) return true;
 		}
@@ -97,7 +100,7 @@ public class CGP extends TipoPuntoInteres{
 		if (!(o instanceof CGP))
 			return false;
 		CGP cgp=(CGP) o;
-		return ((servicios!=null && servicios.equals(cgp.servicios) || servicios==null && cgp.servicios==null) && comunaId==cgp.comunaId && super.equals(o));
+		return ((serviciosCgp!=null && serviciosCgp.equals(cgp.serviciosCgp) || serviciosCgp==null && cgp.serviciosCgp==null) && comunaId==cgp.comunaId && super.equals(o));
 	}
 
 	@Override
@@ -106,7 +109,7 @@ public class CGP extends TipoPuntoInteres{
 		cgp.setNombre(p.getNombre());
 		cgp.setDireccion(p.getDireccion());
 		cgp.setIdComuna(Integer.valueOf(comunaId));
-		cgp.setServicios(servicios);
+		cgp.setServicios(new ArrayList<Servicio>(serviciosCgp));
 		return cgp;
 	}
 }

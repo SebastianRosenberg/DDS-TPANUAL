@@ -27,7 +27,7 @@ public class ActualizacionDeLocalesComerciales extends Proceso {
 				if (!(poi.getTipo() instanceof LocalComercial)){
 					return new RespuestaProceso(EstadoResultado.ERROR, "El Punto de interes ingresado: " + poi.getId() + " no es un Local comercial");
 				}
-				poi.setPalabrasClaves(PalabraClave.getListaPalabrasClave(local.getPalabrasNuevas()));
+				poi.setPalabrasClavesList(PalabraClave.getListaPalabrasClave(local.getPalabrasNuevas()));
 				AdministradorDePoi.getInstance().modificarPoi(poi);
 			}
 			return new RespuestaProceso(EstadoResultado.OK, "Modificaciones realizadas");

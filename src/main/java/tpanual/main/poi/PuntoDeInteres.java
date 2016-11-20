@@ -1,7 +1,10 @@
 package tpanual.main.poi;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -32,7 +35,7 @@ public class PuntoDeInteres {
 	private TipoPuntoInteres tipo;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "POI_PALABRAS", joinColumns = { @JoinColumn(name = "POI_ID") }, inverseJoinColumns = { @JoinColumn(name = "PALABRA_CLAVE_ID") })
-	private List<PalabraClave> palabrasClaves;
+	private Set<PalabraClave> palabrasClaves;
 	@Column (name = "DADO_DE_BAJA")
 	private boolean dadoDeBaja;
 	@Column (name = "FECHA_DE_BAJA")
@@ -52,7 +55,7 @@ public class PuntoDeInteres {
 		this.nombre=nombre;
 		this.direccion=direccion;
 		this.tipo=tipo;
-		this.palabrasClaves=palabrasClaves;
+		this.palabrasClaves=new HashSet<PalabraClave>(palabrasClaves);
 		this.dadoDeBaja=false;
 	}
 	
@@ -95,7 +98,9 @@ public class PuntoDeInteres {
 
 	public boolean buscarCoincidencia(String x){
 		
-		return Utilitarios.buscarPalabraEnPalabrasClave(x, palabrasClaves) || tipo.coincidencia(x)|| (nombre.indexOf(x) != -1);
+		List<PalabraClave> palabras = new ArrayList<PalabraClave>();
+		palabras.addAll(palabrasClaves);
+		return Utilitarios.buscarPalabraEnPalabrasClave(x, palabras) || tipo.coincidencia(x)|| (nombre.indexOf(x) != -1);
 
 	}
 
@@ -224,8 +229,8 @@ public class PuntoDeInteres {
 		this.tipo = tipo;
 	}
 
-	public void setPalabrasClaves(List<PalabraClave> palabrasClaves) {
-		this.palabrasClaves = palabrasClaves;
+	public void setPalabrasClavesList(List<PalabraClave> palabrasClaves) {
+		this.palabrasClaves = new HashSet<PalabraClave>(palabrasClaves);
 	}
 
 	public static void setMaxId(int maxId) {
@@ -240,7 +245,10 @@ public class PuntoDeInteres {
 		this.fechaBaja = fechaBaja;
 	}
 	
-
+	
+	public void setPalabrasClaves(Set<PalabraClave> s){
+		this.palabrasClaves=s;
+	}
 
 	public PoiPojo getPojo(){
 		return tipo.convertir(this);
