@@ -41,7 +41,10 @@ public class Terminal extends Usuario {
 	}
 	
 	public boolean login(String password){
-		return true;
+		if (password.equals(""))
+			return true;
+		else
+			return false;
 	}
 
 	@Override

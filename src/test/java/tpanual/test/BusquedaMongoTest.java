@@ -55,7 +55,7 @@ public class BusquedaMongoTest {
 		busqueda = sb.obtenerBusqueda();
 
 		// persistir
-		MongoDBConnection.getInstance().getDatastore().save(busqueda);
+		MongoDBConnection.getInstance().agregarBusqueda(busqueda);
 
 	}
 }

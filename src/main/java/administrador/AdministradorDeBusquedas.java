@@ -20,7 +20,7 @@ public class AdministradorDeBusquedas {
 	private static AdministradorDeBusquedas instance;
 	
 	private AdministradorDeBusquedas(){
-		busquedas=MongoDBConnection.getInstance().obtenerTodasLasBusquedas();
+		busquedas=new ArrayList<Busqueda>();
 	}
 	
 	public static AdministradorDeBusquedas getInstance(){
@@ -30,6 +30,8 @@ public class AdministradorDeBusquedas {
 	}
 	
 	public Busqueda getBusquedaAnterior(String[] x){
+		
+		/*: BUSCA EN MEMORIA, YA NO LO HACE
 		Iterator<Busqueda> it = busquedas.iterator();
 		while (it.hasNext()){
 			Busqueda b=it.next();
@@ -37,6 +39,14 @@ public class AdministradorDeBusquedas {
 				return b;
 		}
 		return null;
+		*/
+		List<Busqueda> lista = MongoDBConnection.getInstance().obtenerBusquedas(x);
+		if (lista!=null && !lista.isEmpty())
+			return lista.get(0);
+		else{
+			return null;
+		}
+		
 	}
 	
 	public void agregarBusqueda(Busqueda b){
@@ -47,7 +57,5 @@ public class AdministradorDeBusquedas {
 	public List<Busqueda> getBusquedas(){
 		return busquedas;
 	}
-
-	
 	
 }

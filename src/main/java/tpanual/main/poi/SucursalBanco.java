@@ -38,9 +38,6 @@ public class SucursalBanco extends TipoPuntoInteres {
 		for (int i=Constantes.LUNES;i<Constantes.SABADO;i++) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
 			horario.addRangoDia(1000, 1500, i);
 		}
-//		for (int i=1;i<6;i++) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
-//			agregarHorarioDeAtencion(10, 00, 15, 00, i);
-//		}
 	}
 	
 	public SucursalBanco() {

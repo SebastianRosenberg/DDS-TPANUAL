@@ -10,6 +10,7 @@ import org.joda.time.Duration;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
+import tpanual.utilitarios.HibernateFactorySessions;
 import tpanual.utilitarios.Utilitarios;
 
 /**
@@ -26,19 +27,14 @@ public class AdministradorDePoi {
 	private static AdministradorDePoi instance;
 	
 	public boolean modificarPoi(PuntoDeInteres poi){
-		PuntoDeInteres aModificar=Mapa.getInstance().obtenerPuntoDeInteres(poi.getId());
-		if (aModificar!=null)
-			return aModificar.afectarCambios(poi);
-		return false;
+		return Utilitarios.getHibernateFactorySessions().modificarPuntoDeInteres(poi);
 	}
 	
 	public void agregarPoi(PuntoDeInteres poi){
-		Mapa.getInstance().agregarPunto(poi);
 		Utilitarios.getHibernateFactorySessions().add(poi);
 	}
 	public boolean eliminarPoi(PuntoDeInteres poi){
-		Utilitarios.getHibernateFactorySessions().eliminarPuntoDeInteres(poi);
-		return (Mapa.getInstance().eliminarPunto(poi.getId()) != null);
+		return (Utilitarios.getHibernateFactorySessions().eliminarPuntoDeInteres(poi) == 1);
 	}
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x){
@@ -46,7 +42,7 @@ public class AdministradorDePoi {
 	}
 	
 	public PuntoDeInteres obtenerPoiPorId(int id){
-		return Mapa.getInstance().obtenerPuntoDeInteres(id);
+		return Utilitarios.getHibernateFactorySessions().obtenerPoi(id);
 	}
 	
 	/**
@@ -63,15 +59,14 @@ public class AdministradorDePoi {
 		if (busqueda!=null){
 			usoBufferBusqueda=true;
 			try{
-				this.devolverPoiPorIds(busqueda.getIdsEncontrados());
+				return this.devolverPoiPorIds(busqueda.getIdsEncontrados());
 			}catch(PuntoDeInteresNoEncontradoException e){
 				//Se invalida la busqueda anterior y se procede a buscar normalmente
 			}
 		}else{
 			usoBufferBusqueda=false;
 		}
-		lista=Mapa.getInstance().buscarPuntosDeInteresEnMemoria(x);
-		
+		lista=Mapa.getInstance().buscarPuntosDeInteresEnHibernate(x);
 		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
 		return lista;
 	}
@@ -79,7 +74,7 @@ public class AdministradorDePoi {
 	private List<PuntoDeInteres> devolverPoiPorIds(int... id) throws PuntoDeInteresNoEncontradoException{
 		List<PuntoDeInteres> lista=new ArrayList<PuntoDeInteres>();
 		for (int i=0;i<id.length;i++){
-			PuntoDeInteres poi=Mapa.getInstance().obtenerPuntoDeInteres(id[i]);
+			PuntoDeInteres poi = Utilitarios.getHibernateFactorySessions().obtenerPoi(id[i]);
 			if (poi==null)
 				throw new PuntoDeInteresNoEncontradoException("Uno de los ids de la busqueda ya no se encuentra en memoria.");
 			lista.add(poi);
@@ -87,11 +82,11 @@ public class AdministradorDePoi {
 		}
 		return lista;
 	}
-
+	@Deprecated
 	public List<PuntoDeInteres> buscarBancos(String banco, String servicio ){
 		return buscarBancos(banco, servicio, false);
 	}
-	
+	@Deprecated
 	public List<PuntoDeInteres> buscarBancos(String banco, String servicio, boolean test){
 		String listaStrings[] = {banco, servicio};
 		Busqueda busqueda=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaStrings);
@@ -106,8 +101,8 @@ public class AdministradorDePoi {
 		}else{
 			usoBufferBusqueda=false;
 		}
-		lista=Mapa.getInstance().buscarPuntosDeInteresEnMemoria(banco);
-		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarPuntosDeInteresEnMemoria(servicio));
+		lista=Mapa.getInstance().buscarPuntosDeInteresEnHibernate(banco);
+		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarPuntosDeInteresEnHibernate(servicio));
 		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarBancos(banco, servicio));
 		return lista;
 	}
@@ -138,7 +133,7 @@ public class AdministradorDePoi {
 	 */
 
 	public PuntoDeInteres masInfoDePoi(Integer id) {
-		PuntoDeInteres poi =Mapa.getInstance().obtenerPuntoDeInteres(id);
+		PuntoDeInteres poi =Utilitarios.getHibernateFactorySessions().obtenerPoi(id);
 		return poi;
 	}
 

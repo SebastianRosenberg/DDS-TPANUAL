@@ -5,3 +5,5 @@ target/
 /bin/
 persistence.xml
 hibernate.cfg.xml
+.metadata/WebContent/WEB-INF/faces-config.pageflow
+WebContent/WEB-INF/faces-config.xml
