@@ -76,7 +76,7 @@ public class GestorDeUsuarios {
 	}
 	
 
-	public Usuario logueraseAdministrador(String nombre, String password){
+	public Usuario loguearUsuario(String nombre, String password){
 		Usuario u = usuarios.get(nombre);
 		if (u!= null && u.login(password)){
 			return u;
