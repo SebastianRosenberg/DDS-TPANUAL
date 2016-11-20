@@ -84,7 +84,7 @@ public class Busqueda {
 	 * 	@Column(name = "IDSENCONTRADOS")
 	 * */
 	@Embedded
-	private int[] idsEncontrados;
+	private List<PuntoDeInteres> poiEncontrados;
 
 	/*
 	 * 
@@ -110,10 +110,10 @@ public class Busqueda {
 	 * de pois encontrados directamente
 	 */
 	
-	public Busqueda(String[] stringsBuscados, int[] idsEncontrados, Usuario usuario, Duration duracion,
+	public Busqueda(String[] stringsBuscados, List<PuntoDeInteres> poiEncontrados, Usuario usuario, Duration duracion,
 			DateTime dateTime) {
 		this.stringsBuscados = stringsBuscados;
-		this.idsEncontrados = idsEncontrados;
+		this.poiEncontrados = poiEncontrados;
 		if (dateTime != null)
 			this.fechaDeBusqueda = dateTime.getMillis();
 		else
@@ -159,8 +159,8 @@ public class Busqueda {
 		return stringsBuscados;
 	}
 
-	public int[] getIdsEncontrados() {
-		return idsEncontrados;
+	public List<PuntoDeInteres> getPoiEncontrados() {
+		return poiEncontrados;
 	}
 
 	public boolean coincideBusqueda(String[] x) {
@@ -189,7 +189,7 @@ public class Busqueda {
 	}
 
 	public String toString() {
-		if (idsEncontrados.length == 0 || stringsBuscados.length == 0)
+		if (poiEncontrados.size() == 0 || stringsBuscados.length == 0)
 			return "[" + fechaDeBusqueda + "] No hubo ninguna coincidencia con la busqueda: " + stringsBuscados;
 
 		String s = "[" + fechaDeBusqueda + "] Se buscaron los strings: " + stringsBuscados[0];
@@ -197,19 +197,24 @@ public class Busqueda {
 			s += ", " + stringsBuscados[y];
 		}
 
-		s += " - Ids Encontrados: " + idsEncontrados[0];
-		for (int i = 1; i < idsEncontrados.length; i++) {
-			s += ", " + Integer.valueOf(idsEncontrados[i]);
+		s += " - Ids Encontrados: " + poiEncontrados.get(0).getId();
+		for (int i = 1; i < poiEncontrados.size(); i++) {
+			s += ", " + poiEncontrados.get(i).getId();
 		}
 		return s;
 	}
 
 	public BusquedaPojo getPojo() {
 		BusquedaPojo bp = new BusquedaPojo();
+		int i=0;
 		bp.setFecha(new DateTime(Long.valueOf(this.fechaDeBusqueda), DateTimeZone.UTC));
+		int[] idsEncontrados = new int[poiEncontrados.size()];
+		for(PuntoDeInteres poi:poiEncontrados){
+			idsEncontrados[i]=poi.getId();
+		}
 		bp.setIds(idsEncontrados);
 		bp.setParametros(stringsBuscados);
-		bp.setTotal(idsEncontrados.length);
+		bp.setTotal(poiEncontrados.size());
 		bp.setUsuario(usuario);
 		return bp;
 	}

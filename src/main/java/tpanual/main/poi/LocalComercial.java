@@ -20,10 +20,9 @@ public class LocalComercial extends TipoPuntoInteres {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "RUBRO_ID")
 	private RubroFW rubro;
-	@Transient
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "HORARIO_DE_ATENCION_ID" )
 	private HorarioDeAtencion horario;
-	@Transient
-	private List<Interval> horarioDeAtencion = new ArrayList<Interval>();
 	
 	public LocalComercial(RubroFW rubro, HorarioDeAtencion hda){
 		this.rubro=rubro;
