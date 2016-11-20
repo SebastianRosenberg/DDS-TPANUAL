@@ -343,6 +343,7 @@ public class HibernateFactorySessions {
 			Criteria c = session.createCriteria(PuntoDeInteres.class);
 			c.createAlias("palabrasClaves", "palabra");
 			c.createAlias("tipo", "tipo");
+			c.createAlias("tipo.serviciosCgp", "servicio");
 			c.add(Restrictions.or(
 					Restrictions.or(
 							Restrictions.like("palabra.nombre", parametro),
@@ -350,7 +351,7 @@ public class HibernateFactorySessions {
 					),
 					Restrictions.or(
 							Restrictions.like("nombre", parametro),
-							Restrictions.eq("tipo.servicios", Servicio.getListaServicios(""))
+							Restrictions.like("servicio.nombre", parametro)
 					)
 				)
 			);

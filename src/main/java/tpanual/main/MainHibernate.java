@@ -24,7 +24,11 @@ public class MainHibernate {
 		
 		//h.add(poi);
 		
-		List<PuntoDeInteres> lis = h.obtenerPoiPorQuery("palabraClave1");
+		System.out.println("buscando...");
+		
+		List<PuntoDeInteres> lis = h.obtenerPoiPorQuery("servicio1");
+		
+		System.out.println("mostrando...");
 		
 		Iterator<PuntoDeInteres> it = lis.iterator();
 		while (it.hasNext()){
