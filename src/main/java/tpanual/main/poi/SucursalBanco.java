@@ -89,6 +89,7 @@ public class SucursalBanco extends TipoPuntoInteres {
 	public PoiPojo convertir(PuntoDeInteres p) {
 		SucursalBancoPojo suc = new SucursalBancoPojo();
 		suc.setDireccion(p.getDireccion());
+		suc.setNombre(p.getNombre());
 		suc.setServicios(servicios);
 		return suc;
 	}	

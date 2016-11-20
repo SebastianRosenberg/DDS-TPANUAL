@@ -28,7 +28,7 @@ public class ComunicacionServiciosExternos implements
 	public List<PuntoDeInteres> obtenerCGPEnCalleOZona(String calleOZona) {
 		try {
 			Client client = Client.create();
-			String strUrl = String.format("http://trimatek.org/Consultas/centro?zona=%s", "Boedo");
+			String strUrl = String.format("http://trimatek.org/Consultas/centro?zona=%s", calleOZona);
 			WebResource webResource = client.resource(strUrl);
 
 			ClientResponse response = webResource.accept("application/json")
@@ -61,12 +61,12 @@ public class ComunicacionServiciosExternos implements
 						getServiciosCGP(unPoiJsonObject.get("servicios").getAsJsonArray()),
 						unPoiJsonObject.get("comuna").getAsInt());
 		
-		Direccion direccion = parsearDireccion(unPoiJsonObject.get("direccion").getAsString());
+		Direccion direccion = parsearDireccion(unPoiJsonObject.get("domicilio").getAsString());
 		PuntoDeInteres poi = 
 				new PuntoDeInteres(
 						0,
 						0,
-						"",
+						"CGP Comuna " + unPoiJsonObject.get("comuna").getAsInt(),
 						direccion,
 						new ArrayList<PalabraClave>(),
 						tipoPoi);
@@ -76,7 +76,7 @@ public class ComunicacionServiciosExternos implements
 
 	private Direccion parsearDireccion(String direccionSerealizada) {
 		// TODO ESTO NO FUNCIONA CON EL ULTIMO PARAMETRO QUE DEBE SER DE TIPO LOCALIDAD
-		return new Direccion("","","","","","","","","",null);
+		return new Direccion(direccionSerealizada,"","","","","","","","",null);
 	}
 
 	private List<Servicio> getServiciosCGP(JsonArray serviciosJsonArray) {
@@ -139,15 +139,16 @@ public class ComunicacionServiciosExternos implements
 			String nombreBanco, String nombreServicioOfrecido) {
 		try{
 			Client client = Client.create();
-			String strUrl = String.format("http://trimatek.org/Consultas/banco?banco=%s&servicio=%s", "Santander", "Pagos");
+			String strUrl = String.format("http://trimatek.org/Consultas/banco?banco=%s&servicio=%s", nombreBanco, nombreServicioOfrecido);
 			WebResource webResource = client.resource(strUrl);
 
 			ClientResponse response = webResource.accept("application/json")
 	                   .get(ClientResponse.class);
 			String s = response.getEntity(String.class);
 			JsonParser parser = new JsonParser();
+			JsonElement jsonElement = parser.parse(s);
+			JsonArray jsonArray = jsonElement.getAsJsonArray();
 			
-			JsonArray jsonArray = (JsonArray)parser.parse(s);
 			
 			List<PuntoDeInteres> listaPois = new ArrayList<PuntoDeInteres>();
 			
@@ -168,19 +169,25 @@ public class ComunicacionServiciosExternos implements
 	private PuntoDeInteres GenerarPoiBancoAPartirDeDatosExternos(
 			JsonObject unPoiJsonObject) {
 		
-
-		List<Servicio> servicios = GetServiciosBanco(unPoiJsonObject.get("servicios").getAsJsonArray());
+		JsonElement jsonElement = unPoiJsonObject.get("servicios");
+		
+		JsonArray jsonArray = jsonElement.getAsJsonArray();
+		List<Servicio> servicios = GetServiciosBanco(jsonArray);
 		SucursalBanco tipoPoi = new SucursalBanco(servicios);
+		
+		
+		Direccion dir = new Direccion();
+		dir.setBarrio(unPoiJsonObject.get("sucursal").getAsString());
 		
 		PuntoDeInteres poi = 
 				new PuntoDeInteres(
-						0,
-						0,
-						"",
-						parsearDireccion(""),
+						unPoiJsonObject.get("x").getAsDouble(),
+						unPoiJsonObject.get("y").getAsDouble(),
+						unPoiJsonObject.get("banco").getAsString(),
+						dir,
 						new ArrayList<PalabraClave>(),
 						tipoPoi);
-		
+	
 		return poi;
 		
 	}
@@ -190,8 +197,7 @@ public class ComunicacionServiciosExternos implements
 	
 		for(JsonElement unServicioJsonElement : jsonArray){
 			
-			JsonObject unServicioJsonObject = unServicioJsonElement.getAsJsonObject();
-			String nombreServicio = unServicioJsonObject.getAsString();
+			String nombreServicio = unServicioJsonElement.getAsString();
 			Servicio unServicio = new Servicio(nombreServicio);
 			servicios.add(unServicio);
 		}
