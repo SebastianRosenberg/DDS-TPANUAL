@@ -21,13 +21,13 @@ public class MainHibernate {
 		List<String> l = new ArrayList<String> ();
 		l.add("palabraClave1");
 		
-		PuntoDeInteres poi = PuntoDeInteresFactory.getSucursal(200, 300, "nombre sucursal", d, l, Servicio.getListaServicios("vende falopa"));
+		PuntoDeInteres poi = PuntoDeInteresFactory.getCGP(900, 800, "Boedo cgp", d, l, Servicio.getListaServicios("venta de estupefacientes d"), 90);
 		
 		//h.add(poi);
 		
 		System.out.println("buscando...");
 		
-		List<PuntoDeInteres> lis = h.obtenerPoiPorQuery("sucursal");
+		List<PuntoDeInteres> lis = h.obtenerPoiPorQuery("kiosko");
 		
 		System.out.println("mostrando...");
 		

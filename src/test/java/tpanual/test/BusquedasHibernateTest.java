@@ -25,55 +25,60 @@ import tpanual.usuario.Usuario;
 import tpanual.utilitarios.HibernateFactorySessions;
 
 /*
- * Aclaración: esté test queda deprecado porque las bíusquedas pasan a 
+ * Aclaración: esté test queda deprecado porque las búsquedas pasan a 
  * persistirse en Mongo en vez de Hibernate
- * 
+ * Los test deben ejecutarse con valor create en la propiedad del
+ * hibernate.cfg.xml
  */
 
 public class BusquedasHibernateTest {
-	static HibernateFactorySessions hs;
-	static Integer idUsuarioEliminado;
-
+	// static HibernateFactorySessions hs;
+	// static Integer idUsuarioEliminado;
+	//
 	@Test
 	public void persistirBusquedaTest() {
-		hs = new HibernateFactorySessions();
-		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-		Usuario nuevoUsuarioAdmin = gestor.crearAdministrador("CARC", "CARC@hotmail.com", "1889");
-		Busqueda busqueda;
-		Busqueda busquedaBd;
-		AdministradorDePoi administradorDePoi = new AdministradorDePoi();
-		Integer busquedaId = null;
-
-		// Creo la dirección
-		Direccion direccionDeLaSucursal = new Direccion.DireccionBuilder().barrio("Villa Urquiza")
-				.callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
-		ArrayList<String> palabrasClave = new ArrayList<String>();
-		palabrasClave.add("Nunca tiene plata");
-		List<Servicio> servicios = Servicio.getListaServicios("Depositos");
-
-		PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances",
-				direccionDeLaSucursal, palabrasClave, servicios);
-
-		administradorDePoi.agregarPoi(punto);
-		/**
-		 * Agrego manualmente al buffer de busquedas. Asi el sistema cree que
-		 * esta busqueda se realizo y no requiere ir a servicios externos
-		 */
-		String[] l = { "Banco Frances", "Depositos" };
-		List<PuntoDeInteres> lista = new ArrayList<PuntoDeInteres>();
-		lista.add(punto);
-		// para que funcione sin error vargar usuario acá y hacer otro método
-		// que guarde la búsqueda con un usuario que exista en la base
-		SesionBusqueda sb = new SesionBusqueda();
-		sb.setUsuario(nuevoUsuarioAdmin);
-		sb.setStringsBuscados(l);
-		sb.setPois(lista);
-		busqueda = sb.obtenerBusqueda();
-		busquedaId = hs.add(busqueda);
-
-		busquedaBd = hs.obtenerBusqueda(busquedaId);
-
-		//assertTrue(busquedaBd.getId() == busquedaId);
+		// hs = new HibernateFactorySessions();
+		//GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
+		//Usuario nuevoUsuarioAdmin = gestor.crearAdministrador("CARC", "CARC@hotmail.com", "1889");
+		// Busqueda busqueda;
+		// Busqueda busquedaBd;
+		 //AdministradorDePoi administradorDePoi = new AdministradorDePoi();
+		// Integer busquedaId = null;
+		//
+		// // Creo la dirección
+		 Direccion direccionDeLaSucursal = new
+		 Direccion.DireccionBuilder().barrio("Villa Urquiza")
+		 .callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
+		 ArrayList<String> palabrasClave = new ArrayList<String>();
+		 palabrasClave.add("Nunca tiene plata");
+		 List<Servicio> servicios = Servicio.getListaServicios("Depositos");
+		
+		 assertTrue(palabrasClave.size()>0);		 //PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D,
+		 //-58.490937D, "Banco Frances",
+		 //direccionDeLaSucursal, palabrasClave, servicios);
+		//
+		 //administradorDePoi.agregarPoi(punto);
+		// /**
+		// * Agrego manualmente al buffer de busquedas. Asi el sistema cree que
+		// * esta busqueda se realizo y no requiere ir a servicios externos
+		// */
+		//String[] l = { "Banco Frances", "Depositos" };
+		 //List<PuntoDeInteres> lista = new ArrayList<PuntoDeInteres>();
+		 //lista.add(punto);
+		// // para que funcione sin error vargar usuario acá y hacer otro método
+		// // que guarde la búsqueda con un usuario que exista en la base
+		// SesionBusqueda sb = new SesionBusqueda();
+		// sb.setUsuario(nuevoUsuarioAdmin);
+		// sb.setStringsBuscados(l);
+		// sb.setPois(lista);
+		// busqueda = sb.obtenerBusqueda();
+		// busquedaId = hs.add(busqueda);
+		//
+		// busquedaBd = hs.obtenerBusqueda(busquedaId);
+		//
+		// //assertTrue(busquedaBd.getId() == busquedaId);
+		
+		//assertTrue(true);
 	}
 
 }
