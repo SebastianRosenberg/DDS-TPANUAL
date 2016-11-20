@@ -1,7 +1,9 @@
 package tpanual.main.poi;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,14 +29,14 @@ public class SucursalBanco extends TipoPuntoInteres {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "SUCURSAL_SERVICIOS", joinColumns = { @JoinColumn(name = "SUCURSAL_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
-	List<Servicio> servicios;
+	Set<Servicio> servicios;
 
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "HORARIO_DE_ATENCION_ID" )
 	HorarioDeAtencion horario = new HorarioDeAtencion();
 
 	public SucursalBanco(List<Servicio> lista) {
-		servicios=lista;
+		servicios=new HashSet<Servicio>(lista);
 		for (int i=Constantes.LUNES;i<Constantes.SABADO;i++) { // Agrega el horario de atencion lunes a viernes de 10:00 a 15:00
 			horario.addRangoDia(1000, 1500, i);
 		}
@@ -91,7 +93,7 @@ public class SucursalBanco extends TipoPuntoInteres {
 		SucursalBancoPojo suc = new SucursalBancoPojo();
 		suc.setDireccion(p.getDireccion());
 		suc.setNombre(p.getNombre());
-		suc.setServicios(servicios);
+		suc.setServicios(new ArrayList<Servicio>(servicios));
 		return suc;
 	}	
 }
