@@ -245,6 +245,9 @@ public class PuntoDeInteres {
 	public PoiPojo getPojo(){
 		return tipo.convertir(this);
 	}
+	public String toString(){
+		return nombre;
+	}
 	
 }
 

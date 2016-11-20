@@ -3,17 +3,21 @@ package tpanual.utilitarios;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 //import org.hibernate.criterion.CriteriaQuery;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
@@ -329,4 +333,38 @@ public class HibernateFactorySessions {
 			session.close();
 		}		
 	}	
+	
+	public List<PuntoDeInteres> obtenerPoiPorQuery(String parametro){
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			//CGP
+			Criteria c = session.createCriteria(PuntoDeInteres.class);
+			c.createAlias("palabrasClaves", "palabra");
+			c.createAlias("tipo", "tipo");
+			c.add(Restrictions.or(
+					Restrictions.or(
+							Restrictions.like("palabra.nombre", parametro),
+							Restrictions.like("tipo.comunaId", parametro)
+					),
+					Restrictions.or(
+							Restrictions.like("nombre", parametro),
+							Restrictions.eq("tipo.servicios", Servicio.getListaServicios(""))
+					)
+				)
+			);
+			
+			List<PuntoDeInteres> l = c.list();
+			tx.commit();
+			return l;
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}			
+	}
 }
