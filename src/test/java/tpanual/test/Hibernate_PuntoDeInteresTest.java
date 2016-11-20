@@ -48,11 +48,14 @@ public class Hibernate_PuntoDeInteresTest {
 		//Persisto el punto de interes
 		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1 Hibernate POI TEST", direccion1, palabras1, servicios1, 25);
 		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 2 Hibernate POI TEST", direccion2, palabras2, servicios2, 25);
+		PuntoDeInteres pdi3=PuntoDeInteresFactory.getSucursal(2500D, 3200D, "Galicia", direccion1, palabras1, servicios1);
+		
 		idPoiModificado = pdi.getId();
 		idPoiEliminado = pdi2.getId();
 		hs = new HibernateFactorySessions();
 		hs.add(pdi);
 		hs.add(pdi2);
+		hs.add(pdi3);
 			
 	}
 	

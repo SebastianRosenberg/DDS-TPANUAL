@@ -104,11 +104,11 @@ public class AdministradorDeReportes  {
 			}
 			
 		    if(aux != null){
-		    	aux.cantidad += unaBusqueda.getIdsEncontrados().length;
+		    	aux.cantidad += unaBusqueda.getPoiEncontrados().size();
 		    }
 		    else{
 		    	aux = new CantidadPorUsuario();
-		    	aux.cantidad = unaBusqueda.getIdsEncontrados().length;
+		    	aux.cantidad = unaBusqueda.getPoiEncontrados().size();
 		    	aux.usuario = usuario;
 		    	listReporte.add(aux);
 		    }
@@ -131,7 +131,7 @@ public class AdministradorDeReportes  {
 			{
 				CantidadPorBusquedaPorUsuario aux = new CantidadPorBusquedaPorUsuario();
 				
-				aux.cantidad = unaBusqueda.getIdsEncontrados().length;
+				aux.cantidad = unaBusqueda.getPoiEncontrados().size();
 				aux.busqueda = unaBusqueda;
 				listReporte.add(aux);
 			}
