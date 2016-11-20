@@ -340,14 +340,33 @@ public class HibernateFactorySessions {
 		try {
 			tx = session.beginTransaction();
 			//CGP
-			Criteria c = session.createCriteria(PuntoDeInteres.class);
-			c.createAlias("palabrasClaves", "palabra");
-			c.createAlias("tipo", "tipo");
-			c.createAlias("tipo.serviciosCgp", "servicio");
-			c.add(Restrictions.or(
+			Criteria c1 = session.createCriteria(PuntoDeInteres.class);
+			c1.createAlias("palabrasClaves", "palabra");
+			c1.createAlias("tipo", "tipo");
+			c1.createAlias("tipo.serviciosCgp", "servicioCgp");
+			c1.add(Restrictions.or(
 					Restrictions.or(
 							Restrictions.like("palabra.nombre", parametro),
 							Restrictions.like("tipo.comunaId", parametro)
+					),
+					Restrictions.or(
+							Restrictions.like("nombre", parametro),
+							Restrictions.like("servicioCgp.nombre", parametro)
+					)
+				)
+			);
+			
+			
+			List<PuntoDeInteres> l1 = c1.list();			
+
+			//Sucursal banco
+			Criteria c2 = session.createCriteria(PuntoDeInteres.class);
+			c2.createAlias("palabrasClaves", "palabra");
+			c2.createAlias("tipo", "tipo");
+			c2.createAlias("tipo.servicios", "servicio");
+			c2.add(Restrictions.or(
+					Restrictions.or(
+							Restrictions.like("palabra.nombre", parametro)
 					),
 					Restrictions.or(
 							Restrictions.like("nombre", parametro),
@@ -356,9 +375,13 @@ public class HibernateFactorySessions {
 				)
 			);
 			
-			List<PuntoDeInteres> l = c.list();
+			
+			List<PuntoDeInteres> l2 = Utilitarios.fusionarListasSinRepetidos(l1, c2.list());
+			
+			
+			
 			tx.commit();
-			return l;
+			return l2;
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();

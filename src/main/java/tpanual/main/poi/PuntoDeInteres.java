@@ -20,6 +20,7 @@ import tpanual.utilitarios.Utilitarios;
 @Table (name = "PUNTO_DE_INTERES")
 public class PuntoDeInteres {
 	@Id @Column (name = "ID")
+	@GeneratedValue
 	private int id;
 	@Column (name = "LATITUD")
 	private double latitud;
@@ -45,11 +46,8 @@ public class PuntoDeInteres {
 	//Para modificar POI
 	@Transient
 	private static String[] fieldsModificables={"latitud", "longitud", "nombre", "direccion", "tipo", "palabrasClaves"};
-	@Transient
-	private static int maxId=0;
 	
 	public PuntoDeInteres(double latitud, double longitud, String nombre, Direccion direccion, List<PalabraClave> palabrasClaves, TipoPuntoInteres tipo) {
-		this.id=++maxId;
 		this.latitud=latitud;
 		this.longitud=longitud;
 		this.nombre=nombre;
@@ -233,9 +231,6 @@ public class PuntoDeInteres {
 		this.palabrasClaves = new HashSet<PalabraClave>(palabrasClaves);
 	}
 
-	public static void setMaxId(int maxId) {
-		PuntoDeInteres.maxId = maxId;
-	}
 
 	public DateTime getFechaBaja() {
 		return fechaBaja;

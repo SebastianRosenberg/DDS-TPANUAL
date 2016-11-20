@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
@@ -20,13 +21,13 @@ public class MainHibernate {
 		List<String> l = new ArrayList<String> ();
 		l.add("palabraClave1");
 		
-		PuntoDeInteres poi = PuntoDeInteresFactory.getCGP(300, 500, "nombre", d, l, Servicio.getListaServicios("servicio1"), 90);
+		PuntoDeInteres poi = PuntoDeInteresFactory.getSucursal(200, 300, "nombre sucursal", d, l, Servicio.getListaServicios("vende falopa"));
 		
 		//h.add(poi);
 		
 		System.out.println("buscando...");
 		
-		List<PuntoDeInteres> lis = h.obtenerPoiPorQuery("servicio1");
+		List<PuntoDeInteres> lis = h.obtenerPoiPorQuery("sucursal");
 		
 		System.out.println("mostrando...");
 		
