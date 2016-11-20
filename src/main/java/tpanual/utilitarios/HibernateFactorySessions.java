@@ -334,8 +334,9 @@ public class HibernateFactorySessions {
 		}		
 	}	
 	
-	public List<PuntoDeInteres> obtenerPoiPorQuery(String parametro){
+	public List<PuntoDeInteres> obtenerPoiPorQuery(String parametroSinLike){
 		Session session = factory.openSession();
+		String parametro = "%" + parametroSinLike + "%";
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -378,7 +379,42 @@ public class HibernateFactorySessions {
 			
 			List<PuntoDeInteres> l2 = Utilitarios.fusionarListasSinRepetidos(l1, c2.list());
 			
+			//Parada colectivo
+			Criteria c3 = session.createCriteria(PuntoDeInteres.class);
+			c3.createAlias("palabrasClaves", "palabra");
+			c3.createAlias("tipo", "tipo");
+			c3.add(Restrictions.or(
+					Restrictions.or(
+							Restrictions.like("palabra.nombre", parametro)
+					),
+					Restrictions.or(
+							Restrictions.like("nombre", parametro),
+							Restrictions.like("tipo.linea", parametro)
+					)
+				)
+			);
 			
+			
+			l2 = Utilitarios.fusionarListasSinRepetidos(l2, c3.list());	
+			
+			//Local comercial
+			Criteria c4 = session.createCriteria(PuntoDeInteres.class);
+			c4.createAlias("palabrasClaves", "palabra");
+			c4.createAlias("tipo", "tipo");
+			c4.createAlias("tipo.rubro", "rubro");
+			c4.add(Restrictions.or(
+					Restrictions.or(
+							Restrictions.like("palabra.nombre", parametro)
+					),
+					Restrictions.or(
+							Restrictions.like("nombre", parametro),
+							Restrictions.like("rubro.nombre", parametro)
+					)
+				)
+			);
+			
+			
+			l2 = Utilitarios.fusionarListasSinRepetidos(l2, c4.list());				
 			
 			tx.commit();
 			return l2;
