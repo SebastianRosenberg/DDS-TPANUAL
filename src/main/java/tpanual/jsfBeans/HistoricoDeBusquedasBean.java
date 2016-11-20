@@ -53,6 +53,7 @@ public class HistoricoDeBusquedasBean {
 	public void buscar() {
 		DateTime fechaDesdeJoda = null;
 		DateTime fechaHastaJoda = null;
+		infoPOI.clear();
 		if(fechaDesde != null)
 			fechaDesdeJoda = new DateTime(fechaDesde);
 		if (fechaHasta != null)

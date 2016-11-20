@@ -20,7 +20,7 @@ public class HistorialDeBusquedasController {
 		List<Busqueda> l;
 		List<BusquedaPojo> pojos = new ArrayList<BusquedaPojo>();
 		Usuario user = GestorDeUsuarios.getInstance().buscarUsuarioPorNombre(nombreUsuario);
-		if (nombreUsuario == ""){
+		if (nombreUsuario == "" && (fechaDesde != null || fechaHasta != null)){
 			l = AdministradorDeReportes.getBusquedasPorFecha(fechaDesde, fechaHasta);
 		}else if (user != null){
 			l = AdministradorDeReportes.getBusquedasPorUsuario(user);
