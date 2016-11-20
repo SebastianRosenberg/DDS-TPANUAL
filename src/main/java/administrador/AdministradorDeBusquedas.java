@@ -50,12 +50,11 @@ public class AdministradorDeBusquedas {
 	}
 	
 	public void agregarBusqueda(Busqueda b){
-		busquedas.add(b);
 		MongoDBConnection.getInstance().agregarBusqueda(b);
 	}
 		
 	public List<Busqueda> getBusquedas(){
-		return busquedas;
+		return MongoDBConnection.getInstance().obtenerTodosLasBusquedas();
 	}
 	
 }

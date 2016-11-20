@@ -184,7 +184,7 @@ public class PuntoDeInteres {
 			return false;
 		else{
 			PuntoDeInteres pdi=(PuntoDeInteres) o;
-			if (pdi.getId().equals(this.id))
+			if (pdi.getNombre().equals(this.nombre))
 				return true;
 			else
 				return false;
@@ -244,6 +244,9 @@ public class PuntoDeInteres {
 
 	public PoiPojo getPojo(){
 		return tipo.convertir(this);
+	}
+	public String toString(){
+		return nombre;
 	}
 	
 }

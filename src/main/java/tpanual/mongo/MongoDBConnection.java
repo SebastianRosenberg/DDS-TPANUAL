@@ -46,4 +46,8 @@ public class MongoDBConnection {
     	List<Busqueda> busquedas = q.asList();
     	return busquedas;
     }
+    
+    public List<Busqueda> obtenerTodosLasBusquedas(){
+    	return datastore.createQuery(Busqueda.class).asList();
+    }
 }

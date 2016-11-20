@@ -20,6 +20,11 @@ public class BusquedaDePoiBean {
 	public void agregarFiltro() {
 		this.palabrasFiltros.add(valorInputFiltros);
 	}
+	
+	public void limpiarFiltros() {
+		this.palabrasFiltros = new ArrayList<String>();
+	}
+
 
 	public void buscar() {
 		
