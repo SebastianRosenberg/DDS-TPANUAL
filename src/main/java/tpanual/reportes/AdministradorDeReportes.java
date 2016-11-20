@@ -39,8 +39,9 @@ public class AdministradorDeReportes  {
 		Iterator<Busqueda> it = todasLasBusquedas.iterator();
 		while (it.hasNext()){
 			Busqueda b = it.next();
-			if (fechaDesde!=null && fechaDesde.isAfter(b.getFechaDeBusquedaJoda()) || fechaDesde == null){
-				if (fechaHasta!=null && fechaHasta.isBefore(b.getFechaDeBusquedaJoda()) || fechaHasta == null){
+			DateTime fechaBusqueda = b.getFechaDeBusquedaJoda();
+			if (fechaDesde!=null && fechaDesde.isBefore(fechaBusqueda) || fechaDesde == null){
+				if (fechaHasta!=null && fechaHasta.isAfter(fechaBusqueda) || fechaHasta == null){
 					listaFinal.add(b);
 				}
 				
