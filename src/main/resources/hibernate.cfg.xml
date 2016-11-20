@@ -10,6 +10,6 @@
 		<property name="hibernate.connection.password">admin</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 <!-- 		<property name="hbm2ddl.auto">create</property> -->
-		<property name="hbm2ddl.auto">create-drop</property>
+		<property name="hbm2ddl.auto">update</property>
 	</session-factory>
 </hibernate-configuration>
