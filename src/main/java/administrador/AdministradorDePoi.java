@@ -58,11 +58,12 @@ public class AdministradorDePoi {
 		List<PuntoDeInteres> lista;
 		if (busqueda!=null){
 			usoBufferBusqueda=true;
-			try{
-				return this.devolverPoiPorIds(busqueda.getIdsEncontrados());
-			}catch(PuntoDeInteresNoEncontradoException e){
-				//Se invalida la busqueda anterior y se procede a buscar normalmente
-			}
+//			try{
+//				return this.devolverPoiPorIds(busqueda.getIdsEncontrados());
+//			}catch(PuntoDeInteresNoEncontradoException e){
+//				//Se invalida la busqueda anterior y se procede a buscar normalmente
+//			}
+			return busqueda.getPoiEncontrados();
 		}else{
 			usoBufferBusqueda=false;
 		}
@@ -93,11 +94,12 @@ public class AdministradorDePoi {
 		List<PuntoDeInteres> lista;
 		if (busqueda!=null){
 			usoBufferBusqueda=true;
-			try{
-				return this.devolverPoiPorIds(busqueda.getIdsEncontrados());
-			}catch(PuntoDeInteresNoEncontradoException e){
-				//Se invalida la busqueda anterior y se procede a buscar normalmente
-			}
+//			try{
+//				return this.devolverPoiPorIds(busqueda.getIdsEncontrados());
+//			}catch(PuntoDeInteresNoEncontradoException e){
+//				//Se invalida la busqueda anterior y se procede a buscar normalmente
+//			}
+			return busqueda.getPoiEncontrados();
 		}else{
 			usoBufferBusqueda=false;
 		}

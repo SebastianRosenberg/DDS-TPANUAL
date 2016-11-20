@@ -21,7 +21,8 @@ public class Servicio {
 	private int id;
 	@Column (name = "NOMBRE")
 	private String nombre;
-	@Transient
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "HORARIO_DE_ATENCION_ID" )
 	private HorarioDeAtencion horario;
 	
 	public Servicio(String nombre){
