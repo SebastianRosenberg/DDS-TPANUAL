@@ -11,6 +11,7 @@ import administrador.AdministradorDePoi;
 import procesos.Proceso;
 import procesos.RespuestaProceso;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.utilitarios.Utilitarios;
 
 public class BajaDePois extends Proceso{
 	
@@ -35,11 +36,13 @@ public class BajaDePois extends Proceso{
 				while (it2.hasNext()){
 					PuntoDeInteres p=it2.next();
 					p.setDadoDeBaja(true);
-					p.setFechaBaja(new DateTime(s.getFecha()));
+					p.setFechaBajaInterno(new DateTime(s.getFecha()));
+					Utilitarios.getHibernateFactorySessions().modificarPuntoDeInteres(p);
 				}
 			}
 			rp=new RespuestaProceso(EstadoResultado.OK);
 		}catch(RuntimeException r){
+			r.printStackTrace();
 			rp=new RespuestaProceso(EstadoResultado.ERROR, r.getMessage());
 		}
 		return rp;
