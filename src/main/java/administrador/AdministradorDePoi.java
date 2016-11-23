@@ -33,6 +33,11 @@ public class AdministradorDePoi {
 	public void agregarPoi(PuntoDeInteres poi){
 		Utilitarios.getHibernateFactorySessions().add(poi);
 	}
+
+	public int agregarPoiFuentesExternas(PuntoDeInteres poi){
+		return Utilitarios.getHibernateFactorySessions().add(poi);
+	}
+	
 	public boolean eliminarPoi(PuntoDeInteres poi){
 		return (Utilitarios.getHibernateFactorySessions().eliminarPuntoDeInteres(poi) == 1);
 	}
