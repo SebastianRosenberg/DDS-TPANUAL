@@ -41,7 +41,7 @@ public class Terminal extends Usuario {
 	}
 	
 	public boolean login(String password){
-		if (password.equals(""))
+		if (password!= null && password.equals(""))
 			return true;
 		else
 			return false;
@@ -85,11 +85,8 @@ public class Terminal extends Usuario {
 	}
 	@Override
 	public List<PuntoDeInteres> busquedaAvanzada(String x, boolean c) {
-		if (this.privilegio){
-			return this.estado.busquedaAvanzada(x, c);
-		}else{
-			return null;
-		}
+		return this.estado.busquedaAvanzada(x, c);
+
 	}
 
 	@Override

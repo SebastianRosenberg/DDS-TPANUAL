@@ -56,13 +56,8 @@ public abstract class Usuario {
 		
 		List<PuntoDeInteres> pois;
 		
-		if (avanzada){
-			pois = busquedaAvanzada(strABuscar, test);
-		}
-		else{
-			pois = busquedaBasica(strABuscar, test);
-		}
-		
+		pois = busquedaAvanzada(strABuscar, test);
+			
 		sBusqueda.setPois(pois);
 		
 		Duration d = temporizador.ChequeoLapso (this);
