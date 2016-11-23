@@ -107,9 +107,18 @@ public class CGP extends TipoPuntoInteres{
 	public PoiPojo convertir(PuntoDeInteres p) {
 		CgpPojo cgp = new CgpPojo();
 		cgp.setNombre(p.getNombre());
-		cgp.setDireccion(p.getDireccion());
+		cgp.setDireccion(p.getDireccion().toString());
+		cgp.setLatitud(p.getLatitud());
+		cgp.setLongitud(p.getLongitud());
 		cgp.setIdComuna(Integer.valueOf(comunaId));
 		cgp.setServicios(new ArrayList<Servicio>(serviciosCgp));
+		
+		String serServicios = "";
+		for(Servicio unServicio : serviciosCgp){
+			serServicios += unServicio.toString() + ". ";
+		}
+		
+		cgp.setInfoExtra("Servicios:<br/>" + serServicios);
 		return cgp;
 	}
 }

@@ -65,9 +65,13 @@ public class LocalComercial extends TipoPuntoInteres {
 	@Override
 	public PoiPojo convertir(PuntoDeInteres p) {
 		LocalComercialPojo l = new LocalComercialPojo();
-		l.setDireccion(p.getDireccion());
+		l.setDireccion(p.getDireccion().toString());
 		l.setNombre(p.getNombre());
+		l.setLatitud(p.getLatitud());
+		l.setLongitud(p.getLongitud());
 		l.setRubro(rubro.getNombre());
+		l.setInfoExtra("Rubro:<br/> "+ rubro.getNombre() + ".<br/><br/> Horarios de atención:<br/> " + horario.toString());
 		return l;
+		
 	}
 }

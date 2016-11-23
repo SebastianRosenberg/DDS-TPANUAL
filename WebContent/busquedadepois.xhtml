@@ -80,6 +80,15 @@
 					<p:column headerText="Dirección">
 						<h:outputText value="#{unPoi.direccion}" />
 					</p:column>
+					<p:column headerText="Latitud">
+						<h:outputText value="#{unPoi.latitud}" />
+					</p:column>
+					<p:column headerText="Longitud">
+						<h:outputText value="#{unPoi.longitud}" />
+					</p:column>
+					<p:column headerText="Informacion adicional" escape="false">
+						<h:outputText escape="false" value="#{unPoi.infoExtra} " />
+					</p:column>
 				</p:dataTable>
 			</h:form>
 		</p:layoutUnit>

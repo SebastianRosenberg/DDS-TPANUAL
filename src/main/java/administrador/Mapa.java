@@ -67,6 +67,14 @@ public class Mapa {
 				//NO UTILIZA LOS SERVICIOS EXTERNOS
 			}
 		}
+		
+		Iterator<PuntoDeInteres> it = lista.iterator();
+		while (it.hasNext()){
+			PuntoDeInteres poi = it.next();
+			int id = AdministradorDePoi.getInstance().agregarPoiFuentesExternas(poi);
+			poi.setId(id);
+		}
+		
 		return lista;
 	}
 	
