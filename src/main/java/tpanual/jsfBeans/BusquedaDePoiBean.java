@@ -26,9 +26,9 @@ public class BusquedaDePoiBean {
 	}
 
 
-	public void buscar() {
+	public void buscar(String usuario) {
 		
-		setResultadoBusqueda(busquedaDePoisController.buscarPois(palabrasFiltros));
+		setResultadoBusqueda(busquedaDePoisController.buscarPois(palabrasFiltros,usuario));
 		
 		/*SucursalBancoPojo aux = new SucursalBancoPojo();
 		Direccion dir = new Direccion();

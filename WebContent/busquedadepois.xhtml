@@ -62,7 +62,7 @@
 
 
 						<p:commandButton value="Buscar"
-							actionListener="#{busquedaDePoiBean.buscar}" update="resultadoDT"
+							actionListener="#{busquedaDePoiBean.buscar(#{loginBean2.usuario})}" update="resultadoDT"
 							icon="ui-icon-search">
 
 						</p:commandButton>
