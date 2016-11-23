@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import administrador.AdministradorDeBusquedas;
@@ -17,8 +19,21 @@ import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.seguridad.GestorDeUsuarios;
+import tpanual.usuario.Terminal;
+import tpanual.usuario.Usuario;
+import tpanual.usuario.estado.Activo;
+import tpanual.utilitarios.Utilitarios;
 
 public class AdministradorDeBusquedasTest {
+	
+	private String usuario;
+	
+	@BeforeClass
+	public void initialize(){
+		usuario = "Terminal 1";
+		GestorDeUsuarios.getInstance().crearTerminalActivo(usuario);
+	}
 
 	@Test
 	public void administradorDeBusquedasDeBancoTest() {
@@ -26,7 +41,7 @@ public class AdministradorDeBusquedasTest {
 		BusquedaDePoisController busquedaDePoisController = new BusquedaDePoisController();
 		List<String> palabras = new ArrayList<String>();
 		palabras.add("galicia");
-		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras);
+		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras, usuario);
 						
 		/**
 		 * Compruebo que no haya buscado en servicios externos
@@ -43,7 +58,7 @@ public class AdministradorDeBusquedasTest {
 		List<String> palabras = new ArrayList<String>();
 		palabras.add("mataderos");
 		palabras.add("almagro");
-		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras);
+		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras, usuario);
 						
 		/**
 		 * Compruebo que no haya buscado en servicios externos
