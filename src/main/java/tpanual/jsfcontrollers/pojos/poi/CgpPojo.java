@@ -6,17 +6,8 @@ import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 
 public class CgpPojo extends PoiPojo{
-	private String nombre;
-	private Direccion direccion;
 	private List<Servicio> servicios;
 	private int idComuna;
-	
-	public Direccion getDireccion() {
-		return direccion;
-	}
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
-	}
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
@@ -28,11 +19,5 @@ public class CgpPojo extends PoiPojo{
 	}
 	public void setIdComuna(int idComuna) {
 		this.idComuna = idComuna;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 }

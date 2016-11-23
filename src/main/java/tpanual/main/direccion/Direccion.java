@@ -18,7 +18,8 @@ import javax.persistence.*;
 public class Direccion {
 	
 	public String toString(){
-		return callePrincipal+" " +entreCalle1+" " +entreCalle2+" " +numero+" " +piso+" " +departamento+" " +unidad+" " +barrio+" " +localidad;
+		String aux = callePrincipal+" " +entreCalle1+" " +entreCalle2+" " +numero+" " +piso+" " +departamento+" " +unidad+" " +barrio+" " +localidad;
+		return aux.replace("null ", "").replace(" null", "");
 	}
 	@Id @GeneratedValue
 	@Column(name = "ID")	

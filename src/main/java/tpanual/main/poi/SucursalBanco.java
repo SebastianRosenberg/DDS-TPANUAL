@@ -91,9 +91,17 @@ public class SucursalBanco extends TipoPuntoInteres {
 	@Override
 	public PoiPojo convertir(PuntoDeInteres p) {
 		SucursalBancoPojo suc = new SucursalBancoPojo();
-		suc.setDireccion(p.getDireccion());
+		suc.setDireccion(p.getDireccion().toString());
 		suc.setNombre(p.getNombre());
+		suc.setLatitud(p.getLatitud());
+		suc.setLongitud(p.getLongitud());
 		suc.setServicios(new ArrayList<Servicio>(servicios));
+		
+		String serServicios = "";
+		for(Servicio unServicio : servicios){
+			serServicios += unServicio.toString() + ". ";
+		}
+		suc.setInfoExtra("Horarios de atencion:<br/>"+ horario.toString() + "<br/>Servicios:<br/>" + serServicios);
 		return suc;
 	}	
 }

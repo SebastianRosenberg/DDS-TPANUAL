@@ -64,7 +64,10 @@ public class ParadaColectivo extends TipoPuntoInteres {
 		ParadaDeColectivosPojo col = new ParadaDeColectivosPojo();
 		col.setNumeroLinea(linea);
 		col.setDireccion(p.getDireccion().toString());
+		col.setLatitud(p.getLatitud());
+		col.setLongitud(p.getLongitud());
 		col.setNombre("Linea "+ linea);
+		col.setInfoExtra("");
 		return col;
 	}	
 }
