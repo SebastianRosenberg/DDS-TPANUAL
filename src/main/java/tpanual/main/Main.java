@@ -125,13 +125,13 @@ public class Main {
 		hs.add(pdi4);
 		hs.add(pdi5);
 
-		//hay que agregar casos para locales y mas paradas de colectivos y las busquedas
-		
-		List<PuntoDeInteres> l = admin1.busquedaDePuntosDeInteres("gcp", false);
-		Iterator<PuntoDeInteres> it = l.iterator();
-		while (it.hasNext()){
-			System.out.println(it.next());
-		}
+//		//hay que agregar casos para locales y mas paradas de colectivos y las busquedas
+//		
+//		List<PuntoDeInteres> l = admin1.busquedaDePuntosDeInteres("gcp", false);
+//		Iterator<PuntoDeInteres> it = l.iterator();
+//		while (it.hasNext()){
+//			System.out.println(it.next());
+//		}
 		
 	}
 

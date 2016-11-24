@@ -27,7 +27,7 @@ public class EmailTest {
 	public void envioCorrectoTest() {
 		
 		//seteo Usuario
-		Usuario nuevoUsuario = gestor.crearAdministrador("federico", "mailPrueba@hotmail.com","Fede123");
+		Usuario nuevoUsuario = gestor.crearAdministrador("federico_emailTest", "mailPrueba@hotmail.com","Fede123");
 		
 		
 		//seteo Poi A buscar
