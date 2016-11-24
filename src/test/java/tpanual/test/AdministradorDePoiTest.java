@@ -80,7 +80,7 @@ public class AdministradorDePoiTest {
 		boolean aparicion1=false;
 		while(i.hasNext()){	
 			PuntoDeInteres n=i.next();
-			if (n.getNombre().equals("Sucursal 42")) aparicion1=true;
+			if (n.getNombre().equals("Sucursal 42 agregar poi test")) aparicion1=true;
 		}
 		
 		assertFalse(aparicion1);
@@ -91,17 +91,17 @@ public class AdministradorDePoiTest {
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");
 		List<Servicio> servicios2=Servicio.getListaServicios("Venta de chicles", "Asesoramiento legal");
-		PuntoDeInteres pdiAAgregar=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 42", direccion, palabras, servicios2);
+		PuntoDeInteres pdiAAgregar=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 42 agregar poi test", direccion, palabras, servicios2);
 		
 		administrador.agregarPoi(pdiAAgregar);
 		
-		lista=administrador.busquedaDePuntosDeInteres("Sucursal 42");
+		lista=administrador.busquedaDePuntosDeInteres("Sucursal 42 agregar poi test");
 		
 		Iterator<PuntoDeInteres> j = lista.iterator();
 		aparicion1=false;
 		while(j.hasNext()){	
 			PuntoDeInteres n=j.next();
-			if (n.getNombre().equals("Sucursal 42")) aparicion1=true;
+			if (n.getNombre().equals("Sucursal 42 agregar poi test")) aparicion1=true;
 		}
 		
 		assertTrue(aparicion1);
