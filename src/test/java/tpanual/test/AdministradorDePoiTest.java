@@ -58,7 +58,7 @@ public class AdministradorDePoiTest {
 		servicios2.get(0).setHorario(horario2);
 		servicios2.get(1).setHorario(horario2);
 		
-		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras2, servicios, 25);
+		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1 AGREGAR", direccion, palabras2, servicios, 25);
 		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna ELIMINAR", direccion2, palabras, servicios2, 25);
 				
 		puntoAdminSetUp.agregarPoi(pdi);
@@ -114,7 +114,7 @@ public class AdministradorDePoiTest {
 	public void modificarPoiTest(){
 		
 		AdministradorDePoi administrador = AdministradorDePoi.getInstance();
-		List<PuntoDeInteres> lista=administrador.busquedaDePuntosDeInteres("GCP Comuna 1");
+		List<PuntoDeInteres> lista=administrador.busquedaDePuntosDeInteres("GCP Comuna 1 AGREGAR");
 		
 		PuntoDeInteres poi = lista.get(0);
 		
@@ -123,7 +123,7 @@ public class AdministradorDePoiTest {
 		poi.setLatitud(3500D);;
 		administrador.modificarPoi(poi);
 		
-		List<PuntoDeInteres> lista2=administrador.busquedaDePuntosDeInteres("GCP Comuna 1");
+		List<PuntoDeInteres> lista2=administrador.busquedaDePuntosDeInteres("GCP Comuna 1 AGREGAR");
 		
 		assertTrue(lista2.get(0).getLatitud() == 3500D);
 	
