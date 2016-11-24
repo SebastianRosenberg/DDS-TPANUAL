@@ -214,6 +214,7 @@ public class Busqueda {
 		int[] idsEncontrados = new int[poiEncontrados.size()];
 		for(PuntoDeInteres poi:poiEncontrados){
 			idsEncontrados[i]=poi.getId();
+			i++;
 		}
 		bp.setIds(idsEncontrados);
 		bp.setParametros(stringsBuscados);
