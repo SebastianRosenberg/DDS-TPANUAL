@@ -12,32 +12,35 @@ import org.junit.Test;
 
 import administrador.AdministradorDePoi;
 import administrador.Mapa;
-import tpanual.Rubro.RubroFW;
-import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Dias;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.rubro.RubroFW;
+import tpanual.rubro.RubroFWFactory;
 
 public class AdministradorDePoiTest {
 	
-	static HorarioDeAtencion horario;
+	HorarioDeAtencion horario;
 
 	@BeforeClass
 	public static void setUp(){
-		//mapa=Mapa.getInstance() ;
 		
-		AdministradorDePoi puntoAdminSetUp = new AdministradorDePoi();
+		AdministradorDePoi puntoAdminSetUp = AdministradorDePoi.getInstance();
 		
-		horario=new HorarioDeAtencion();
+		HorarioDeAtencion horario=new HorarioDeAtencion();
+		HorarioDeAtencion horario2=new HorarioDeAtencion();
 		for (int dia=1;dia<8;dia++){ //Agrega el horario de atencion lunes a domingo de 9:00 a 14:00
 			horario.addRangoDia(1700, 2030, dia);// y de 17:00 a 20:30
 			horario.addRangoDia(900, 1400, dia);
+			horario2.addRangoDia(900, 1400, dia);
 		}
 		
 		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
+		Direccion direccion2=new Direccion.DireccionBuilder().callePrincipal("Zarraga").numero("545").barrio("Once").crearDireccion();
+		
 		List<String> palabras=new ArrayList<String>();
 		palabras.add("Servicio de cafeteria");
 		palabras.add("Mala Atencion");
@@ -47,193 +50,103 @@ public class AdministradorDePoiTest {
 		palabras2.add("Zona peligrosa");
 		
 		List<Servicio> servicios=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
-		List<Servicio> servicios2=Servicio.getListaServicios("Venta de chicles", "Asesoramiento legal");
-		List<Servicio> servicios3=Servicio.getListaServicios("Depositos", "Extracciones");
-		
-		RubroFW rubro1=RubroFWFactory.getRubro("Muebleria", 700);
-		RubroFW rubro2=RubroFWFactory.getRubro("Kiosko", 200);
+		List<Servicio> servicios2=Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
 
-		servicios.get(0).setHorario(getHorario1());
-		servicios.get(1).setHorario(getHorario2());
-		servicios.get(2).setHorario(getHorario3());
-		servicios2.get(0).setHorario(getHorario3());
-		servicios2.get(1).setHorario(getHorario2());
+		servicios.get(0).setHorario(horario);
+		servicios.get(1).setHorario(horario);
+		
+		servicios2.get(0).setHorario(horario2);
+		servicios2.get(1).setHorario(horario2);
 		
 		PuntoDeInteres pdi=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion, palabras2, servicios, 25);
-		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 2", direccion, palabras2, servicios2, 25);
-		PuntoDeInteres pdi3=PuntoDeInteresFactory.getParadaDeColectivo(600, 1200, "Parada de la linea ciento catorce", direccion, palabras2, "114");
-		PuntoDeInteres pdi4=PuntoDeInteresFactory.getLocalComercial(-50D, 3000D, "Muebleria los dos hermanos", direccion, palabras2, rubro1, horario);
-		PuntoDeInteres pdi5=PuntoDeInteresFactory.getLocalComercial(-5D, 3001D, "Muebleria somos la contra de los dos hermanos", direccion, palabras, rubro1, horario);
-		PuntoDeInteres pdi6=PuntoDeInteresFactory.getLocalComercial(-654D, 1286D, "Kiosko no se fia ni al cura parroco", direccion, palabras2, rubro2, horario);
-		PuntoDeInteres pdi7=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 49", direccion, palabras, servicios3);
-		
-		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
-		ArrayList<String> palabrasClave = new ArrayList<String>();
-		palabrasClave.add("Nunca tiene plata");
-		List<Servicio> servicios1=Servicio.getListaServicios("Depositos", "Extracciones");
-		
-		PuntoDeInteres pdi8 = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances", direccionDeLaSucursal, palabrasClave, servicios1);
-		
+		PuntoDeInteres pdi2=PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna ELIMINAR", direccion2, palabras, servicios2, 25);
+				
 		puntoAdminSetUp.agregarPoi(pdi);
 		puntoAdminSetUp.agregarPoi(pdi2);
-		puntoAdminSetUp.agregarPoi(pdi3);
-		puntoAdminSetUp.agregarPoi(pdi4);
-		puntoAdminSetUp.agregarPoi(pdi5);
-		puntoAdminSetUp.agregarPoi(pdi6);
-		puntoAdminSetUp.agregarPoi(pdi7);
-		puntoAdminSetUp.agregarPoi(pdi8);
-	}
-	private static HorarioDeAtencion getHorario1(){
-		HorarioDeAtencion horario = new HorarioDeAtencion();
-		for (int dia=1;dia<6;dia++) {
-			horario.addRangoDia(800, 1700, dia);
-		}
-		return horario;
 	}
 
-	private static HorarioDeAtencion getHorario2(){
-		HorarioDeAtencion horario = new HorarioDeAtencion();
-		for (int dia=1;dia<7;dia++) {
-			horario.addRangoDia(1000, 1600, dia);
-		}
-		return horario;
-	}
-	
-	private static HorarioDeAtencion getHorario3(){
-		HorarioDeAtencion horario = new HorarioDeAtencion();
-		for (int dia=2;dia<6;dia++) {
-			horario.addRangoDia(1200, 2000, dia);
-		}
-		return horario;
-	}
 
-	//public AdministradorDePoisTest() {
-		// TODO Auto-generated constructor stub
-//	}
-	
-	/*
-	 * ABMC entrega 2
-	 */
-	static Mapa mapa=Mapa.getInstance() ;
 	
 	
 	@Test
 	public void agregarPoiTest(){
 		
-	AdministradorDePoi administrador = new AdministradorDePoi();
+		AdministradorDePoi administrador = AdministradorDePoi.getInstance();
+			
+		List<PuntoDeInteres> lista=administrador.busquedaDePuntosDeInteres("");
 		
-	List<PuntoDeInteres> lista=administrador.busquedaDePuntosDeInteres("");
+		
+		Iterator<PuntoDeInteres> i = lista.iterator();
+		boolean aparicion1=false;
+		while(i.hasNext()){	
+			PuntoDeInteres n=i.next();
+			if (n.getNombre().equals("Sucursal 42")) aparicion1=true;
+		}
+		
+		assertFalse(aparicion1);
+		
+		lista.clear();
+		
+		Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
+		List<String> palabras=new ArrayList<String>();
+		palabras.add("Servicio de cafeteria");
+		List<Servicio> servicios2=Servicio.getListaServicios("Venta de chicles", "Asesoramiento legal");
+		PuntoDeInteres pdiAAgregar=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 42", direccion, palabras, servicios2);
+		
+		administrador.agregarPoi(pdiAAgregar);
+		
+		lista=administrador.busquedaDePuntosDeInteres("Sucursal 42");
+		
+		Iterator<PuntoDeInteres> j = lista.iterator();
+		aparicion1=false;
+		while(j.hasNext()){	
+			PuntoDeInteres n=j.next();
+			if (n.getNombre().equals("Sucursal 42")) aparicion1=true;
+		}
+		
+		assertTrue(aparicion1);
 	
-	
-	Iterator<PuntoDeInteres> i = lista.iterator();
-	boolean aparicion1=false;
-	while(i.hasNext()){	
-		PuntoDeInteres n=i.next();
-		if (n.getNombre().equals("Sucursal 42")) aparicion1=true;
 	}
-	
-	assertFalse(aparicion1);
-	
-	lista.clear();
-	
-	Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
-			List<String> palabras=new ArrayList<String>();
-			palabras.add("Servicio de cafeteria");
-			List<Servicio> servicios2=Servicio.getListaServicios("Venta de chicles", "Asesoramiento legal");
-			PuntoDeInteres pdiAAgregar=PuntoDeInteresFactory.getSucursal(-600D, 1023589D, "Sucursal 42", direccion, palabras, servicios2);
-	
-	administrador.agregarPoi(pdiAAgregar);
-	
-	lista=administrador.busquedaDePuntosDeInteres("");
-	
-	Iterator<PuntoDeInteres> j = lista.iterator();
-	aparicion1=false;
-	while(j.hasNext()){	
-		PuntoDeInteres n=j.next();
-		if (n.getNombre().equals("Sucursal 42")) aparicion1=true;
-	}
-	
-	assertTrue(aparicion1);
-
-	}
-	
+		
 
 
 	@Test
 	public void modificarPoiTest(){
 		
-	AdministradorDePoi administrador = new AdministradorDePoi();
-	
-	List<PuntoDeInteres> lista=administrador.busquedaDePuntosDeInteres("");
-	
-	
-	Iterator<PuntoDeInteres> i = lista.iterator();
-	boolean aparicion1=false;
-	boolean aparicion2=false;
-	while(i.hasNext()){	
-		PuntoDeInteres n=i.next();
-		if (n.getNombre().equals("Muebleria los dos hermanos")&&n.buscarCoincidencia("Zona peligrosa")) aparicion1=true;
-		if (n.getNombre().equals("Muebleria los dos hermanos")&&n.buscarCoincidencia("Zona segura")) aparicion2=true;
-	}
-
-	assertTrue(aparicion1);
-	assertFalse(aparicion2);
-	
-	
-	int idAGuardar = 0;
-	PuntoDeInteres poiAMod;
-	
-	Iterator<PuntoDeInteres> j = lista.iterator();
-	while(j.hasNext()){	
-		poiAMod=j.next();
-		if (poiAMod.getNombre().equals("Muebleria los dos hermanos")&&poiAMod.buscarCoincidencia("Zona peligrosa")) idAGuardar=poiAMod.getId();
-	}
-	
-	/*
-	 * creo un nuevo poi con los cambios a realizar y le cambio el id para que sea igual al anterior 
-	 */
-	
-	Direccion direccion=new Direccion.DireccionBuilder().callePrincipal("Pueyrredon").numero("545").barrio("Once").crearDireccion();
-			List<String> palabrasNuevas=new ArrayList<String>();
-			palabrasNuevas.add("Zona segura");
-			RubroFW rubro1=RubroFWFactory.getRubro("Muebleria", 700);
-	PuntoDeInteres pdiNuevo=PuntoDeInteresFactory.getLocalComercial(-600D, 1023589D, "Muebleria los dos hermanos", direccion, palabrasNuevas, rubro1, horario);
-	pdiNuevo.setId(idAGuardar);
-	
-	administrador.modificarPoi(pdiNuevo);
-	
-	lista=administrador.busquedaDePuntosDeInteres("");
-	
-	Iterator<PuntoDeInteres> p = lista.iterator();
-	aparicion1=false;
-	aparicion2=false;
-	while(p.hasNext()){	
-		PuntoDeInteres n=p.next();
-		if (n.getNombre().equals("Muebleria los dos hermanos")&&n.buscarCoincidencia("Zona segura")) aparicion2=true;
-	}
-	assertTrue(aparicion2);
+		AdministradorDePoi administrador = AdministradorDePoi.getInstance();
+		List<PuntoDeInteres> lista=administrador.busquedaDePuntosDeInteres("GCP Comuna 1");
 		
+		PuntoDeInteres poi = lista.get(0);
+		
+		assertTrue(poi.getLatitud() == 2500D);
+			
+		poi.setLatitud(3500D);;
+		administrador.modificarPoi(poi);
+		
+		List<PuntoDeInteres> lista2=administrador.busquedaDePuntosDeInteres("GCP Comuna 1");
+		
+		assertTrue(lista2.get(0).getLatitud() == 3500D);
 	
 	}
 	@Test
 	public void eliminarPoiTest(){
-		AdministradorDePoi administrador = new AdministradorDePoi();
+		AdministradorDePoi administrador = AdministradorDePoi.getInstance();
 		
-		List<PuntoDeInteres> lista= administrador.busquedaDePuntosDeInteres("");
+		List<PuntoDeInteres> lista= administrador.busquedaDePuntosDeInteres("GCP Comuna ELIMINAR");
 
 		
 		Iterator<PuntoDeInteres> i = lista.iterator();
 		boolean aparicion1=false;
 		while(i.hasNext()){	
 			PuntoDeInteres n=i.next();
-			if (n.getNombre().equals("GCP Comuna 1")) aparicion1=true;
+			if (n.getNombre().equals("GCP Comuna ELIMINAR")) aparicion1=true;
 		}
 		
 		assertTrue(aparicion1);
 		
 		lista.clear();
 		
-		lista=administrador.busquedaDePuntosDeInteres("GCP Comuna 1");
+		lista=administrador.busquedaDePuntosDeInteres("GCP Comuna ELIMINAR");
 		
 		i = lista.iterator();
 		while(i.hasNext()){	
@@ -242,7 +155,7 @@ public class AdministradorDePoiTest {
 		}
 		
 		lista.clear();
-		lista=administrador.busquedaDePuntosDeInteres("GCP Comuna 1");
+		lista=administrador.busquedaDePuntosDeInteres("GCP Comuna ELIMINAR");
 		
 		assertTrue(lista.size()==0);
 		

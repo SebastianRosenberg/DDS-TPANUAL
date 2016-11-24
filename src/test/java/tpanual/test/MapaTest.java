@@ -8,9 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import administrador.AdministradorDePoi;
-//import administrador.Mapa;
-import tpanual.Rubro.RubroFW;
-import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.Dias;
 import tpanual.main.HorarioDeAtencion;
@@ -18,6 +15,8 @@ import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.TipoPuntoInteres;
+import tpanual.rubro.RubroFW;
+import tpanual.rubro.RubroFWFactory;
 import tpanual.utilitarios.Constantes;
 
 public class MapaTest {

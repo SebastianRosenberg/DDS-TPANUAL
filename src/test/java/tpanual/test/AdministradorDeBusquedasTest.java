@@ -27,11 +27,12 @@ import tpanual.utilitarios.Utilitarios;
 
 public class AdministradorDeBusquedasTest {
 	
-	private String usuario;
+	private static String usuario;
 	
 	@BeforeClass
-	public void initialize(){
+	public static void initialize(){
 		usuario = "Terminal 1";
+		BusquedaDePoisController.usuario_str = usuario;
 		GestorDeUsuarios.getInstance().crearTerminalActivo(usuario);
 	}
 

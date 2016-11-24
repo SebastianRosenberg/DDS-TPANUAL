@@ -62,6 +62,7 @@ public class GestorDeUsuarios {
 	{
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioTerminalActivo(nombre);
 		Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
+		usuarios.put(nuevoUsuario.getNombre(), nuevoUsuario);
 		return nuevoUsuario;	
 	}
 	
@@ -70,6 +71,7 @@ public class GestorDeUsuarios {
 	{
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioTerminalNoActivo(nombre);
 		Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
+		usuarios.put(nuevoUsuario.getNombre(), nuevoUsuario);
 		return nuevoUsuario;	
 	}
 	
@@ -78,6 +80,7 @@ public class GestorDeUsuarios {
 	{
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador(nombre, email, password);
 		Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
+		usuarios.put(nuevoUsuario.getNombre(), nuevoUsuario);
 		return nuevoUsuario;	
 	}
 	
