@@ -49,6 +49,10 @@ public abstract class Usuario {
 
 	public abstract boolean login(String password);
 	
+	public boolean tienePermisosPrivilegiados(){
+		return isAdministrador() || privilegio;
+	}
+	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean test, boolean avanzada){
 		SesionBusqueda sBusqueda = new SesionBusqueda();
 		Temporizador temporizador = new Temporizador();
@@ -105,7 +109,7 @@ public abstract class Usuario {
 	//Constructor solo para Hibernate, no utilizar
 
 	public Usuario(){
-		privilegio = true;
+		privilegio = false;
 	}
 	
 	public String toString(){
