@@ -182,5 +182,9 @@ public class AdministradorDePoi {
 	        }
 	        return z;
 	    }
+
+	public boolean isUsoBufferBusqueda() {
+		return usoBufferBusqueda;
+	}
 	
 }

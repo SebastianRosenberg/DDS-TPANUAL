@@ -29,7 +29,7 @@
 						<p:message for="usuario" display="icon" />
 						<p:outputLabel for="contrasenia" value="Contraseña:" />
 						<p:password id="contrasenia" value="#{loginBean2.contrasenia}"
-							label="contrasenia" required="true">
+							label="contrasenia" required="false">
 							<p:ajax update="msgContrasenia" event="keyup" />
 						</p:password>
 						<p:message for="contrasenia" id="msgContrasenia" display="icon" />

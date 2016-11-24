@@ -101,6 +101,7 @@ public class Busqueda {
 	
 	private long duracion;
 	
+	
 	//@Embedded
     //private List<PuntoDeInteres> pois;
 
@@ -110,6 +111,8 @@ public class Busqueda {
 	 * de pois encontrados directamente
 	 */
 	
+
+
 	public Busqueda(String[] stringsBuscados, List<PuntoDeInteres> poiEncontrados, Usuario usuario, Duration duracion,
 			DateTime dateTime) {
 		this.stringsBuscados = stringsBuscados;

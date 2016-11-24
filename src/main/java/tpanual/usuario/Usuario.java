@@ -59,13 +59,15 @@ public abstract class Usuario {
 		pois = busquedaAvanzada(strABuscar, test);
 			
 		sBusqueda.setPois(pois);
+		sBusqueda.setUsoBuffer(AdministradorDePoi.getInstance().isUsoBufferBusqueda());
 		
 		Duration d = temporizador.ChequeoLapso (this);
 		
 		sBusqueda.setDuracion(d);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
 		sBusqueda.setUsuario(this);
-		sBusqueda.finalizarBusqueda();
+		if (!sBusqueda.isUsoBuffer())
+			sBusqueda.finalizarBusqueda();
 		return pois; 
 		
 	}

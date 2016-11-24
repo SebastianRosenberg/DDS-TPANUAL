@@ -26,7 +26,12 @@ public class Terminal extends Usuario {
 	
 	@Transient
 	private Estado estado;
-	
+
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
 	public boolean isAdministrador(){
 		return false;
 	}
@@ -61,7 +66,6 @@ public class Terminal extends Usuario {
 	}
 	
 	public Terminal(String nombre,Estado estado,int Id){
-		
 		this.estado = estado;
 		this.setId(Id);
 		this.setNombre(nombre);
@@ -96,6 +100,6 @@ public class Terminal extends Usuario {
 
 	
 	public Terminal(){
-		
+		this.estado = new Activo();
 	}
 }

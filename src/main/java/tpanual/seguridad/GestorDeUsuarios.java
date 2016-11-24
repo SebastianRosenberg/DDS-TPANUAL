@@ -14,7 +14,9 @@ import org.joda.time.Interval;
 import administrador.Mapa;
 import procesos.actualizarAccionesPorUsuario.MementoUsuarios;
 import tpanual.usuario.Administrador;
+import tpanual.usuario.Terminal;
 import tpanual.usuario.Usuario;
+import tpanual.usuario.estado.Activo;
 import tpanual.utilitarios.Utilitarios;
 
 public class GestorDeUsuarios {
@@ -36,6 +38,10 @@ public class GestorDeUsuarios {
 		while (it.hasNext()){
 			Usuario u = it.next();
 			usuarios.put(u.getNombre(), u);
+			if (!u.isAdministrador()){
+				Terminal t = (Terminal)u;
+				t.setEstado(new Activo());
+			}
 		}
 		modificarMD5();
 	}

@@ -32,6 +32,7 @@ public class SesionBusqueda {
 	private List<PuntoDeInteres> pois;
 	private String[] stringsBuscados;
 	private DateTime inicioDeBusqueda;
+	private boolean usoBuffer;
 	
 	public SesionBusqueda(){
 		inicioDeBusqueda = new DateTime();
@@ -116,6 +117,16 @@ public class SesionBusqueda {
 			AdministradorDeBusquedas.getInstance().agregarBusqueda(b);
 		}
 		return b;
+	}
+
+
+	public boolean isUsoBuffer() {
+		return usoBuffer;
+	}
+
+
+	public void setUsoBuffer(boolean usoBuffer) {
+		this.usoBuffer = usoBuffer;
 	}
 	
 

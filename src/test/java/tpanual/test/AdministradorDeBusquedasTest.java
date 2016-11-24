@@ -41,7 +41,7 @@ public class AdministradorDeBusquedasTest {
 		BusquedaDePoisController busquedaDePoisController = new BusquedaDePoisController();
 		List<String> palabras = new ArrayList<String>();
 		palabras.add("galicia");
-		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras, usuario);
+		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras);
 						
 		/**
 		 * Compruebo que no haya buscado en servicios externos
@@ -58,7 +58,7 @@ public class AdministradorDeBusquedasTest {
 		List<String> palabras = new ArrayList<String>();
 		palabras.add("mataderos");
 		palabras.add("almagro");
-		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras, usuario);
+		List<PoiPojo> resultados = busquedaDePoisController.buscarPois(palabras);
 						
 		/**
 		 * Compruebo que no haya buscado en servicios externos
