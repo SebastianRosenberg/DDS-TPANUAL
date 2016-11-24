@@ -13,13 +13,13 @@ import org.junit.Test;
 
 //import administrador.AdministradorDePoi;
 import procesos.actualizacionLC.ActualizacionLocalComercial;
-import tpanual.Rubro.RubroFW;
-import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.direccion.Direccion;
 //import tpanual.main.Servicio;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.rubro.RubroFW;
+import tpanual.rubro.RubroFWFactory;
 //import tpanual.utilitarios.DatosActualizacion;
 import tpanual.utilitarios.ParseadorDeTextos;
 

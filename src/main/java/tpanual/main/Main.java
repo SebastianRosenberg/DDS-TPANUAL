@@ -11,7 +11,6 @@ import org.mongodb.morphia.annotations.Entity;
 import administrador.AdministradorDePoi;
 import administrador.Busqueda;
 import procesos.bajaDePois.ParserDeBajas;
-import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.direccion.Localidad;
@@ -19,6 +18,7 @@ import tpanual.main.direccion.Pais;
 import tpanual.main.direccion.Provincia;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.mongo.MongoDBConnection;
+import tpanual.rubro.RubroFWFactory;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.utilitarios.HibernateFactorySessions;
 

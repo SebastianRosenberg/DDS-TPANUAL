@@ -1,7 +1,7 @@
 package tpanual.factory;
 
 import java.util.List;
-import tpanual.Rubro.RubroFW;
+
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Servicio;
 import tpanual.main.direccion.Direccion;
@@ -11,6 +11,7 @@ import tpanual.main.poi.PalabraClave;
 import tpanual.main.poi.ParadaColectivo;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
+import tpanual.rubro.RubroFW;
 
 public class PuntoDeInteresFactory {
 	public static PuntoDeInteres getCGP(double latitud, double longitud, String nombre, Direccion direccion, List<String> palabrasClave, List<Servicio> servicios, int comunaId){

@@ -23,8 +23,6 @@ import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
 import administrador.Busqueda;
-import tpanual.Rubro.RubroConcreteFW;
-import tpanual.Rubro.RubroFW;
 import tpanual.main.HorarioDeAtencion;
 import tpanual.main.Intervalo;
 import tpanual.main.MainHibernate;
@@ -40,6 +38,8 @@ import tpanual.main.poi.ParadaColectivo;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.main.poi.SucursalBanco;
 import tpanual.main.poi.TipoPuntoInteres;
+import tpanual.rubro.RubroConcreteFW;
+import tpanual.rubro.RubroFW;
 import tpanual.usuario.Administrador;
 import tpanual.usuario.Terminal;
 import tpanual.usuario.Usuario;

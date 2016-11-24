@@ -8,10 +8,10 @@ import javax.persistence.*;
 import org.joda.time.Interval;
 
 import administrador.Mapa;
-import tpanual.Rubro.RubroFW;
 import tpanual.jsfcontrollers.pojos.poi.LocalComercialPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.main.HorarioDeAtencion;
+import tpanual.rubro.RubroFW;
 
 @Entity
 @Table (name = "POI_LOCAL_COMERCIAL")
