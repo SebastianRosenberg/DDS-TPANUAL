@@ -1,4 +1,4 @@
-package tpanual.Rubro;
+package tpanual.rubro;
 
 import javax.persistence.*;
 
