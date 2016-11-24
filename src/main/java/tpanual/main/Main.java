@@ -20,6 +20,7 @@ import tpanual.main.poi.PuntoDeInteres;
 import tpanual.mongo.MongoDBConnection;
 import tpanual.rubro.RubroFWFactory;
 import tpanual.seguridad.GestorDeUsuarios;
+import tpanual.usuario.Usuario;
 import tpanual.utilitarios.HibernateFactorySessions;
 
 public class Main {
@@ -46,7 +47,7 @@ public class Main {
 		// "mailsebas@hotmail.com","1Admin");
 		// Usuario nuevoUsuarioAdmin2 =gestor.crearAdministrador("Admin2",
 		// "mailsebas@hotmail.com","2Admin");
-		gestor.crearAdministrador("Admin1", "mailsebas@hotmail.com", "1Admin");
+		Usuario admin1=gestor.crearAdministrador("Admin1", "mailsebas@hotmail.com", "1Admin");
 		gestor.crearAdministrador("Admin2", "mailsebas@hotmail.com", "2Admin");
 		// terminales
 		// Usuario nuevoUsuarioTerminal =
@@ -125,6 +126,12 @@ public class Main {
 		hs.add(pdi5);
 
 		//hay que agregar casos para locales y mas paradas de colectivos y las busquedas
+		
+		List<PuntoDeInteres> l = admin1.busquedaDePuntosDeInteres("gcp", false);
+		Iterator<PuntoDeInteres> it = l.iterator();
+		while (it.hasNext()){
+			System.out.println(it.next());
+		}
 		
 	}
 
