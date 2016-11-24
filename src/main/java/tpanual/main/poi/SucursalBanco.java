@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -27,7 +28,7 @@ import tpanual.utilitarios.Constantes;
 @Table (name = "POI_SUCURSAL_BANCO")
 public class SucursalBanco extends TipoPuntoInteres {
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "SUCURSAL_SERVICIOS", joinColumns = { @JoinColumn(name = "SUCURSAL_ID") }, inverseJoinColumns = { @JoinColumn(name = "SERVICIO_ID") })
 	Set<Servicio> servicios;
 

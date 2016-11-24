@@ -36,7 +36,11 @@ public class MongoDBConnection {
 
     
     public void agregarBusqueda(Busqueda b){
-    	datastore.save(b);
+    	try{
+    		datastore.save(b);
+    	}catch(Throwable y){
+    		y.printStackTrace();
+    	}
     }
     
     public List<Busqueda> obtenerBusquedas(String[] strings){

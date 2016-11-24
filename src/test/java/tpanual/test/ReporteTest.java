@@ -32,16 +32,16 @@ public class ReporteTest {
 		
 		
 		//Creo la direcci�n
-		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa Urquiza").callePrincipal("Av. Triunvirato").numero("5201").crearDireccion();
+		Direccion direccionDeLaSucursal= new Direccion.DireccionBuilder().barrio("Villa_Urquiza").callePrincipal("Av._Triunvirato").numero("5201").crearDireccion();
 		ArrayList<String> palabrasClave = new ArrayList<String>();
-		palabrasClave.add("Nunca tiene plata");
+		palabrasClave.add("Nunca_tiene_plata");
 		List<Servicio> servicios=Servicio.getListaServicios("Depositos");
-		PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco Frances", direccionDeLaSucursal, palabrasClave, servicios);
+		PuntoDeInteres punto = PuntoDeInteresFactory.getSucursal(-34.573001D, -58.490937D, "Banco_Frances", direccionDeLaSucursal, palabrasClave, servicios);
 						
 		administradorDePoi.agregarPoi(punto);
 		
 
-		usr.busquedaDePuntosDeInteres("Nunca tiene plata", true);
+		usr.busquedaDePuntosDeInteres("Nunca_tiene_plata", true);
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		//administradorDePoi.buscarBancos("Banco Frances", "Depositos");
 		

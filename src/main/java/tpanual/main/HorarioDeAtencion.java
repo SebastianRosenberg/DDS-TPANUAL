@@ -1,8 +1,10 @@
 package tpanual.main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -21,10 +23,10 @@ public class HorarioDeAtencion implements java.io.Serializable {
 	private int id;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Intervalo> horarios;
+	private Set<Intervalo> horarios;
 
 	public HorarioDeAtencion() {
-		horarios = new ArrayList<Intervalo>();
+		horarios = new HashSet<Intervalo>();
 	}
 
 	public void addRangoDia(int desde, int hasta, int dia) {
