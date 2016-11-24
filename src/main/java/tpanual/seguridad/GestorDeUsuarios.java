@@ -70,8 +70,9 @@ public class GestorDeUsuarios {
 	public Usuario crearTerminalNoActivo(String nombre)
 	{
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioTerminalNoActivo(nombre);
-		Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
+		int i =Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
 		usuarios.put(nuevoUsuario.getNombre(), nuevoUsuario);
+		nuevoUsuario.setId(i);
 		return nuevoUsuario;	
 	}
 	
@@ -79,7 +80,8 @@ public class GestorDeUsuarios {
 	public  Usuario crearAdministrador(String nombre, String email, String password)
 	{
 		Usuario nuevoUsuario = UsuariosFactory.getUsuarioAdministrador(nombre, email, password);
-		Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
+		int id = Utilitarios.getHibernateFactorySessions().add(nuevoUsuario);
+		nuevoUsuario.setId(id);
 		usuarios.put(nuevoUsuario.getNombre(), nuevoUsuario);
 		return nuevoUsuario;	
 	}

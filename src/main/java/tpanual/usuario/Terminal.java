@@ -65,9 +65,8 @@ public class Terminal extends Usuario {
 		return false;
 	}
 	
-	public Terminal(String nombre,Estado estado,int Id){
+	public Terminal(String nombre,Estado estado){
 		this.estado = estado;
-		this.setId(Id);
 		this.setNombre(nombre);
 		
 	}

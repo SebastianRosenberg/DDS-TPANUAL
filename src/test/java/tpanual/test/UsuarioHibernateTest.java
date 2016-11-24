@@ -9,34 +9,29 @@ import tpanual.usuario.Usuario;
 import tpanual.utilitarios.HibernateFactorySessions;
 
 public class UsuarioHibernateTest {
-	static HibernateFactorySessions hs;
-	static int idUsuarioEliminado;
-	static int idUsuarioModificado;
+	static HibernateFactorySessions hs = new HibernateFactorySessions();
 	
 	@Test
 	public void persistirUsuarioTest(){
 		
-		hs = new HibernateFactorySessions();
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance ();
 		Usuario nuevoUsuarioAdmin = gestor.crearAdministrador("unAdminDePrueba", "unAdminDePrueba@hotmail.com","peras");
-		int idUsuarioBd = hs.add(nuevoUsuarioAdmin);
-		assertTrue(hs.obtenerUsuario(idUsuarioBd).getId() == idUsuarioBd);
+		assertTrue(hs.obtenerUsuario(nuevoUsuarioAdmin.getId())!=null);
 		
 	}
 
 	@Test
 	public void eliminarUsuarioTest(){
-		hs = new HibernateFactorySessions();
+		
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
 		Usuario nuevoUsuarioTerminal = gestor.crearTerminalNoActivo("unaTerminalDePrueba");
-		idUsuarioEliminado = hs.add(nuevoUsuarioTerminal);
-		nuevoUsuarioTerminal.setId(idUsuarioEliminado);
 		
 		//Elimino
+		int id = nuevoUsuarioTerminal.getId();
 		hs.eliminarObjetoBd(nuevoUsuarioTerminal);
 
 		//Compruebo que al buscarlo no exista
-		Usuario usuarioBorrado = hs.obtenerUsuario(idUsuarioEliminado);
+		Usuario usuarioBorrado = hs.obtenerUsuario(id);
 		assertNull(usuarioBorrado);
 		
 	}

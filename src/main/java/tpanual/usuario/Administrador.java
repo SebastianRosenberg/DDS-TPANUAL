@@ -27,10 +27,9 @@ public class Administrador extends Usuario{
 	@Column (name = "PASSWORD")
 	private String password;
 	
-	public Administrador(String email, int id,String nombre, String password ) {
+	public Administrador(String email,String nombre, String password ) {
 		
 		this.email=email;
-		this.id = id;
 		this.nombre=nombre;
 		this.password=password;
 		
