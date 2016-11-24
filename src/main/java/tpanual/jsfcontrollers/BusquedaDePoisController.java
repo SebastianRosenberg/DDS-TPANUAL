@@ -12,13 +12,19 @@ import tpanual.usuario.Usuario;
 import tpanual.utilitarios.Utilitarios;
 
 public class BusquedaDePoisController {
-	public List<PoiPojo> buscarPois(List<String> lista, String usuario_string){
+	
+	public static String usuario_str;
+	
+	public List<PoiPojo> buscarPois(List<String> lista){
 		Iterator<String> it = lista.iterator();
 		List<PuntoDeInteres> l = new ArrayList<PuntoDeInteres>();
 		
 		List<PoiPojo> pojos = new ArrayList<PoiPojo>();
 		
-		Usuario usuario = GestorDeUsuarios.getInstance().buscarUsuarioPorNombre(usuario_string);
+		Usuario usuario = GestorDeUsuarios.getInstance().buscarUsuarioPorNombre(usuario_str);
+		
+		if (usuario == null)
+			return null;
 		
 		while (it.hasNext()){
 			String h = it.next();

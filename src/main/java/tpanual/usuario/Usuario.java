@@ -71,7 +71,7 @@ public abstract class Usuario {
 	}
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean avanzada){
-		return  busquedaDePuntosDeInteres(strABuscar, true, avanzada);
+		return  busquedaDePuntosDeInteres(strABuscar, false, avanzada);
 	}
 	
 	public abstract boolean isAdministrador();

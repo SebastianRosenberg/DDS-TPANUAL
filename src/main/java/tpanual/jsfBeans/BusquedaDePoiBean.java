@@ -16,7 +16,7 @@ public class BusquedaDePoiBean {
 	private List<String> palabrasFiltros = new ArrayList<String>();
 	private List<PoiPojo> resultadoBusqueda = new ArrayList<PoiPojo>();
 	private String valorInputFiltros = "";
-	
+	private String usuario;
 	public void agregarFiltro() {
 		this.palabrasFiltros.add(valorInputFiltros);
 	}
@@ -26,9 +26,9 @@ public class BusquedaDePoiBean {
 	}
 
 
-	public void buscar(String usuario) {
+	public void buscar() {
 		
-		setResultadoBusqueda(busquedaDePoisController.buscarPois(palabrasFiltros,usuario));
+		setResultadoBusqueda(busquedaDePoisController.buscarPois(palabrasFiltros));
 		
 		/*SucursalBancoPojo aux = new SucursalBancoPojo();
 		Direccion dir = new Direccion();

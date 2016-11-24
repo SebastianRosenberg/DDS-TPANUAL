@@ -5,6 +5,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import tpanual.jsfcontrollers.BusquedaDePoisController;
 import tpanual.jsfcontrollers.UsuariosController;
 
 @ManagedBean
@@ -52,6 +53,7 @@ public class LoginBean {
 		boolean usuarioC = userC.buscarUsuario(usuario, contrasenia);
 		
 		if (usuarioC) {
+			BusquedaDePoisController.usuario_str=usuario;
 			esAdministrador = userC.esAdministrador();;
 			msg = "Usuario " + usuario + " autorizado";
 			this.mensajeAPantalla(msg, severity);
