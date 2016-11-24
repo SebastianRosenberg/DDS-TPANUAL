@@ -47,8 +47,8 @@ public class Main {
 		// "mailsebas@hotmail.com","1Admin");
 		// Usuario nuevoUsuarioAdmin2 =gestor.crearAdministrador("Admin2",
 		// "mailsebas@hotmail.com","2Admin");
-		Usuario admin1=gestor.crearAdministrador("Admin1", "mailsebas@hotmail.com", "1Admin");
-		gestor.crearAdministrador("Admin2", "mailsebas@hotmail.com", "2Admin");
+		Usuario admin1=gestor.crearAdministrador("Admin1", "mailAdmin1@hotmail.com", "1Admin");
+		gestor.crearAdministrador("Admin2", "mailAdmin2@hotmail.com", "2Admin");
 		// terminales
 		// Usuario nuevoUsuarioTerminal =
 		// gestor.crearTerminalActivo("terminal1");
