@@ -100,7 +100,7 @@ public abstract class Usuario {
 	public boolean equals(Object o){
 		if (o instanceof Usuario){
 			Usuario u = (Usuario) o;
-			return u.getId() == this.getId();
+			return (u.getNombre() != null &&  u.getNombre().equals(this.nombre));
 		}else{
 			return false;
 		}

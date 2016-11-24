@@ -96,7 +96,10 @@ public class AdministradorDeReportes  {
 		for(Busqueda unaBusqueda : todasLasBusquedas){
 			Usuario usuario = unaBusqueda.getUsuario();
 			
-			
+			if (usuario == null || unaBusqueda.getPoiEncontrados() == null || 
+					unaBusqueda.getPoiEncontrados().isEmpty() || unaBusqueda.getStringsBuscados() == null
+					|| unaBusqueda.getStringsBuscados().length == 0)
+				continue;
 
 			Supplier<Stream<CantidadPorUsuario>> streamSupplier = () -> listReporte.stream().filter(b -> b.usuario == usuario);
 			CantidadPorUsuario aux = null;
@@ -128,7 +131,7 @@ public class AdministradorDeReportes  {
 		List<Busqueda> todasLasBusquedas=AdministradorDeBusquedas.getInstance().getBusquedas();
 		List<CantidadPorBusquedaPorUsuario> listReporte = new ArrayList<CantidadPorBusquedaPorUsuario>();
 		for(Busqueda unaBusqueda : todasLasBusquedas){
-			if (usuario == unaBusqueda.getUsuario())
+			if (usuario != null &&  usuario.equals(unaBusqueda.getUsuario()))
 			{
 				CantidadPorBusquedaPorUsuario aux = new CantidadPorBusquedaPorUsuario();
 				
