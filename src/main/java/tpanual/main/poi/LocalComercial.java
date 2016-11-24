@@ -69,7 +69,8 @@ public class LocalComercial extends TipoPuntoInteres {
 		l.setNombre(p.getNombre());
 		l.setLatitud(p.getLatitud());
 		l.setLongitud(p.getLongitud());
-		l.setRubro(rubro.getNombre());
+		if (rubro!=null)
+			l.setRubro(rubro.getNombre());
 		l.setInfoExtra("Rubro:<br/> "+ rubro.getNombre() + ".<br/><br/> Horarios de atención:<br/> " + horario.toString());
 		return l;
 		

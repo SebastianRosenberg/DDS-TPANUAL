@@ -82,8 +82,12 @@ public class Administrador extends Usuario{
 
 	@Override
 	public void notificar() {
-		Email EnviadorMail = new Email(this.getEmail(),
+		try{
+			Email EnviadorMail = new Email(this.getEmail(),
                 "Aviso de tardanza en busqueda", "Este es un mensaje para notificar que una busqueda tard� mas del tiempo m�ximo.");
+		}catch(Throwable t){
+			t.printStackTrace();
+		}
 	}
 	
 	@Override

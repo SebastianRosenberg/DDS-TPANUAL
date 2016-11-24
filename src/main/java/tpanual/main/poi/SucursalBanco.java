@@ -96,12 +96,14 @@ public class SucursalBanco extends TipoPuntoInteres {
 		suc.setNombre(p.getNombre());
 		suc.setLatitud(p.getLatitud());
 		suc.setLongitud(p.getLongitud());
-		suc.setServicios(new ArrayList<Servicio>(servicios));
-		
 		String serServicios = "";
-		for(Servicio unServicio : servicios){
-			serServicios += unServicio.toString() + ". ";
+		if (servicios!= null){
+			suc.setServicios(new ArrayList<Servicio>(servicios));
+			for(Servicio unServicio : servicios){
+				serServicios += unServicio.toString() + ". ";
+			}
 		}
+		
 		suc.setInfoExtra("Horarios de atencion:<br/>"+ horario.toString() + "<br/>Servicios:<br/>" + serServicios);
 		return suc;
 	}	
