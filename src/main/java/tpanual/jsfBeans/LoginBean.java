@@ -78,5 +78,9 @@ public class LoginBean {
         BusquedaDePoisController.usuario_str = null;
         return "/login.xhtml?faces-redirect=true";
     }
+    
+    public String home() {
+        return "/home.xhtml?faces-redirect=true";
+    }
 
 }
