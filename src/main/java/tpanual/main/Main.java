@@ -11,14 +11,17 @@ import org.mongodb.morphia.annotations.Entity;
 import administrador.AdministradorDePoi;
 import administrador.Busqueda;
 import procesos.bajaDePois.ParserDeBajas;
+import tpanual.Rubro.RubroFWFactory;
 import tpanual.factory.PuntoDeInteresFactory;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.direccion.Localidad;
+import tpanual.main.direccion.Pais;
+import tpanual.main.direccion.Provincia;
 import tpanual.main.poi.PuntoDeInteres;
 import tpanual.mongo.MongoDBConnection;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.utilitarios.HibernateFactorySessions;
-//@Entity("busqueda")
+
 public class Main {
 	public static void main(String[] args) {
 		HibernateFactorySessions hs;
@@ -34,7 +37,10 @@ public class Main {
 		// administradores
 		hs = new HibernateFactorySessions();
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-		Localidad unaLocalidad = new Localidad(null, 0, null);
+		
+		Pais pais = new Pais("Argentina");
+		Provincia provincia = new Provincia("Buenos Aires", pais);
+		Localidad unaLocalidad = new Localidad("San Martin", 1712, provincia);
 
 		// Usuario nuevoUsuarioAdmin =gestor.crearAdministrador("Admin1",
 		// "mailsebas@hotmail.com","1Admin");
@@ -86,13 +92,25 @@ public class Main {
 		servicios1.get(2).setHorario(getHorario3());
 		servicios2.get(0).setHorario(getHorario3());
 		servicios3.get(0).setHorario(getHorario3());
+		
+		HorarioDeAtencion hda = new HorarioDeAtencion();
+		hda.addRangoDia(9, 18, 1);
+		hda.addRangoDia(9, 18, 2);
+		hda.addRangoDia(9, 18, 3);
+		hda.addRangoDia(9, 18, 4);
+		hda.addRangoDia(9, 18, 5);
 
 		// Persisto el punto de interes
-		PuntoDeInteres pdi = PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 1", direccion1, palabras1,
+		PuntoDeInteres pdi = PuntoDeInteresFactory.getCGP(1235, 9494, "GCP Comuna 1", direccion1, palabras1,
 				servicios1, 25);
-		PuntoDeInteres pdi2 = PuntoDeInteresFactory.getCGP(2500D, 3200D, "GCP Comuna 2", direccion2, palabras2,
+		PuntoDeInteres pdi2 = PuntoDeInteresFactory.getCGP(2681, 3221D, "GCP Comuna 2", direccion2, palabras2,
 				servicios2, 25);
-		PuntoDeInteres pdi3 = PuntoDeInteresFactory.getSucursal(2500D, 3200D, "Banco Galicia", direccion3, palabras3,
+		PuntoDeInteres pdi5 = PuntoDeInteresFactory.getLocalComercial(2135, 9465, "Local de ropa", direccion4, palabras4, 
+				RubroFWFactory.getRubro("Ropa", 30), hda);
+		
+		
+		
+		PuntoDeInteres pdi3 = PuntoDeInteresFactory.getSucursal(300D, 185D, "Banco Galicia", direccion3, palabras3,
 				servicios3);
 		PuntoDeInteres pdi4 = PuntoDeInteresFactory.getParadaDeColectivo(-34.570584, -58.491547, "Parada Linea 169",
 				direccion4, palabras4, "169");
@@ -104,6 +122,7 @@ public class Main {
 		hs.add(pdi2);
 		hs.add(pdi3);
 		hs.add(pdi4);
+		hs.add(pdi5);
 
 		//hay que agregar casos para locales y mas paradas de colectivos y las busquedas
 		
