@@ -71,14 +71,28 @@
 						</p:column>
 					</p:dataTable>
 
-					<p:dataList id="poiDetail"
-						value="#{historicoDeBusquedasBean.infoPOI}" width="300" var="poi"
+					<p:dataTable id="poiDetail"
+						value="#{historicoDeBusquedasBean.infoPOI}" width="300" var="unPoi"
 						type="ordered">
 						<f:facet name="header">
 	            Detalle de POI
 	        </f:facet>
-	        	#{poi}
-	    </p:dataList>
+	        	<p:column headerText="Nombre">
+						<h:outputText value="#{unPoi.nombre}" />
+					</p:column>
+					<p:column headerText="Dirección">
+						<h:outputText value="#{unPoi.direccion}" />
+					</p:column>
+					<p:column headerText="Latitud">
+						<h:outputText value="#{unPoi.latitud}" />
+					</p:column>
+					<p:column headerText="Longitud">
+						<h:outputText value="#{unPoi.longitud}" />
+					</p:column>
+					<p:column headerText="Informacion adicional" escape="false">
+						<h:outputText escape="false" value="#{unPoi.infoExtra} " />
+					</p:column>
+	    </p:dataTable>
 				</p:panel>
 			</h:form>
 		</p:layoutUnit>

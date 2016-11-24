@@ -14,6 +14,7 @@ import org.joda.time.DateTime;
 
 import administrador.AdministradorDePoi;
 import tpanual.jsfcontrollers.pojos.busqueda.BusquedaPojo;
+import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.jsfcontrollers.BusquedaDePoisController;
 import tpanual.jsfcontrollers.HistorialDeBusquedasController;
@@ -25,7 +26,7 @@ public class HistoricoDeBusquedasBean {
 	private Date fechaDesde;
 	private Date fechaHasta;
 	private List<BusquedaPojo> busquedas = new ArrayList<BusquedaPojo>();
-	private List<String> infoPOI = new ArrayList<String>();
+	private List<PoiPojo> infoPOI = new ArrayList<PoiPojo>();
 	private HistorialDeBusquedasController busquedasController = new HistorialDeBusquedasController();
 	private BusquedaPojo busquedaSeleccionada = new BusquedaPojo();
 
@@ -84,7 +85,7 @@ public class HistoricoDeBusquedasBean {
 	public void masInfo(int[] ids) {
 		infoPOI.clear();
 		for (int i = 0; i < ids.length; i++) {
-			infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(ids[i]).getNombre());
+			infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(ids[i]).getPojo());
 			// infoPOI.add(String.valueOf(i));
 		}
 	}
@@ -97,11 +98,11 @@ public class HistoricoDeBusquedasBean {
 		this.busquedaSeleccionada = busquedaSeleccionada;
 	}
 
-	public List<String> getInfoPOI() {
+	public List<PoiPojo> getInfoPOI() {
 		return infoPOI;
 	}
 
-	public void setInfoPOI(List<String> infoPOI) {
+	public void setInfoPOI(List<PoiPojo> infoPOI) {
 		this.infoPOI = infoPOI;
 	}
 
