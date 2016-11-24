@@ -19,6 +19,11 @@ public class Provincia {
 		this.pais=pais;
 	}
 	
+	//DEFAULT CONSTRUCTOR PARA HIBERNATE
+	public Provincia(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

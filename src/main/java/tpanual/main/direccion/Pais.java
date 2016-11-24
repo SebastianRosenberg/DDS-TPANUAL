@@ -15,6 +15,11 @@ public class Pais {
 		this.nombre=nombre;
 	}
 	
+	//DEFAULT CONSTRUCTOR PARA HIBERNATE
+	public Pais(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -22,6 +22,11 @@ public class Localidad {
 		this.provincia=provincia;
 	}
 	
+	//DEFAULT CONSTRUCTOR PARA HIBERNATE
+	public Localidad(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
