@@ -16,50 +16,11 @@
 	</f:metadata>
 
 	<h:head>
-		<p:ajaxStatus onstart="statusDialog.show();"
-			onsuccess="statusDialog.hide();" />
-
 		<p:layout fullPage="true" resizeTitle="resize"
 			style="background-color:#FFFFFF;">
 
 			<p:layoutUnit position="north" resizable="true" id="north">
-				<h:panelGrid columns="3" cellpadding="5" style="width: 100%;">
-					<p:row>
-						<p:column>
-							<center>
-								<p:graphicImage library="resources" name="userImg.png"
-									height="60" width="60" />
-								<!-- 								<h:outputLabel value="#{loginBean2.usuario}"></h:outputLabel> -->
-							</center>
-						</p:column>
-						<p:column>
-							<center>
-								<!-- 								<p:graphicImage library="resources" name="usr_img.png" -->
-								<!-- 									height="100" width="100" /> -->
-								<h:outputLabel value="#{loginBean2.usuario}"></h:outputLabel>
-							</center>
-						</p:column>
-
-					</p:row>
-					<p:row>
-						<p:column>
-							<center>
-																<h:outputText value="Trabajo Práctico Anual diseño de Sistemas"
-																	style="font-weight: bold;font-size:30px;" />
-							</center>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column style="text-align: right">
-							<p:graphicImage library="resources" name="logoUtn.png"
-								height="80" width="200" />
-						</p:column>
-					</p:row>
-
-
-					<!-- 					<p:graphicImage name="WebContent/resources/utnLogo.png" style="text-align: right;"/> -->
-				</h:panelGrid>
-				<!-- style="float: left"<ui:include src="header.xhtml" />style="float:right" -->
+				<ui:include src="header.xhtml" />
 			</p:layoutUnit>
 
 			<p:layoutUnit position="west" id="west">
@@ -94,40 +55,13 @@
 
 			<p:layoutUnit styleClass="layoutUnitCenter" position="center">
 				<h:form id="mainForm">
-
-					<!-- 					<p:messages autoUpdate="true" id="msgs" showDetail="true" -->
-					<!-- 						showSummary="true" /> -->
-					<!-- 					<ui:insert name="content" /> -->
 				</h:form>
 			</p:layoutUnit>
 
-			<p:layoutUnit position="east" size="0"
-				style="width:0px; display:none;" id="east">
-			</p:layoutUnit>
-
 			<p:layoutUnit position="south" resizable="true" id="south">
-
-				<center>
-					<h:outputText
-						value="Ingeniería en Sistemas de Información - Grupo 4"
-						style="font-weight: bold;" />
-				</center>
-				<!-- 					<ui:include src="footer.xhtml" /> -->
+				<ui:include src="footer.xhtml" />
 			</p:layoutUnit>
-
 		</p:layout>
-
-		<p:dialog modal="true" widgetVar="statusDialog" showHeader="false"
-			draggable="false" closable="false" resizable="false" visible="false"
-			position="center" maximizable="false" minimizable="false">
-			<!-- 			<p:graphicImage value="#{resource['images/ajax-loader.gif']}" /> -->
-		</p:dialog>
-
-
 	</h:head>
-
-	<h:body onload="statusDialog.hide();">
-	</h:body>
-
 </f:view>
 </html>

@@ -4,6 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import tpanual.jsfcontrollers.BusquedaDePoisController;
 import tpanual.jsfcontrollers.UsuariosController;
@@ -71,5 +72,11 @@ public class LoginBean {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severidad, mensaje, null));
 
 	}
+	
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        BusquedaDePoisController.usuario_str = null;
+        return "/login.xhtml?faces-redirect=true";
+    }
 
 }

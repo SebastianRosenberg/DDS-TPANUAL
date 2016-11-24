@@ -8,9 +8,26 @@
 <head>
 </head>
 <body>
-	<center>
-		<h:outputText value="Ingeniería en Sistemas de Información - Grupo 4"
-			style="font-weight: bold;" />
-	</center>
+
+	<h:panelGrid columns="2">
+		<p:row>
+			<p:column>
+				<center>
+					<h:outputText
+						value="Ingeniería en Sistemas de Información - Grupo 4"
+						style="font-weight: bold;" />
+				</center>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<!-- 				<center> -->
+				<p:commandButton value="Logout" icon="ui-icon-extlinkvalue"
+					action="#{loginBean2.logout}" style="position: relative;  left: 940px"/>
+				<!-- 				</center> -->
+			</p:column>
+		</p:row>
+	</h:panelGrid>
+
 </body>
 </html>
