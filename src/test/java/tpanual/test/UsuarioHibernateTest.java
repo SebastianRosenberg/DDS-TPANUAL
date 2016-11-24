@@ -18,9 +18,9 @@ public class UsuarioHibernateTest {
 		
 		hs = new HibernateFactorySessions();
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance ();
-		Usuario nuevoUsuarioAdmin =gestor.crearAdministrador("sebas", "mailsebas@hotmail.com","peras");
-		//int idUsuarioBd = hs.add(nuevoUsuarioAdmin);
-		//assertTrue(hs.obtenerUsuario(idUsuarioBd).getId() == idUsuarioBd);
+		Usuario nuevoUsuarioAdmin = gestor.crearAdministrador("unAdminDePrueba", "unAdminDePrueba@hotmail.com","peras");
+		int idUsuarioBd = hs.add(nuevoUsuarioAdmin);
+		assertTrue(hs.obtenerUsuario(idUsuarioBd).getId() == idUsuarioBd);
 		
 	}
 
@@ -28,16 +28,16 @@ public class UsuarioHibernateTest {
 	public void eliminarUsuarioTest(){
 		hs = new HibernateFactorySessions();
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-		Usuario nuevoUsuarioTerminal = gestor.crearTerminalNoActivo("terminalUrquiza");
+		Usuario nuevoUsuarioTerminal = gestor.crearTerminalNoActivo("unaTerminalDePrueba");
 		idUsuarioEliminado = hs.add(nuevoUsuarioTerminal);
 		nuevoUsuarioTerminal.setId(idUsuarioEliminado);
 		
 		//Elimino
-		//hs.eliminarObjetoBd(nuevoUsuarioTerminal);
+		hs.eliminarObjetoBd(nuevoUsuarioTerminal);
 
 		//Compruebo que al buscarlo no exista
-		//Usuario usuarioBorrado = hs.obtenerUsuario(idUsuarioEliminado);
-		//assertNull(usuarioBorrado);
+		Usuario usuarioBorrado = hs.obtenerUsuario(idUsuarioEliminado);
+		assertNull(usuarioBorrado);
 		
 	}
 	
