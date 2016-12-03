@@ -70,8 +70,9 @@ public abstract class Usuario {
 		sBusqueda.setDuracion(d);
 		sBusqueda.setStringsBuscados(new String[] {strABuscar});
 		sBusqueda.setUsuario(this);
-		if (!sBusqueda.isUsoBuffer())
-			sBusqueda.finalizarBusqueda();
+		
+		sBusqueda.finalizarBusqueda();
+		
 		return pois; 
 		
 	}

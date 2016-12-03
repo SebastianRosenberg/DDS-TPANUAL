@@ -14,6 +14,8 @@ import tpanual.factory.InterfacesExternasFactory;
 import tpanual.main.Dias;
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.main.poi.PuntoDeInteresWrapper;
+import tpanual.mongo.MongoDBConnection;
 import tpanual.utilitarios.Utilitarios;
 
 public class Mapa {
@@ -55,6 +57,7 @@ public class Mapa {
 	 */
 	
 	List<PuntoDeInteres> buscarEnFuentesExternas(String x, boolean test){
+		
 		Iterator<AdaptadorServicioExterno> i=adaptadores.iterator();
 		List<PuntoDeInteres> lista=new ArrayList<PuntoDeInteres>();
 		while (i.hasNext()){
@@ -68,12 +71,8 @@ public class Mapa {
 			}
 		}
 		
-		Iterator<PuntoDeInteres> it = lista.iterator();
-		while (it.hasNext()){
-			PuntoDeInteres poi = it.next();
-			int id = AdministradorDePoi.getInstance().agregarPoiFuentesExternas(poi);
-			poi.setId(id);
-		}
+		PuntoDeInteresWrapper pw = new PuntoDeInteresWrapper(lista);
+		MongoDBConnection.getInstance().agregarWrapper(pw);
 		
 		return lista;
 	}

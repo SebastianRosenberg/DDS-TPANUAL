@@ -9,6 +9,8 @@ import org.joda.time.Duration;
 
 import tpanual.main.direccion.Direccion;
 import tpanual.main.poi.PuntoDeInteres;
+import tpanual.main.poi.PuntoDeInteresWrapper;
+import tpanual.mongo.MongoDBConnection;
 import tpanual.usuario.Usuario;
 import tpanual.utilitarios.HibernateFactorySessions;
 import tpanual.utilitarios.Utilitarios;
@@ -58,23 +60,25 @@ public class AdministradorDePoi {
 	 */
 	
 	public List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test){
-		String listaStrings[] = {x};
-		Busqueda busqueda=AdministradorDeBusquedas.getInstance().getBusquedaAnterior(listaStrings);
 		List<PuntoDeInteres> lista;
-		if (busqueda!=null){
-			usoBufferBusqueda=true;
-//			try{
-//				return this.devolverPoiPorIds(busqueda.getIdsEncontrados());
-//			}catch(PuntoDeInteresNoEncontradoException e){
-//				//Se invalida la busqueda anterior y se procede a buscar normalmente
-//			}
-			return busqueda.getPoiEncontrados();
-		}else{
-			usoBufferBusqueda=false;
-		}
+		usoBufferBusqueda=false;
 		lista=Mapa.getInstance().buscarPuntosDeInteresEnHibernate(x);
-		lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
+		
+		List<PuntoDeInteresWrapper> poisExternos = MongoDBConnection.getInstance().obtenerPoisDeExternos(x);
+		
+		if (poisExternos!=null && !poisExternos.isEmpty()){
+			Iterator<PuntoDeInteresWrapper> it = poisExternos.iterator();
+			while (it.hasNext()){
+				lista=Utilitarios.fusionarListasSinRepetidos(lista, it.next().getPois_embbebed() );
+			}
+		}else{
+		
+			lista=Utilitarios.fusionarListasSinRepetidos(lista, Mapa.getInstance().buscarEnFuentesExternas(x, test));
+			
+		}
+		
 		return lista;
+		
 	}
 	
 	private List<PuntoDeInteres> devolverPoiPorIds(int... id) throws PuntoDeInteresNoEncontradoException{
