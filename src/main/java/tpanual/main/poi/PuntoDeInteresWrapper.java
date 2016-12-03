@@ -2,8 +2,10 @@ package tpanual.main.poi;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 @Entity(value = "ServiciosExternos_Buffer")
 public class PuntoDeInteresWrapper {
@@ -11,6 +13,9 @@ public class PuntoDeInteresWrapper {
 	
 	@Embedded
 	private List<PuntoDeInteres> pois_embbebed;
+	
+	@Id
+	private ObjectId  id;
 	
 	public PuntoDeInteresWrapper(List<PuntoDeInteres> lista){
 		

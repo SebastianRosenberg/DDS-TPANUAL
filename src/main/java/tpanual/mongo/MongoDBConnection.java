@@ -67,7 +67,7 @@ public class MongoDBConnection {
     public List<PuntoDeInteresWrapper> obtenerPoisDeExternos(String string){
     	
     	Query<PuntoDeInteresWrapper> q = datastorePoi.createQuery(PuntoDeInteresWrapper.class);
-    	q.field("ServiciosExternos_Buffer").equal(string);
+    	q.field("stringBuscado").equal(string);
     	List<PuntoDeInteresWrapper> pois = q.asList();
     	return pois;
     }
