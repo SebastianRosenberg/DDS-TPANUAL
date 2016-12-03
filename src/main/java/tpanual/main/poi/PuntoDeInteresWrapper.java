@@ -17,7 +17,12 @@ public class PuntoDeInteresWrapper {
 	@Id
 	private ObjectId  id;
 	
-	public PuntoDeInteresWrapper(List<PuntoDeInteres> lista){
+	public PuntoDeInteresWrapper(List<PuntoDeInteres> lista, String x){
+		pois_embbebed=lista;
+		stringBuscado=x;
+	}
+	
+	public PuntoDeInteresWrapper(){
 		
 	}
 	
@@ -35,6 +40,18 @@ public class PuntoDeInteresWrapper {
 
 	public List<PuntoDeInteres> getPois_embbebed() {
 		return pois_embbebed;
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
+	public void setPois_embbebed(List<PuntoDeInteres> pois_embbebed) {
+		this.pois_embbebed = pois_embbebed;
 	}
 	
 	

@@ -38,12 +38,6 @@ public class BusquedaDePoiBean {
 		} else {
 			this.redirectToPage("/login.xhtml");
 		}
-		/*
-		 * SucursalBancoPojo aux = new SucursalBancoPojo(); Direccion dir = new
-		 * Direccion(); dir.setCallePrincipal("Carolina Muzilli");
-		 * dir.setNumero("5491"); aux.setDireccion(dir);
-		 * resultadoBusqueda.add(aux);
-		 */
 
 	}
 
