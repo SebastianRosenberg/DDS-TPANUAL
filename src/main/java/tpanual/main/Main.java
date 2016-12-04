@@ -38,7 +38,7 @@ public class Main {
 		// administradores
 		hs = new HibernateFactorySessions();
 		GestorDeUsuarios gestor = GestorDeUsuarios.getInstance();
-		
+	/*	
 		Pais pais = new Pais("Argentina");
 		Provincia provincia = new Provincia("Buenos Aires", pais);
 		Localidad unaLocalidad = new Localidad("San Martin", 1712, provincia);
@@ -63,12 +63,11 @@ public class Main {
 				.barrio("Once").crearDireccion();
 		Direccion direccion2 = new Direccion.DireccionBuilder().callePrincipal("Mitre").numero("1354")
 				.barrio("Congreso").crearDireccion();
-		Direccion direccion3 = new Direccion.DireccionBuilder().callePrincipal("Paseo Colón").numero("745")
-				.barrio("San Telmo").entreCalle1("Chile").entreCalle2("Av. Independencia").localidad(unaLocalidad)
-				.crearDireccion();
-		Direccion direccion4 = new Direccion.DireccionBuilder().callePrincipal("Av. Congreso").numero("5205")
-				.barrio("Villa Urquiza").entreCalle1("Triunvirato").entreCalle2("Un pasaje").crearDireccion();
 		
+	
+		Direccion direccion3 = new Direccion.DireccionBuilder().callePrincipal("Otra calle").numero("1354")
+				.barrio("Congreso").crearDireccion();
+	
 
 		List<String> palabras1 = new ArrayList<String>();
 		palabras1.add("CGP");
@@ -76,23 +75,16 @@ public class Main {
 
 		List<String> palabras2 = new ArrayList<String>();
 		palabras2.add("Zona Segura");
-
 		List<String> palabras3 = new ArrayList<String>();
-		palabras3.add("Buena Atención");
-		palabras3.add("Rapidez");
-
-		List<String> palabras4 = new ArrayList<String>();
-		palabras4.add("Buena ubicación");
+		palabras3.add("Zona Segura");
 
 		List<Servicio> servicios1 = Servicio.getListaServicios("Registro Civil", "Denuncias", "Pensiones");
 		List<Servicio> servicios2 = Servicio.getListaServicios("Jubilaciones");
-		List<Servicio> servicios3 = Servicio.getListaServicios("Cheques", "Pagos", "Cobros", "Cajeros");
-
+		
 		servicios1.get(0).setHorario(getHorario1());
 		servicios1.get(1).setHorario(getHorario2());
 		servicios1.get(2).setHorario(getHorario3());
 		servicios2.get(0).setHorario(getHorario3());
-		servicios3.get(0).setHorario(getHorario3());
 		
 		HorarioDeAtencion hda = new HorarioDeAtencion();
 		hda.addRangoDia(9, 18, 1);
@@ -100,30 +92,39 @@ public class Main {
 		hda.addRangoDia(9, 18, 3);
 		hda.addRangoDia(9, 18, 4);
 		hda.addRangoDia(9, 18, 5);
+		
+		HorarioDeAtencion hda2 = new HorarioDeAtencion();
+		hda2.addRangoDia(9, 18, 1);
+		hda2.addRangoDia(9, 18, 2);
+		hda2.addRangoDia(9, 18, 3);
+		hda2.addRangoDia(9, 18, 4);
+		hda2.addRangoDia(9, 18, 5);
+		
+		HorarioDeAtencion hda3 = new HorarioDeAtencion();
+		hda3.addRangoDia(9, 18, 1);
+		hda3.addRangoDia(9, 18, 2);
+		hda3.addRangoDia(9, 18, 3);
+		hda3.addRangoDia(9, 18, 4);
+		hda3.addRangoDia(9, 18, 5);
 
 		// Persisto el punto de interes
-		PuntoDeInteres pdi = PuntoDeInteresFactory.getCGP(1235, 9494, "GCP Comuna 1", direccion1, palabras1,
-				servicios1, 25);
-		PuntoDeInteres pdi2 = PuntoDeInteresFactory.getCGP(2681, 3221D, "GCP Comuna 2", direccion2, palabras2,
-				servicios2, 25);
-		PuntoDeInteres pdi5 = PuntoDeInteresFactory.getLocalComercial(2135, 9465, "Local de ropa", direccion4, palabras4, 
+
+		PuntoDeInteres pdi5 = PuntoDeInteresFactory.getLocalComercial(2135, 9465, "Libreria tijeras", direccion1, palabras1, 
 				RubroFWFactory.getRubro("Ropa", 30), hda);
 		
+		PuntoDeInteres pdi6 = PuntoDeInteresFactory.getLocalComercial(2135, 9465, "Peluqueria tijeras", direccion2, palabras2, 
+				RubroFWFactory.getRubro("Ropa", 30), hda2);
 		
-		
-		PuntoDeInteres pdi3 = PuntoDeInteresFactory.getSucursal(300D, 185D, "Banco Galicia", direccion3, palabras3,
-				servicios3);
-		PuntoDeInteres pdi4 = PuntoDeInteresFactory.getParadaDeColectivo(-34.570584, -58.491547, "Parada Linea 169",
-				direccion4, palabras4, "169");
+		PuntoDeInteres pdi7 = PuntoDeInteresFactory.getLocalComercial(2135, 9465, "Restaurante santander", direccion3, palabras3, 
+				RubroFWFactory.getRubro("Ropa", 30), hda3);
+
 		
 		// idPoiModificado = pdi.getId();
 		// idPoiEliminado = pdi2.getId();
 		// hs = new HibernateFactorySessions();
-		hs.add(pdi);
-		hs.add(pdi2);
-		hs.add(pdi3);
-		hs.add(pdi4);
-		hs.add(pdi5);
+
+
+		hs.add(pdi7);
 
 //		//hay que agregar casos para locales y mas paradas de colectivos y las busquedas
 //		
@@ -132,6 +133,7 @@ public class Main {
 //		while (it.hasNext()){
 //			System.out.println(it.next());
 //		}
+		System.out.println("Ingresos realizados");
 		
 	}
 
