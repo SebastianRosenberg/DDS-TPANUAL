@@ -63,7 +63,7 @@
 						</p:column>
 						<p:column style="width:32px;text-align: center">
 							<p:commandButton update=":form:poiDetail"
-								action="#{historicoDeBusquedasBean.masInfo(resultado.ids)}"
+								action="#{historicoDeBusquedasBean.masInfo(resultado.poisCompletos)}"
 								icon="ui-icon-search" title="View">
 								<f:setPropertyActionListener value="#{resultado}"
 									target="#{historicoDeBusquedasBean.busquedaSeleccionada}" />
