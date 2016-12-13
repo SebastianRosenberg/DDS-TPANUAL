@@ -42,7 +42,7 @@ import tpanual.main.direccion.Direccion;
 	public boolean equals(Object obj){
 		if (!(obj instanceof PoiPojo))
 			return false;
-		PoiPojo a = (PoiPojo) obj
+		PoiPojo a = (PoiPojo) obj;
 		return this.nombre.equals(a.nombre);
 	}
 		
