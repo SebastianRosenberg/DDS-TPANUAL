@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import tpanual.main.poi.PuntoDeInteres;
 import tpanual.usuario.Usuario;
 
 public class BusquedaPojo {
@@ -14,6 +15,7 @@ public class BusquedaPojo {
 	private String[] parametros;
 	private int[] ids;
 	private int total;
+	private List<PuntoDeInteres> poisCompletos;
 	
 	
 	public DateTime getFecha() {
@@ -45,5 +47,11 @@ public class BusquedaPojo {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	public List<PuntoDeInteres> getPoisCompletos() {
+		return poisCompletos;
+	}
+	public void setPoisCompletos(List<PuntoDeInteres> poisCompletos) {
+		this.poisCompletos = poisCompletos;
 	}
 }

@@ -216,6 +216,7 @@ public class Busqueda {
 			idsEncontrados[i]=poi.getId();
 			i++;
 		}
+		bp.setPoisCompletos(poiEncontrados);
 		bp.setIds(idsEncontrados);
 		bp.setParametros(stringsBuscados);
 		bp.setTotal(poiEncontrados.size());

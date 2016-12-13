@@ -3,6 +3,7 @@ package tpanual.jsfBeans;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.FacesException;
@@ -15,6 +16,7 @@ import org.joda.time.DateTime;
 import administrador.AdministradorDePoi;
 import tpanual.jsfcontrollers.pojos.busqueda.BusquedaPojo;
 import tpanual.jsfcontrollers.pojos.poi.PoiPojo;
+import tpanual.main.poi.PuntoDeInteres;
 import tpanual.seguridad.GestorDeUsuarios;
 import tpanual.jsfcontrollers.BusquedaDePoisController;
 import tpanual.jsfcontrollers.HistorialDeBusquedasController;
@@ -84,9 +86,18 @@ public class HistoricoDeBusquedasBean {
 
 	public void masInfo(int[] ids) {
 		infoPOI.clear();
-		for (int i = 0; i < ids.length; i++) {
-			infoPOI.add(AdministradorDePoi.getInstance().obtenerPoiPorId(ids[i]).getPojo());
-			// infoPOI.add(String.valueOf(i));
+		Iterator<BusquedaPojo> it1=busquedas.iterator();
+		while (it1.hasNext()){
+			BusquedaPojo bp = it1.next();
+			List<PuntoDeInteres> l = bp.getPoisCompletos();
+			Iterator<PuntoDeInteres> it2 = l.iterator();
+			while (it2.hasNext()){
+				PuntoDeInteres poi = it2.next();
+				for (int i = 0; i < ids.length; i++) {
+					if (ids[i] == poi.getId())
+						infoPOI.add(poi.getPojo());
+				}
+			}
 		}
 	}
 
