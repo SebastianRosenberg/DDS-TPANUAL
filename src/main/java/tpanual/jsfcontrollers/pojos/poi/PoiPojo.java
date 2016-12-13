@@ -39,4 +39,12 @@ import tpanual.main.direccion.Direccion;
 	public void setInfoExtra(String infoExtra) {
 		this.infoExtra = infoExtra;
 	}
+	public boolean equals(Object obj){
+		if (!(obj instanceof PoiPojo))
+			return false;
+		PoiPojo a = (PoiPojo) obj
+		return this.nombre.equals(a.nombre);
+	}
+		
+
 }
