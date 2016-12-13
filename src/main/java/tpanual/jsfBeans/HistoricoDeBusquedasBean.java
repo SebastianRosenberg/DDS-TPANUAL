@@ -86,14 +86,19 @@ public class HistoricoDeBusquedasBean {
 
 	public void masInfo(int[] ids) {
 		infoPOI.clear();
-		Iterator<BusquedaPojo> it1=busquedas.iterator();
-		while (it1.hasNext()){
-			BusquedaPojo bp = it1.next();
-			List<PuntoDeInteres> l = bp.getPoisCompletos();
-			Iterator<PuntoDeInteres> it2 = l.iterator();
-			while (it2.hasNext()){
-				PuntoDeInteres poi = it2.next();
-				for (int i = 0; i < ids.length; i++) {
+
+		for (int i = 0; i < ids.length; i++) {
+			if (busquedas==null)
+				return;
+			Iterator<BusquedaPojo> it1=busquedas.iterator();
+			while (it1.hasNext()){
+				BusquedaPojo bp = it1.next();
+				List<PuntoDeInteres> l = bp.getPoisCompletos();
+				if (l==null)
+					return;
+				Iterator<PuntoDeInteres> it2 = l.iterator();
+				while (it2.hasNext()){
+					PuntoDeInteres poi = it2.next();
 					if (ids[i] == poi.getId())
 						infoPOI.add(poi.getPojo());
 				}
