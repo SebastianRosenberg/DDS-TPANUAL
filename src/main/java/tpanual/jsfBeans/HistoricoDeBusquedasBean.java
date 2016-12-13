@@ -99,7 +99,7 @@ public class HistoricoDeBusquedasBean {
 				Iterator<PuntoDeInteres> it2 = l.iterator();
 				while (it2.hasNext()){
 					PuntoDeInteres poi = it2.next();
-					if (ids[i] == poi.getId())
+					if (ids[i] == poi.getId() && infoPOI.contains(poi.getPojo()))
 						infoPOI.add(poi.getPojo());
 				}
 			}
