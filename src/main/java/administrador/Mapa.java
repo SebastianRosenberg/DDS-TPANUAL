@@ -71,8 +71,11 @@ public class Mapa {
 			}
 		}
 		
-		PuntoDeInteresWrapper pw = new PuntoDeInteresWrapper(lista, x);
-		MongoDBConnection.getInstance().agregarWrapper(pw);
+		if (lista!=null && !lista.isEmpty()){
+		
+			PuntoDeInteresWrapper pw = new PuntoDeInteresWrapper(lista, x);
+			MongoDBConnection.getInstance().agregarWrapper(pw);
+		}
 		
 		return lista;
 	}
