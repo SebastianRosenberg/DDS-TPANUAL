@@ -1,0 +1,232 @@
+class Administrador extends Usuario{
+
+}
+class GrupoDeTerminales {
+
+private List<Usuario> usuarios
+public void agregarUsuario (Usuario usuarioEntrada)
+}
+class Terminal extends Usuario {
+}
+
+abstract class Usuario {
+
+public List<PuntoDeInteres> busquedaDePuntosDeInteres(String strABuscar, boolean test, boolean avanzada)
+public abstract boolean isAdministrador();
+public abstract boolean modificarPoi(PuntoDeInteres poi);
+public abstract void agregarPoi(PuntoDeInteres poi);
+public abstract boolean eliminarPoi(PuntoDeInteres poi);
+public abstract void notificar();
+public abstract PuntoDeInteres masInformacion(Integer id);
+protected abstract List<PuntoDeInteres> busquedaAvanzada(String x, boolean c);
+protected abstract List<PuntoDeInteres> busquedaBasica(String x, boolean c);
+}
+
+abstract class Estado {
+public abstract List<PuntoDeInteres> busquedaDePuntosDeInteres(String x, boolean test);
+public abstract List<PuntoDeInteres> busquedaAvanzada(String x, boolean test)
+
+public abstract List<PuntoDeInteres> busquedaBasica(String x, boolean test)
+
+}
+
+class NoActivo extends Estado{
+}
+class Activo extends Estado{
+}
+
+together {
+class PoiPojo {
+private double latitud;
+	private double longitud
+	private String nombre
+	private String direccion
+	private String infoExtra
+}
+class CgpPojo extends PoiPojo{
+}
+ class LocalComercialPojo extends PoiPojo {
+ }
+ class ParadaDeColectivosPojo extends PoiPojo {
+ }
+ class SucursalBancoPojo extends PoiPojo{
+ }
+class PuntoDeInteres {
+private int id
+private double latitud
+private double longitud
+private String nombre
+private Direccion direccion
+private TipoPuntoInteres tipo
+private Set<PalabraClave> palabrasClaves
+private boolean dadoDeBaja
+private long fechaBaja
+public boolean buscarCoincidencia(String x)
+public boolean estaDisponible(int dia, int hora, String x)
+
+}
+
+interface ConvertibleAPoiPojo {
+public PoiPojo convertir(PuntoDeInteres p)
+}
+
+abstract class TipoPuntoInteres implements ConvertibleAPoiPojo{
+}
+
+class CGP extends TipoPuntoInteres{
+}
+class LocalComercial extends TipoPuntoInteres{
+}
+class ParadaColectivo extends TipoPuntoInteres{
+}
+class SucursalBanco extends TipoPuntoInteres{
+}
+}
+class ComunicacionServiciosExternos{
+public List<PuntoDeInteres> obtenerCGPEnCalleOZona(String calleOZona)
+public List<PuntoDeInteres> obtenerBancosPorNombreYServicio(String nombreBanco, String nombreServicioOfrecido)
+}
+
+class HorarioDeAtencion{
+Set<Intervalo> horarios;
+}
+class Intervalo {
+ long fechaDesde
+ long fechaHasta
+}
+
+class Servicio {
+String nombre
+HorarioDeAtencion horario
+}
+
+class GestorDeUsuarios {
+Usuario buscarUsuarioPorNombre(String nombre)
+ Usuario crearTerminalActivo(String nombre)
+ Usuario crearAdministrador(String nombre, String email, String password)
+ Usuario loguearUsuario(String nombre, String password)
+ setearPrivilegios(Usuario u)
+ darPrivilegioAGrupo(List<ValorPrioridades> lista)
+}
+
+abstract class AccionEnCasoDeError{
+	abstract RespuestaProceso RealizarAccion(Usuario usuario, Proceso proceso, RespuestaProceso respuesta)
+}
+
+class EnviarMail extends AccionEnCasoDeError{
+}
+class ReintentarNVeces extends AccionEnCasoDeError{
+}
+class Nada extends AccionEnCasoDeError{
+}
+
+class AdministradorDeProcesos {
+
+List<ProcesoEjecutado> procesosEjecutados
+List<Proceso> procesosDisponibles
+ 
+public List<Proceso> GetProcesosDisponiblesParaElUsuario(Usuario usuario)
+public RespuestaProceso EjecutarProceso(Proceso proceso, Usuario usuario, AccionEnCasoDeError accionError )
+public List<ProcesoEjecutado> GetProcesosEjecutados()
+
+}
+
+abstract class Proceso {
+	public abstract RespuestaProceso procesar()	
+}
+class ProcesoMultipleComposite extends Proceso{
+	private List<Proceso> procesos
+}
+
+class BajaDePois extends Proceso{
+}
+class ActualizarAcciones extends Proceso{
+	
+	private List<ValorPrioridades> listaCambios
+	private MementoUsuarios memento
+	
+	public void desHacerCambios()
+}
+
+class MementoUsuarios {
+	private Map<String, Usuario> usuarios
+}
+class ActualizacionDeLocalesComerciales extends Proceso {
+}
+
+
+class AdministradorDeBusquedas {
+
+private List<Busqueda> busquedas
+public List<Busqueda> getBusquedas()
+}
+class Busqueda {
+private long fechaDeBusqueda
+private String[] stringsBuscados
+private List<PuntoDeInteres> poiEncontrados
+private Usuario usuario
+private long duracion
+}
+
+class Mapa {
+	
+	private List<AdaptadorServicioExterno> adaptadores
+	List<PuntoDeInteres> buscarPuntosDeInteresEnHibernate(String x)
+	List<PuntoDeInteres> buscarEnFuentesExternas(String x)
+	List<PuntoDeInteres> buscarBancos(String banco, String servicio)
+}
+
+interface AdaptadorServicioExterno {
+	public List<PuntoDeInteres> buscar(String x, String x2)
+}
+class AdaptadorServicioExternoBancos implements AdaptadorServicioExterno{
+}
+class AdaptadorServicioExternoCGP implements AdaptadorServicioExterno {
+}
+ 
+ class AdministradorDeReportes  {
+ List<Busqueda> getBusquedasPorUsuario(Usuario user)
+ List<Busqueda> getBusquedasPorFecha(DateTime fechaDesde, DateTime fechaHasta)
+ Reporte<CantidadPorFecha> GenerarReporteCantidadPorFecha()
+ Reporte<CantidadPorUsuario> GenerarReporteCantidadPorUsuario()
+ Reporte<CantidadPorBusquedaPorUsuario> GenerarReporteCantidadPorBusquedaPorUsuario(Usuario usuario)
+ 
+ }
+
+ class CantidadPorBusquedaPorUsuario implements CriterioReporte{
+ }
+ class CantidadPorFecha implements CriterioReporte{
+ }
+  class CantidadPorUsuario implements CriterioReporte{
+  }
+  interface CriterioReporte {
+  }
+  class Reporte<T extends CriterioReporte> extends Mostrable {
+  }
+  abstract class Mostrable {
+  public abstract void mostrar()
+  }
+  interface MetodoGrafico {
+	public void mostrar(Object mostrable)
+	}
+class  MostrablePorConsola implements MetodoGrafico {
+  }
+  
+  GrupoDeTerminales o-- Usuario 
+  AdministradorDeProcesos -->"*" ProcesoEjecutado
+  AdministradorDeProcesos -->"*" Proceso
+  
+  AdministradorDeBusquedas -->"*" Busqueda
+  HorarioDeAtencion -->"*" Intervalo
+  PuntoDeInteres  --> Direccion
+  PuntoDeInteres --> TipoPuntoInteres
+  
+  Servicio  --> HorarioDeAtencion
+  Mapa -->"*" AdaptadorServicioExterno
+  
+  Busqueda --> Usuario
+  Busqueda -->"*" PuntoDeInteres
+  AdministradorDeBusquedas -->"*" Busqueda
+  ActualizarAcciones --> MementoUsuarios
+  ProcesoMultipleComposite -->"*" Proceso
+ 
